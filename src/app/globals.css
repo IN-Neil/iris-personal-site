@@ -61,6 +61,11 @@ body {
 }
 
 /* Subtle grain over the scene, like dithering on a dark print */
+.pixel {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
 .grain {
   opacity: 0.11;
   mix-blend-mode: overlay;

@@ -110,7 +110,8 @@ export function activeSegment(p: number): SegmentKey {
 
 /**
  * How a chapter's text unfolds, from local progress inside its segment.
- * The first ~28% of every chapter is environment only (breathing room).
+ * The first ~40% of every chapter is scene only: the words are the last thing
+ * to arrive, once the world has settled.
  */
 export function chapterPhases(p: number, segment: Segment) {
   const [start, end] = segment;
@@ -118,11 +119,11 @@ export function chapterPhases(p: number, segment: Segment) {
   const t = within(p, segment);
   return {
     /** Overall visibility of the text block, with a fade at both ends. */
-    visible: fadeWindow(p, [start + 0.28 * len, end - 0.02 * len], 0.02),
-    heading: round(smoothstep((t - 0.35) / 0.08)),
-    typed: round(clamp((t - 0.42) / 0.43)),
+    visible: fadeWindow(p, [start + 0.4 * len, end - 0.02 * len], 0.02),
+    heading: round(smoothstep((t - 0.44) / 0.08)),
+    typed: round(clamp((t - 0.52) / 0.4)),
     /** How much the environment should step back once the text is up. */
-    settled: round(smoothstep((t - 0.3) / 0.1)),
+    settled: round(smoothstep((t - 0.4) / 0.1)),
   };
 }
 
@@ -186,42 +187,31 @@ const skyStops: ColorStop[] = [
   [1, "#1D2A3D"],
 ];
 
-/** Wide-shot zoom. The per-chapter close-up is layered on top (see `closeup`). */
-const zoomStops: Stop[] = [
-  [0, 1.08],
-  [0.06, 1.02],
-  [0.12, 0.98],
-  [0.66, 1.0],
-  [0.84, 1.0],
-  [1, 0.8],
-];
-
-const WIDE_ORIGIN: [number, number] = [50, 64];
-const CLOSE_ORIGIN: [number, number] = [40, 78]; // on the boat
-const CLOSE_ZOOM = 1.6;
-
-const chapterKeys = ["questions", "building", "community", "part"] as const;
-
-export type ChapterKey = (typeof chapterKeys)[number];
-
 /**
- * Which chapter the camera is pushing in on, and how far (0→1). The push-in
- * rises just before the caption appears and releases as the chapter ends.
+ * The camera never zooms. It sits close to the water the whole way, and the
+ * world does the moving: the moon rises and swells across chapters one and
+ * two, clouds drift in, the shore slides away and another slides in.
  */
-export function closeupState(p: number): { chapter: ChapterKey | null; amount: number } {
-  for (const chapter of chapterKeys) {
-    const segment = segments[chapter];
-    if (p < segment[0] || p > segment[1] + 0.02) continue;
-    const t = within(p, segment);
-    const amount = round(Math.min(smoothstep((t - 0.16) / 0.16), smoothstep((1.02 - t) / 0.07)));
-    return { chapter, amount };
-  }
-  return { chapter: null, amount: 0 };
-}
 
-export function closeup(p: number): number {
-  return closeupState(p).amount;
-}
+/** Moon position (% of stage) and width (% of stage width), as it travels. */
+const moonXStops: Stop[] = [
+  [0, 80],
+  [0.14, 78],
+  [0.34, 32],
+  [0.6, 22],
+];
+const moonYStops: Stop[] = [
+  [0, 42],
+  [0.14, 40],
+  [0.34, 10],
+  [0.6, 6],
+];
+const moonSizeStops: Stop[] = [
+  [0, 5],
+  [0.14, 5.5],
+  [0.34, 20],
+  [0.6, 20],
+];
 
 /** 0 = clear moonlit night, 1 = full storm. */
 const stormStops: Stop[] = [
@@ -254,12 +244,11 @@ const energyStops: Stop[] = [
 
 const moonOpacityStops: Stop[] = [
   [0, 1],
-  [0.3, 0.9],
-  [0.45, 0.25],
-  [0.6, 0.12],
-  [0.8, 0.05],
-  [0.9, 0.3],
-  [1, 0.55],
+  [0.46, 1],
+  [0.56, 0.2], // slips behind the chapter-three clouds
+  [0.66, 0],
+  [0.86, 0],
+  [1, 0.4],
 ];
 
 const boatGlowStops: Stop[] = [
@@ -268,11 +257,10 @@ const boatGlowStops: Stop[] = [
 ];
 
 const cloudCoverStops: Stop[] = [
-  [0.2, 0],
-  [0.29, 0.5],
-  [0.36, 0.08],
-  [0.47, 0.08],
-  [0.58, 0.8],
+  [0, 0.5],
+  [0.3, 0.6],
+  [0.47, 0.7],
+  [0.58, 0.85],
   [0.66, 1],
   [0.86, 0.6],
   [1, 0.35],
@@ -294,15 +282,10 @@ const boatLiftStops: Stop[] = [
 export type SceneState = {
   progress: number;
   sky: string;
-  zoom: number;
-  /** Camera origin as `[x, y]` percentages of the stage. */
-  origin: [number, number];
-  /** 0→1 push-in on the boat during a chapter's text. */
-  closeup: number;
-  /** The chapter being pushed in on, if any; picks the scenery beside the text. */
-  closeupChapter: ChapterKey | null;
   storm: number;
   energy: number;
+  /** Where the moon is right now: `[x%, y%, width%]` of the stage. */
+  moon: [number, number, number];
   moonOpacity: number;
   starOpacity: number;
   /** Warm light inside the paper boat, from chapter two onward. */
@@ -330,18 +313,14 @@ export type SceneState = {
 export function sceneState(progress: number): SceneState {
   const p = clamp(progress);
   const storm = keyframes(p, stormStops);
-  const { chapter: closeupChapter, amount: close } = closeupState(p);
   const warmth = fadeWindow(p, [0.46, 0.68], 0.1);
 
   return {
     progress: p,
     sky: colorKeyframes(p, skyStops),
-    zoom: round(lerp(keyframes(p, zoomStops), CLOSE_ZOOM, close)),
-    origin: [round(lerp(WIDE_ORIGIN[0], CLOSE_ORIGIN[0], close)), round(lerp(WIDE_ORIGIN[1], CLOSE_ORIGIN[1], close))],
-    closeup: close,
-    closeupChapter,
     storm,
     energy: keyframes(p, energyStops),
+    moon: [keyframes(p, moonXStops), keyframes(p, moonYStops), keyframes(p, moonSizeStops)],
     moonOpacity: keyframes(p, moonOpacityStops),
     starOpacity: round(clamp((1 - storm) * 0.9 + fadeWindow(p, segments.building, 0.05) * 0.1)),
     boatGlow: keyframes(p, boatGlowStops),

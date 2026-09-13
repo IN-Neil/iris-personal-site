@@ -1,5 +1,52 @@
+import Image from "next/image";
 import type { CSSProperties } from "react";
 import { palette } from "@/lib/journey";
+
+// ---------------------------------------------------------------------------
+// Drawn sprites — pixel-art PNGs in /public/sprites, rendered with nearest-
+// neighbour scaling so the blocks stay sharp at any size. Sizes are the real
+// pixel dimensions of each file, used only for aspect ratio.
+// ---------------------------------------------------------------------------
+
+export const drawn = {
+  boat: { src: "/sprites/boat.png", w: 832, h: 274 },
+  boatLit: { src: "/sprites/boat-lit.png", w: 814, h: 246 },
+  hands: { src: "/sprites/hands.png", w: 752, h: 376 },
+  moon: { src: "/sprites/moon.png", w: 327, h: 332 },
+  cloudBank: { src: "/sprites/cloud-bank.png", w: 1025, h: 296 },
+  shoreDock: { src: "/sprites/shore-dock.png", w: 1030, h: 323 },
+  shoreCliffs: { src: "/sprites/shore-cliffs.png", w: 1029, h: 237 },
+  lighthouse: { src: "/sprites/lighthouse.png", w: 228, h: 764 },
+  cabin: { src: "/sprites/cabin.png", w: 444, h: 298 },
+} as const;
+
+export type DrawnKey = keyof typeof drawn;
+
+type PixelProps = {
+  name: DrawnKey;
+  className?: string;
+  style?: CSSProperties;
+  /** Load eagerly; use for anything visible on first paint. */
+  priority?: boolean;
+};
+
+/** A drawn sprite. Give the wrapper a width (or height); the image fills it. */
+export function Pixel({ name, className, style, priority }: PixelProps) {
+  const { src, w, h } = drawn[name];
+  return (
+    <Image
+      src={src}
+      alt=""
+      width={w}
+      height={h}
+      unoptimized
+      priority={priority}
+      draggable={false}
+      className={`pixel h-auto w-full select-none ${className ?? ""}`}
+      style={style}
+    />
+  );
+}
 
 /**
  * Small pixel-art sprites drawn as SVG rectangles on a grid.
