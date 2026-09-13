@@ -170,9 +170,10 @@ const skyStops: ColorStop[] = [
 
 const zoomStops: Stop[] = [
   [0, 1.08],
-  [0.12, 1.0],
-  [0.2, 0.94],
-  [0.3, 0.98],
+  [0.05, 1.05],
+  [0.13, 1.5], // push in on the boat once the hands let go
+  [0.26, 1.5],
+  [0.31, 0.98],
   [0.39, 1.12],
   [0.48, 1.04],
   [0.57, 1.04],
@@ -180,6 +181,20 @@ const zoomStops: Stop[] = [
   [0.75, 1.1],
   [0.84, 1.0],
   [1, 0.8],
+];
+
+/** Camera origin (% of stage): centred, except when it rides on the boat in chapter one. */
+const originXStops: Stop[] = [
+  [0.05, 50],
+  [0.13, 36],
+  [0.26, 36],
+  [0.31, 50],
+];
+const originYStops: Stop[] = [
+  [0.05, 64],
+  [0.13, 76],
+  [0.26, 76],
+  [0.31, 64],
 ];
 
 /** 0 = clear moonlit night, 1 = full storm. */
@@ -250,6 +265,8 @@ export type SceneState = {
   progress: number;
   sky: string;
   zoom: number;
+  /** Camera origin as `[x, y]` percentages of the stage. */
+  origin: [number, number];
   storm: number;
   energy: number;
   moonOpacity: number;
@@ -285,6 +302,7 @@ export function sceneState(progress: number): SceneState {
     progress: p,
     sky: colorKeyframes(p, skyStops),
     zoom: keyframes(p, zoomStops),
+    origin: [keyframes(p, originXStops), keyframes(p, originYStops)],
     storm,
     energy: keyframes(p, energyStops),
     moonOpacity: keyframes(p, moonOpacityStops),

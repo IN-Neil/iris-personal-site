@@ -17,6 +17,7 @@
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-display), ui-serif, Georgia, serif;
   --font-mono: var(--font-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-pixel: var(--font-pixel), ui-monospace, monospace;
 }
 
 html {
@@ -36,16 +37,37 @@ body {
   color: var(--color-ink);
 }
 
-/* Paper card behind chapter text — flat, slightly collage-like */
-.paper {
-  background: color-mix(in srgb, var(--color-ivory) 94%, white);
-  border: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
-  box-shadow: 6px 6px 0 0 color-mix(in srgb, var(--color-ink) 14%, transparent);
-  padding: clamp(1.25rem, 2.2vw, 2rem) clamp(1.25rem, 2.4vw, 2.25rem);
+/* A soft darkening behind text so it stays readable over the moon or foam */
+.scrim {
+  position: relative;
+}
+.scrim::before {
+  content: "";
+  position: absolute;
+  inset: -2.5rem -3rem;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--color-night) 70%, black) 0%,
+    transparent 72%
+  );
+  opacity: 0.75;
+  z-index: -1;
+  pointer-events: none;
 }
 
-.static-paper {
-  box-shadow: 4px 4px 0 0 color-mix(in srgb, var(--color-ink) 14%, transparent);
+/* Bordered pixel dialog, like a quiet RPG text box */
+.dialog {
+  padding: 1.1rem 1.25rem 1.25rem;
+  border: 2px solid color-mix(in srgb, var(--color-ivory) 80%, transparent);
+  background: color-mix(in srgb, var(--color-night) 82%, black);
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--color-night) 90%, black),
+    4px 4px 0 2px color-mix(in srgb, var(--color-ivory) 25%, transparent);
+}
+
+.font-pixel {
+  -webkit-font-smoothing: none;
+  font-smooth: never;
 }
 
 /* Subtle grain over the scene, like dithering on a dark print */

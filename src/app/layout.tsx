@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans, Silkscreen } from "next/font/google";
 import { intro, person } from "@/content/site";
 import "./globals.css";
 
@@ -21,6 +21,13 @@ const mono = IBM_Plex_Mono({
   weight: ["400"],
 });
 
+// Pixel font for short captions and labels only, never for body text.
+const pixel = Silkscreen({
+  variable: "--font-pixel",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 export const metadata: Metadata = {
   title: `${person.name} — ${intro.subtitle}`,
   description: intro.thesis,
@@ -28,7 +35,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}>
+    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable} ${pixel.variable} h-full antialiased`}>
       <body className="min-h-full">{children}</body>
     </html>
   );

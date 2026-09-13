@@ -32,7 +32,7 @@ export function JourneyStacked() {
         <article key={chapter.id} className="mt-10">
           <Frame progress={midpoint(segments[chapter.id])} />
           <div className="px-5 py-8">
-            <ChapterPanel chapter={chapter} className="static-paper" />
+            <ChapterPanel chapter={chapter} showItems />
           </div>
         </article>
       ))}
@@ -40,7 +40,7 @@ export function JourneyStacked() {
       <article className="mt-6">
         <Frame progress={1} />
         <div className="px-5 pb-12 pt-8">
-          <EndingPanel className="static-paper" />
+          <EndingPanel />
         </div>
       </article>
     </div>

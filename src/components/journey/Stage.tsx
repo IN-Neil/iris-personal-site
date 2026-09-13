@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { questionFragments } from "@/content/site";
+import { chapters, questionFragments } from "@/content/site";
 import {
   fadeWindow,
   keyframes,
@@ -117,8 +117,9 @@ const birds = [
 const fragments = questionFragments.map((text, i) => ({
   text,
   at: 0.14 + i * 0.03,
-  vx: [0.08, 0.36, 0.14, 0.42, 0.24][i % 5],
-  top: [24, 15, 40, 30, 47][i % 5],
+  // Placed for the chapter-one close-up: upper left of the boat, clear of the dialog.
+  vx: [0.05, 0.3, 0.12, 0.36, 0.2][i % 5],
+  top: [30, 40, 50, 34, 46][i % 5],
 }));
 
 // Clouds gather from chapter two through the storm, then thin out.
@@ -136,6 +137,19 @@ const clouds = [
 ];
 
 const distantLights = [0.5, 0.58, 0.66, 0.82, 0.9];
+
+// Chapter milestones drift past as small markers in the world instead of a list.
+const markers = chapters.flatMap((chapter) => {
+  const [start, end] = segments[chapter.id];
+  const items = chapter.items ?? [];
+  return items.map((item, i) => ({
+    id: chapter.id,
+    text: item.title,
+    at: start + ((i + 1) / (items.length + 1)) * (end - start),
+    vx: [0.12, 0.4, 0.22, 0.48][i % 4],
+    top: [34, 22, 44, 28][i % 4],
+  }));
+});
 
 const boatXStops = [
   [0, 22],
@@ -169,7 +183,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
     >
       <div
         className="absolute inset-0 will-change-transform"
-        style={{ transform: `scale(${s.zoom})`, transformOrigin: `50% ${HORIZON + 6}%` }}
+        style={{ transform: `scale(${s.zoom})`, transformOrigin: `${s.origin[0]}% ${s.origin[1]}%` }}
       >
         {/* Stars */}
         <Layer progress={s.progress} factor={0.05}>
@@ -193,8 +207,8 @@ export function Stage({ progress, compact = false, className, style }: StageProp
         <Moon
           className="absolute"
           style={{
-            left: "62%",
-            top: compact ? "20%" : "10%",
+            left: compact ? "62%" : "80%",
+            top: compact ? "20%" : "9%",
             width: compact ? "11%" : "5.5%",
             opacity: s.moonOpacity,
           }}
@@ -202,7 +216,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
         <div
           className="moonlight absolute"
           style={{
-            left: "63%",
+            left: compact ? "63%" : "81%",
             top: `${HORIZON + 0.5}%`,
             width: compact ? "9%" : "3.5%",
             height: "16%",
@@ -210,9 +224,9 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           }}
         />
 
-        {/* Horizon haze */}
+        {/* Horizon haze (wider than the stage so the pull-back never shows its edges) */}
         <div
-          className="absolute inset-x-0"
+          className="absolute -inset-x-[20%]"
           style={{
             top: `${HORIZON - 12}%`,
             height: "12%",
@@ -302,8 +316,13 @@ export function Stage({ progress, compact = false, className, style }: StageProp
 
           {/* Arrival shore with the lighthouse and keeper's cabin */}
           <div
-            className="absolute right-0"
-            style={{ left: `${worldX(1, 0.6, FAR)}%`, top: `${HORIZON - 11}%`, height: "16%" }}
+            className="absolute"
+            style={{
+              left: `${worldX(1, 0.55, FAR)}%`,
+              width: layerSize(75),
+              top: `${HORIZON - 11}%`,
+              height: "16%",
+            }}
           >
             <Shore fill={s.shore} className="block h-full w-full" />
           </div>
@@ -352,6 +371,47 @@ export function Stage({ progress, compact = false, className, style }: StageProp
             duration={18}
             reverse
           />
+        </Layer>
+
+        {/* Near sea and floating question fragments */}
+        <Layer progress={s.progress} factor={NEAR}>
+          <SeaBand
+            top={HORIZON + 23}
+            color={s.sea.near}
+            energy={s.energy * 0.8}
+            foam={s.sea.foam}
+            period={96}
+            crest={14}
+            duration={13}
+          />
+          {markers.map((marker, i) => (
+            <span
+              key={`${marker.id}-${i}`}
+              className="absolute flex items-center gap-2 whitespace-nowrap font-pixel text-[0.6rem] tracking-wide text-ivory md:text-[0.7rem]"
+              style={{
+                left: `${worldX(marker.at, marker.vx, NEAR)}%`,
+                top: `${marker.top}%`,
+                opacity: round(fadeWindow(s.progress, segments[marker.id], 0.05) * 0.85),
+              }}
+            >
+              <span className="block h-1.5 w-1.5 bg-surf" />
+              {marker.text}
+            </span>
+          ))}
+          {fragments.map((fragment, i) => (
+            <span
+              key={i}
+              className="fragment absolute font-pixel text-[0.6rem] tracking-wide text-ivory md:text-[0.7rem]"
+              style={{
+                left: `${worldX(fragment.at, fragment.vx, NEAR)}%`,
+                top: `${fragment.top}%`,
+                opacity: round(s.fragments * (s.progress < questionsEnd ? 0.75 : 0.4)),
+                animationDelay: `${i * 1.3}s`,
+              }}
+            >
+              {fragment.text}
+            </span>
+          ))}
         </Layer>
 
         {/* The paper boat, the hands that launch it, and the gust that takes it */}
@@ -406,33 +466,6 @@ export function Stage({ progress, compact = false, className, style }: StageProp
             ))}
           </div>
         </div>
-
-        {/* Near sea and floating question fragments */}
-        <Layer progress={s.progress} factor={NEAR}>
-          <SeaBand
-            top={HORIZON + 23}
-            color={s.sea.near}
-            energy={s.energy * 0.8}
-            foam={s.sea.foam}
-            period={96}
-            crest={14}
-            duration={13}
-          />
-          {fragments.map((fragment, i) => (
-            <span
-              key={i}
-              className="fragment absolute font-mono text-[0.72rem] tracking-wide text-ivory md:text-sm"
-              style={{
-                left: `${worldX(fragment.at, fragment.vx, NEAR)}%`,
-                top: `${fragment.top}%`,
-                opacity: round(s.fragments * (s.progress < questionsEnd ? 0.75 : 0.4)),
-                animationDelay: `${i * 1.3}s`,
-              }}
-            >
-              {fragment.text}
-            </span>
-          ))}
-        </Layer>
 
         {/* Foreground sea */}
         <Layer progress={s.progress} factor={FORE}>

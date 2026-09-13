@@ -4,10 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import { chapters, ending, intro } from "@/content/site";
 import {
   activeSegment,
+  clamp,
   fadeWindow,
   SCROLL_SCREENS,
   segmentOrder,
   segments,
+  within,
   type SegmentKey,
 } from "@/lib/journey";
 import { ChapterPanel, EndingPanel, IntroPanel } from "./Panels";
@@ -77,7 +79,7 @@ function RouteMap({ progress }: { progress: number }) {
   const currentIndex = stops.indexOf(current); // -1 while still on the intro
 
   return (
-    <div className="pointer-events-none absolute bottom-6 left-8 flex items-center gap-4 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-ivory/75">
+    <div className="pointer-events-none absolute bottom-6 left-8 flex items-center gap-4 font-pixel text-[0.6rem] uppercase tracking-[0.18em] text-ivory/70">
       <ol className="flex items-center" aria-label="Chapters">
         {stops.map((key, i) => {
           const reached = i <= currentIndex;
@@ -132,7 +134,7 @@ export function Journey() {
           <IntroPanel />
         </div>
         <div
-          className="pointer-events-none absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-ivory/75"
+          className="pointer-events-none absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 font-pixel text-[0.6rem] uppercase tracking-[0.18em] text-ivory/70"
           style={{ opacity: introVisible }}
         >
           <span>{intro.scrollHint}</span>
@@ -141,32 +143,44 @@ export function Journey() {
 
         {/* Chapters */}
         {chapters.map((chapter) => {
-          const visibility = fadeWindow(progress, segments[chapter.id]);
+          const segment = segments[chapter.id];
+          const visibility = fadeWindow(progress, segment);
+          // The question lands first; the heading and body follow a beat later.
+          const reveal = clamp((within(progress, segment) - 0.12) / 0.14);
+          // Chapter one is a close-up on the boat; its text sits beside it as a dialog.
+          if (chapter.id === "questions") {
+            return (
+              <div
+                key={chapter.id}
+                className="absolute left-[50%] top-[54%] w-[min(24rem,32vw)]"
+                style={panelStyle(visibility)}
+              >
+                <ChapterPanel chapter={chapter} reveal={reveal} dialog />
+              </div>
+            );
+          }
           return (
             <div
               key={chapter.id}
-              className="absolute right-[6%] top-[8%] w-[min(33rem,44vw)]"
+              className="absolute inset-x-[8%] top-[9%]"
               style={panelStyle(visibility)}
             >
-              <ChapterPanel chapter={chapter} />
+              <ChapterPanel chapter={chapter} reveal={reveal} centered />
             </div>
           );
         })}
 
         {/* Ending */}
         <div
-          className="absolute left-[6%] top-1/2 w-[min(33rem,42vw)]"
-          style={{
-            ...panelStyle(endingVisible),
-            transform: `translate3d(0, calc(-50% + ${Math.round((1 - endingVisible) * 24)}px), 0)`,
-          }}
+          className="absolute left-[8%] top-[14%] w-[min(30rem,38vw)]"
+          style={panelStyle(endingVisible)}
         >
           <EndingPanel />
         </div>
 
         {/* Small brand mark once the title has scrolled away */}
         <p
-          className="pointer-events-none absolute left-8 top-6 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-ivory/75"
+          className="pointer-events-none absolute left-8 top-6 font-pixel text-[0.6rem] uppercase tracking-[0.18em] text-ivory/70"
           style={{ opacity: 1 - introVisible }}
         >
           {intro.title} · {intro.subtitle}
