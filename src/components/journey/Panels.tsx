@@ -9,21 +9,21 @@ import { ending, footer, intro, links, person } from "@/content/site";
 export function IntroPanel({ className }: { className?: string }) {
   return (
     <header className={className}>
-      <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ink/70 md:text-xs">
+      <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ivory/70 md:text-xs">
         {intro.kicker}
       </p>
-      <h1 className="mt-4 font-serif leading-[0.9] text-ink">
+      <h1 className="mt-4 font-serif leading-[0.9] text-ivory">
         <span className="block text-[clamp(4.5rem,15vw,11rem)] font-medium tracking-tight">
           {intro.title}
         </span>
-        <span className="mt-2 block text-[clamp(1.25rem,3.2vw,2.25rem)] font-light tracking-[0.08em] text-slate">
+        <span className="mt-2 block text-[clamp(1.25rem,3.2vw,2.25rem)] font-light tracking-[0.08em] text-shell">
           {intro.subtitle}
         </span>
       </h1>
-      <p className="mt-6 max-w-md text-base leading-relaxed text-ink/85 md:mt-8 md:text-lg">
+      <p className="mt-6 max-w-md text-base leading-relaxed text-ivory/85 md:mt-8 md:text-lg">
         {intro.thesis}
       </p>
-      <p className="mt-5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-slate/80">
+      <p className="mt-5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-shell/80">
         {person.interests.map((interest) => (
           <span key={interest}>{interest}</span>
         ))}
@@ -42,7 +42,7 @@ export function ChapterPanel({ chapter, className }: { chapter: Chapter; classNa
       <p className="mt-3 font-serif text-lg italic leading-snug text-ocean md:text-xl">
         “{chapter.question}”
       </p>
-      <h2 id={headingId} className="mt-4 font-serif text-3xl font-medium leading-tight tracking-tight text-ink md:text-4xl">
+      <h2 id={headingId} className="mt-3 font-serif text-3xl font-medium leading-tight tracking-tight text-ink md:text-[2.15rem]">
         {chapter.heading}
       </h2>
       <p className="mt-4 text-[0.95rem] leading-relaxed text-ink/85 md:text-base">{chapter.body}</p>
@@ -110,7 +110,8 @@ export function EndingPanel({ className }: { className?: string }) {
           </a>
         ))}
       </nav>
-      <p className="mt-6 text-[0.7rem] leading-relaxed text-ink/55">{footer.line}</p>
+      <p className="mt-6 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-ink/70">{footer.signature}</p>
+      <p className="mt-2 text-[0.7rem] leading-relaxed text-ink/55">{footer.line}</p>
     </section>
   );
 }

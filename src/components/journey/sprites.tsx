@@ -25,57 +25,182 @@ type SpriteProps = {
 };
 
 // ---------------------------------------------------------------------------
-// Boat — a small sailboat with one figure holding up a lantern (see sketch).
+// Paper boat — the folded kind kids make. Ivory paper, one shaded fold.
 // ---------------------------------------------------------------------------
 
-const sailCells: Cell[] = Array.from({ length: 14 }, (_, i) => {
-  const y = 1 + i;
-  const left = Math.round(13 - i * 0.6);
-  const right = Math.round(13 + i * 0.25);
-  return [left, y, right - left + 1, 1] as const;
-});
+const boatSailCells: Cell[] = Array.from({ length: 7 }, (_, i) => [11 - i, i, 2 + i * 2, 1] as const);
 
-const hullCells: Cell[] = [
-  [2, 18, 24, 1],
-  [2, 19, 24, 1],
-  [3, 20, 22, 1],
-  [4, 21, 20, 1],
-  [6, 22, 16, 1],
-  [8, 23, 12, 1],
+const boatHullCells: Cell[] = [
+  [0, 7, 24, 1],
+  [1, 8, 22, 1],
+  [2, 9, 20, 1],
+  [4, 10, 16, 1],
+  [6, 11, 12, 1],
 ];
 
-const figureCells: Cell[] = [
-  [21, 12, 2, 2], // head
-  [21, 14, 2, 4], // body
-  [23, 13, 1, 1], // raised arm
-  [24, 10, 1, 3], // lantern pole
+// Right-hand side of each hull row, in the shadow of the fold.
+const boatHullShade: Cell[] = [
+  [12, 8, 11, 1],
+  [12, 9, 10, 1],
+  [12, 10, 8, 1],
+  [12, 11, 6, 1],
 ];
 
-export function Boat({ lantern = 0, className, style }: SpriteProps & { lantern?: number }) {
+const boatSailShade: Cell[] = Array.from({ length: 6 }, (_, i) => [12, i + 1, i + 1, 1] as const);
+
+export function PaperBoat({ glow = 0, className, style }: SpriteProps & { glow?: number }) {
   return (
     <svg
-      viewBox="0 0 28 24"
+      viewBox="0 0 24 12"
       className={className}
       style={style}
       shapeRendering="crispEdges"
       aria-hidden="true"
     >
-      <Cells cells={[[13, 0, 1, 18]]} fill={palette.ink} />
-      <Cells cells={sailCells} fill={palette.ivory} />
-      <Cells cells={[[10, 9, 2, 1]]} fill={palette.poppy} />
-      <Cells cells={[[6, 15, 14, 1]]} fill={palette.ink} />
-      <Cells cells={hullCells} fill={palette.ink} />
-      <Cells cells={[[2, 19, 24, 1]]} fill={palette.sandstone} />
-      <Cells cells={figureCells} fill={palette.ink} />
-      <rect x={23} y={8} width={3} height={2} fill={palette.slate} />
-      <rect
-        x={23.5}
-        y={8.5}
-        width={2}
-        height={1}
-        fill={palette.peach}
-        style={{ opacity: 0.35 + lantern * 0.65 }}
-      />
+      <Cells cells={boatSailCells} fill={palette.ivory} />
+      <Cells cells={boatSailShade} fill={palette.shell} />
+      <Cells cells={boatHullCells} fill={palette.ivory} />
+      <Cells cells={boatHullShade} fill={palette.shell} />
+      {/* the two paper points at bow and stern */}
+      <rect x={0} y={6} width={1} height={1} fill={palette.ivory} />
+      <rect x={23} y={6} width={1} height={1} fill={palette.ivory} />
+      {/* a warm light inside the fold, once the boat carries one */}
+      <rect x={9} y={8} width={6} height={2} fill={palette.peach} style={{ opacity: glow * 0.85 }} />
+    </svg>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Hands — an adult hand, palm up, with a child's hand resting in it.
+// Both are warm paper cut-outs; the boat sits on the child's fingertips.
+// Shapes are drawn as polygons and rasterised onto a pixel grid.
+// ---------------------------------------------------------------------------
+
+type Point = readonly [x: number, y: number];
+
+function ellipse(cx: number, cy: number, rx: number, ry: number, tilt = 0): Point[] {
+  return Array.from({ length: 28 }, (_, i) => {
+    const a = (i / 28) * Math.PI * 2;
+    const x = Math.cos(a) * rx;
+    const y = Math.sin(a) * ry;
+    return [cx + x * Math.cos(tilt) - y * Math.sin(tilt), cy + x * Math.sin(tilt) + y * Math.cos(tilt)];
+  });
+}
+
+function inside([px, py]: Point, poly: readonly Point[]): boolean {
+  let hit = false;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const [xi, yi] = poly[i];
+    const [xj, yj] = poly[j];
+    if (yi > py !== yj > py && px < ((xj - xi) * (py - yi)) / (yj - yi) + xi) hit = !hit;
+  }
+  return hit;
+}
+
+function rasterize(polys: readonly (readonly Point[])[], w: number, h: number): Cell[] {
+  const cells: Cell[] = [];
+  for (let y = 0; y < h; y++) {
+    let runStart = -1;
+    for (let x = 0; x <= w; x++) {
+      const on = x < w && polys.some((poly) => inside([x + 0.5, y + 0.5], poly));
+      if (on && runStart < 0) runStart = x;
+      if (!on && runStart >= 0) {
+        cells.push([runStart, y, x - runStart, 1]);
+        runStart = -1;
+      }
+    }
+  }
+  return cells;
+}
+
+const HANDS_W = 96;
+const HANDS_H = 56;
+
+// Fingers: tapered quads from the palm edge, curling gently upward.
+const finger = (x0: number, y0: number, len: number, thick: number, lift: number): Point[] => [
+  [x0, y0],
+  [x0 + len, y0 - lift],
+  [x0 + len + 1, y0 - lift + thick * 0.8],
+  [x0, y0 + thick],
+];
+
+const adultHandCells = rasterize(
+  [
+    [[0, 30], [30, 27], [32, 45], [0, 52]], // forearm, entering from the left
+    ellipse(46, 36, 17, 12, -0.15), // palm
+    finger(58, 24, 30, 5, 5),
+    finger(59, 30, 32, 5, 3),
+    finger(59, 36, 30, 5, 1),
+    finger(58, 42, 25, 5, -1),
+    [[38, 27], [45, 13], [52, 13], [50, 29]], // thumb
+  ],
+  HANDS_W,
+  HANDS_H,
+);
+
+const childHandCells = rasterize(
+  [
+    [[12, 15], [38, 16], [38, 25], [12, 26]], // forearm
+    ellipse(44, 20, 9, 6.5, -0.1), // palm
+    finger(51, 13, 15, 2.6, 2),
+    finger(52, 16.5, 16, 2.6, 1),
+    finger(52, 20, 15, 2.6, 0),
+    finger(51, 23.5, 12, 2.6, -0.5),
+    [[38, 17], [42, 10], [46, 10], [45, 18]], // thumb
+  ],
+  HANDS_W,
+  HANDS_H,
+);
+
+export function Hands({ className, style }: SpriteProps) {
+  return (
+    <svg
+      viewBox={`0 0 ${HANDS_W} ${HANDS_H}`}
+      className={className}
+      style={style}
+      shapeRendering="crispEdges"
+      aria-hidden="true"
+    >
+      <Cells cells={adultHandCells} fill={palette.shell} />
+      <Cells cells={childHandCells} fill="#E9CBB0" />
+    </svg>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Cloud and lightning — blocky storm shapes.
+// ---------------------------------------------------------------------------
+
+const cloudCells: Cell[] = [
+  [5, 0, 6, 1],
+  [3, 1, 11, 1],
+  [1, 2, 15, 1],
+  [0, 3, 18, 2],
+  [2, 5, 14, 1],
+];
+
+export function Cloud({ fill, className, style }: SpriteProps & { fill: string }) {
+  return (
+    <svg viewBox="0 0 18 6" className={className} style={style} shapeRendering="crispEdges" aria-hidden="true">
+      <Cells cells={cloudCells} fill={fill} />
+    </svg>
+  );
+}
+
+const boltCells: Cell[] = [
+  [4, 0, 2, 3],
+  [3, 3, 2, 3],
+  [2, 6, 3, 2],
+  [3, 8, 2, 3],
+  [2, 11, 2, 3],
+  [1, 14, 2, 3],
+  [0, 17, 2, 3],
+];
+
+export function Bolt({ className, style }: SpriteProps) {
+  return (
+    <svg viewBox="0 0 6 20" className={className} style={style} shapeRendering="crispEdges" aria-hidden="true">
+      <Cells cells={boltCells} fill="#F4EEE2" />
     </svg>
   );
 }
@@ -177,7 +302,7 @@ export function Cabin({ lit = 0, className, style }: SpriteProps & { lit?: numbe
 }
 
 // ---------------------------------------------------------------------------
-// Moon (crescent) and sun, computed from circles on a coarse grid.
+// Moon, computed from a circle on a coarse grid. Full, like the mood board.
 // ---------------------------------------------------------------------------
 
 function discCells(size: number, cx: number, cy: number, r: number, cut?: { cx: number; cy: number; r: number }) {
@@ -199,21 +324,14 @@ function discCells(size: number, cx: number, cy: number, r: number, cut?: { cx: 
   return cells;
 }
 
-const moonCells = discCells(12, 6, 6, 5.6, { cx: 8.4, cy: 4.8, r: 4.9 });
-const sunCells = discCells(10, 5, 5, 4.6);
+const moonCells = discCells(12, 6, 6, 5.6);
+const moonShadeCells = discCells(12, 6, 6, 5.6).filter(([x, y]) => (x * 7 + y * 3) % 11 === 0 && x > 3);
 
 export function Moon({ className, style }: SpriteProps) {
   return (
     <svg viewBox="0 0 12 12" className={className} style={style} shapeRendering="crispEdges" aria-hidden="true">
-      <Cells cells={moonCells} fill={palette.ivory} />
-    </svg>
-  );
-}
-
-export function Sun({ className, style }: SpriteProps) {
-  return (
-    <svg viewBox="0 0 10 10" className={className} style={style} shapeRendering="crispEdges" aria-hidden="true">
-      <Cells cells={sunCells} fill="#F3E6D2" />
+      <Cells cells={moonCells} fill="#E9E2D0" />
+      <Cells cells={moonShadeCells} fill={palette.shell} />
     </svg>
   );
 }
@@ -234,7 +352,7 @@ const birdCells: Cell[] = [
 export function Bird({ className, style }: SpriteProps) {
   return (
     <svg viewBox="0 0 6 2" className={className} style={style} shapeRendering="crispEdges" aria-hidden="true">
-      <Cells cells={birdCells} fill={palette.slate} />
+      <Cells cells={birdCells} fill={palette.ivory} />
     </svg>
   );
 }
@@ -245,7 +363,7 @@ export function Bird({ className, style }: SpriteProps) {
 
 const crestHeights = [6, 3, 1, 3, 6, 9, 11, 9];
 
-export function waveDataUri(color: string): string {
+export function waveDataUri(color: string, foam = 0): string {
   const step = 8;
   const height = 12;
   let d = `M0 ${height}`;
@@ -253,7 +371,11 @@ export function waveDataUri(color: string): string {
     d += ` V${h} H${(i + 1) * step}`;
   });
   d += ` V${height} Z`;
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${crestHeights.length * step} ${height}" shape-rendering="crispEdges"><path d="${d}" fill="${color}"/></svg>`;
+  // Whitecaps: a one-unit stripe along the crest, only on the higher steps.
+  const caps = crestHeights
+    .map((h, i) => (h <= 3 ? `<rect x="${i * step}" y="${h}" width="${step}" height="1"/>` : ""))
+    .join("");
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${crestHeights.length * step} ${height}" shape-rendering="crispEdges"><path d="${d}" fill="${color}"/><g fill="${palette.ivory}" fill-opacity="${foam}">${caps}</g></svg>`;
   return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
 }
 

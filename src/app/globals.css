@@ -12,6 +12,7 @@
   --color-moss: #70835f;
   --color-poppy: #d96144;
   --color-shell: #c7b2a0;
+  --color-night: #1f2c42;
 
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-display), ui-serif, Georgia, serif;
@@ -19,8 +20,8 @@
 }
 
 html {
-  background: var(--color-ivory);
-  color: var(--color-ink);
+  background: var(--color-night);
+  color: var(--color-ivory);
   scroll-behavior: smooth;
 }
 
@@ -47,10 +48,10 @@ body {
   box-shadow: 4px 4px 0 0 color-mix(in srgb, var(--color-ink) 14%, transparent);
 }
 
-/* Subtle paper grain over the scene */
+/* Subtle grain over the scene, like dithering on a dark print */
 .grain {
-  opacity: 0.07;
-  mix-blend-mode: multiply;
+  opacity: 0.11;
+  mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
 }
@@ -107,6 +108,59 @@ body {
   }
 }
 
+@keyframes rainfall {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -24px 96px;
+  }
+}
+
+/* Two quick flickers, then darkness for most of the cycle. */
+@keyframes flash {
+  0%,
+  6%,
+  9%,
+  12%,
+  100% {
+    opacity: 0;
+  }
+  7% {
+    opacity: 0.18;
+  }
+  10.5% {
+    opacity: 0.1;
+  }
+}
+
+@keyframes bolt {
+  0%,
+  6%,
+  12%,
+  100% {
+    opacity: 0;
+  }
+  7%,
+  10.5% {
+    opacity: 1;
+  }
+}
+
+@keyframes gust {
+  0% {
+    transform: translateX(-30%) scaleX(0.4);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(160%) scaleX(1);
+    opacity: 0;
+  }
+}
+
 @keyframes hint {
   0% {
     transform: scaleY(0);
@@ -155,6 +209,33 @@ body {
   animation: hint 2.2s ease-in-out infinite;
 }
 
+.moonlight {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--color-ivory) 0 2px,
+    transparent 2px 7px
+  );
+  mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
+}
+
+.rain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='48' shape-rendering='crispEdges'%3E%3Cg fill='%23eae6de'%3E%3Crect x='6' y='2' width='1' height='4'/%3E%3Crect x='5' y='6' width='1' height='4'/%3E%3Crect x='18' y='26' width='1' height='4'/%3E%3Crect x='17' y='30' width='1' height='4'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 24px 48px;
+  animation: rainfall 0.55s linear infinite;
+}
+
+.flash {
+  animation: flash 7s linear infinite;
+}
+
+.bolt {
+  animation: bolt 7s linear infinite;
+}
+
+.wind {
+  animation: gust 1.6s ease-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -164,7 +245,14 @@ body {
   .star,
   .beam,
   .fragment,
-  .scroll-hint {
+  .scroll-hint,
+  .rain,
+  .flash,
+  .wind {
     animation: none;
+  }
+  .bolt {
+    animation: none;
+    opacity: 0.6;
   }
 }

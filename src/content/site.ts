@@ -78,19 +78,19 @@ export const chapters: Chapter[] = [
     items: [
       {
         title: "Rolling Context for Open WebUI",
-        note: "A modification so long conversations keep their thread.",
+        note: "I wanted conversations to keep their continuity, so I modified Open WebUI and used it for months.",
       },
       {
         title: "Amira",
-        note: "A voice-first personal app.",
+        note: "I communicate more naturally through voice, so I began building a voice-first personal AI.",
       },
       {
         title: "Irispedia",
-        note: "A personal encyclopedia of what I'm learning.",
+        note: "I forget things. What if personal context could become navigable?",
       },
       {
         title: "Six Ways to See One File",
-        note: "Visual artifacts for reading one piece of code from six angles.",
+        note: "I didn't know how to read the code, so I asked Claude to show me the same file six different ways.",
         href: "#", // TODO: replace with the real link
       },
     ],
@@ -138,8 +138,8 @@ export const chapters: Chapter[] = [
         note: "From a blank page to something playable in one session.",
       },
       {
-        title: "Early research",
-        note: "Experiment design on how humans understand AI minds.",
+        title: "Independent research",
+        note: "Turning arguments about AI minds into questions we can actually test.",
       },
     ],
   },
@@ -151,7 +151,7 @@ export const ending = {
   heading: "Still a long way to go",
   body:
     "I'm drawn to futures where humans and AI can learn, communicate, and build together with more understanding, accessibility, and care. I don't know exactly what that future looks like yet. But I know the direction I want to explore.",
-  note: "The lighthouse isn't an arrival. It's a bearing.",
+  note: "There is still a lot of ocean ahead.",
 };
 
 /**
@@ -167,5 +167,6 @@ export const links = [
 ];
 
 export const footer = {
+  signature: `${person.name} · Psychology · HCI · Design · AI`,
   line: `© ${new Date().getFullYear()} ${person.name}. Built with Next.js, Tailwind, and a lot of questions.`,
 };

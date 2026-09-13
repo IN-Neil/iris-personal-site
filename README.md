@@ -1,8 +1,9 @@
 # Iris Matos — Imagine → Build
 
-A one-page personal site told as a journey across the sea toward a lighthouse.
-Four chapters (questions → building → community → contribution) and an ending
-that is a bearing, not an arrival.
+A one-page personal site told as a paper boat's night journey across a stormy
+sea toward a lighthouse. An adult hand and a child's hand launch the boat; four
+chapters follow (questions → building → community → contribution); the ending
+is a bearing, not an arrival.
 
 Built with Next.js (App Router), TypeScript, and Tailwind CSS v4. No backend,
 no CMS, no tracking. Deploys to Vercel as-is.
@@ -33,9 +34,9 @@ pnpm build      # production build
 | Floating questions in chapter one                  | `questionFragments` in `src/content/site.ts`  |
 | Colours, fonts, card style, animations             | `src/app/globals.css`, `src/app/layout.tsx`   |
 | How long each chapter lasts on scroll              | `segments` in `src/lib/journey.ts`            |
-| Sky colours, zoom, time of day, sea roughness      | the `*Stops` arrays in `src/lib/journey.ts`   |
+| Sky colours, zoom, storm intensity, sea roughness  | the `*Stops` arrays in `src/lib/journey.ts`   |
 | Where things sit in the scene (boat, lighthouse…)  | `src/components/journey/Stage.tsx`            |
-| The sprites themselves (boat, lighthouse, moon…)   | `src/components/journey/sprites.tsx`          |
+| The sprites themselves (boat, hands, lighthouse…)  | `src/components/journey/sprites.tsx`          |
 | Page metadata (browser tab title, description)     | `metadata` in `src/app/layout.tsx`            |
 
 To add your resume, drop the PDF into `public/` (e.g. `public/iris-matos-resume.pdf`)
@@ -53,14 +54,15 @@ Everything on the page is driven by one number, `progress` (0 → 1).
   is rendered as a frozen frame at each chapter's midpoint, stacked vertically
   with the text beneath it.
 - **Stage** (`src/components/journey/Stage.tsx`): the world as layers, back to
-  front — stars, sun/moon, far sea + shore + lighthouse, mid sea, boat, near
-  sea + question fragments, foreground sea. Each layer is six viewports wide
+  front — stars, moon, clouds, far sea + shores + lighthouse, mid sea, the boat
+  (with the hands and the gust), near sea + question fragments, foreground sea,
+  then rain and lightning over the lens. Each layer is several viewports wide
   and translates by `progress × parallaxFactor`.
 - **Sprites** are SVG rectangles on a small grid with `crispEdges`, which is
   what gives the low-res feeling without using pixel fonts anywhere.
 
-Motion respects `prefers-reduced-motion` (waves, bobbing, beam, and twinkle
-stop; scroll-driven camera movement remains).
+Motion respects `prefers-reduced-motion` (waves, bobbing, beam, rain, lightning
+flashes, and twinkle stop; scroll-driven camera movement remains).
 
 ## Deploy
 
