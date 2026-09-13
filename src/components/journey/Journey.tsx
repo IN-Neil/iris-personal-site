@@ -11,7 +11,7 @@ import {
   segments,
   type SegmentKey,
 } from "@/lib/journey";
-import { ChapterPanel, EndingPanel, IntroPanel } from "./Panels";
+import { ChapterLabel, ChapterPanel, EndingPanel, IntroPanel } from "./Panels";
 import { Stage } from "./Stage";
 
 /**
@@ -78,7 +78,7 @@ function RouteMap({ progress }: { progress: number }) {
   const currentIndex = stops.indexOf(current); // -1 while still on the intro
 
   return (
-    <div className="pointer-events-none absolute bottom-6 left-8 flex items-center gap-4 font-pixel text-[0.6rem] uppercase tracking-[0.18em] text-ivory/70">
+    <div className="pointer-events-none absolute bottom-6 left-8 flex items-center gap-4 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70">
       <ol className="flex items-center" aria-label="Chapters">
         {stops.map((key, i) => {
           const reached = i <= currentIndex;
@@ -133,23 +133,24 @@ export function Journey() {
           <IntroPanel />
         </div>
         <div
-          className="pointer-events-none absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 font-pixel text-[0.6rem] uppercase tracking-[0.18em] text-ivory/70"
+          className="pointer-events-none absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70"
           style={{ opacity: introVisible }}
         >
           <span>{intro.scrollHint}</span>
           <span aria-hidden="true" className="scroll-hint block h-5 w-px bg-ivory/70" />
         </div>
 
-        {/* Chapters: caption at the top, heading fades in, body types itself */}
+        {/* Chapters: close-up on the boat, chapter scenery left, text right; the body types itself */}
         {chapters.map((chapter) => {
           const phases = chapterPhases(progress, segments[chapter.id]);
           return (
-            <div
-              key={chapter.id}
-              className="absolute inset-x-[8%] top-[9%]"
-              style={panelStyle(phases.visible)}
-            >
-              <ChapterPanel chapter={chapter} heading={phases.heading} typed={phases.typed} centered />
+            <div key={chapter.id} className="pointer-events-none absolute inset-0" style={panelStyle(phases.visible)}>
+              <div className="absolute left-[47%] top-[13%]">
+                <ChapterLabel chapter={chapter} />
+              </div>
+              <div className="absolute left-[47%] top-[20%] w-[min(27rem,42vw)]">
+                <ChapterPanel chapter={chapter} heading={phases.heading} typed={phases.typed} centered />
+              </div>
             </div>
           );
         })}
@@ -164,7 +165,7 @@ export function Journey() {
 
         {/* Small brand mark once the title has scrolled away */}
         <p
-          className="pointer-events-none absolute left-8 top-6 font-pixel text-[0.6rem] uppercase tracking-[0.18em] text-ivory/70"
+          className="pointer-events-none absolute left-8 top-6 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70"
           style={{ opacity: 1 - introVisible }}
         >
           {intro.title} · {intro.subtitle}

@@ -186,34 +186,42 @@ const skyStops: ColorStop[] = [
   [1, "#1D2A3D"],
 ];
 
+/** Wide-shot zoom. The per-chapter close-up is layered on top (see `closeup`). */
 const zoomStops: Stop[] = [
   [0, 1.08],
-  [0.05, 1.05],
-  [0.13, 1.5], // push in on the boat once the hands let go
-  [0.26, 1.5],
-  [0.31, 0.98],
-  [0.39, 1.12],
-  [0.48, 1.04],
-  [0.57, 1.04],
-  [0.66, 1.1],
-  [0.75, 1.1],
+  [0.06, 1.02],
+  [0.12, 0.98],
+  [0.66, 1.0],
   [0.84, 1.0],
   [1, 0.8],
 ];
 
-/** Camera origin (% of stage): centred, except when it rides on the boat in chapter one. */
-const originXStops: Stop[] = [
-  [0.05, 50],
-  [0.13, 36],
-  [0.26, 36],
-  [0.31, 50],
-];
-const originYStops: Stop[] = [
-  [0.05, 64],
-  [0.13, 76],
-  [0.26, 76],
-  [0.31, 64],
-];
+const WIDE_ORIGIN: [number, number] = [50, 64];
+const CLOSE_ORIGIN: [number, number] = [40, 78]; // on the boat
+const CLOSE_ZOOM = 1.6;
+
+const chapterKeys = ["questions", "building", "community", "part"] as const;
+
+export type ChapterKey = (typeof chapterKeys)[number];
+
+/**
+ * Which chapter the camera is pushing in on, and how far (0→1). The push-in
+ * rises just before the caption appears and releases as the chapter ends.
+ */
+export function closeupState(p: number): { chapter: ChapterKey | null; amount: number } {
+  for (const chapter of chapterKeys) {
+    const segment = segments[chapter];
+    if (p < segment[0] || p > segment[1] + 0.02) continue;
+    const t = within(p, segment);
+    const amount = round(Math.min(smoothstep((t - 0.16) / 0.16), smoothstep((1.02 - t) / 0.07)));
+    return { chapter, amount };
+  }
+  return { chapter: null, amount: 0 };
+}
+
+export function closeup(p: number): number {
+  return closeupState(p).amount;
+}
 
 /** 0 = clear moonlit night, 1 = full storm. */
 const stormStops: Stop[] = [
@@ -289,6 +297,10 @@ export type SceneState = {
   zoom: number;
   /** Camera origin as `[x, y]` percentages of the stage. */
   origin: [number, number];
+  /** 0→1 push-in on the boat during a chapter's text. */
+  closeup: number;
+  /** The chapter being pushed in on, if any; picks the scenery beside the text. */
+  closeupChapter: ChapterKey | null;
   storm: number;
   energy: number;
   moonOpacity: number;
@@ -318,13 +330,16 @@ export type SceneState = {
 export function sceneState(progress: number): SceneState {
   const p = clamp(progress);
   const storm = keyframes(p, stormStops);
+  const { chapter: closeupChapter, amount: close } = closeupState(p);
   const warmth = fadeWindow(p, [0.46, 0.68], 0.1);
 
   return {
     progress: p,
     sky: colorKeyframes(p, skyStops),
-    zoom: keyframes(p, zoomStops),
-    origin: [keyframes(p, originXStops), keyframes(p, originYStops)],
+    zoom: round(lerp(keyframes(p, zoomStops), CLOSE_ZOOM, close)),
+    origin: [round(lerp(WIDE_ORIGIN[0], CLOSE_ORIGIN[0], close)), round(lerp(WIDE_ORIGIN[1], CLOSE_ORIGIN[1], close))],
+    closeup: close,
+    closeupChapter,
     storm,
     energy: keyframes(p, energyStops),
     moonOpacity: keyframes(p, moonOpacityStops),

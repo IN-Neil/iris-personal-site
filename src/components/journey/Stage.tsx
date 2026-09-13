@@ -27,6 +27,7 @@ import {
   Star,
   waveDataUri,
 } from "./sprites";
+import { Companion } from "./Companion";
 
 /**
  * The world, drawn for a single `progress` value.
@@ -121,8 +122,8 @@ const fragments = questionFragments.map((text, i) => ({
   text,
   at: 0.11 + i * 0.02,
   appear: 0.085 + i * 0.02,
-  vx: [0.18, 0.46, 0.26, 0.54, 0.34][i % 5],
-  top: [30, 42, 52, 36, 46][i % 5],
+  vx: [0.16, 0.46, 0.28, 0.6, 0.38][i % 5],
+  top: [22, 34, 44, 28, 40][i % 5],
 }));
 
 // Clouds gather from chapter two through the storm, then thin out.
@@ -150,7 +151,8 @@ const markers = chapters.flatMap((chapter) => {
     text: item.title,
     at: start + ((i + 1) / (items.length + 1)) * (end - start),
     vx: [0.12, 0.4, 0.22, 0.48][i % 4],
-    top: [34, 22, 44, 28][i % 4],
+    // Kept low enough in the sky to stay in frame during the 1.6× close-up.
+    top: [44, 36, 50, 40][i % 4],
   }));
 });
 
@@ -487,6 +489,9 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           />
         </Layer>
       </div>
+
+      {/* Per-chapter scenery beside the text while the camera is on the boat */}
+      {!compact && <Companion s={s} />}
 
       {/* Rain and lightning sit on top of the camera, like weather on a lens */}
       <div className="rain pointer-events-none absolute inset-0" style={{ opacity: round(s.rain * 0.3) }} />
