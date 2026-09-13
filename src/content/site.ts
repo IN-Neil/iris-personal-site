@@ -51,9 +51,9 @@ export const intro = {
 export const questionFragments = [
   "What is it like to be you?",
   "Do aliens exist?",
+  "How do I handle this?",
   "Where do we go after we die?",
   "What does it mean to experience?",
-  "How do I handle this?",
 ];
 
 export const chapters: Chapter[] = [

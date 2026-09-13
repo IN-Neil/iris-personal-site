@@ -38,6 +38,8 @@ The lighthouse is a bearing, not an arrival.
 - [x] Quiet typography pass: pixel captions, no cards, milestones as world markers
 - [x] Chapter-one close-up on the boat with side dialog
 - [x] Asset spec for an image-generating collaborator (`docs/ASSET-SPEC.md`)
+- [x] Chapter pacing: environment-only opening, caption → heading → typed body, breathing room
+- [x] Per-chapter weather: wind (1), clear stars (2), clouding over (3), storm (4)
 - [x] Stage: layered scene driven by progress
 - [x] Desktop Journey: sticky viewport, scroll progress, text panels, route map
 - [x] Mobile JourneyStacked

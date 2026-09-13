@@ -62,9 +62,12 @@ Everything on the page is driven by one number, `progress` (0 → 1).
 - **Sprites** are SVG rectangles on a small grid with `crispEdges`, which is
   what gives the low-res feeling. Pixel type (Silkscreen) is used only for
   short captions and labels; body text is a normal sans.
-- **Chapter one** pushes the camera in on the boat after the hands let go and
-  shows its text as a bordered dialog beside the boat. Chapters two to four use
-  a centred caption with the milestones drifting through the scene as markers.
+- **Chapter pacing** (`chapterPhases` in `src/lib/journey.ts`): the first ~28%
+  of each chapter is environment only — questions drifting (1), milestone stars
+  (2), distant lights and gathering clouds (3), rain and lightning (4). Then the
+  question appears at the top, the heading fades in from above, and the body is
+  typed out in step with the scroll. Everything fades before the next chapter.
+- **Chapter one** also pushes the camera in on the boat after the hands let go.
 
 Motion respects `prefers-reduced-motion` (waves, bobbing, beam, rain, lightning
 flashes, and twinkle stop; scroll-driven camera movement remains).

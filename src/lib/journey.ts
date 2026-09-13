@@ -108,6 +108,24 @@ export function activeSegment(p: number): SegmentKey {
   return "ending";
 }
 
+/**
+ * How a chapter's text unfolds, from local progress inside its segment.
+ * The first ~28% of every chapter is environment only (breathing room).
+ */
+export function chapterPhases(p: number, segment: Segment) {
+  const [start, end] = segment;
+  const len = end - start;
+  const t = within(p, segment);
+  return {
+    /** Overall visibility of the text block, with a fade at both ends. */
+    visible: fadeWindow(p, [start + 0.28 * len, end - 0.02 * len], 0.02),
+    heading: round(smoothstep((t - 0.35) / 0.08)),
+    typed: round(clamp((t - 0.42) / 0.43)),
+    /** How much the environment should step back once the text is up. */
+    settled: round(smoothstep((t - 0.3) / 0.1)),
+  };
+}
+
 /** Midpoint of a segment; used to freeze the scene for the mobile layout. */
 export const midpoint = ([start, end]: Segment) => (start + end) / 2;
 
@@ -200,10 +218,11 @@ const originYStops: Stop[] = [
 /** 0 = clear moonlit night, 1 = full storm. */
 const stormStops: Stop[] = [
   [0, 0],
-  [0.25, 0.05],
-  [0.4, 0.35],
-  [0.5, 0.3],
-  [0.6, 0.35],
+  [0.25, 0.08],
+  [0.36, 0], // chapter two: the clouds part for the stars
+  [0.48, 0.05],
+  [0.56, 0.3], // chapter three: it clouds over again
+  [0.64, 0.5],
   [0.7, 1],
   [0.78, 0.9],
   [0.86, 0.35],
@@ -242,7 +261,10 @@ const boatGlowStops: Stop[] = [
 
 const cloudCoverStops: Stop[] = [
   [0.2, 0],
-  [0.4, 0.7],
+  [0.29, 0.5],
+  [0.36, 0.08],
+  [0.47, 0.08],
+  [0.58, 0.8],
   [0.66, 1],
   [0.86, 0.6],
   [1, 0.35],
@@ -306,11 +328,11 @@ export function sceneState(progress: number): SceneState {
     storm,
     energy: keyframes(p, energyStops),
     moonOpacity: keyframes(p, moonOpacityStops),
-    starOpacity: round((1 - storm) * 0.9),
+    starOpacity: round(clamp((1 - storm) * 0.9 + fadeWindow(p, segments.building, 0.05) * 0.1)),
     boatGlow: keyframes(p, boatGlowStops),
     hands: keyframes(p, handsStops),
     boatLift: keyframes(p, boatLiftStops),
-    wind: fadeWindow(p, [0.05, 0.17], 0.03),
+    wind: fadeWindow(p, [0.05, 0.3], 0.03), // chapter one is the windy chapter
     sea: {
       far: mixColor(mixColor("#3A5477", "#4B4E5E", warmth * 0.4), "#2A3038", storm),
       mid: mixColor(palette.ocean, "#2B3745", storm),
@@ -324,7 +346,7 @@ export function sceneState(progress: number): SceneState {
     rain: round(clamp((storm - 0.5) / 0.4)),
     lightning: fadeWindow(p, [0.66, 0.82], 0.03),
     distantLights: fadeWindow(p, [0.46, 0.72], 0.06),
-    fragments: fadeWindow(p, [0.09, 0.34], 0.05),
+    fragments: fadeWindow(p, [0.08, 0.16], 0.025),
     beam: round(clamp((p - 0.8) / 0.08)),
   };
 }

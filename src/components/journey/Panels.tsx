@@ -39,88 +39,88 @@ export function IntroPanel({ className }: { className?: string }) {
 type ChapterPanelProps = {
   chapter: Chapter;
   className?: string;
-  /** 0→1: how much of the panel has been revealed (question first, then the rest). */
-  reveal?: number;
+  /** 0→1 visibility of the heading; it fades in from above. */
+  heading?: number;
+  /** 0→1 fraction of the body that has been typed so far. */
+  typed?: number;
   /** Show the milestone list (mobile). On desktop the items float in the scene instead. */
   showItems?: boolean;
-  /** Desktop: caption centred across the stage, prose in a right-hand column. */
+  /** Centre the block (desktop caption at the top of the scene). */
   centered?: boolean;
-  /** Desktop: a bordered pixel dialog placed beside the boat. */
-  dialog?: boolean;
 };
+
+/**
+ * Scroll-driven typewriter. The full text is always in the DOM for screen
+ * readers; the visible copy grows with `progress`.
+ */
+function Typed({ text, progress, className }: { text: string; progress: number; className?: string }) {
+  const count = Math.round(text.length * Math.min(1, Math.max(0, progress)));
+  const done = count >= text.length;
+  return (
+    <p className={`relative ${className ?? ""}`}>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true" className="invisible">
+        {text}
+      </span>
+      <span aria-hidden="true" className="absolute inset-0">
+        {text.slice(0, count)}
+        {!done && <span className="cursor ml-px inline-block h-[0.9em] w-[0.5em] translate-y-[0.15em] bg-ivory/80" />}
+      </span>
+    </p>
+  );
+}
 
 export function ChapterPanel({
   chapter,
   className,
-  reveal = 1,
+  heading = 1,
+  typed = 1,
   showItems = false,
   centered = false,
-  dialog = false,
 }: ChapterPanelProps) {
   const headingId = `chapter-${chapter.id}-heading`;
-
-  if (dialog) {
-    return (
-      <section aria-labelledby={headingId} className={`dialog ${className ?? ""}`}>
-        <p className={pixelLabel}>Chapter {chapter.number}</p>
-        <p className="mt-3 font-pixel text-[0.72rem] leading-[2] text-ivory md:text-[0.8rem]">
-          <span aria-hidden="true" className="mr-2 text-surf">
-            ▸
-          </span>
-          {chapter.question}
-        </p>
-        <div style={{ opacity: reveal, transform: `translateY(${Math.round((1 - reveal) * 8)}px)` }}>
-          <h2 id={headingId} className="mt-4 font-serif text-[1.6rem] font-medium leading-tight tracking-tight text-ivory">
-            {chapter.heading}
-          </h2>
-          <p className="mt-2 text-[0.88rem] leading-relaxed text-ivory/80">{chapter.body}</p>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section aria-labelledby={headingId} className={className}>
-      {/* The question is the caption of the scene: centred, pixel type, alone. */}
-      <div className={centered ? "text-center" : ""}>
-        <p className={pixelLabel}>Chapter {chapter.number}</p>
-        <p className="mx-auto mt-4 max-w-[34rem] font-pixel text-[0.75rem] leading-[2] text-ivory md:text-[0.85rem]">
-          {chapter.question}
-        </p>
-      </div>
-      <div
-        className={`scrim ${centered ? "mt-[18vh] ml-auto w-[min(26rem,34vw)]" : "mt-6"}`}
-        style={{ opacity: reveal, transform: `translateY(${Math.round((1 - reveal) * 10)}px)` }}
+    <section
+      aria-labelledby={headingId}
+      className={`scrim ${centered ? "mx-auto max-w-[36rem] text-center" : ""} ${className ?? ""}`}
+    >
+      <p className={pixelLabel}>Chapter {chapter.number}</p>
+      <p className="mt-4 font-pixel text-[0.75rem] leading-[2] text-ivory md:text-[0.85rem]">
+        {chapter.question}
+      </p>
+      <h2
+        id={headingId}
+        className="mt-6 font-serif text-[1.75rem] font-medium leading-tight tracking-tight text-ivory md:text-[2rem]"
+        style={{ opacity: heading, transform: `translateY(${Math.round((1 - heading) * -10)}px)` }}
       >
-        <h2
-          id={headingId}
-          className="font-serif text-[1.75rem] font-medium leading-tight tracking-tight text-ivory md:text-[2rem]"
-        >
-          {chapter.heading}
-        </h2>
-        <p className="mt-3 max-w-[26rem] text-[0.92rem] leading-relaxed text-ivory/80">{chapter.body}</p>
-        {showItems && chapter.items && (
-          <ul className="mt-6 space-y-3 border-t border-ivory/15 pt-5">
-            {chapter.items.map((item) => (
-              <li key={item.title} className="flex gap-3">
-                <span className="mt-[0.4rem] block h-1.5 w-1.5 shrink-0 bg-surf" aria-hidden="true" />
-                <div>
-                  <p className="font-pixel text-[0.62rem] tracking-wide text-ivory">
-                    {item.href ? (
-                      <a href={item.href} className="underline decoration-surf underline-offset-4">
-                        {item.title}
-                      </a>
-                    ) : (
-                      item.title
-                    )}
-                  </p>
-                  <p className="mt-1 text-[0.82rem] leading-snug text-ivory/65">{item.note}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+        {chapter.heading}
+      </h2>
+      <Typed
+        text={chapter.body}
+        progress={typed}
+        className={`mt-3 text-[0.92rem] leading-relaxed text-ivory/85 ${centered ? "mx-auto max-w-[30rem]" : "max-w-[26rem]"}`}
+      />
+      {showItems && chapter.items && (
+        <ul className="mt-6 space-y-3 border-t border-ivory/15 pt-5">
+          {chapter.items.map((item) => (
+            <li key={item.title} className="flex gap-3">
+              <span className="mt-[0.4rem] block h-1.5 w-1.5 shrink-0 bg-surf" aria-hidden="true" />
+              <div>
+                <p className="font-pixel text-[0.62rem] tracking-wide text-ivory">
+                  {item.href ? (
+                    <a href={item.href} className="underline decoration-surf underline-offset-4">
+                      {item.title}
+                    </a>
+                  ) : (
+                    item.title
+                  )}
+                </p>
+                <p className="mt-1 text-[0.82rem] leading-snug text-ivory/65">{item.note}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

@@ -4,12 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { chapters, ending, intro } from "@/content/site";
 import {
   activeSegment,
-  clamp,
+  chapterPhases,
   fadeWindow,
   SCROLL_SCREENS,
   segmentOrder,
   segments,
-  within,
   type SegmentKey,
 } from "@/lib/journey";
 import { ChapterPanel, EndingPanel, IntroPanel } from "./Panels";
@@ -141,31 +140,16 @@ export function Journey() {
           <span aria-hidden="true" className="scroll-hint block h-5 w-px bg-ivory/70" />
         </div>
 
-        {/* Chapters */}
+        {/* Chapters: caption at the top, heading fades in, body types itself */}
         {chapters.map((chapter) => {
-          const segment = segments[chapter.id];
-          const visibility = fadeWindow(progress, segment);
-          // The question lands first; the heading and body follow a beat later.
-          const reveal = clamp((within(progress, segment) - 0.12) / 0.14);
-          // Chapter one is a close-up on the boat; its text sits beside it as a dialog.
-          if (chapter.id === "questions") {
-            return (
-              <div
-                key={chapter.id}
-                className="absolute left-[50%] top-[54%] w-[min(24rem,32vw)]"
-                style={panelStyle(visibility)}
-              >
-                <ChapterPanel chapter={chapter} reveal={reveal} dialog />
-              </div>
-            );
-          }
+          const phases = chapterPhases(progress, segments[chapter.id]);
           return (
             <div
               key={chapter.id}
               className="absolute inset-x-[8%] top-[9%]"
-              style={panelStyle(visibility)}
+              style={panelStyle(phases.visible)}
             >
-              <ChapterPanel chapter={chapter} reveal={reveal} centered />
+              <ChapterPanel chapter={chapter} heading={phases.heading} typed={phases.typed} centered />
             </div>
           );
         })}

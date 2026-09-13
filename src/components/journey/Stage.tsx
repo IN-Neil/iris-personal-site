@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { chapters, questionFragments } from "@/content/site";
 import {
+  chapterPhases,
   fadeWindow,
   keyframes,
   LAYER_SCREENS,
@@ -23,6 +24,7 @@ import {
   Moon,
   PaperBoat,
   Shore,
+  Star,
   waveDataUri,
 } from "./sprites";
 
@@ -114,12 +116,13 @@ const birds = [
   { at: 0.2, vx: 0.2, top: 27 },
 ];
 
+// Questions surface one at a time after the hands let go; the last one lingers.
 const fragments = questionFragments.map((text, i) => ({
   text,
-  at: 0.14 + i * 0.03,
-  // Placed for the chapter-one close-up: upper left of the boat, clear of the dialog.
-  vx: [0.05, 0.3, 0.12, 0.36, 0.2][i % 5],
-  top: [30, 40, 50, 34, 46][i % 5],
+  at: 0.11 + i * 0.02,
+  appear: 0.085 + i * 0.02,
+  vx: [0.18, 0.46, 0.26, 0.54, 0.34][i % 5],
+  top: [30, 42, 52, 36, 46][i % 5],
 }));
 
 // Clouds gather from chapter two through the storm, then thin out.
@@ -170,7 +173,6 @@ export type StageProps = {
 export function Stage({ progress, compact = false, className, style }: StageProps) {
   const s = sceneState(progress);
   const boatX = keyframes(s.progress, boatXStops);
-  const [, questionsEnd] = segments.questions;
   const boatWidth = compact ? 20 : 10;
   const lighthouseHeight = compact ? 34 : 30;
   const lighthouseLeft = worldX(1, 0.76, FAR);
@@ -234,8 +236,22 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           }}
         />
 
-        {/* Clouds */}
+        {/* Clouds, and the questions of chapter one drifting slowly with them */}
         <Layer progress={s.progress} factor={SKY}>
+          {fragments.map((fragment, i) => (
+            <span
+              key={i}
+              className="fragment absolute font-pixel text-[0.6rem] tracking-wide text-ivory md:text-[0.7rem]"
+              style={{
+                left: `${worldX(fragment.at, fragment.vx, SKY)}%`,
+                top: `${fragment.top}%`,
+                opacity: round(s.fragments * fadeWindow(s.progress, [fragment.appear, 2], 0.02) * 0.8),
+                animationDelay: `${i * 1.3}s`,
+              }}
+            >
+              {fragment.text}
+            </span>
+          ))}
           {clouds.map((cloud, i) => (
             <Cloud
               key={i}
@@ -373,7 +389,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           />
         </Layer>
 
-        {/* Near sea and floating question fragments */}
+        {/* Near sea and the milestone markers */}
         <Layer progress={s.progress} factor={NEAR}>
           <SeaBand
             top={HORIZON + 23}
@@ -384,34 +400,24 @@ export function Stage({ progress, compact = false, className, style }: StageProp
             crest={14}
             duration={13}
           />
-          {markers.map((marker, i) => (
-            <span
-              key={`${marker.id}-${i}`}
-              className="absolute flex items-center gap-2 whitespace-nowrap font-pixel text-[0.6rem] tracking-wide text-ivory md:text-[0.7rem]"
-              style={{
-                left: `${worldX(marker.at, marker.vx, NEAR)}%`,
-                top: `${marker.top}%`,
-                opacity: round(fadeWindow(s.progress, segments[marker.id], 0.05) * 0.85),
-              }}
-            >
-              <span className="block h-1.5 w-1.5 bg-surf" />
-              {marker.text}
-            </span>
-          ))}
-          {fragments.map((fragment, i) => (
-            <span
-              key={i}
-              className="fragment absolute font-pixel text-[0.6rem] tracking-wide text-ivory md:text-[0.7rem]"
-              style={{
-                left: `${worldX(fragment.at, fragment.vx, NEAR)}%`,
-                top: `${fragment.top}%`,
-                opacity: round(s.fragments * (s.progress < questionsEnd ? 0.75 : 0.4)),
-                animationDelay: `${i * 1.3}s`,
-              }}
-            >
-              {fragment.text}
-            </span>
-          ))}
+          {markers.map((marker, i) => {
+            const [start, end] = segments[marker.id];
+            const settled = chapterPhases(s.progress, segments[marker.id]).settled;
+            return (
+              <span
+                key={`${marker.id}-${i}`}
+                className="absolute flex items-center gap-2.5 whitespace-nowrap font-pixel text-[0.62rem] tracking-wide text-ivory md:text-[0.72rem]"
+                style={{
+                  left: `${worldX(marker.at, marker.vx, NEAR)}%`,
+                  top: `${marker.top}%`,
+                  opacity: round(fadeWindow(s.progress, [start + 0.02 * (end - start), end], 0.04) * (0.95 - settled * 0.45)),
+                }}
+              >
+                <Star className="star block" style={{ width: compact ? 14 : 11, animationDelay: `${i * 0.6}s` }} />
+                {marker.text}
+              </span>
+            );
+          })}
         </Layer>
 
         {/* The paper boat, the hands that launch it, and the gust that takes it */}

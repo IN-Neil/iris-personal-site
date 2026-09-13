@@ -358,6 +358,25 @@ export function Bird({ className, style }: SpriteProps) {
 }
 
 // ---------------------------------------------------------------------------
+// Star — a four-point pixel star for the milestone markers in chapter two.
+// ---------------------------------------------------------------------------
+
+const starCells: Cell[] = [
+  [3, 0, 1, 7],
+  [0, 3, 7, 1],
+  [2, 2, 3, 3],
+];
+
+export function Star({ className, style }: SpriteProps) {
+  return (
+    <svg viewBox="0 0 7 7" className={className} style={style} shapeRendering="crispEdges" aria-hidden="true">
+      <Cells cells={starCells} fill={palette.ivory} />
+      <rect x={3} y={3} width={1} height={1} fill={palette.surf} />
+    </svg>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Sea texture — a stepped wave crest, tiled horizontally as a background.
 // ---------------------------------------------------------------------------
 
