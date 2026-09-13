@@ -1,26 +1,170 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Palette, from the vision board */
+  --color-ivory: #eae6de;
+  --color-ink: #221d1a;
+  --color-slate: #3b4548;
+  --color-ocean: #476da1;
+  --color-surf: #57a9c7;
+  --color-sandstone: #c7936c;
+  --color-peach: #dc9a73;
+  --color-moss: #70835f;
+  --color-poppy: #d96144;
+  --color-shell: #c7b2a0;
+
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-display), ui-serif, Georgia, serif;
+  --font-mono: var(--font-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-surf);
+  color: var(--color-ink);
+}
+
+/* Paper card behind chapter text — flat, slightly collage-like */
+.paper {
+  background: color-mix(in srgb, var(--color-ivory) 94%, white);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
+  box-shadow: 6px 6px 0 0 color-mix(in srgb, var(--color-ink) 14%, transparent);
+  padding: clamp(1.25rem, 2.2vw, 2rem) clamp(1.25rem, 2.4vw, 2.25rem);
+}
+
+.static-paper {
+  box-shadow: 4px 4px 0 0 color-mix(in srgb, var(--color-ink) 14%, transparent);
+}
+
+/* Subtle paper grain over the scene */
+.grain {
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* ---- Motion ------------------------------------------------------------ */
+
+@keyframes drift {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 256px;
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: -1.2deg;
+  }
+  50% {
+    translate: 0 -3%;
+    rotate: 1.2deg;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(0.55);
+  }
+}
+
+@keyframes sweep {
+  from {
+    rotate: -22deg;
+  }
+  to {
+    rotate: 22deg;
+  }
+}
+
+@keyframes hover {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -6px;
+  }
+}
+
+@keyframes hint {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+.sea-crest {
+  animation-name: drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.boat > svg {
+  animation: bob 5.5s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+.star {
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.beam {
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  transform-origin: 0 50%;
+  animation: sweep 9s ease-in-out infinite alternate;
+}
+
+.fragment {
+  animation: hover 7s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+.scroll-hint {
+  animation: hint 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .sea-crest,
+  .boat > svg,
+  .star,
+  .beam,
+  .fragment,
+  .scroll-hint {
+    animation: none;
+  }
 }

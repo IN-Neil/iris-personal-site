@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Iris Matos — Imagine → Build
 
-## Getting Started
+A one-page personal site told as a journey across the sea toward a lighthouse.
+Four chapters (questions → building → community → contribution) and an ending
+that is a bearing, not an arrival.
 
-First, run the development server:
+Built with Next.js (App Router), TypeScript, and Tailwind CSS v4. No backend,
+no CMS, no tracking. Deploys to Vercel as-is.
+
+## Run it locally
+
+Requires Node 20+ and [pnpm](https://pnpm.io).
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev        # http://localhost:4317
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Other scripts:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm typecheck  # strict TypeScript
+pnpm lint       # ESLint (next/core-web-vitals)
+pnpm build      # production build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Where to edit things
 
-## Learn More
+| I want to change…                                  | Edit this file                                |
+| -------------------------------------------------- | --------------------------------------------- |
+| Any text: title, chapters, milestones, ending      | `src/content/site.ts`                         |
+| Resume / LinkedIn / GitHub / project links         | `links` in `src/content/site.ts`              |
+| Floating questions in chapter one                  | `questionFragments` in `src/content/site.ts`  |
+| Colours, fonts, card style, animations             | `src/app/globals.css`, `src/app/layout.tsx`   |
+| How long each chapter lasts on scroll              | `segments` in `src/lib/journey.ts`            |
+| Sky colours, zoom, time of day, sea roughness      | the `*Stops` arrays in `src/lib/journey.ts`   |
+| Where things sit in the scene (boat, lighthouse…)  | `src/components/journey/Stage.tsx`            |
+| The sprites themselves (boat, lighthouse, moon…)   | `src/components/journey/sprites.tsx`          |
+| Page metadata (browser tab title, description)     | `metadata` in `src/app/layout.tsx`            |
 
-To learn more about Next.js, take a look at the following resources:
+To add your resume, drop the PDF into `public/` (e.g. `public/iris-matos-resume.pdf`)
+and set the Resume `href` in `src/content/site.ts` to `/iris-matos-resume.pdf`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How it works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Everything on the page is driven by one number, `progress` (0 → 1).
 
-## Deploy on Vercel
+- **Desktop** (`src/components/journey/Journey.tsx`): a tall scroll container
+  holds a sticky, viewport-sized stage. Vertical scroll position becomes
+  `progress`, which slides the parallax layers sideways, zooms the camera,
+  shifts the time of day, and fades chapter panels in and out.
+- **Mobile** (`src/components/journey/JourneyStacked.tsx`): the same `Stage`
+  is rendered as a frozen frame at each chapter's midpoint, stacked vertically
+  with the text beneath it.
+- **Stage** (`src/components/journey/Stage.tsx`): the world as layers, back to
+  front — stars, sun/moon, far sea + shore + lighthouse, mid sea, boat, near
+  sea + question fragments, foreground sea. Each layer is six viewports wide
+  and translates by `progress × parallaxFactor`.
+- **Sprites** are SVG rectangles on a small grid with `crispEdges`, which is
+  what gives the low-res feeling without using pixel fonts anywhere.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Motion respects `prefers-reduced-motion` (waves, bobbing, beam, and twinkle
+stop; scroll-driven camera movement remains).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy
+
+Push to a Git host and import the repo in Vercel. No environment variables are
+needed.
