@@ -35,6 +35,9 @@ The lighthouse is a bearing, not an arrival.
 - [x] Journey math + palette
 - [x] Sprites: paper boat, hands, lighthouse, moon, cabin, bird, cloud, bolt
 - [x] Night/storm revision after the mood board (paper boat, hands opening)
+- [x] Quiet typography pass: pixel captions, no cards, milestones as world markers
+- [x] Chapter-one close-up on the boat with side dialog
+- [x] Asset spec for an image-generating collaborator (`docs/ASSET-SPEC.md`)
 - [x] Stage: layered scene driven by progress
 - [x] Desktop Journey: sticky viewport, scroll progress, text panels, route map
 - [x] Mobile JourneyStacked
@@ -45,6 +48,8 @@ The lighthouse is a bearing, not an arrival.
 
 ## Later (not MVP)
 
+- [ ] Swap in drawn PNG sprites if they arrive (loader + keying/downsample script)
+- [ ] Adult and child figures on the departure shore watching the boat leave
 - [ ] Real resume PDF in `public/` and real LinkedIn / GitHub URLs
 - [ ] Optional ambient audio toggle
 - [ ] Optional OG image

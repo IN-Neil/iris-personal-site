@@ -38,6 +38,7 @@ pnpm build      # production build
 | Where things sit in the scene (boat, lighthouse…)  | `src/components/journey/Stage.tsx`            |
 | The sprites themselves (boat, hands, lighthouse…)  | `src/components/journey/sprites.tsx`          |
 | Page metadata (browser tab title, description)     | `metadata` in `src/app/layout.tsx`            |
+| Replacing procedural sprites with drawn PNGs       | see `docs/ASSET-SPEC.md`                      |
 
 To add your resume, drop the PDF into `public/` (e.g. `public/iris-matos-resume.pdf`)
 and set the Resume `href` in `src/content/site.ts` to `/iris-matos-resume.pdf`.
@@ -59,7 +60,11 @@ Everything on the page is driven by one number, `progress` (0 → 1).
   then rain and lightning over the lens. Each layer is several viewports wide
   and translates by `progress × parallaxFactor`.
 - **Sprites** are SVG rectangles on a small grid with `crispEdges`, which is
-  what gives the low-res feeling without using pixel fonts anywhere.
+  what gives the low-res feeling. Pixel type (Silkscreen) is used only for
+  short captions and labels; body text is a normal sans.
+- **Chapter one** pushes the camera in on the boat after the hands let go and
+  shows its text as a bordered dialog beside the boat. Chapters two to four use
+  a centred caption with the milestones drifting through the scene as markers.
 
 Motion respects `prefers-reduced-motion` (waves, bobbing, beam, rain, lightning
 flashes, and twinkle stop; scroll-driven camera movement remains).
