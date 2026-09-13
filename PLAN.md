@@ -20,9 +20,15 @@ The lighthouse is a bearing, not an arrival.
   0→1. Desktop (`Journey`) drives progress from vertical scroll inside a sticky
   viewport. Mobile (`JourneyStacked`) renders the same `Stage` frozen at each
   chapter's moment and stacks the chapters vertically.
-- **Layers, not a game engine.** Sky, stars, moon/sun, far sea, mid sea, boat,
+- **Layers, not a game engine.** Sky, stars, moon, far sea, mid sea, boat,
   near sea, foreground. Each layer is a plain div translated by
-  `progress × parallaxFactor`. Sprites are SVG rectangles on a grid.
+  `progress × parallaxFactor`. Big set pieces (boat, hands, moon, clouds,
+  shores, lighthouse, cabin) are drawn pixel-art PNGs in `public/sprites`
+  (originals in `assets/source`); small details stay as SVG rectangles.
+- **Fixed camera, moving world.** No zoom. The camera sits close to the water
+  throughout; the moon rises and swells from chapter one into two, clouds and
+  shores slide through, and each chapter's text is placed wherever that scene
+  leaves room (`textPlacement` in `Journey.tsx`). Words arrive last.
 - **Weather is the emotional arc.** Moonlit and calm at departure → clouds
   gather (building) → warm distant lights (community) → full storm with rain
   and lightning (finding my part) → the sea settles and the lighthouse beam
@@ -47,10 +53,14 @@ The lighthouse is a bearing, not an arrival.
 - [x] Typecheck + lint + production build
 - [x] Visual pass in browser (desktop + mobile widths)
 - [x] README with run instructions and "where to edit" guide
+- [x] Drawn sprites wired in (crop + palettise script run once; see commit)
+- [x] Fixed camera; moon path; simplified intro; per-chapter text placement (intro, ch1, ch2)
+- [ ] Chapter three: cliffs asset drifting in with lights and stars
+- [ ] Chapter four: storm composition with cloud banks
+- [ ] Ending: check lighthouse / cabin / cliffs placement with the new camera
 
 ## Later (not MVP)
 
-- [ ] Swap in drawn PNG sprites if they arrive (loader + keying/downsample script)
 - [ ] Adult and child figures on the departure shore watching the boat leave
 - [ ] Real resume PDF in `public/` and real LinkedIn / GitHub URLs
 - [ ] Optional ambient audio toggle

@@ -12,26 +12,33 @@ import { ending, footer, intro, links, person } from "@/content/site";
 
 const pixelLabel = "font-pixel text-[0.72rem] uppercase tracking-[0.14em] text-mist/60 md:text-[0.78rem]";
 
-export function IntroPanel({ className }: { className?: string }) {
+/**
+ * Kept deliberately spare: a name, the big pixel title, one sentence.
+ * The subtitle and interests still live in `site.ts` for the brand mark and
+ * the mobile layout.
+ */
+export function IntroPanel({ className, full = false }: { className?: string; full?: boolean }) {
   return (
     <header className={className}>
-      <p className={pixelLabel}>{intro.kicker}</p>
-      <h1 className="mt-4 font-serif leading-[0.9] text-mist">
-        <span className="block text-[clamp(4.5rem,15vw,11rem)] font-medium tracking-tight">
-          {intro.title}
-        </span>
-        <span className="mt-3 block font-pixel text-[clamp(1rem,1.8vw,1.35rem)] tracking-[0.12em] text-shell">
-          {intro.subtitle}
-        </span>
+      <p className="font-serif text-[1.15rem] text-mist/85">{person.name}</p>
+      <h1 className="mt-3 font-pixel leading-none text-mist">
+        <span className="block text-[clamp(4rem,11vw,8.5rem)] tracking-[0.02em]">{intro.title}</span>
+        {full && (
+          <span className="mt-3 block text-[clamp(1rem,1.8vw,1.35rem)] tracking-[0.12em] text-shell">
+            {intro.subtitle}
+          </span>
+        )}
       </h1>
-      <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-mist/85 md:mt-8 md:text-lg">
+      <p className="mt-5 max-w-[24rem] font-serif text-[1.05rem] leading-relaxed text-mist/85 md:text-[1.1rem]">
         {intro.thesis}
       </p>
-      <p className={`mt-5 flex flex-wrap gap-x-3 gap-y-1 ${pixelLabel}`}>
-        {person.interests.map((interest) => (
-          <span key={interest}>{interest}</span>
-        ))}
-      </p>
+      {full && (
+        <p className={`mt-5 flex flex-wrap gap-x-3 gap-y-1 ${pixelLabel}`}>
+          {person.interests.map((interest) => (
+            <span key={interest}>{interest}</span>
+          ))}
+        </p>
+      )}
     </header>
   );
 }

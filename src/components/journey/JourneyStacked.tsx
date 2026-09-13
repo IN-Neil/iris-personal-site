@@ -24,7 +24,7 @@ export function JourneyStacked() {
       <div className="relative">
         <Frame progress={0.02} tall />
         <div className="absolute inset-x-0 top-0 px-6 pt-10">
-          <IntroPanel />
+          <IntroPanel full />
         </div>
       </div>
 

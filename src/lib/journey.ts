@@ -196,21 +196,21 @@ const skyStops: ColorStop[] = [
 /** Moon position (% of stage) and width (% of stage width), as it travels. */
 const moonXStops: Stop[] = [
   [0, 80],
-  [0.14, 78],
-  [0.34, 32],
+  [0.2, 78],
+  [0.36, 28],
   [0.6, 22],
 ];
 const moonYStops: Stop[] = [
   [0, 42],
-  [0.14, 40],
-  [0.34, 10],
-  [0.6, 6],
+  [0.2, 38],
+  [0.36, 20],
+  [0.6, 16],
 ];
 const moonSizeStops: Stop[] = [
   [0, 5],
-  [0.14, 5.5],
-  [0.34, 20],
-  [0.6, 20],
+  [0.2, 6],
+  [0.36, 19],
+  [0.6, 19],
 ];
 
 /** 0 = clear moonlit night, 1 = full storm. */
@@ -270,12 +270,12 @@ const cloudCoverStops: Stop[] = [
 const handsStops: Stop[] = [
   [0, 1],
   [0.05, 1],
-  [0.1, 0],
+  [0.09, 0],
 ];
 
 /** How far above the waterline the boat is held at the start (% of stage height). */
 const boatLiftStops: Stop[] = [
-  [0, -16],
+  [0, -10],
   [0.05, 0],
 ];
 

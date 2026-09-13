@@ -140,8 +140,9 @@ const markers = chapters.flatMap((chapter) => {
     id: chapter.id,
     text: item.title,
     at: start + ((i + 1) / (items.length + 1)) * (end - start),
-    vx: [0.62, 0.8, 0.7, 0.9][i % 4],
-    top: [30, 20, 38, 26][i % 4],
+    // Left-of-centre sky, under the moon and clear of the text on the right.
+    vx: [0.1, 0.3, 0.18, 0.36][i % 4],
+    top: [40, 33, 47, 29][i % 4],
   }));
 });
 
@@ -422,7 +423,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
             left: "-111cqw",
             top: "-45cqw",
             opacity: s.hands,
-            transform: `translate3d(${-(1 - s.hands) * 30}%, ${(1 - s.hands) * 40}%, 0)`,
+            transform: `translate3d(${-(1 - s.hands) * 45}%, ${-(1 - s.hands) * 12}%, 0)`,
           }}
         >
           <Pixel name="hands" priority />

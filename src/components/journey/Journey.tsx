@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { chapters, ending, intro } from "@/content/site";
+import { chapters, ending, intro, type Chapter } from "@/content/site";
 import {
   activeSegment,
   chapterPhases,
@@ -62,6 +62,18 @@ function panelStyle(visibility: number): React.CSSProperties {
     visibility: visibility <= 0.001 ? "hidden" : "visible",
   };
 }
+
+/**
+ * Where each chapter's words sit. The scene decides: chapter one's moon is
+ * low on the right, so the text takes the upper left; from chapter two the
+ * moon and clouds fill the left, so the text moves right.
+ */
+const textPlacement: Record<Chapter["id"], { left: string; top: string }> = {
+  questions: { left: "9%", top: "20%" },
+  building: { left: "50%", top: "13%" },
+  community: { left: "50%", top: "13%" },
+  part: { left: "50%", top: "13%" },
+};
 
 const routeLabels: Record<SegmentKey, string> = {
   intro: "Departure",
@@ -127,7 +139,7 @@ export function Journey() {
 
         {/* Title, directly on the sky */}
         <div
-          className="absolute left-[7%] top-[12%] w-[min(40rem,52vw)] transition-none"
+          className="absolute left-[7%] top-[13%] w-[min(30rem,44vw)] transition-none"
           style={panelStyle(introVisible)}
         >
           <IntroPanel />
@@ -140,16 +152,21 @@ export function Journey() {
           <span aria-hidden="true" className="scroll-hint block h-5 w-px bg-ivory/70" />
         </div>
 
-        {/* Chapters: close-up on the boat, chapter scenery left, text right; the body types itself */}
+        {/* Chapters: the words arrive last, placed wherever the scene has room; the body types itself */}
         {chapters.map((chapter) => {
           const phases = chapterPhases(progress, segments[chapter.id]);
+          const place = textPlacement[chapter.id];
           return (
             <div key={chapter.id} className="pointer-events-none absolute inset-0" style={panelStyle(phases.visible)}>
-              <div className="absolute left-[47%] top-[13%]">
+              <div className="absolute w-[min(27rem,42vw)]" style={{ left: place.left, top: place.top }}>
                 <ChapterLabel chapter={chapter} />
-              </div>
-              <div className="absolute left-[47%] top-[20%] w-[min(27rem,42vw)]">
-                <ChapterPanel chapter={chapter} heading={phases.heading} typed={phases.typed} centered />
+                <ChapterPanel
+                  chapter={chapter}
+                  heading={phases.heading}
+                  typed={phases.typed}
+                  centered
+                  className="mt-6"
+                />
               </div>
             </div>
           );
