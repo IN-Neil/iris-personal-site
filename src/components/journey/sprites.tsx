@@ -18,6 +18,10 @@ export const drawn = {
   shoreCliffs: { src: "/sprites/shore-cliffs.png", w: 1029, h: 237 },
   lighthouse: { src: "/sprites/lighthouse.png", w: 228, h: 764 },
   cabin: { src: "/sprites/cabin.png", w: 444, h: 298 },
+  adult: { src: "/sprites/adult.png", w: 750, h: 2098, frame: [220, 842, 344, 1166] },
+  child: { src: "/sprites/child.png", w: 782, h: 2011, frame: [216, 999, 322, 482] },
+  dockWide: { src: "/sprites/dock-wide.png", w: 2172, h: 724, frame: [413, 300, 1105, 381] },
+  dockShort: { src: "/sprites/dock-short.png", w: 2172, h: 724, frame: [713, 319, 743, 360] },
 } as const;
 
 export type DrawnKey = keyof typeof drawn;
@@ -32,7 +36,22 @@ type PixelProps = {
 
 /** A drawn sprite. Give the wrapper a width (or height); the image fills it. */
 export function Pixel({ name, className, style, priority }: PixelProps) {
-  const { src, w, h } = drawn[name];
+  const sprite = drawn[name];
+  const { src, w, h } = sprite;
+  // Frame the supplied transparent canvases without modifying their pixels.
+  if ("frame" in sprite) {
+    return (
+      <svg
+        viewBox={sprite.frame.join(" ")}
+        className={`pixel block h-auto w-full select-none ${className ?? ""}`}
+        style={style}
+        aria-hidden="true"
+        focusable="false"
+      >
+        <image href={src} width={w} height={h} />
+      </svg>
+    );
+  }
   return (
     <Image
       src={src}
