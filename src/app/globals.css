@@ -14,10 +14,11 @@
   --color-shell: #c7b2a0;
   --color-night: #1f2c42;
 
-  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-display), ui-serif, Georgia, serif;
-  --font-mono: var(--font-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --font-pixel: var(--font-pixel), ui-monospace, monospace;
+  --color-mist: #e6dddd;
+
+  --font-serif: var(--font-piazzolla), ui-serif, Georgia, serif;
+  --font-sans: var(--font-piazzolla), ui-serif, Georgia, serif;
+  --font-pixel: var(--font-pixelify), ui-monospace, monospace;
 }
 
 html {
@@ -27,8 +28,7 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv11";
+  font-family: var(--font-serif);
   -webkit-font-smoothing: antialiased;
 }
 

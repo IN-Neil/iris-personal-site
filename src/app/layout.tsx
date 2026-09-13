@@ -1,31 +1,19 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans, Silkscreen } from "next/font/google";
+import { Piazzolla, Pixelify_Sans } from "next/font/google";
 import { intro, person } from "@/content/site";
 import "./globals.css";
 
-const display = Fraunces({
-  variable: "--font-display",
+// Two faces only: Piazzolla for everything you read, Pixelify Sans for the
+// short pixel captions and labels.
+const serif = Piazzolla({
+  variable: "--font-piazzolla",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT"],
+  axes: ["opsz"],
 });
 
-const body = IBM_Plex_Sans({
-  variable: "--font-body",
+const pixel = Pixelify_Sans({
+  variable: "--font-pixelify",
   subsets: ["latin"],
-  weight: ["400", "500"],
-});
-
-const mono = IBM_Plex_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400"],
-});
-
-// Pixel font for short captions and labels only, never for body text.
-const pixel = Silkscreen({
-  variable: "--font-pixel",
-  subsets: ["latin"],
-  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -35,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable} ${pixel.variable} h-full antialiased`}>
+    <html lang="en" className={`${serif.variable} ${pixel.variable} h-full antialiased`}>
       <body className="min-h-full">{children}</body>
     </html>
   );
