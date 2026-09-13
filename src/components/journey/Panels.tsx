@@ -21,7 +21,7 @@ export function IntroPanel({ className, full = false }: { className?: string; fu
   return (
     <header className={className}>
       <p className="font-serif text-[1.15rem] text-mist/85">{person.name}</p>
-      <h1 className="mt-3 font-pixel leading-none text-mist">
+      <h1 className="mt-3 font-pixel font-bold leading-none text-mist">
         <span className="block text-[clamp(4rem,11vw,8.5rem)] tracking-[0.02em]">{intro.title}</span>
         {full && (
           <span className="mt-3 block text-[clamp(1rem,1.8vw,1.35rem)] tracking-[0.12em] text-shell">

@@ -201,7 +201,7 @@ const moonXStops: Stop[] = [
   [0.6, 22],
 ];
 const moonYStops: Stop[] = [
-  [0, 42],
+  [0, 38],
   [0.2, 38],
   [0.36, 20],
   [0.6, 16],

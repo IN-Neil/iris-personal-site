@@ -139,7 +139,7 @@ export function Journey() {
 
         {/* Title, directly on the sky */}
         <div
-          className="absolute left-[7%] top-[13%] w-[min(30rem,44vw)] transition-none"
+          className="absolute left-[11%] top-[10%] w-[min(30rem,44vw)] transition-none"
           style={panelStyle(introVisible)}
         >
           <IntroPanel />

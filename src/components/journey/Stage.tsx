@@ -118,7 +118,8 @@ const fragments = questionFragments.map((text, i) => ({
 // Cloud banks drift through the sky layer. One hangs top-left at departure,
 // a big one gathers under the moon in chapter two, the rest are the storm.
 const clouds = [
-  { at: 0.02, vx: 0.04, top: -2, w: 36 },
+  { at: 0, vx: -0.08, top: -6, w: 48 },
+  { at: 0, vx: 0.65, top: 8, w: 58 },
   { at: 0.2, vx: 0.6, top: -6, w: 30 },
   { at: 0.36, vx: 0.06, top: 30, w: 50 },
   { at: 0.42, vx: 0.7, top: 2, w: 28 },
@@ -149,8 +150,8 @@ const markers = chapters.flatMap((chapter) => {
 // The boat is held over the end of the dock, then drifts a little to the left
 // of frame and stays there until the lighthouse pulls it right.
 const boatXStops = [
-  [0, 34],
-  [0.05, 34],
+  [0, 49],
+  [0.05, 49],
   [0.16, 28],
   [0.84, 28],
   [1, 44],
@@ -167,7 +168,7 @@ export type StageProps = {
 export function Stage({ progress, compact = false, className, style }: StageProps) {
   const s = sceneState(progress);
   const boatX = keyframes(s.progress, boatXStops);
-  const boatWidth = compact ? 30 : 18;
+  const boatWidth = compact ? 23 : 12;
   const [moonX, moonY, moonWidth] = s.moon;
 
   return (
@@ -316,6 +317,19 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           <Bolt className="bolt block h-full w-full" />
         </div>
 
+        {/* Departure mountains balance the figures across the water. */}
+        <div
+          className="absolute -translate-y-full"
+          style={{
+            left: `${worldX(0, 0.55, FAR)}%`,
+            top: `${HORIZON + 1}%`,
+            width: layerSize(compact ? 65 : 46),
+            opacity: fadeWindow(s.progress, [0, 0.22], 0.08),
+          }}
+        >
+          <Pixel name="shoreCliffs" priority />
+        </div>
+
         {/* Arrival: cliffs, the lighthouse and the keeper's cabin, all grounded on the horizon */}
         <div
           className="absolute -translate-y-full"
@@ -373,16 +387,23 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           crest={14}
           duration={13}
         />
-        {/* Only the end of the dock shows; the hill behind it is already off to the left */}
+        {/* Figures and dock share a layer so their feet remain grounded. */}
         <div
-          className="absolute -translate-y-full"
+          className="absolute inset-y-0"
           style={{
-            left: `${worldX(0, compact ? -1.25 : -0.86, NEAR)}%`,
-            top: `${WATERLINE + 5}%`,
-            width: layerSize(compact ? 160 : 118),
+            left: `${worldX(0, 0, NEAR)}%`,
+            width: layerSize(100),
           }}
         >
-          <Pixel name="shoreDock" priority />
+          <div className="absolute" style={{ left: compact ? "-26%" : "-10%", top: "76%", width: compact ? "70%" : "40%" }}>
+            <Pixel name="dockWide" priority />
+          </div>
+          <div className="absolute -translate-y-full" style={{ left: "11%", top: "79%", width: compact ? "8.3cqh" : "10.3cqh" }}>
+            <Pixel name="adult" priority />
+          </div>
+          <div className="absolute -translate-y-full" style={{ left: compact ? "29%" : "22%", top: "79%", width: compact ? "8cqh" : "10.7cqh" }}>
+            <Pixel name="child" priority />
+          </div>
         </div>
         {markers.map((marker, i) => {
           const [start, end] = segments[marker.id];
@@ -404,30 +425,17 @@ export function Stage({ progress, compact = false, className, style }: StageProp
         })}
       </Layer>
 
-      {/* The paper boat, the hands that launch it, and the gust that takes it.
-          The wrapper is a size container so the hands can be measured in boat widths (cqw). */}
+      {/* The paper boat is already afloat beyond the dock. */}
       <div
         className="absolute -translate-y-full"
         style={{
           left: `${boatX}%`,
-          top: `${WATERLINE + s.boatLift}%`,
+          top: `${WATERLINE + 4}%`,
           width: `${boatWidth}%`,
           aspectRatio: "832 / 274",
           containerType: "size",
         }}
       >
-        <div
-          className="absolute"
-          style={{
-            width: "260cqw",
-            left: "-111cqw",
-            top: "-45cqw",
-            opacity: s.hands,
-            transform: `translate3d(${-(1 - s.hands) * 45}%, ${-(1 - s.hands) * 12}%, 0)`,
-          }}
-        >
-          <Pixel name="hands" priority />
-        </div>
         <div
           className="absolute rounded-full"
           style={{

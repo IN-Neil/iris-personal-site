@@ -11,7 +11,7 @@ import { Stage } from "./Stage";
 function Frame({ progress, tall = false }: { progress: number; tall?: boolean }) {
   return (
     <div
-      className={`relative w-full overflow-hidden border-y border-ivory/10 ${tall ? "aspect-[3/4]" : "aspect-[4/3]"}`}
+      className={`relative w-full overflow-hidden border-y border-ivory/10 ${tall ? "h-[max(46rem,100svh)]" : "aspect-[4/3]"}`}
     >
       <Stage progress={progress} compact className="absolute inset-0" />
     </div>
@@ -22,9 +22,9 @@ export function JourneyStacked() {
   return (
     <div className="bg-night">
       <div className="relative">
-        <Frame progress={0.02} tall />
+        <Frame progress={0} tall />
         <div className="absolute inset-x-0 top-0 px-6 pt-10">
-          <IntroPanel full />
+          <IntroPanel />
         </div>
       </div>
 
