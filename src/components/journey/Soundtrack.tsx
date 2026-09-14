@@ -41,7 +41,7 @@ export function Soundtrack() {
   }
 
   return (
-    <div className="fixed left-6 top-4 z-50 md:left-[11%]">
+    <div className="fixed left-4 top-11 z-50 md:left-[calc(11%-8px)] md:top-[calc(max(6rem,10vh)-3.25rem)]">
       <audio ref={audioRef} src={tracks[0]} preload="metadata" onPlaying={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={nextTrack} onError={() => { setPlaying(false); setFailed(true); }} />
       <button
         type="button"
@@ -49,9 +49,9 @@ export function Soundtrack() {
         aria-pressed={playing}
         title={playing ? "Pause music" : "Play music"}
         onClick={() => playing ? audioRef.current?.pause() : void play()}
-        className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-night/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ivory"
+        className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full opacity-55 transition-opacity hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ivory"
       >
-        <svg viewBox="395 395 465 475" width="44" height="44" aria-hidden="true" style={{ imageRendering: "pixelated" }}>
+        <svg viewBox="395 395 465 475" width="28" height="28" aria-hidden="true" style={{ imageRendering: "pixelated" }}>
           <image href={playing ? "/sound/volume-on.png" : "/sound/volume-off.png"} width="1254" height="1254" />
         </svg>
       </button>
