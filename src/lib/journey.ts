@@ -272,10 +272,7 @@ const moonOpacityStops: Stop[] = [
   [1, 0.4],
 ];
 
-const boatGlowStops: Stop[] = [
-  [0.3, 0],
-  [0.37, 1],
-];
+const boatGlowStops: Stop[] = [[0, 1]];
 
 const cloudCoverStops: Stop[] = [
   [0, 0.5],
@@ -296,7 +293,7 @@ export type SceneState = {
   moon: [number, number, number];
   moonOpacity: number;
   starOpacity: number;
-  /** Warm light inside the paper boat, from chapter two onward. */
+  /** The candle stays lit from departure through the whole journey. */
   boatGlow: number;
   /** Gust that carries the boat away from the dock. */
   wind: number;

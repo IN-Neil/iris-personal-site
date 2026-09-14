@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { storyProgress, exampleWindow, exampleVisibility, chapterPhases, segments, SCROLL_SCREENS } from '../src/lib/journey.ts';
+import { sceneState, storyProgress, exampleWindow, exampleVisibility, chapterPhases, segments, SCROLL_SCREENS } from '../src/lib/journey.ts';
 
 test('every scroll interval advances the scenery, including former frozen interval', () => {
   assert.equal(storyProgress(0), 0);
@@ -39,4 +39,10 @@ test('last stars clear before a substantial approach to the lighthouse', () => {
   const at27 = storyProgress(27 / (SCROLL_SCREENS - 1));
   assert.ok(at27 > 0.84 && at27 < 0.92);
   assert.equal(exampleVisibility(at27, last), 0);
+});
+
+test('the candle boat is visible from departure through every chapter', () => {
+  for (const progress of [0, 0.02, 0.12, 0.3, 0.48, 0.66, 0.84, 1]) {
+    assert.equal(sceneState(progress).boatGlow, 1);
+  }
 });
