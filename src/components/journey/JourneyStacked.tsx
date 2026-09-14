@@ -1,6 +1,6 @@
 import { chapters } from "@/content/site";
 import { midpoint, segments } from "@/lib/journey";
-import { ChapterPanel, EndingPanel, IntroPanel } from "./Panels";
+import { ChapterPanel, EndingPanel, IntroPanel, QuestionPanel } from "./Panels";
 import { Stage } from "./Stage";
 
 /**
@@ -20,12 +20,16 @@ function Frame({ progress, tall = false }: { progress: number; tall?: boolean })
 
 export function JourneyStacked() {
   return (
-    <div className="bg-night">
+    <div className="overflow-x-clip bg-night">
       <div className="relative">
         <Frame progress={0} tall />
         <div className="absolute inset-x-0 top-0 px-6 pt-10">
           <IntroPanel />
         </div>
+      </div>
+
+      <div className="px-6 py-20">
+        <QuestionPanel />
       </div>
 
       {chapters.map((chapter) => (

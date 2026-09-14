@@ -52,7 +52,29 @@ export const WORLD_SCREENS = 6;
 export const LAYER_SCREENS = WORLD_SCREENS + 0.6;
 
 /** Vertical scroll length of the desktop journey, in viewport heights. */
-export const SCROLL_SCREENS = 9;
+const STORY_SCROLL_DISTANCE = 8;
+export const departureTiming = {
+  holdAt: 0.12,
+  extraScreens: 3,
+  questionsStart: 1.1,
+  questionsEnd: 3.6,
+  fadeScreens: 0.45,
+} as const;
+export const SCROLL_SCREENS = STORY_SCROLL_DISTANCE + departureTiming.extraScreens + 1;
+
+/** Insert a reading pause without retiming the existing chapters or weather. */
+export function storyProgress(scrollProgress: number): number {
+  const distance = clamp(scrollProgress) * (SCROLL_SCREENS - 1);
+  const holdStart = departureTiming.holdAt * STORY_SCROLL_DISTANCE;
+  if (distance <= holdStart) return distance / STORY_SCROLL_DISTANCE;
+  if (distance <= holdStart + departureTiming.extraScreens) return departureTiming.holdAt;
+  return clamp((distance - departureTiming.extraScreens) / STORY_SCROLL_DISTANCE);
+}
+
+export function questionVisibility(scrollProgress: number): number {
+  const distance = SCROLL_SCREENS - 1;
+  return fadeWindow(scrollProgress, [departureTiming.questionsStart / distance, departureTiming.questionsEnd / distance], departureTiming.fadeScreens / distance);
+}
 
 export const clamp = (v: number, min = 0, max = 1) =>
   Math.min(max, Math.max(min, v));
@@ -266,19 +288,6 @@ const cloudCoverStops: Stop[] = [
   [1, 0.35],
 ];
 
-/** The hands hold the boat, lower it, then withdraw. */
-const handsStops: Stop[] = [
-  [0, 1],
-  [0.05, 1],
-  [0.09, 0],
-];
-
-/** How far above the waterline the boat is held at the start (% of stage height). */
-const boatLiftStops: Stop[] = [
-  [0, -10],
-  [0.05, 0],
-];
-
 export type SceneState = {
   progress: number;
   sky: string;
@@ -290,11 +299,7 @@ export type SceneState = {
   starOpacity: number;
   /** Warm light inside the paper boat, from chapter two onward. */
   boatGlow: number;
-  /** Visibility of the hands that launch the boat. */
-  hands: number;
-  /** Boat lift above the waterline while it is still held. */
-  boatLift: number;
-  /** Gust that carries the boat away from the hands. */
+  /** Gust that carries the boat away from the dock. */
   wind: number;
   sea: { far: string; mid: string; near: string; fore: string; foam: number };
   shore: string;
@@ -305,8 +310,6 @@ export type SceneState = {
   lightning: number;
   /** Visibility of "distant lights" in chapter three. */
   distantLights: number;
-  /** Visibility of the floating question fragments in chapter one. */
-  fragments: number;
   beam: number;
 };
 
@@ -324,8 +327,6 @@ export function sceneState(progress: number): SceneState {
     moonOpacity: keyframes(p, moonOpacityStops),
     starOpacity: round(clamp((1 - storm) * 0.9 + fadeWindow(p, segments.building, 0.05) * 0.1)),
     boatGlow: keyframes(p, boatGlowStops),
-    hands: keyframes(p, handsStops),
-    boatLift: keyframes(p, boatLiftStops),
     wind: fadeWindow(p, [0.05, 0.3], 0.03), // chapter one is the windy chapter
     sea: {
       far: mixColor(mixColor("#3A5477", "#4B4E5E", warmth * 0.4), "#2A3038", storm),
@@ -340,7 +341,6 @@ export function sceneState(progress: number): SceneState {
     rain: round(clamp((storm - 0.5) / 0.4)),
     lightning: fadeWindow(p, [0.66, 0.82], 0.03),
     distantLights: fadeWindow(p, [0.46, 0.72], 0.06),
-    fragments: fadeWindow(p, [0.08, 0.16], 0.025),
     beam: round(clamp((p - 0.8) / 0.08)),
   };
 }

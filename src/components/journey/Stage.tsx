@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { chapters, questionFragments } from "@/content/site";
+import { chapters } from "@/content/site";
 import {
   chapterPhases,
   fadeWindow,
@@ -105,15 +105,6 @@ const birds = [
   { at: 0.19, vx: 0.23, top: 21 },
   { at: 0.2, vx: 0.2, top: 27 },
 ];
-
-// Questions surface one at a time after the hands let go; the last one lingers.
-const fragments = questionFragments.map((text, i) => ({
-  text,
-  at: 0.11 + i * 0.02,
-  appear: 0.085 + i * 0.02,
-  vx: [0.16, 0.46, 0.28, 0.6, 0.38][i % 5],
-  top: [22, 34, 44, 28, 40][i % 5],
-}));
 
 // Cloud banks drift through the sky layer. One hangs top-left at departure,
 // a big one gathers under the moon in chapter two, the rest are the storm.
@@ -228,22 +219,8 @@ export function Stage({ progress, compact = false, className, style }: StageProp
         }}
       />
 
-      {/* Clouds, and the questions of chapter one drifting slowly with them */}
+      {/* Cloud banks drift independently of the text. */}
       <Layer progress={s.progress} factor={SKY}>
-        {fragments.map((fragment, i) => (
-          <span
-            key={i}
-            className="fragment absolute font-pixel text-[0.6rem] tracking-wide text-ivory md:text-[0.7rem]"
-            style={{
-              left: `${worldX(fragment.at, fragment.vx, SKY)}%`,
-              top: `${fragment.top}%`,
-              opacity: round(s.fragments * fadeWindow(s.progress, [fragment.appear, 2], 0.02) * 0.8),
-              animationDelay: `${i * 1.3}s`,
-            }}
-          >
-            {fragment.text}
-          </span>
-        ))}
         {clouds.map((cloud, i) => (
           <div
             key={i}
@@ -282,7 +259,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
               left: `${worldX(bird.at, bird.vx, FAR)}%`,
               top: `${bird.top}%`,
               width: layerSize(compact ? 3 : 1.3),
-              opacity: 0.45,
+              opacity: keyframes(s.progress, [[0, 0.45], [0.08, 0.45], [0.11, 0], [0.16, 0], [0.2, 0.45]]),
             }}
           />
         ))}

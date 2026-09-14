@@ -7,8 +7,8 @@ sea toward a lighthouse, told in four chapters plus an ending. Next.js +
 Tailwind, no backend, deployable on Vercel. Quiet, poetic, pixel-inspired but
 not retro.
 
-The opening: an adult hand supporting a child's hand lowers the paper boat onto
-the water; the hands withdraw, the wind takes the boat, and the journey begins.
+The opening: a parent and child watch from a moonlit dock as the paper boat
+drifts away. Stacked questions linger, then fade into a quiet beat before Chapter One.
 The lighthouse is a bearing, not an arrival.
 
 ## High-level design
@@ -61,7 +61,18 @@ The lighthouse is a bearing, not an arrival.
 
 ## Later (not MVP)
 
-- [ ] Adult and child figures on the departure shore watching the boat leave
+- [x] Adult and child figures on the departure shore watching the boat leave
 - [ ] Real resume PDF in `public/` and real LinkedIn / GitHub URLs
 - [ ] Optional ambient audio toggle
 - [ ] Optional OG image
+
+## September 13 departure refinement
+
+- [x] Import supplied adult, child, and both dock variants without altering originals
+- [x] Match reference composition; bold IRIS above parent, larger dock, balanced right sky
+- [x] Replace scattered background questions with a larger, stationary stack
+- [x] Add smooth fades, a reading hold, and breathing room before Chapter One
+- [x] Preserve later chapter timing through a separate scroll-to-story mapping
+- [x] Verify desktop and phone layouts; fix phone horizontal overflow
+- [x] Add timing regression tests; pass lint, typecheck, and production build
+- [x] Record editable timing spec in `docs/SCROLL-CHOREOGRAPHY.md`

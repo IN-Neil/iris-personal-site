@@ -1,5 +1,5 @@
 import type { Chapter } from "@/content/site";
-import { ending, footer, intro, links, person } from "@/content/site";
+import { ending, footer, intro, links, person, questionFragments } from "@/content/site";
 
 /**
  * The words. These components know nothing about scroll; the desktop and
@@ -173,5 +173,14 @@ export function EndingPanel({ className }: { className?: string }) {
       <p className={`mt-8 ${pixelLabel}`}>{footer.signature}</p>
       <p className="mt-2 text-[0.8rem] leading-relaxed text-mist/45">{footer.line}</p>
     </section>
+  );
+}
+
+/** A readable interlude, kept outside the moving scenery. */
+export function QuestionPanel() {
+  return (
+    <div aria-label="Questions before the journey" className="space-y-4 font-pixel text-[clamp(1.1rem,2.3vw,2rem)] leading-snug text-mist">
+      {questionFragments.map((question) => <p key={question}>{question}</p>)}
+    </div>
   );
 }
