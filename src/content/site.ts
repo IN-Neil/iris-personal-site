@@ -91,7 +91,7 @@ export const chapters: Chapter[] = [
       {
         title: "Six Ways to See One File",
         note: "I didn't know how to read the code, so I asked Claude to show me the same file six different ways.",
-        href: "#", // TODO: replace with the real link
+        href: "https://claude.ai/code/artifact/ab3d5b14-97c7-4337-9413-e7a7f9d156be",
       },
     ],
   },
@@ -151,22 +151,18 @@ export const ending = {
   heading: "Still a long way to go",
   body:
     "I'm drawn to futures where humans and AI can learn, communicate, and build together with more understanding, accessibility, and care. I don't know exactly what that future looks like yet. But I know the direction I want to explore.",
-  note: "There is still a lot of ocean ahead.",
+  note: "Onwards.",
 };
 
-/**
- * Placeholder links. Replace the `href` values with real URLs.
- * For the resume, drop a PDF into `public/` (e.g. `public/iris-matos-resume.pdf`)
- * and point `href` at "/iris-matos-resume.pdf".
- */
+/** Public destinations; the supplied résumé is served unchanged. */
 export const links = [
-  { label: "Resume", href: "#", external: false },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/your-handle", external: true },
-  { label: "GitHub", href: "https://github.com/your-handle", external: true },
-  { label: "Six Ways to See One File", href: "#", external: true },
+  { label: "Resume", href: "/iris-student-resume.pdf", external: false },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/irisneil/", external: true },
+  { label: "GitHub", href: "https://github.com/IN-Neil", external: true },
+  { label: "Six Ways to See One File", href: "https://claude.ai/code/artifact/ab3d5b14-97c7-4337-9413-e7a7f9d156be", external: true },
 ];
 
 export const footer = {
   signature: `${person.name} · Psychology · HCI · Design · AI`,
-  line: `© ${new Date().getFullYear()} ${person.name}. Built with Next.js, Tailwind, and a lot of questions.`,
+  line: `© ${new Date().getFullYear()} ${person.name}. Built with Fable 5.1, Astra 6, Next.js, Tailwind CSS, and a lot of questions.`,
 };
