@@ -20,7 +20,7 @@ const pixelLabel = "font-pixel text-[0.72rem] uppercase tracking-[0.14em] text-m
 export function IntroPanel({ className, full = false }: { className?: string; full?: boolean }) {
   return (
     <header className={className}>
-      <p className="font-serif text-[1.15rem] text-mist/85">{person.name}</p>
+      <p className="font-serif text-[1.15rem] text-mist/85">Hello, I’m</p>
       <h1 className="mt-3 font-pixel font-bold leading-none text-mist">
         <span className="block text-[clamp(4rem,11vw,8.5rem)] tracking-[0.02em]">{intro.title}</span>
         {full && (
