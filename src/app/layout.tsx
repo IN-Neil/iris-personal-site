@@ -19,6 +19,18 @@ const pixel = Pixelify_Sans({
 export const metadata: Metadata = {
   title: `${person.name} — ${intro.subtitle}`,
   description: intro.thesis,
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    noarchive: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noarchive: true,
+      noimageindex: true,
+    },
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
