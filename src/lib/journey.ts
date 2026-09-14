@@ -51,29 +51,34 @@ export const WORLD_SCREENS = 6;
  */
 export const LAYER_SCREENS = WORLD_SCREENS + 0.6;
 
-/** Vertical scroll length of the desktop journey, in viewport heights. */
-const STORY_SCROLL_DISTANCE = 8;
-export const departureTiming = {
-  holdAt: 0.12,
-  extraScreens: 3,
-  questionsStart: 1.1,
-  questionsEnd: 3.6,
-  fadeScreens: 0.45,
-} as const;
-export const SCROLL_SCREENS = STORY_SCROLL_DISTANCE + departureTiming.extraScreens + 1;
+/** Scroll distances in viewport heights. Every interval advances the world. */
+export const scrollBeats = [
+  [0, 0], [1, 0.12], [8.5, 0.3], [15, 0.48],
+  [20.5, 0.66], [26, 0.84], [29, 1],
+] as const;
+export const SCROLL_SCREENS = 30;
 
-/** Insert a reading pause without retiming the existing chapters or weather. */
+/** Piecewise linear travel: slower chapters, never a frozen scroll interval. */
 export function storyProgress(scrollProgress: number): number {
   const distance = clamp(scrollProgress) * (SCROLL_SCREENS - 1);
-  const holdStart = departureTiming.holdAt * STORY_SCROLL_DISTANCE;
-  if (distance <= holdStart) return distance / STORY_SCROLL_DISTANCE;
-  if (distance <= holdStart + departureTiming.extraScreens) return departureTiming.holdAt;
-  return clamp((distance - departureTiming.extraScreens) / STORY_SCROLL_DISTANCE);
+  for (let i = 1; i < scrollBeats.length; i++) {
+    const [end, to] = scrollBeats[i];
+    const [start, from] = scrollBeats[i - 1];
+    if (distance <= end) return lerp(from, to, (distance - start) / (end - start));
+  }
+  return 1;
 }
 
-export function questionVisibility(scrollProgress: number): number {
-  const distance = SCROLL_SCREENS - 1;
-  return fadeWindow(scrollProgress, [departureTiming.questionsStart / distance, departureTiming.questionsEnd / distance], departureTiming.fadeScreens / distance);
+/** Examples follow the complete chapter copy, one at a time. */
+export function exampleWindow(segment: Segment, index: number, count: number): Segment {
+  const [start, end] = segment;
+  const length = end - start;
+  const slot = 0.54 / count;
+  return [start + length * (0.42 + index * slot), start + length * (0.42 + (index + 1) * slot)];
+}
+
+export function exampleVisibility(p: number, window: Segment): number {
+  return fadeWindow(p, window, (window[1] - window[0]) * 0.14);
 }
 
 export const clamp = (v: number, min = 0, max = 1) =>
@@ -130,22 +135,16 @@ export function activeSegment(p: number): SegmentKey {
   return "ending";
 }
 
-/**
- * How a chapter's text unfolds, from local progress inside its segment.
- * The first ~40% of every chapter is scene only: the words are the last thing
- * to arrive, once the world has settled.
- */
+/** Context first; complete copy lingers before the examples begin. */
 export function chapterPhases(p: number, segment: Segment) {
   const [start, end] = segment;
   const len = end - start;
   const t = within(p, segment);
   return {
-    /** Overall visibility of the text block, with a fade at both ends. */
-    visible: fadeWindow(p, [start + 0.4 * len, end - 0.02 * len], 0.02),
-    heading: round(smoothstep((t - 0.44) / 0.08)),
-    typed: round(clamp((t - 0.52) / 0.4)),
-    /** How much the environment should step back once the text is up. */
-    settled: round(smoothstep((t - 0.4) / 0.1)),
+    visible: fadeWindow(p, [start + 0.02 * len, start + 0.35 * len], 0.04 * len),
+    heading: round(smoothstep((t - 0.025) / 0.035)),
+    typed: round(clamp((t - 0.06) / 0.09)),
+    settled: round(smoothstep(t / 0.06)),
   };
 }
 

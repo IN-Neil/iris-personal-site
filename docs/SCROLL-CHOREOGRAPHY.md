@@ -1,45 +1,54 @@
-# Departure scroll choreography
+# Scroll choreography — context before examples
 
-This pass keeps the existing pixel-art world and four-chapter story. The opening
-now follows the supplied parent/child reference. The original PNGs are stored
-unchanged in `public/sprites`; `drawn` in `sprites.tsx` frames their transparent
-padding through SVG view boxes. `dockWide` is used; `dockShort` is available as
-an alternate.
+The departure artwork stays intact. The previous stacked-question pause is
+replaced by continuous travel: scrolling always advances the world. Each
+chapter gives its context first, then its examples appear separately in the sky.
+The copy is unchanged.
 
 ## Timing spec
 
-Distances below are measured from the top of the desktop page in viewport
-heights, not seconds. Visitors control the speed and can stop to read or scroll
-backward. The page is 12 viewport heights tall, with 11 of available travel.
+Distances are viewport heights from the top of the desktop page, not seconds.
+The page is 30 viewport heights tall, with 29 of actual scroll travel. The
+visitor can stop, speed up, or reverse at any point; there is no scroll lock.
 
-| Scroll distance | Beat |
+| Travel | Content |
 | --- | --- |
-| 0–0.56 | Opening title over the parent and dock |
-| 0.56–0.96 | Title fades away as the dock leaves |
-| 1.10–1.55 | Five stacked questions fade in |
-| 1.55–3.15 | Questions hold at full opacity; scenery holds its position |
-| 3.15–3.60 | Questions fade away |
-| 3.60–4.536 | Scene-only breathing room |
-| 4.536 onward | Existing Chapter One label, heading, and body begin |
+| 0–1 | Departure; IRIS fades away |
+| 1–3.625 | Chapter One context (including full-copy reading time) |
+| 4.15–8.2 | Five questions, appearing individually |
+| 8.5–10.775 | Chapter Two context |
+| 11.23–14.74 | Rolling Context, Amira, Irispedia, Six Ways to See One File |
+| 15–16.925 | Chapter Three context |
+| 17.31–20.28 | Cyberpsychology coursework, Social Psychology Club, HCI |
+| 20.5–22.425 | Chapter Four context |
+| 22.81–25.78 | AI workshop, participants' games, independent research |
+| 25.78–27.5 | Open water; the last stars have passed |
+| 27.5–29 | Arrival cliffs and lighthouse gradually emerge; ending copy follows |
 
-`departureTiming` in `src/lib/journey.ts` controls the interlude.
-`storyProgress` inserts three extra viewport heights at scene progress 0.12,
-then resumes the original timeline. Later chapter weather, scenery, and text
-remain synchronized. The ocean and clouds retain their existing ambient motion.
+Within each chapter, copy fades in over the first 2–6%, is fully typed at 15%,
+and fades out by 35%. Examples occupy 42–96%, each in its own equally sized
+window. Each example fades in/out across 14% of its window and remains fully
+readable for the middle 72%. Positions alternate across the sky; text drifts
+with the world rather than forming a fixed list. The departure mountains remain
+visible through the questions. The lighthouse itself begins appearing around
+27.69 viewport heights; the ending copy begins around 27.88.
 
-On phones, the opening uses a tall scene followed by the same questions in
-normal document flow, then the existing chapter cards. No scroll-dependent
-reading speed is required.
+Edit `scrollBeats` and `SCROLL_SCREENS` in `src/lib/journey.ts` for travel length.
+`chapterPhases` controls copy timing; `exampleWindow` and `exampleVisibility`
+control the individual examples. World movement uses linear interpolation with
+strictly increasing progress, including through every reading interval.
 
-## Verified
+On phones, the same order uses natural document flow: chapter context comes
+before its questions or milestone details. Chapter One's questions are spaced
+individually after its body, and there is extra room before the ending.
 
-- [x] Supplied assets preserved byte-for-byte; framing introduces no redraw.
-- [x] Parent and child stand on the larger dock; title and parent share a left alignment.
-- [x] Pixelify Sans title computes to weight 700.
-- [x] Cliffs, moon, and clouds balance the right side.
-- [x] All five questions visible together during the hold.
-- [x] Questions and Chapter One are both hidden during the breathing interval.
-- [x] Desktop (1440 × 900) and phone (390 × 844) opening inspected.
-- [x] Phone document has no horizontal overflow.
-- [x] Timing regression tests pass (`pnpm test`, Node 22.6+).
+## Verification
+
+- [x] Six timing tests: no frozen intervals, context precedes all examples, no overlapping example windows, and open water before the lighthouse.
 - [x] Lint, TypeScript, and production build pass.
+- [x] Browser pass: context, scattered questions, later stars, ending, and phone order.
+
+## Rollback
+
+`a3afcdc` preserves the previous opening and stacked-question version. The new
+choreography is a separate checkpoint; the original PNGs remain unchanged.

@@ -106,6 +106,7 @@ export function ChapterPanel({
         progress={typed}
         className="mt-5 max-w-[27rem] font-serif text-[1.05rem] leading-[1.6] text-mist/90 md:text-[1.1rem]"
       />
+      {!showItems && chapter.id === "questions" && <p className="sr-only">Questions I asked AI: {questionFragments.join(" ")}</p>}
       {showItems && chapter.items && (
         <ul className="mt-6 space-y-3 border-t border-mist/15 pt-5">
           {chapter.items.map((item) => (
@@ -179,8 +180,8 @@ export function EndingPanel({ className }: { className?: string }) {
 /** A readable interlude, kept outside the moving scenery. */
 export function QuestionPanel() {
   return (
-    <div aria-label="Questions before the journey" className="space-y-4 font-pixel text-[clamp(1.1rem,2.3vw,2rem)] leading-snug text-mist">
-      {questionFragments.map((question) => <p key={question}>{question}</p>)}
+    <div aria-label="Questions I asked AI" className="font-pixel text-[clamp(1.1rem,2.3vw,2rem)] leading-snug text-mist">
+      {questionFragments.map((question) => <p key={question} className="max-w-[85%] py-8 even:ml-auto">{question}</p>)}
     </div>
   );
 }

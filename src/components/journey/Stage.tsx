@@ -1,7 +1,8 @@
 import type { CSSProperties, ReactNode } from "react";
-import { chapters } from "@/content/site";
+import { chapters, questionFragments } from "@/content/site";
 import {
-  chapterPhases,
+  exampleWindow,
+  exampleVisibility,
   fadeWindow,
   keyframes,
   LAYER_SCREENS,
@@ -124,18 +125,22 @@ const clouds = [
 
 const distantLights = [0.5, 0.58, 0.66, 0.82, 0.9];
 
-// Chapter milestones drift past as small markers in the world instead of a list.
+// Each chapter gives context first, then its examples drift through the sky.
 const markers = chapters.flatMap((chapter) => {
-  const [start, end] = segments[chapter.id];
-  const items = chapter.items ?? [];
-  return items.map((item, i) => ({
-    id: chapter.id,
-    text: item.title,
-    at: start + ((i + 1) / (items.length + 1)) * (end - start),
-    // Left-of-centre sky, under the moon and clear of the text on the right.
-    vx: [0.1, 0.3, 0.18, 0.36][i % 4],
-    top: [40, 33, 47, 29][i % 4],
-  }));
+  const items = chapter.id === "questions"
+    ? questionFragments.map((title) => ({ title }))
+    : chapter.items ?? [];
+  return items.map((item, i) => {
+    const window = exampleWindow(segments[chapter.id], i, items.length);
+    return {
+      id: chapter.id,
+      text: item.title,
+      window,
+      at: (window[0] + window[1]) / 2,
+      vx: [0.2, 0.53, 0.3, 0.55, 0.24][i % 5],
+      top: [39, 45, 48, 44, 43][i % 5],
+    };
+  });
 });
 
 // The boat is held over the end of the dock, then drifts a little to the left
@@ -301,7 +306,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
             left: `${worldX(0, 0.55, FAR)}%`,
             top: `${HORIZON + 1}%`,
             width: layerSize(compact ? 65 : 46),
-            opacity: fadeWindow(s.progress, [0, 0.22], 0.08),
+            opacity: fadeWindow(s.progress, [0, 0.33], 0.025),
           }}
         >
           <Pixel name="shoreCliffs" priority />
@@ -310,13 +315,13 @@ export function Stage({ progress, compact = false, className, style }: StageProp
         {/* Arrival: cliffs, the lighthouse and the keeper's cabin, all grounded on the horizon */}
         <div
           className="absolute -translate-y-full"
-          style={{ left: `${worldX(1, 0.48, FAR)}%`, top: `${HORIZON + 3}%`, width: layerSize(compact ? 110 : 75) }}
+          style={{ left: `${worldX(1, 0.48, FAR)}%`, opacity: fadeWindow(s.progress, [0.92, 1], 0.04), top: `${HORIZON + 3}%`, width: layerSize(compact ? 110 : 75) }}
         >
           <Pixel name="shoreCliffs" />
         </div>
         <div
           className="absolute -translate-y-full"
-          style={{ left: `${worldX(1, 0.74, FAR)}%`, top: `${HORIZON - 3}%`, width: compact ? "13cqh" : "9.5cqh" }}
+          style={{ left: `${worldX(1, 0.74, FAR)}%`, opacity: fadeWindow(s.progress, [0.93, 1], 0.04), top: `${HORIZON - 3}%`, width: compact ? "13cqh" : "9.5cqh" }}
         >
           <div
             className="beam absolute"
@@ -333,7 +338,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
         </div>
         <div
           className="absolute -translate-y-full"
-          style={{ left: `${worldX(1, 0.86, FAR)}%`, top: `${HORIZON - 1.5}%`, width: layerSize(compact ? 12 : 8) }}
+          style={{ left: `${worldX(1, 0.86, FAR)}%`, opacity: fadeWindow(s.progress, [0.93, 1], 0.04), top: `${HORIZON - 1.5}%`, width: layerSize(compact ? 12 : 8) }}
         >
           <Pixel name="cabin" />
         </div>
@@ -382,25 +387,29 @@ export function Stage({ progress, compact = false, className, style }: StageProp
             <Pixel name="child" priority />
           </div>
         </div>
-        {markers.map((marker, i) => {
-          const [start, end] = segments[marker.id];
-          const settled = chapterPhases(s.progress, segments[marker.id]).settled;
-          return (
-            <span
+
+      </Layer>
+
+      {/* Sky text follows the chapter copy; never a list or an early spoiler. */}
+      {!compact && (
+        <Layer progress={s.progress} factor={MID}>
+          {markers.map((marker, i) => (
+            <div
               key={`${marker.id}-${i}`}
-              className="absolute flex items-center gap-2.5 whitespace-nowrap font-pixel text-[0.62rem] tracking-wide text-ivory md:text-[0.72rem]"
+              className="absolute flex items-start gap-3 font-pixel text-[clamp(1.1rem,1.7vw,1.65rem)] leading-snug text-mist"
               style={{
-                left: `${worldX(marker.at, marker.vx, NEAR)}%`,
+                left: `${worldX(marker.at, marker.vx, MID)}%`,
                 top: `${marker.top}%`,
-                opacity: round(fadeWindow(s.progress, [start + 0.02 * (end - start), end], 0.04) * (0.95 - settled * 0.45)),
+                width: layerSize(38),
+                opacity: exampleVisibility(s.progress, marker.window),
               }}
             >
-              <Star className="star block" style={{ width: compact ? 14 : 11, animationDelay: `${i * 0.6}s` }} />
-              {marker.text}
-            </span>
-          );
-        })}
-      </Layer>
+              {marker.id !== "questions" && <Star className="mt-1.5 block shrink-0" style={{ width: 14 }} />}
+              <span>{marker.text}</span>
+            </div>
+          ))}
+        </Layer>
+      )}
 
       {/* The paper boat is already afloat beyond the dock. */}
       <div

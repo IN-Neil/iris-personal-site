@@ -8,12 +8,11 @@ import {
   fadeWindow,
   SCROLL_SCREENS,
   storyProgress,
-  questionVisibility,
   segmentOrder,
   segments,
   type SegmentKey,
 } from "@/lib/journey";
-import { ChapterLabel, ChapterPanel, EndingPanel, IntroPanel, QuestionPanel } from "./Panels";
+import { ChapterLabel, ChapterPanel, EndingPanel, IntroPanel } from "./Panels";
 import { Stage } from "./Stage";
 
 /**
@@ -132,9 +131,8 @@ export function Journey() {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollProgress = useScrollProgress(containerRef);
   const progress = storyProgress(scrollProgress);
-  const questionsVisible = questionVisibility(scrollProgress);
   const introVisible = fadeWindow(progress, segments.intro, 0.05);
-  const endingVisible = fadeWindow(progress, segments.ending);
+  const endingVisible = fadeWindow(progress, [0.94, 1], 0.035);
 
   return (
     <div ref={containerRef} className="relative" style={{ height: `${SCROLL_SCREENS * 100}vh` }}>
@@ -154,13 +152,6 @@ export function Journey() {
         >
           <span>{intro.scrollHint}</span>
           <span aria-hidden="true" className="scroll-hint block h-5 w-px bg-ivory/70" />
-        </div>
-
-        <div
-          className="absolute left-[14%] top-[20%] w-[min(42rem,70vw)]"
-          style={panelStyle(questionsVisible)}
-        >
-          <QuestionPanel />
         </div>
 
         {/* Chapters: the words arrive last, placed wherever the scene has room; the body types itself */}
@@ -199,7 +190,7 @@ export function Journey() {
           {intro.title} · {intro.subtitle}
         </p>
 
-        <RouteMap progress={questionsVisible > 0 ? 0 : progress} />
+        <RouteMap progress={progress} />
       </div>
     </div>
   );

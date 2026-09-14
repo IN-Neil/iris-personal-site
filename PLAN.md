@@ -8,7 +8,7 @@ Tailwind, no backend, deployable on Vercel. Quiet, poetic, pixel-inspired but
 not retro.
 
 The opening: a parent and child watch from a moonlit dock as the paper boat
-drifts away. Stacked questions linger, then fade into a quiet beat before Chapter One.
+drifts away. Chapter One gives context first, followed by individual questions drifting through the sky.
 The lighthouse is a bearing, not an arrival.
 
 ## High-level design
@@ -76,3 +76,15 @@ The lighthouse is a bearing, not an arrival.
 - [x] Verify desktop and phone layouts; fix phone horizontal overflow
 - [x] Add timing regression tests; pass lint, typecheck, and production build
 - [x] Record editable timing spec in `docs/SCROLL-CHOREOGRAPHY.md`
+
+## Context-first choreography revision
+
+- [x] Preserve `a3afcdc` as the previous-version checkpoint
+- [x] Remove the frozen scroll interval; continuously advance the scene
+- [x] Show each chapter copy before its questions or milestone stars
+- [x] Space examples individually across the sky at a larger reading size
+- [x] Keep the mountains through Chapter One's questions
+- [x] Add open water after the final stars before the lighthouse emerges
+- [x] Reorder phone questions after Chapter One context
+- [x] Update timing spec and regression tests; pass lint, typecheck, build
+- [x] Complete browser verification of the reordered journey

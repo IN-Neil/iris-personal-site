@@ -28,20 +28,17 @@ export function JourneyStacked() {
         </div>
       </div>
 
-      <div className="px-6 py-20">
-        <QuestionPanel />
-      </div>
-
       {chapters.map((chapter) => (
         <article key={chapter.id} className="mt-10">
           <Frame progress={midpoint(segments[chapter.id])} />
           <div className="px-5 py-8">
             <ChapterPanel chapter={chapter} showItems />
+            {chapter.id === "questions" && <div className="mt-12"><QuestionPanel /></div>}
           </div>
         </article>
       ))}
 
-      <article className="mt-6">
+      <article className="mt-24">
         <Frame progress={1} />
         <div className="px-5 pb-12 pt-8">
           <EndingPanel />
