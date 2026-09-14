@@ -422,22 +422,22 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           containerType: "size",
         }}
       >
-        <div
-          className="absolute rounded-full"
-          style={{
-            left: "50%",
-            top: "70%",
-            width: "60%",
-            aspectRatio: "1",
-            transform: "translate(-50%, -50%)",
-            background: `radial-gradient(circle, ${palette.peach}55 0%, ${palette.peach}00 70%)`,
-            opacity: s.boatGlow,
-          }}
-        />
         <div className="boat relative">
           <Pixel name="boat" priority style={{ opacity: round(1 - s.boatGlow) }} />
-          <div className="absolute inset-x-[1%] bottom-0" style={{ opacity: s.boatGlow }}>
-            <Pixel name="boatLit" priority />
+          <div className="absolute inset-x-0 bottom-0" style={{ opacity: s.boatGlow }}>
+            {/* The warm halo is anchored to the visible candle flame. */}
+            <div
+              className="pointer-events-none absolute rounded-full"
+              style={{
+                left: "60%",
+                top: "17%",
+                width: "34%",
+                aspectRatio: "1",
+                transform: "translate(-50%, -50%)",
+                background: `radial-gradient(circle, ${palette.peach}66 0%, ${palette.peach}00 70%)`,
+              }}
+            />
+            <Pixel name="boatLit" priority className="relative" />
           </div>
         </div>
         <div className="absolute inset-0" style={{ opacity: round(s.wind * 0.55) }}>

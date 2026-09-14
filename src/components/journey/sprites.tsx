@@ -10,7 +10,7 @@ import { palette } from "@/lib/journey";
 
 export const drawn = {
   boat: { src: "/sprites/boat.png", w: 832, h: 274 },
-  boatLit: { src: "/sprites/boat-lit.png", w: 814, h: 246 },
+  boatLit: { src: "/sprites/boat-candle.png", w: 1774, h: 887, frame: [247, 312, 1280, 433] },
   hands: { src: "/sprites/hands.png", w: 752, h: 376 },
   moon: { src: "/sprites/moon.png", w: 327, h: 332 },
   cloudBank: { src: "/sprites/cloud-bank.png", w: 1025, h: 296 },
