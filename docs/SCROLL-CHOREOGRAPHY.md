@@ -73,3 +73,7 @@ scroll timings have not changed during this final content and mobile pass.
 ## Camera framing
 
 The full scenery and candle boat share one camera. Departure stays wide at 1× through progress 0.12, then eases to 1.4× by 0.19. This framing holds through the final independent research star (ending at 0.8328). The camera pulls back from 0.84 to 0.93, reaching the original 1× framing before the lighthouse arrives. Travel continues throughout. The pivot follows the boat at the waterline. Mobile chapter illustrations use a gentler 1.2× crop; their copy remains in normal document flow.
+
+## Soundtrack (independent of scroll)
+
+The page attempts playback on arrival at 45% volume. If the browser blocks autoplay, the sound button starts playback on a tap. Its on/off icon follows actual playback, and pausing preserves position. Starfield Romance plays first, then The Beach Where Dreams Die on the audio `ended` event; the playlist repeats after both finish. Scrolling never seeks, changes tracks, or pauses music. One shared player serves desktop and mobile. The button stays at the intro's left column (11% desktop, 24px mobile), above the name. Source WAVs remain in Downloads; the site serves 160 kbps MP3s for mobile bandwidth.

@@ -141,7 +141,7 @@ export function Journey() {
 
         {/* Title, directly on the sky */}
         <div
-          className="absolute left-[11%] top-[10%] w-[min(30rem,44vw)] transition-none"
+          className="absolute left-[11%] top-[max(6rem,10%)] w-[min(30rem,44vw)] transition-none"
           style={panelStyle(introVisible)}
         >
           <IntroPanel />
@@ -184,7 +184,7 @@ export function Journey() {
 
         {/* Small brand mark once the title has scrolled away */}
         <p
-          className="pointer-events-none absolute left-8 top-6 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70"
+          className="pointer-events-none absolute right-8 top-6 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70"
           style={{ opacity: 1 - introVisible }}
         >
           {intro.title} · {intro.subtitle}

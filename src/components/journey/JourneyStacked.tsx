@@ -23,7 +23,7 @@ export function JourneyStacked() {
     <div className="overflow-x-clip bg-night">
       <div className="relative">
         <Frame progress={0} tall />
-        <div className="absolute inset-x-0 top-0 px-6 pt-10">
+        <div className="absolute inset-x-0 top-0 px-6 pt-24">
           <IntroPanel />
         </div>
       </div>
