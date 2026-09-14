@@ -52,3 +52,20 @@ individually after its body, and there is extra room before the ending.
 
 `a3afcdc` preserves the previous opening and stacked-question version. The new
 choreography is a separate checkpoint; the original PNGs remain unchanged.
+
+## Mobile-first MVP checks
+
+Phones use document scroll distance rather than the desktop timeline above.
+The entire chapter body is immediately readable, followed by its questions or
+milestones. This order is also present in the server-rendered HTML for text
+readers and crawlers. No timed interaction is needed to obtain the copy.
+
+- [x] Phone widths 320px and 390px: no horizontal overflow; context before examples.
+- [x] Heading IDs are unique across both responsive layouts.
+- [x] Footer link targets are at least 44px high.
+- [x] Résumé serves HTTP 200 as a PDF and matches the supplied file byte-for-byte.
+- [x] GitHub, LinkedIn, and both project-link placements use the supplied destinations (LinkedIn recovered from the résumé hyperlink).
+- [x] Closing note reads “Onwards.”; credits include Fable 5.1 and Astra 6.
+
+The timing spec is linked prominently from the repository README. The desktop
+scroll timings have not changed during this final content and mobile pass.

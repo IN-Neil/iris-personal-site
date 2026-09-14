@@ -62,7 +62,7 @@ The lighthouse is a bearing, not an arrival.
 ## Later (not MVP)
 
 - [x] Adult and child figures on the departure shore watching the boat leave
-- [ ] Real resume PDF in `public/` and real LinkedIn / GitHub URLs
+- [x] Real resume PDF in `public/` and real LinkedIn / GitHub URLs
 - [ ] Optional ambient audio toggle
 - [ ] Optional OG image
 
@@ -88,3 +88,12 @@ The lighthouse is a bearing, not an arrival.
 - [x] Reorder phone questions after Chapter One context
 - [x] Update timing spec and regression tests; pass lint, typecheck, build
 - [x] Complete browser verification of the reordered journey
+
+## MVP content and mobile finish
+
+- [x] Link unchanged supplied résumé, GitHub, LinkedIn, and Six Ways to See One File
+- [x] Change closing note to “Onwards.” and credit Fable 5.1 and Astra 6
+- [x] Link timing spec prominently from README; keep it in `docs/`
+- [x] Correct heading IDs for assistive readers and enlarge footer tap targets
+- [x] Verify narrow phones, reading order, server-rendered copy, and résumé endpoint
+- [x] Pass six regression tests, lint, typecheck, and production build

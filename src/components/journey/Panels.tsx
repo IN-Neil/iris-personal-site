@@ -54,6 +54,8 @@ type ChapterPanelProps = {
   showItems?: boolean;
   /** Desktop close-up layout: the chapter label is rendered separately. */
   centered?: boolean;
+  /** Unique heading IDs when desktop and phone layouts coexist in the DOM. */
+  idPrefix?: string;
 };
 
 /**
@@ -84,8 +86,9 @@ export function ChapterPanel({
   typed = 1,
   showItems = false,
   centered = false,
+  idPrefix = "",
 }: ChapterPanelProps) {
-  const headingId = `chapter-${chapter.id}-heading`;
+  const headingId = `${idPrefix}chapter-${chapter.id}-heading`;
   return (
     <section aria-labelledby={headingId} className={className}>
       {/* On desktop the chapter label lives at the top-left of the frame (see Journey). */}
@@ -141,12 +144,12 @@ export function ChapterLabel({ chapter }: { chapter: Chapter }) {
   );
 }
 
-export function EndingPanel({ className }: { className?: string }) {
+export function EndingPanel({ className, headingId = "ending-heading" }: { className?: string; headingId?: string }) {
   return (
-    <section aria-labelledby="ending-heading" className={`scrim ${className ?? ""}`}>
+    <section aria-labelledby={headingId} className={`scrim ${className ?? ""}`}>
       <p className={pixelLabel}>{ending.number} · The lighthouse</p>
       <h2
-        id="ending-heading"
+        id={headingId}
         className="mt-4 font-pixel text-[1.5rem] font-medium leading-[1.3] text-mist md:text-[1.8rem]"
       >
         {ending.heading}
@@ -160,7 +163,7 @@ export function EndingPanel({ className }: { className?: string }) {
             href={link.href}
             target={link.external ? "_blank" : undefined}
             rel={link.external ? "noreferrer" : undefined}
-            className="inline-flex items-center gap-2 border border-mist/50 px-3 py-1.5 font-pixel text-[0.8rem] text-mist transition-colors hover:border-mist hover:bg-mist hover:text-night focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-poppy"
+            className="inline-flex min-h-11 items-center gap-2 border border-mist/50 px-3 py-1.5 font-pixel text-[0.8rem] text-mist transition-colors hover:border-mist hover:bg-mist hover:text-night focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-poppy"
           >
             {link.label}
             {link.external && (

@@ -1,78 +1,60 @@
 # Iris Matos — Imagine → Build
 
-A one-page personal site told as a paper boat's night journey across a stormy
-sea toward a lighthouse. An adult hand and a child's hand launch the boat; four
-chapters follow (questions → building → community → contribution); the ending
-is a bearing, not an arrival.
+A personal website told through a paper boat's night journey. A parent and child
+watch from the dock; four chapters introduce curiosity, building, community,
+and contribution. Each chapter gives context before its questions or examples.
 
-Built with Next.js (App Router), TypeScript, and Tailwind CSS v4. No backend,
-no CMS, no tracking. Deploys to Vercel as-is.
+**[Read the timing spec → docs/SCROLL-CHOREOGRAPHY.md](docs/SCROLL-CHOREOGRAPHY.md)**
 
-## Run it locally
+The spec includes chapter timing, individual-example fades, open water before
+the lighthouse, and the phone reading sequence. All documentation lives in
+[`docs/`](docs/).
 
-Requires Node 20+ and [pnpm](https://pnpm.io).
+## Run and verify
 
-```bash
+Use Node 22.6+ and pnpm.
+
+```sh
 pnpm install
 pnpm dev        # http://localhost:4317
+pnpm test       # scroll sequencing and continuous movement
+pnpm typecheck
+pnpm lint
+pnpm build
 ```
 
-Other scripts:
+## Where to edit
 
-```bash
-pnpm typecheck  # strict TypeScript
-pnpm lint       # ESLint (next/core-web-vitals)
-pnpm build      # production build
-```
+| Change | File |
+| --- | --- |
+| Copy, questions, milestone details, profile links, credits | `src/content/site.ts` |
+| Résumé download | `public/iris-student-resume.pdf` |
+| Timing documentation | [docs/SCROLL-CHOREOGRAPHY.md](docs/SCROLL-CHOREOGRAPHY.md) |
+| Scroll distances and fade timing | `scrollBeats`, `chapterPhases`, `exampleWindow` in `src/lib/journey.ts` |
+| Scene composition and drifting examples | `src/components/journey/Stage.tsx` |
+| Original sprites and transparent-canvas framing | `public/sprites/`, `src/components/journey/sprites.tsx` |
+| Phone reading layout | `src/components/journey/JourneyStacked.tsx` |
+| Fonts and styling | `src/app/layout.tsx`, `src/app/globals.css` |
 
-## Where to edit things
+## Reading experience
 
-| I want to change…                                  | Edit this file                                |
-| -------------------------------------------------- | --------------------------------------------- |
-| Any text: title, chapters, milestones, ending      | `src/content/site.ts`                         |
-| Resume / LinkedIn / GitHub / project links         | `links` in `src/content/site.ts`              |
-| Floating questions in chapter one                  | `questionFragments` in `src/content/site.ts`  |
-| Colours, fonts, card style, animations             | `src/app/globals.css`, `src/app/layout.tsx`   |
-| How long each chapter lasts on scroll              | `segments` in `src/lib/journey.ts`            |
-| Sky colours, zoom, storm intensity, sea roughness  | the `*Stops` arrays in `src/lib/journey.ts`   |
-| Where things sit in the scene (boat, lighthouse…)  | `src/components/journey/Stage.tsx`            |
-| The sprites themselves (boat, hands, lighthouse…)  | `src/components/journey/sprites.tsx`          |
-| Page metadata (browser tab title, description)     | `metadata` in `src/app/layout.tsx`            |
-| Replacing procedural sprites with drawn PNGs       | see `docs/ASSET-SPEC.md`                      |
+Phones use ordinary vertical reading order: introduction, chapter scene, full
+chapter copy, then its questions or milestone details. All four chapters lead
+to the ending and profile links. Text is present in the server-rendered HTML;
+readers do not need to execute a typewriter effect to obtain the complete copy.
+Each layout has unique heading IDs for assistive technology. Footer links have
+at least 44px-high tap targets.
 
-To add your resume, drop the PDF into `public/` (e.g. `public/iris-matos-resume.pdf`)
-and set the Resume `href` in `src/content/site.ts` to `/iris-matos-resume.pdf`.
+Desktop uses a sticky scene with continuous parallax travel. Longer chapter
+intervals slow its pace without freezing scroll progress. Copy appears before
+individual questions or stars. The last stars clear before the lighthouse
+emerges. Reduced-motion preferences disable ambient animations.
 
-## How it works
+Built with Next.js App Router, TypeScript, and Tailwind CSS. Pixelify Sans is
+used for pixel headings and Piazzolla for body text. No backend or tracking.
 
-Everything on the page is driven by one number, `progress` (0 → 1).
+## Deployment
 
-- **Desktop** (`src/components/journey/Journey.tsx`): a tall scroll container
-  holds a sticky, viewport-sized stage. Vertical scroll position becomes
-  `progress`, which slides the parallax layers sideways, zooms the camera,
-  shifts the time of day, and fades chapter panels in and out.
-- **Mobile** (`src/components/journey/JourneyStacked.tsx`): the same `Stage`
-  is rendered as a frozen frame at each chapter's midpoint, stacked vertically
-  with the text beneath it.
-- **Stage** (`src/components/journey/Stage.tsx`): the world as layers, back to
-  front — stars, moon, clouds, far sea + shores + lighthouse, mid sea, the boat
-  (with the hands and the gust), near sea + question fragments, foreground sea,
-  then rain and lightning over the lens. Each layer is several viewports wide
-  and translates by `progress × parallaxFactor`.
-- **Sprites** are SVG rectangles on a small grid with `crispEdges`, which is
-  what gives the low-res feeling. Pixel type (Silkscreen) is used only for
-  short captions and labels; body text is a normal sans.
-- **Chapter pacing** (`chapterPhases` in `src/lib/journey.ts`): the first ~28%
-  of each chapter is environment only — questions drifting (1), milestone stars
-  (2), distant lights and gathering clouds (3), rain and lightning (4). Then the
-  question appears at the top, the heading fades in from above, and the body is
-  typed out in step with the scroll. Everything fades before the next chapter.
-- **Chapter one** also pushes the camera in on the boat after the hands let go.
-
-Motion respects `prefers-reduced-motion` (waves, bobbing, beam, rain, lightning
-flashes, and twinkle stop; scroll-driven camera movement remains).
-
-## Deploy
-
-Push to a Git host and import the repo in Vercel. No environment variables are
-needed.
+The site builds as static pages and can be imported into Vercel. No environment
+variables are required. Local commits are kept as reversible checkpoints;
+pushing and deployment are separate steps.

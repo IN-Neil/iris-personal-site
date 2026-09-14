@@ -239,7 +239,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
               filter: `brightness(${round(1 - s.storm * 0.45)})`,
             }}
           >
-            <Pixel name="cloudBank" priority={i === 0} />
+            <Pixel name="cloudBank" priority={cloud.at === 0} />
           </div>
         ))}
       </Layer>
