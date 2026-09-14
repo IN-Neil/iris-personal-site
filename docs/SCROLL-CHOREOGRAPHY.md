@@ -69,3 +69,7 @@ readers and crawlers. No timed interaction is needed to obtain the copy.
 
 The timing spec is linked prominently from the repository README. The desktop
 scroll timings have not changed during this final content and mobile pass.
+
+## Camera framing
+
+The full scenery and candle boat share one camera. Departure stays wide at 1× through progress 0.12, then eases to 1.4× by 0.19. This framing holds through the final independent research star (ending at 0.8328). The camera pulls back from 0.84 to 0.93, reaching the original 1× framing before the lighthouse arrives. Travel continues throughout. The pivot follows the boat at the waterline. Mobile chapter illustrations use a gentler 1.2× crop; their copy remains in normal document flow.

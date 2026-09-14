@@ -208,11 +208,8 @@ const skyStops: ColorStop[] = [
   [1, "#1D2A3D"],
 ];
 
-/**
- * The camera never zooms. It sits close to the water the whole way, and the
- * world does the moving: the moon rises and swells across chapters one and
- * two, clouds drift in, the shore slides away and another slides in.
- */
+/** A shared camera pushes in after the intro, then opens out before arrival. */
+const zoomStops: Stop[] = [[0, 1], [0.12, 1], [0.19, 1.4], [0.84, 1.4], [0.93, 1], [1, 1]];
 
 /** Moon position (% of stage) and width (% of stage width), as it travels. */
 const moonXStops: Stop[] = [
@@ -287,6 +284,7 @@ const cloudCoverStops: Stop[] = [
 export type SceneState = {
   progress: number;
   sky: string;
+  zoom: number;
   storm: number;
   energy: number;
   /** Where the moon is right now: `[x%, y%, width%]` of the stage. */
@@ -316,6 +314,7 @@ export function sceneState(progress: number): SceneState {
 
   return {
     progress: p,
+    zoom: keyframes(p, zoomStops),
     sky: colorKeyframes(p, skyStops),
     storm,
     energy: keyframes(p, energyStops),

@@ -46,3 +46,14 @@ test('the candle boat is visible from departure through every chapter', () => {
     assert.equal(sceneState(progress).boatGlow, 1);
   }
 });
+
+ test('camera stays wide for introduction and arrival, holding close until the final star clears', () => {
+  assert.equal(sceneState(0).zoom, 1);
+  assert.equal(sceneState(0.12).zoom, 1);
+  assert.equal(sceneState(0.19).zoom, 1.4);
+  assert.equal(sceneState(exampleWindow(segments.part, 2, 3)[1]).zoom, 1.4);
+  assert.equal(sceneState(0.93).zoom, 1);
+  assert.equal(sceneState(1).zoom, 1);
+  assert.ok(sceneState(0.16).zoom > 1);
+  assert.ok(sceneState(0.89).zoom < 1.4);
+ });

@@ -20,7 +20,7 @@ import { Bird, Bolt, Pixel, Star, waveDataUri } from "./sprites";
 /**
  * The world, drawn for a single `progress` value.
  *
- * One continuous board, seen from a fixed camera close to the water. Layers
+ * One continuous board, seen from a camera close to the water. Layers
  * are ordered back to front; each parallax layer is several stage widths wide
  * and slides left by `progress × factor`, so the drawn sprites drift past at
  * different speeds. Things that stay on screen (moon, boat, rain) live
@@ -173,6 +173,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
       style={{ backgroundColor: s.sky, containerType: "size", ...style }}
       aria-hidden="true"
     >
+      <div data-scene-camera className="absolute inset-0" style={{ transform: `scale(${compact ? 1 + (s.zoom - 1) * 0.5 : s.zoom})`, transformOrigin: `${boatX + boatWidth / 2}% ${WATERLINE + 4}%` }}>
       {/* Stars */}
       <Layer progress={s.progress} factor={0.05}>
         {stars.map((star, i) => (
@@ -305,7 +306,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           style={{
             left: `${worldX(0, 0.55, FAR)}%`,
             top: `${HORIZON + 1}%`,
-            width: layerSize(compact ? 65 : 46),
+            width: layerSize(compact ? 70 : 52),
             opacity: fadeWindow(s.progress, [0, 0.33], 0.025),
           }}
         >
@@ -469,6 +470,8 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           reverse
         />
       </Layer>
+
+      </div>
 
       {/* Rain and lightning sit on top of the camera, like weather on a lens */}
       <div className="rain pointer-events-none absolute inset-0" style={{ opacity: round(s.rain * 0.3) }} />
