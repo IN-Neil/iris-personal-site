@@ -137,7 +137,7 @@ const markers = chapters.flatMap((chapter) => {
       text: item.title,
       window,
       at: (window[0] + window[1]) / 2,
-      vx: [0.2, 0.53, 0.3, 0.55, 0.24][i % 5],
+      vx: [0.2, 0.43, 0.3, 0.44, 0.24][i % 5],
       top: [39, 45, 48, 44, 43][i % 5],
     };
   });
@@ -401,7 +401,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
               style={{
                 left: `${worldX(marker.at, marker.vx, MID)}%`,
                 top: `${marker.top}%`,
-                width: layerSize(38),
+                width: layerSize(32),
                 opacity: exampleVisibility(s.progress, marker.window),
               }}
             >
