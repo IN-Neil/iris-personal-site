@@ -96,7 +96,10 @@ const SCROLL_TO = `(screens) => {
   const container = document.querySelector('[data-journey="container"]') ?? [...document.querySelectorAll("main div")].find((d) => /\\d+vh/.test(d.style.height) && d.offsetParent !== null);
   const stage = document.querySelector('[data-journey="stage"]') ?? container.firstElementChild;
   const top = container.getBoundingClientRect().top + window.scrollY;
-  window.scrollTo({ top: top + (screens / ${TRAVEL}) * (container.offsetHeight - stage.offsetHeight), behavior: "instant" });
+  // Hooked builds measure travel on a fixed track (the container can extend past it on phones).
+  const track = document.querySelector('[data-journey="track"]');
+  const travel = track ? track.offsetHeight : container.offsetHeight - stage.offsetHeight;
+  window.scrollTo({ top: screens === "end" ? document.documentElement.scrollHeight : top + (screens / ${TRAVEL}) * travel, behavior: "instant" });
   return new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(r))));
 }`;
 
@@ -104,11 +107,12 @@ async function capture(url, outDir, size, only) {
   const [width, height] = size.split("x").map(Number);
   mkdirSync(outDir, { recursive: true });
   const cdp = await openChrome();
-  const chosen = only.length ? Object.fromEntries(only.map((item) => { const [name, value] = item.split("="); return [name, Number(value ?? moments[name])]; })) : moments;
+  // "end=end" captures the very bottom of the page (the ending after it has scrolled up).
+  const chosen = only.length ? Object.fromEntries(only.map((item) => { const [name, value] = item.split("="); return [name, value === "end" ? "end" : Number(value ?? moments[name])]; })) : moments;
   for (const [name, screens] of Object.entries(chosen)) {
     await load(cdp, url, width, height);
     if (process.env.NO_JS && screens !== 0) throw new Error("NO_JS captures only position 0 (no scrolling without scripts)");
-    if (!process.env.NO_JS) await cdp.evaluate(`(${SCROLL_TO})(${screens})`);
+    if (!process.env.NO_JS) await cdp.evaluate(`(${SCROLL_TO})(${JSON.stringify(screens)})`);
     const { data } = await cdp.send("Page.captureScreenshot", { format: "png" });
     writeFileSync(join(outDir, `${width}x${height}-${name}.png`), Buffer.from(data, "base64"));
     console.log("captured", name, screens);
@@ -149,7 +153,8 @@ const SWEEP = `async (positions) => {
   const lighthouse = document.querySelector('[data-journey="lighthouse"]');
   const moon = document.querySelector('[data-journey="moon"]');
   const intro = document.querySelector('[data-journey="intro"]');
-  const endingTitle = document.querySelector('[data-journey="ending-title"]');
+  const endingScene = document.querySelector('[data-journey="ending-scene"]');
+  const sound = document.querySelector(".journey-sound");
   const opacity = (el) => { let o = 1; for (let n = el; n && n !== document.documentElement; n = n.parentElement) { const c = getComputedStyle(n); if (c.display === "none" || c.visibility === "hidden") return 0; o *= Number(c.opacity); } return o; };
   const box = (el) => { const kids = el.children.length ? [...el.children] : [el]; const r = kids.map((k) => k.getBoundingClientRect()); return { left: Math.min(...r.map((x) => x.left)), right: Math.max(...r.map((x) => x.right)), top: Math.min(...r.map((x) => x.top)), bottom: Math.max(...r.map((x) => x.bottom)) }; };
   const overlaps = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
@@ -171,12 +176,6 @@ const SWEEP = `async (positions) => {
     const m = moon && opacity(moon) >= 0.5 ? moon.getBoundingClientRect() : null;
     const visibleIntro = intro && opacity(intro) >= 0.5;
     if (visibleIntro && overlaps(box(intro), b)) fails.push({ s, what: "intro over boat" });
-    if (endingTitle && opacity(endingTitle) >= 0.5) {
-      const r = endingTitle.getBoundingClientRect();
-      if (overlaps(r, b)) fails.push({ s, what: "ending title over boat" });
-      if (lighthouse && overlaps(r, lighthouse.getBoundingClientRect())) fails.push({ s, what: "ending title over lighthouse" });
-      if (!inside(r)) fails.push({ s, what: "ending title outside frame" });
-    }
     examples.forEach((e, i) => {
       const o = opacity(e);
       const key = i + ":" + e.dataset.text;
@@ -200,12 +199,39 @@ const SWEEP = `async (positions) => {
     }
     if (document.documentElement.scrollWidth > document.documentElement.clientWidth) fails.push({ s, what: "horizontal page overflow" });
   }
+  // The ending in the lighthouse scene: at arrival (29) and at the very bottom of the page.
+  const endingReport = {};
+  if (endingScene && getComputedStyle(endingScene).display !== "none") {
+    const panel = endingScene.querySelector("section");
+    const column = [".journey-ending-label", ".journey-ending-heading", ".journey-ending-body"].map((c) => endingScene.querySelector(c));
+    const lh = () => lighthouse.getBoundingClientRect();
+    const describe = () => {
+      const p = panel.getBoundingClientRect();
+      const b = boat.getBoundingClientRect();
+      const snd = sound ? sound.getBoundingClientRect() : null;
+      const heading = endingScene.querySelector(".journey-ending-heading").getBoundingClientRect();
+      const links = [...endingScene.querySelectorAll("a")].map((a) => a.getBoundingClientRect());
+      return {
+        panelTop: Math.round(p.top), panelBottom: Math.round(p.bottom), boatTop: Math.round(b.top), viewport: innerHeight,
+        clearOfBoat: p.bottom <= b.top, headingUnderSoundControl: snd ? overlaps(heading, snd) : false,
+        columnOverLighthouse: column.some((el) => overlaps(el.getBoundingClientRect(), lh())),
+        linksFullyOnScreen: links.filter((r) => r.top >= 0 && r.bottom <= innerHeight && r.left >= 0 && r.right <= innerWidth).length, links: links.length,
+      };
+    };
+    await scrollTo(${TRAVEL});
+    endingReport.arrival = describe();
+    await scrollTo("end");
+    endingReport.pageEnd = { ...describe(), scrollBeyondJourneyPx: Math.round(document.documentElement.scrollHeight - innerHeight - (document.querySelector('[data-journey="container"]').getBoundingClientRect().top + scrollY) - document.querySelector('[data-journey="track"]').offsetHeight) };
+    if (!endingReport.pageEnd.clearOfBoat) fails.push({ s: "end", what: "ending over boat at page end" });
+    if (endingReport.pageEnd.linksFullyOnScreen < endingReport.pageEnd.links) fails.push({ s: "end", what: "ending links not fully on screen at page end" });
+    if (endingReport.arrival.columnOverLighthouse) fails.push({ s: ${TRAVEL}, what: "ending text over lighthouse" });
+  }
   let reversals = 0;
   const ordered = positions.every((p, i) => i === 0 || p !== positions[i - 1]) && positions.length > 1 && positions[1] !== positions[0];
   const direction = Math.sign(positions[positions.length - 1] - positions[0]);
   if (ordered) for (let i = 1; i < shifts.length; i++) if (Math.sign(positions[i] - positions[i - 1]) === direction && (shifts[i] - shifts[i - 1]) * direction > 1e-9) reversals++;
   const neverFull = Object.entries(peak).filter(([, o]) => o < 0.99).map(([k]) => k);
-  return { examplesFound: examples.length, copiesFound: copies.length, checked: positions.length, travelReversals: reversals, travelFirstLast: [shifts[0], shifts[shifts.length - 1]], neverFullyVisible: neverFull, failCount: fails.length, fails };
+  return { endingReport, examplesFound: examples.length, copiesFound: copies.length, checked: positions.length, travelReversals: reversals, travelFirstLast: [shifts[0], shifts[shifts.length - 1]], neverFullyVisible: neverFull, failCount: fails.length, fails };
 }`;
 
 async function sweep(url, outFile, sizes) {
@@ -223,6 +249,7 @@ async function sweep(url, outFile, sizes) {
       for (const f of result.fails) { const key = [f.what, f.text ?? f.chapter ?? ""].join(" · "); (grouped[key] ??= []).push(f.s); }
       const summary = Object.fromEntries(Object.entries(grouped).map(([k, v]) => [k, { count: v.length, from: Math.min(...v), to: Math.max(...v) }]));
       report.push({ size, direction, ...result, summary });
+      if (direction === "forward") console.log(size, "ending", JSON.stringify(result.endingReport));
       console.log(size, direction, "travel reversals", result.travelReversals, JSON.stringify(result.travelFirstLast), "examples", result.examplesFound, "copies", result.copiesFound, "checked", result.checked, "fails", result.failCount, JSON.stringify(summary), result.neverFullyVisible.length ? "NEVER FULL: " + result.neverFullyVisible.join(", ") : "");
     }
   }

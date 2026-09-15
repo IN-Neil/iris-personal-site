@@ -97,6 +97,7 @@ body {
   --child-left: 22%;
   --child-w: 10.7cqh;
   --lighthouse-vx: 0.74;
+  --arrival-cliffs-vx: 0.48;
 }
 
 /* Where the words sit. The scene decides: chapter one's moon is low on the
@@ -116,8 +117,7 @@ body {
   left: 9%;
   top: 20%;
 }
-.journey-ending,
-.journey-ending-title {
+.journey-ending {
   left: 8%;
   top: 14%;
   width: min(30rem, 38vw);
@@ -133,18 +133,15 @@ body {
   top: max(1.5rem, calc(env(safe-area-inset-top) + 0.5rem));
 }
 
-/* Only used where the ending continues in page flow (below). */
-.journey-ending-title,
-.journey-ending-flow {
+/* Phones and short landscape only (below): the ending inside the lighthouse scene. */
+.journey-ending-scene {
   display: none;
 }
-.journey-ending-flow {
-  /* the panel's soft backdrop (.scrim::before) extends past it; keep the page from scrolling sideways */
-  overflow-x: clip;
-  padding: 3rem max(1.5rem, calc(env(safe-area-inset-right) + 1rem)) calc(4rem + env(safe-area-inset-bottom)) max(1.5rem, calc(env(safe-area-inset-left) + 1rem));
-  background: var(--color-night);
-}
 
+/*
+ * Phone portrait. Spacing follows the 8px scale (4, 8, 16, 24, 32, 48, 64, 72, 80, 96).
+ * Type from the Figma drafts: chapter questions 29px, serif body 18px.
+ */
 @media (max-width: 767px) and (orientation: portrait) {
   .journey-stage {
     --zoom-strength: 0.5;
@@ -162,35 +159,51 @@ body {
     --adult-w: 8.3cqh;
     --child-left: 29%;
     --child-w: 8cqh;
-    --lighthouse-vx: 0.58;
+    /* the lighthouse stands on the cliffs' high ground, clear of the text column */
+    --lighthouse-vx: 0.6;
+    --arrival-cliffs-vx: 0.36;
+  }
+
+  /* One controls row: the sound icon on the text column's left edge (its 44px target
+     has 8px of inner space), the brand mark on the column's right edge. */
+  .journey-sound {
+    left: max(16px, calc(env(safe-area-inset-left) + 8px));
+    top: max(24px, calc(env(safe-area-inset-top) + 16px));
+  }
+  .journey-brand {
+    right: max(24px, calc(env(safe-area-inset-right) + 16px));
+    top: max(24px, calc(env(safe-area-inset-top) + 16px));
+    display: flex;
+    align-items: center;
+    height: 44px;
   }
 
   .journey-intro {
-    left: max(1.5rem, calc(env(safe-area-inset-left) + 1rem));
-    right: max(1.5rem, calc(env(safe-area-inset-right) + 1rem));
-    top: max(92px, calc(env(safe-area-inset-top) + 76px));
+    left: max(24px, calc(env(safe-area-inset-left) + 16px));
+    right: max(24px, calc(env(safe-area-inset-right) + 16px));
+    top: max(96px, calc(env(safe-area-inset-top) + 88px));
     width: auto;
   }
 
   /*
-   * Chapter copy lives in a band from below the top controls to 16px above the
-   * boat's top edge (compact boat: 23% wide, 274/832 tall, zoom 1.2 about the
-   * waterline at 87%). Chapter two starts below the large moon when it fits and
-   * rises toward the top when it does not; type never shrinks to fit.
+   * Chapter copy lives in a band from below the controls to 16px above the boat's
+   * top edge (compact boat: 23% wide, 274/832 tall, zoom 1.2 about the waterline at
+   * 87%). Chapter two starts below the large moon when it fits and rises toward the
+   * top when it does not; type never shrinks to fit.
    */
   .journey-chapter {
     display: flex;
     flex-direction: column;
-    padding: max(92px, calc(env(safe-area-inset-top) + 76px)) max(1.5rem, calc(env(safe-area-inset-right) + 1rem))
-      calc(13svh + 9.1vw + 16px) max(1.5rem, calc(env(safe-area-inset-left) + 1rem));
+    padding: max(96px, calc(env(safe-area-inset-top) + 88px)) max(24px, calc(env(safe-area-inset-right) + 16px))
+      calc(13svh + 9.1vw + 16px) max(24px, calc(env(safe-area-inset-left) + 16px));
   }
   .journey-chapter::before {
     content: "";
     flex: 0 1 var(--copy-drop, 0px);
   }
   .journey-chapter[data-chapter="building"] {
-    /* moon centre 25.8% of height, radius 17.1% of width after zoom */
-    --copy-drop: calc(25.8svh + 17.1vw - 80px);
+    /* moon centre 25.8% of height, radius 17.1% of width after zoom; 8px below it */
+    --copy-drop: calc(25.8svh + 17.1vw - 88px);
   }
   .journey-copy[data-chapter] {
     position: relative;
@@ -198,8 +211,17 @@ body {
     top: auto;
     width: auto;
     flex: none;
-    /* Full-width copy can cross the moon; a night halo keeps every word readable. */
-    text-shadow: 0 0 4px var(--color-night), 0 0 10px var(--color-night);
+  }
+  .journey-copy-panel {
+    margin-top: 16px;
+  }
+  .journey-question {
+    margin-top: 0;
+    font-size: 29px;
+  }
+  .journey-body {
+    margin-top: 24px;
+    font-size: 18px;
   }
 
   /* One readable slot for questions and milestones: below the moon, inside the
@@ -210,16 +232,52 @@ body {
     width: 10% !important;
   }
 
-  .journey-ending-title {
-    left: max(1.5rem, calc(env(safe-area-inset-left) + 1rem));
-    top: max(92px, calc(env(safe-area-inset-top) + 76px));
-    /* stops short of the lighthouse at 58% */
-    width: calc(58% - 1.5rem - 12px);
+  /* Ending: label, heading and paragraph beside the lighthouse (at 60%); links and
+     footer below. The block's bottom padding keeps it 16px above the boat when at
+     rest (arrival zoom is 1, so the boat is 23% × 274/832 of the width tall). */
+  .journey-ending-scene {
+    --ending-column: calc(60vw - 40px);
+    margin-top: calc(-100svh + max(96px, calc(env(safe-area-inset-top) + 88px)));
+    padding: 0 max(24px, calc(env(safe-area-inset-right) + 16px)) calc(13svh + 7.6vw + 16px)
+      max(24px, calc(env(safe-area-inset-left) + 16px));
   }
+  /* When there is room, the links and footer settle at the bottom of the space above
+     the boat, below the lighthouse's cliffs; when there is not, they follow the paragraph. */
+  .journey-ending-scene .scrim {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(87svh - 7.6vw - 16px - max(96px, calc(env(safe-area-inset-top) + 88px)));
+  }
+  .journey-ending-body {
+    margin-top: 24px;
+    margin-bottom: 32px;
+    font-size: 18px;
+  }
+  .journey-links {
+    margin-top: auto;
+  }
+  .journey-signature {
+    margin-top: 24px;
+  }
+}
 
-  .journey-sound {
-    left: max(1rem, calc(env(safe-area-inset-left) + 0.5rem));
-    top: max(2.75rem, calc(env(safe-area-inset-top) + 0.5rem));
+/* Chapter one's small moon sits right of centre: on phones with room, its paragraph stops
+   short of it (Figma). On the shortest phones the full width keeps the copy above the boat. */
+@media (max-width: 767px) and (orientation: portrait) and (min-height: 600px) {
+  .journey-copy[data-chapter="questions"] .journey-body {
+    max-width: calc(72vw - 24px);
+  }
+}
+
+/* The shortest phones (e.g. the original iPhone SE, 320×568): slightly smaller type so each
+   chapter's words still fit above the boat. Every phone at least 600px tall keeps 29px / 18px. */
+@media (max-width: 767px) and (orientation: portrait) and (max-height: 599px) {
+  .journey-question {
+    font-size: 24px;
+  }
+  .journey-body,
+  .journey-ending-body {
+    font-size: 17px;
   }
 }
 
@@ -234,12 +292,10 @@ body {
   }
   /* Right-hand column for every chapter, starting near the top so the longest copy fits */
   .journey-copy[data-chapter] {
-    top: max(0.75rem, calc(env(safe-area-inset-top) + 0.5rem));
-    text-shadow: 0 0 4px var(--color-night), 0 0 10px var(--color-night);
+    top: max(16px, calc(env(safe-area-inset-top) + 8px));
   }
-  /* Below the sound control, on the intro's line */
-  .journey-ending-title {
-    top: max(6rem, 14%);
+  .journey-copy[data-chapter="questions"] {
+    left: 50%;
   }
   /* The boat sails through the bottom centre at departure */
   .journey-hint {
@@ -247,23 +303,46 @@ body {
     right: max(2rem, calc(env(safe-area-inset-right) + 1rem));
     translate: none;
   }
-  .journey-copy[data-chapter="questions"] {
-    left: 50%;
-  }
   .journey-brand {
     display: none;
   }
+  /* Wide-framing boat at arrival: 12% × 274/832 of the width tall */
+  .journey-ending-scene {
+    --ending-column: min(30rem, 38vw);
+    margin-top: calc(-100svh + 96px);
+    padding: 0 max(24px, calc(env(safe-area-inset-right) + 16px)) calc(13svh + 4vw + 16px) 8%;
+  }
+  .journey-ending-scene .scrim {
+    max-width: var(--ending-column);
+  }
 }
 
-/* Where the frame is too short for the whole ending: caption over the arrival,
-   readable ending and links in page flow after the journey. */
 @media (max-width: 767px) and (orientation: portrait), (orientation: landscape) and (max-height: 500px) {
+  /* The ending moves out of the pinned stage into the scrolling scene block. */
   .journey-ending {
     display: none;
   }
-  .journey-ending-title,
-  .journey-ending-flow {
+  .journey-ending-scene {
     display: block;
+    position: relative;
+    /* the panel's soft backdrop extends past its edges; keep the page from scrolling sideways */
+    overflow-x: clip;
+  }
+  .journey-ending-label,
+  .journey-ending-heading,
+  .journey-ending-body {
+    max-width: var(--ending-column);
+  }
+
+  /* The same soft dark glow as behind the desktop ending (.scrim), behind each chapter's words. */
+  .journey-copy[data-chapter]::before {
+    content: "";
+    position: absolute;
+    inset: -2.5rem -3rem;
+    background: radial-gradient(ellipse at center, color-mix(in srgb, var(--color-night) 70%, black) 0%, transparent 72%);
+    opacity: 0.75;
+    z-index: -1;
+    pointer-events: none;
   }
 }
 

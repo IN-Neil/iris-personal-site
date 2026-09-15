@@ -320,7 +320,7 @@ export function Stage({ progress, examples = true, className, style }: StageProp
         {/* Arrival: cliffs, the lighthouse and the keeper's cabin, all grounded on the horizon */}
         <div
           className="absolute -translate-y-full"
-          style={{ left: `${worldX(1, 0.48, FAR)}%`, opacity: fadeWindow(s.progress, [0.92, 1], 0.04), top: `${HORIZON + 3}%`, width: "var(--arrival-cliffs-w)" }}
+          style={{ left: `calc(${worldX(1, 0, FAR)}% + var(--arrival-cliffs-vx) * ${round(100 / LAYER_SCREENS)}%)`, opacity: fadeWindow(s.progress, [0.92, 1], 0.04), top: `${HORIZON + 3}%`, width: "var(--arrival-cliffs-w)" }}
         >
           <Pixel name="shoreCliffs" />
         </div>

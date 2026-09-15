@@ -11,7 +11,7 @@ import { ending, footer, intro, links, person, questionFragments } from "@/conte
  */
 
 const pixelLabel = "font-pixel text-[0.72rem] uppercase tracking-[0.14em] text-mist/60 md:text-[0.78rem]";
-const endingHeading = "mt-4 font-pixel text-[1.5rem] font-medium leading-[1.3] text-mist md:text-[1.8rem]";
+const endingHeading = "journey-ending-heading mt-4 font-pixel text-[1.5rem] font-medium leading-[1.3] text-mist md:text-[1.8rem]";
 
 /**
  * Kept deliberately spare: a name, the big pixel title, one sentence.
@@ -100,7 +100,7 @@ export function ChapterPanel({
       )}
       <h2
         id={headingId}
-        className="mt-3 font-pixel text-[1.35rem] font-medium leading-[1.3] text-mist md:text-[1.7rem]"
+        className="journey-question mt-3 font-pixel text-[1.35rem] font-medium leading-[1.3] text-mist md:text-[1.7rem]"
         style={{ opacity: heading, transform: `translateY(${Math.round((1 - heading) * -10)}px)` }}
       >
         {chapter.question}
@@ -108,7 +108,7 @@ export function ChapterPanel({
       <Typed
         text={chapter.body}
         progress={typed}
-        className="mt-5 max-w-[27rem] font-serif text-[1.05rem] leading-[1.6] text-mist/90 md:text-[1.1rem]"
+        className="journey-body mt-5 max-w-[27rem] font-serif text-[1.05rem] leading-[1.6] text-mist/90 md:text-[1.1rem]"
       />
       {!showItems && chapter.id === "questions" && <p className="sr-only">Questions I asked AI: {questionFragments.join(" ")}</p>}
       {showItems && chapter.items && (
@@ -148,13 +148,12 @@ export function ChapterLabel({ chapter }: { chapter: Chapter }) {
 export function EndingPanel({ className, headingId = "ending-heading" }: { className?: string; headingId?: string }) {
   return (
     <section aria-labelledby={headingId} className={`scrim ${className ?? ""}`}>
-      <p className={pixelLabel}>{ending.number} · The lighthouse</p>
+      <p className={`journey-ending-label ${pixelLabel}`}>{ending.number} · The lighthouse</p>
       <h2 id={headingId} className={endingHeading}>
         {ending.heading}
       </h2>
-      <p className="mt-4 max-w-[27rem] text-[1.05rem] leading-[1.6] text-mist/90">{ending.body}</p>
-      <p className="mt-5 font-pixel text-[0.95rem] text-surf">{ending.note}</p>
-      <nav aria-label="Links" className="mt-7 flex flex-wrap gap-2">
+      <p className="journey-ending-body mt-4 max-w-[27rem] text-[1.05rem] leading-[1.6] text-mist/90">{ending.body}</p>
+      <nav aria-label="Links" className="journey-links mt-7 flex flex-wrap gap-2">
         {links.map((link) => (
           <a
             key={link.label}
@@ -172,23 +171,9 @@ export function EndingPanel({ className, headingId = "ending-heading" }: { class
           </a>
         ))}
       </nav>
-      <p className={`mt-8 ${pixelLabel}`}>{footer.signature}</p>
+      <p className={`journey-signature mt-8 ${pixelLabel}`}>{footer.signature}</p>
       <p className="mt-2 text-[0.8rem] leading-relaxed text-mist/45">{footer.line}</p>
     </section>
-  );
-}
-
-/**
- * The ending's label and heading as a caption over the arrival scene, for layouts
- * where the full ending continues in page flow. Visual only: the readable ending
- * (with the real heading and links) follows the scene.
- */
-export function EndingTitle({ className }: { className?: string }) {
-  return (
-    <div aria-hidden="true" className={className}>
-      <p className={pixelLabel}>{ending.number} · The lighthouse</p>
-      <p className={endingHeading}>{ending.heading}</p>
-    </div>
   );
 }
 

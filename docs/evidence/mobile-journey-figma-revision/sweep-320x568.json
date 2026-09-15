@@ -1,0 +1,1321 @@
+[
+ {
+  "size": "320x568",
+  "direction": "forward",
+  "endingReport": {
+   "arrival": {
+    "panelTop": 96,
+    "panelBottom": 805,
+    "boatTop": 470,
+    "viewport": 568,
+    "clearOfBoat": false,
+    "headingUnderSoundControl": false,
+    "columnOverLighthouse": false,
+    "linksFullyOnScreen": 0,
+    "links": 4
+   },
+   "pageEnd": {
+    "panelTop": -255,
+    "panelBottom": 454,
+    "boatTop": 470,
+    "viewport": 568,
+    "clearOfBoat": true,
+    "headingUnderSoundControl": false,
+    "columnOverLighthouse": false,
+    "linksFullyOnScreen": 4,
+    "links": 4,
+    "scrollBeyondJourneyPx": 351
+   }
+  },
+  "examplesFound": 15,
+  "copiesFound": 4,
+  "checked": 581,
+  "travelReversals": 0,
+  "travelFirstLast": [
+   0,
+   -3.7879
+  ],
+  "neverFullyVisible": [],
+  "failCount": 99,
+  "fails": [
+   {
+    "s": 1.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 8.8,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.85,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.95,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.05,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.1,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.15,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.2,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.25,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.3,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.35,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.4,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.45,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.5,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.55,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.6,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.65,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.7,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.75,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.8,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.85,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.95,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.05,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.1,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.15,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.2,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.25,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.3,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.35,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.4,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.45,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.5,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.55,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.6,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 15.25,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.3,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.35,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.4,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.45,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.5,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.55,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.6,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.65,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.7,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.75,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.8,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.85,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.9,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.95,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 16,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 16.05,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 16.1,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 16.15,
+    "what": "copy over moon",
+    "chapter": "community"
+   }
+  ],
+  "summary": {
+   "copy over moon · questions": {
+    "count": 43,
+    "from": 1.35,
+    "to": 3.45
+   },
+   "copy over moon · building": {
+    "count": 37,
+    "from": 8.8,
+    "to": 10.6
+   },
+   "copy over moon · community": {
+    "count": 19,
+    "from": 15.25,
+    "to": 16.15
+   }
+  }
+ },
+ {
+  "size": "320x568",
+  "direction": "backward",
+  "endingReport": {
+   "arrival": {
+    "panelTop": 96,
+    "panelBottom": 805,
+    "boatTop": 470,
+    "viewport": 568,
+    "clearOfBoat": false,
+    "headingUnderSoundControl": false,
+    "columnOverLighthouse": false,
+    "linksFullyOnScreen": 0,
+    "links": 4
+   },
+   "pageEnd": {
+    "panelTop": -255,
+    "panelBottom": 454,
+    "boatTop": 470,
+    "viewport": 568,
+    "clearOfBoat": true,
+    "headingUnderSoundControl": false,
+    "columnOverLighthouse": false,
+    "linksFullyOnScreen": 4,
+    "links": 4,
+    "scrollBeyondJourneyPx": 351
+   }
+  },
+  "examplesFound": 15,
+  "copiesFound": 4,
+  "checked": 581,
+  "travelReversals": 0,
+  "travelFirstLast": [
+   -3.7879,
+   0
+  ],
+  "neverFullyVisible": [],
+  "failCount": 99,
+  "fails": [
+   {
+    "s": 16.15,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 16.1,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 16.05,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 16,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.95,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.9,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.85,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.8,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.75,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.7,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.65,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.6,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.55,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.5,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.45,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.4,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.35,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.3,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 15.25,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 10.6,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.55,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.5,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.45,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.4,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.35,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.3,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.25,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.2,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.15,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.1,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10.05,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 10,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.95,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.85,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.8,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.75,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.7,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.65,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.6,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.55,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.5,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.45,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.4,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.35,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.3,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.25,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.2,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.15,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.1,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.05,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.95,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.85,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.8,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 3.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   }
+  ],
+  "summary": {
+   "copy over moon · community": {
+    "count": 19,
+    "from": 15.25,
+    "to": 16.15
+   },
+   "copy over moon · building": {
+    "count": 37,
+    "from": 8.8,
+    "to": 10.6
+   },
+   "copy over moon · questions": {
+    "count": 43,
+    "from": 1.35,
+    "to": 3.45
+   }
+  }
+ },
+ {
+  "size": "320x568",
+  "direction": "jumps",
+  "endingReport": {
+   "arrival": {
+    "panelTop": 96,
+    "panelBottom": 805,
+    "boatTop": 470,
+    "viewport": 568,
+    "clearOfBoat": false,
+    "headingUnderSoundControl": false,
+    "columnOverLighthouse": false,
+    "linksFullyOnScreen": 0,
+    "links": 4
+   },
+   "pageEnd": {
+    "panelTop": -255,
+    "panelBottom": 454,
+    "boatTop": 470,
+    "viewport": 568,
+    "clearOfBoat": true,
+    "headingUnderSoundControl": false,
+    "columnOverLighthouse": false,
+    "linksFullyOnScreen": 4,
+    "links": 4,
+    "scrollBeyondJourneyPx": 351
+   }
+  },
+  "examplesFound": 15,
+  "copiesFound": 4,
+  "checked": 200,
+  "travelReversals": 0,
+  "travelFirstLast": [
+   -1.7657,
+   -3.6019
+  ],
+  "neverFullyVisible": [],
+  "failCount": 31,
+  "fails": [
+   {
+    "s": 9.6,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 15.89,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 1.64,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.97,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.03,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 8.84,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.32,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 1.77,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.88,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 9.11,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.05,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 1.91,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.12,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.34,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.74,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 16.13,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 9.38,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.78,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 2.06,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.94,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.61,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 15.84,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 9.65,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 2.21,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.77,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.48,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 15.55,
+    "what": "copy over moon",
+    "chapter": "community"
+   },
+   {
+    "s": 10.59,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.93,
+    "what": "copy over moon",
+    "chapter": "building"
+   }
+  ],
+  "summary": {
+   "copy over moon · building": {
+    "count": 10,
+    "from": 8.78,
+    "to": 10.59
+   },
+   "copy over moon · community": {
+    "count": 4,
+    "from": 15.55,
+    "to": 16.13
+   },
+   "copy over moon · questions": {
+    "count": 17,
+    "from": 1.48,
+    "to": 3.34
+   }
+  }
+ }
+]

@@ -61,16 +61,16 @@ export const chapters: Chapter[] = [
     id: "questions",
     number: "01",
     label: "Questions",
-    question: "What happens when questions finally have somewhere to go?",
+    question: "Is it okay to ask so much? really?",
     heading: "A place for questions",
     body:
-      "My first experience with AI felt like a space where curiosity could breathe. I asked questions about grief, meaning, experience, and everyday life. For the first time, questions felt welcome.",
+      "My first experience with AI felt like a space where curiosity could breathe. I asked questions about grief, meaning, experience, and everyday life. For the first time, questions felt welcome. Really.",
   },
   {
     id: "building",
     number: "02",
     label: "Building",
-    question: "How do I turn a vision into something real?",
+    question: "can you help me make this?",
     heading: "Turning vision into reality",
     body:
       "Curiosity became building. With AI as a collaborator, I started learning how to turn ideas into tools: modifying Open WebUI, building a voice-first personal app, creating Irispedia, and using visual artifacts to understand code more deeply.",
@@ -99,7 +99,7 @@ export const chapters: Chapter[] = [
     id: "community",
     number: "03",
     label: "Community",
-    question: "What does a community of humans, AI, and technology look like?",
+    question: "What does a community of humans & AI look like?",
     heading: "Wondering about community",
     body:
       "As I built more, I became more curious about the people around the technology. I sought out cyberpsychology coursework and joined the Social Psychology Club because I wanted to understand the human side of these systems too.",
@@ -150,8 +150,7 @@ export const ending = {
   label: "Lighthouse",
   heading: "Still a long way to go",
   body:
-    "I'm drawn to futures where humans and AI can learn, communicate, and build together with more understanding, accessibility, and care. I don't know exactly what that future looks like yet. But I know the direction I want to explore.",
-  note: "Onwards.",
+    "I'm drawn to futures where humans and AI can learn, communicate, and build together. Not against each other. I want to keep asking and imagining knowing that in the middle of the uncertainty, I follow the light of hope within.",
 };
 
 /** Public destinations; the supplied résumé is served unchanged. */

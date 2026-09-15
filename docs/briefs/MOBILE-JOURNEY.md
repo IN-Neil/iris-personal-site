@@ -396,4 +396,33 @@ Reproduce: see the README's commands (scripts/journey-check.mjs).
 Not release-ready: see Phase 2 "Unchecked items / known limits".
 ```
 
+```text
+Design revision — user Figma drafts (2026-09-15), after the Phase 2 checkpoint
+Decisions (user): copy changes everywhere, layout changes on phones only; the ending
+  scrolls over the pinned lighthouse when it does not fit; footer kept small under the
+  links; desktop's soft glow behind text blocks; phones under 600px tall get 24px / 17px.
+Changes:
+  - Copy (desktop and phones): new questions for chapters 1–3, "Really." added to
+    chapter one, new lighthouse paragraph, "Onwards." removed.
+  - Phones (portrait): questions 29px, body 18px, question→body 24px, spacing on the 8px
+    scale; one controls row (sound icon on the text column's left edge, brand mark on its
+    right); soft dark glow behind chapter copy; chapter one's paragraph narrower beside the
+    small moon (phones at least 600px tall); lighthouse at 60% on the cliffs' high ground.
+  - Ending on phones and short landscape: inside the lighthouse scene, rising into place
+    at arrival; links and footer settle above the boat when there is room, otherwise the
+    ending keeps scrolling over the pinned scene. Progress now measures a fixed travel
+    track, so the container can grow without changing story timing. The separate ending
+    section after the scene and the arrival caption are gone.
+Verification: docs/evidence/mobile-journey-figma-revision/README.md. Travel continuous and
+  15/15 examples at every size swept; desktop 1440×900 differs only in the copy regions;
+  the revised build loads and scrolls in iOS 26.2 Simulator Safari on iPhone 17 Pro Max.
+Known limits:
+  - "Copy over moon" flags remain (chapters 1 and 3; chapter 2 at 375px wide and narrower).
+  - Smallest phones: at page end the scrolled ending passes under the fixed sound control,
+    and the GitHub button overlaps the lighthouse base at 320×568.
+  - The ending heading wraps "go" onto its own line at 393–440px.
+  - Not re-verified on a physical iPhone; Chrome on iPhone untested; accessibility unchanged
+    (Phase 3).
+```
+
 Final summary must distinguish implemented, verified in desktop/mobile emulation, verified in Simulator, verified on a physical phone, and not yet verified. The reviewer should be able to reproduce the important claims without reconstructing the chat history.
