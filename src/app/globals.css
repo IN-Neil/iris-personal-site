@@ -91,11 +91,10 @@ body {
   --lighthouse-w: 9.5cqh;
   --beam-w: 44cqw;
   --cabin-w: 1.2121%;
-  --dock-left: -10%;
-  --dock-w: 40%;
-  --adult-w: 10.3cqh;
-  --child-left: 22%;
-  --child-w: 10.7cqh;
+  /* Combined dock sprite: the adult keeps its former size (about 35cqh tall, 75% of the
+     frame) and place (11% from the left; the adult is 37.2% into the frame). */
+  --dock-w: 50.5cqh;
+  --dock-left: calc(11% - 18.8cqh);
   --lighthouse-vx: 0.74;
   --arrival-cliffs-vx: 0.48;
   --meteor-scale: 1;
@@ -155,11 +154,10 @@ body {
     --lighthouse-w: 13cqh;
     --beam-w: 70cqw;
     --cabin-w: 1.8182%;
-    --dock-left: -26%;
-    --dock-w: 70%;
-    --adult-w: 8.3cqh;
-    --child-left: 29%;
-    --child-w: 8cqh;
+    /* From the user's phone mockup: the dock is cut at the left edge and ends just past
+       the middle, near the boat. */
+    --dock-w: 78%;
+    --dock-left: -24%;
     /* the lighthouse stands on the cliffs' high ground, clear of the text column */
     --lighthouse-vx: 0.6;
     --arrival-cliffs-vx: 0.36;

@@ -22,6 +22,9 @@ export const drawn = {
   child: { src: "/sprites/child.png", w: 782, h: 2011, frame: [216, 999, 322, 482] },
   dockWide: { src: "/sprites/dock-wide.png", w: 2172, h: 724, frame: [413, 300, 1105, 381] },
   dockShort: { src: "/sprites/dock-short.png", w: 2172, h: 724, frame: [713, 319, 743, 360] },
+  // Dock with the adult, the child and a young android sitting together (supplied art).
+  // Plank surface at 74.6% of the frame's height; the adult starts 37.2% in from its left.
+  dockComplete: { src: "/sprites/dock-complete.png", w: 1402, h: 1122, frame: [57, 117, 1029, 949] },
   // Meteors for the skyfall interlude (supplied art; head at lower right, mirrored in Stage).
   fallingStar1: { src: "/sprites/falling-star-1.png", w: 2172, h: 724, frame: [650, 168, 837, 389] },
   fallingStar2: { src: "/sprites/falling-star-2.png", w: 2172, h: 724, frame: [165, 151, 1766, 478] },

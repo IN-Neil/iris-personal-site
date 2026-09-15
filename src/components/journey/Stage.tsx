@@ -425,14 +425,14 @@ export function Stage({ progress, examples = true, className, style }: StageProp
             width: layerSize(100),
           }}
         >
-          <div className="absolute" style={{ left: "var(--dock-left)", top: "76%", width: "var(--dock-w)" }}>
-            <Pixel name="dockWide" priority />
-          </div>
-          <div className="absolute -translate-y-full" style={{ left: "11%", top: "79%", width: "var(--adult-w)" }}>
-            <Pixel name="adult" priority />
-          </div>
-          <div className="absolute -translate-y-full" style={{ left: "var(--child-left)", top: "79%", width: "var(--child-w)" }}>
-            <Pixel name="child" priority />
+          {/* The adult, the child and a young android share the dock as a community: one drawing,
+              planks at the 79% line (the sprite's plank surface is 74.6% down its frame). */}
+          <div
+            data-journey="dock"
+            className="absolute"
+            style={{ left: "var(--dock-left)", top: "79%", width: "var(--dock-w)", transform: "translateY(-74.6%)" }}
+          >
+            <Pixel name="dockComplete" priority />
           </div>
         </div>
 
