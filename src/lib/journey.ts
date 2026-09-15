@@ -61,6 +61,20 @@ export const meteorRain: Segment = [
 ];
 
 /** Each meteor's window, as fractions of `meteorRain`: staggered, about two in the sky at once. */
+/**
+ * 0→1 visibility of meteor `index` at story progress `p`. Zero outside the shower, and each
+ * window fades at both ends. (`fadeWindow` treats windows touching 0 or 1 as never fading,
+ * which left the first meteor visible from the start of the page and the last one after.)
+ */
+export function meteorVisibility(p: number, index: number): number {
+  const [rainStart, rainEnd] = meteorRain;
+  if (p <= rainStart || p >= rainEnd) return 0;
+  const local = within(p, meteorRain);
+  const [start, end] = meteorWindows[index];
+  const fade = (end - start) * 0.2;
+  return round(smoothstep(Math.min(clamp((local - start) / fade), clamp((end - local) / fade))));
+}
+
 export const meteorWindows: readonly Segment[] = [
   [0, 0.28],
   [0.14, 0.42],

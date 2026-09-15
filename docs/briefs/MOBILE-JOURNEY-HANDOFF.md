@@ -114,5 +114,6 @@ CDP_PORT=9702 node scripts/journey-check.mjs compare <baseline-dir> <new-dir>
 - Asset drops may land in the user's main checkout, not the worktree. Search both.
 - Anything placed inside the zoomed camera near the top of the sky renders higher than its `top` suggests (1.2× phones, 1.4× desktop around the boat). Measure the rendered box before tuning timing.
 - Paint order matters: sprites before the cloud `Layer` in the DOM are hidden behind clouds.
+- `fadeWindow` never fades a window whose start is ≤ 0 or end is ≥ 1 (built for the intro and ending). Used on local 0→1 fractions it left the first meteor visible from page load for the whole journey. Meteors use `meteorVisibility`, which is zero outside the shower; a regression test sweeps the whole timeline.
 - Tie decorative beats to story events, not arbitrary fractions: the shower ends on `chapterPhases` typing start, so it hands over to the chapter instead of stopping in empty sky.
 - Changing `SCROLL_SCREENS` breaks tests and tools that hard-code screen positions (`TRAVEL` in the check script, the open-water test). Update them with the timing spec.

@@ -12,6 +12,7 @@ import {
   palette,
   round,
   meteorRain,
+  meteorVisibility,
   meteorWindows,
   sceneState,
   segments,
@@ -269,11 +270,9 @@ export function Stage({ progress, examples = true, className, style }: StageProp
 
       {/* Skyfall: with the moon gone, meteors rain down-left in front of the clouds, behind chapter three's arrival. */}
       {meteors.map((meteor, i) => {
-        const local = within(s.progress, meteorRain);
-        const [start, end] = meteorWindows[i];
-        const visible = fadeWindow(local, [start, end], (end - start) * 0.2);
+        const visible = meteorVisibility(s.progress, i);
         if (visible <= 0) return null;
-        const t = within(local, [start, end]);
+        const t = within(within(s.progress, meteorRain), meteorWindows[i]);
         return (
           <div
             key={i}

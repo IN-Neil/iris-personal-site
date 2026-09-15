@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { sceneState, storyProgress, exampleWindow, exampleVisibility, chapterPhases, segments, SCROLL_SCREENS, skyfall, meteorRain, meteorWindows } from '../src/lib/journey.ts';
+import { sceneState, storyProgress, exampleWindow, exampleVisibility, chapterPhases, segments, SCROLL_SCREENS, skyfall, meteorRain, meteorWindows, meteorVisibility } from '../src/lib/journey.ts';
 
 test('every scroll interval advances the scenery, including former frozen interval', () => {
   assert.equal(storyProgress(0), 0);
@@ -92,4 +92,20 @@ test('skyfall interlude: no text in the pause, moon gone before the meteors, rai
   const travel = SCROLL_SCREENS - 1;
   assert.ok(close(storyProgress(14.74 / travel), start));
   assert.ok(close(storyProgress(17.11 / travel), end));
+});
+
+test('no meteor is visible outside the shower (regression: first meteor stuck from page load)', () => {
+  const [rainStart, rainEnd] = meteorRain;
+  for (let i = 0; i <= 2000; i++) {
+    const p = i / 2000;
+    if (p > rainStart && p < rainEnd) continue;
+    meteorWindows.forEach((_, k) => assert.equal(meteorVisibility(p, k), 0, `meteor ${k} visible at ${p}`));
+  }
+  // Inside the shower every meteor appears and fully fades at both ends.
+  meteorWindows.forEach(([a, b], k) => {
+    const at = (f) => rainStart + (rainEnd - rainStart) * f;
+    assert.equal(meteorVisibility(at((a + b) / 2), k), 1);
+    assert.ok(meteorVisibility(at(a + 1e-6), k) < 0.01);
+    assert.ok(meteorVisibility(at(b - 1e-6), k) < 0.01);
+  });
 });
