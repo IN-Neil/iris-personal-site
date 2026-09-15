@@ -44,7 +44,7 @@ export function Soundtrack() {
   }
 
   return (
-    <div className="fixed left-4 top-11 z-50 flex items-center md:left-[calc(11%-8px)] md:top-[calc(max(6rem,10vh)-3.25rem)]">
+    <div className="journey-sound fixed left-4 top-11 z-50 flex items-center md:left-[calc(11%-8px)] md:top-[calc(max(6rem,10vh)-3.25rem)]">
       <audio ref={audioRef} src={tracks[0]} preload="metadata" onPlaying={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={nextTrack} onError={() => { setPlaying(false); setFailed(true); }} />
       <button
         type="button"

@@ -96,6 +96,7 @@ body {
   --adult-w: 10.3cqh;
   --child-left: 22%;
   --child-w: 10.7cqh;
+  --lighthouse-vx: 0.74;
 }
 
 /* Where the words sit. The scene decides: chapter one's moon is low on the
@@ -115,10 +116,33 @@ body {
   left: 9%;
   top: 20%;
 }
-.journey-ending {
+.journey-ending,
+.journey-ending-title {
   left: 8%;
   top: 14%;
   width: min(30rem, 38vw);
+}
+
+/* Frame chrome keeps clear of rounded corners and notches (env() is 0 on desktop). */
+.journey-route {
+  left: max(2rem, calc(env(safe-area-inset-left) + 1rem));
+  bottom: max(1.5rem, calc(env(safe-area-inset-bottom) + 0.5rem));
+}
+.journey-brand {
+  right: max(2rem, calc(env(safe-area-inset-right) + 1rem));
+  top: max(1.5rem, calc(env(safe-area-inset-top) + 0.5rem));
+}
+
+/* Only used where the ending continues in page flow (below). */
+.journey-ending-title,
+.journey-ending-flow {
+  display: none;
+}
+.journey-ending-flow {
+  /* the panel's soft backdrop (.scrim::before) extends past it; keep the page from scrolling sideways */
+  overflow-x: clip;
+  padding: 3rem max(1.5rem, calc(env(safe-area-inset-right) + 1rem)) calc(4rem + env(safe-area-inset-bottom)) max(1.5rem, calc(env(safe-area-inset-left) + 1rem));
+  background: var(--color-night);
 }
 
 @media (max-width: 767px) and (orientation: portrait) {
@@ -138,15 +162,108 @@ body {
     --adult-w: 8.3cqh;
     --child-left: 29%;
     --child-w: 8cqh;
+    --lighthouse-vx: 0.58;
   }
 
-  .journey-intro,
-  .journey-copy[data-chapter],
-  .journey-ending {
-    left: 1.5rem;
-    right: 1.5rem;
-    top: 92px;
+  .journey-intro {
+    left: max(1.5rem, calc(env(safe-area-inset-left) + 1rem));
+    right: max(1.5rem, calc(env(safe-area-inset-right) + 1rem));
+    top: max(92px, calc(env(safe-area-inset-top) + 76px));
     width: auto;
+  }
+
+  /*
+   * Chapter copy lives in a band from below the top controls to 16px above the
+   * boat's top edge (compact boat: 23% wide, 274/832 tall, zoom 1.2 about the
+   * waterline at 87%). Chapter two starts below the large moon when it fits and
+   * rises toward the top when it does not; type never shrinks to fit.
+   */
+  .journey-chapter {
+    display: flex;
+    flex-direction: column;
+    padding: max(92px, calc(env(safe-area-inset-top) + 76px)) max(1.5rem, calc(env(safe-area-inset-right) + 1rem))
+      calc(13svh + 9.1vw + 16px) max(1.5rem, calc(env(safe-area-inset-left) + 1rem));
+  }
+  .journey-chapter::before {
+    content: "";
+    flex: 0 1 var(--copy-drop, 0px);
+  }
+  .journey-chapter[data-chapter="building"] {
+    /* moon centre 25.8% of height, radius 17.1% of width after zoom */
+    --copy-drop: calc(25.8svh + 17.1vw - 80px);
+  }
+  .journey-copy[data-chapter] {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    flex: none;
+    /* Full-width copy can cross the moon; a night halo keeps every word readable. */
+    text-shadow: 0 0 4px var(--color-night), 0 0 10px var(--color-night);
+  }
+
+  /* One readable slot for questions and milestones: below the moon, inside the
+     frame through the whole example window (x 0.15, 66% wide, before zoom). */
+  [data-journey="example"] {
+    left: calc(var(--example-base) + 0.15 * 15.1515%) !important;
+    top: 46% !important;
+    width: 10% !important;
+  }
+
+  .journey-ending-title {
+    left: max(1.5rem, calc(env(safe-area-inset-left) + 1rem));
+    top: max(92px, calc(env(safe-area-inset-top) + 76px));
+    /* stops short of the lighthouse at 58% */
+    width: calc(58% - 1.5rem - 12px);
+  }
+
+  .journey-sound {
+    left: max(1rem, calc(env(safe-area-inset-left) + 0.5rem));
+    top: max(2.75rem, calc(env(safe-area-inset-top) + 0.5rem));
+  }
+}
+
+/* Short landscape phones keep the wide framing; text moves off the boat. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .journey-intro {
+    left: 4%;
+    width: min(30rem, 36vw);
+  }
+  .journey-sound {
+    left: calc(4% - 8px);
+  }
+  /* Right-hand column for every chapter, starting near the top so the longest copy fits */
+  .journey-copy[data-chapter] {
+    top: max(0.75rem, calc(env(safe-area-inset-top) + 0.5rem));
+    text-shadow: 0 0 4px var(--color-night), 0 0 10px var(--color-night);
+  }
+  /* Below the sound control, on the intro's line */
+  .journey-ending-title {
+    top: max(6rem, 14%);
+  }
+  /* The boat sails through the bottom centre at departure */
+  .journey-hint {
+    left: auto;
+    right: max(2rem, calc(env(safe-area-inset-right) + 1rem));
+    translate: none;
+  }
+  .journey-copy[data-chapter="questions"] {
+    left: 50%;
+  }
+  .journey-brand {
+    display: none;
+  }
+}
+
+/* Where the frame is too short for the whole ending: caption over the arrival,
+   readable ending and links in page flow after the journey. */
+@media (max-width: 767px) and (orientation: portrait), (orientation: landscape) and (max-height: 500px) {
+  .journey-ending {
+    display: none;
+  }
+  .journey-ending-title,
+  .journey-ending-flow {
+    display: block;
   }
 }
 

@@ -1,6 +1,6 @@
 # Mobile journey: implementation and review brief
 
-Status: planned; implementation has not begun.
+Status: Phases 0–2 implemented on `codex/mobile-journey` as a development checkpoint for Codex review. Not release-ready: Phases 3–6 (reading presentation, accessibility, Simulator and device verification, performance) have not started.
 
 Owner: Opus (implementation). Reviewer: Codex in the original website task.
 
@@ -189,17 +189,17 @@ Gate: one moving compact scene and preserved desktop, even if the remaining mobi
 
 Why: compact alone does not show examples or guarantee that copy clears the boat.
 
-- [ ] Decouple compact framing from example visibility.
-- [ ] Show all five questions and all chapter milestone titles using the shared content and visibility windows.
-- [ ] Set readable marker placement/width for portrait, accounting for zoom and long titles.
-- [ ] Test complete chapter copy before testing partial typewriter states; reserve its full height.
-- [ ] Fix the documented 320×568 chapter-two copy/boat collision without reducing body text to an unreadable size.
-- [ ] Keep introduction figures grounded on the dock, candle boat visible, and title/copy aligned.
-- [ ] Correct compact lighthouse clipping and ending overlap.
-- [ ] Place ending information in normal flow where required; ensure arrival precedes it and every link is usable.
-- [ ] Add safe-area spacing for text, audio controls, and navigation; if enabling viewport-fit cover, verify all relevant edges.
-- [ ] Add short-landscape rules for text and controls rather than relying on width alone.
-- [ ] Check chapter → examples → breathing room → next chapter, including the final ocean interval before arrival.
+- [x] Decouple compact framing from example visibility. — Framing is CSS (Phase 1); `Stage` `examples` flag controls examples only. Sweeps find 15 examples at every size (`docs/evidence/mobile-journey-checkpoint/sweep-*.json`).
+- [x] Show all five questions and all chapter milestone titles using the shared content and visibility windows. — 15/15 examples rendered and each reaches full opacity at 320×568, 375×667, 393×852, 430×932, 844×390, 667×375. Windows unchanged (`exampleWindow`/`exampleVisibility`; 8 timing tests pass).
+- [x] Set readable marker placement/width for portrait, accounting for zoom and long titles. — One portrait slot (x 0.15, 66% wide, 46% down, before the 1.2× compact zoom) set in CSS from a per-example base position. Measured on rendered (transformed) rectangles at opacity ≥ 0.5, fades included: 0 clipped, 0 over boat, 0 over moon at all four portrait sizes. Longest titles wrap to two lines (`docs/evidence/mobile-journey-checkpoint/screens/393x852-project-longest.jpg`, `320x568-q-longest.jpg`).
+- [x] Test complete chapter copy before testing partial typewriter states; reserve its full height. — `Typed` already reserves the full invisible copy, so measured rectangles are full height at every typing state. 0 copy over boat and 0 copy outside frame across all sweep positions and sizes.
+- [x] Fix the documented 320×568 chapter-two copy/boat collision without reducing body text to an unreadable size. — Portrait copy sits in a flex band ending 16px above the boat (`calc(13svh + 9.1vw + 16px)`); chapter two drops below the moon when it fits and rises otherwise. Type sizes unchanged. 320×568: 0 copy over boat (was 37 samples). Compromise: chapter two's label and heading cross the moon's lower edge at 320×568 (`docs/evidence/mobile-journey-checkpoint/screens/320x568-ch2-copy.jpg`); a night text halo keeps it legible.
+- [x] Keep introduction figures grounded on the dock, candle boat visible, and title/copy aligned. — `docs/evidence/mobile-journey-checkpoint/screens/393x852-departure.jpg`, `320x568-departure.jpg`, `844x390-departure.jpg`. Compromises: at 320×568 the thesis's last line crosses the adult figure's head; at 844×390 IRIS crosses it. Both remain legible (ivory over dark silhouette). Sound control stays aligned with the intro column (landscape moved both to 4%).
+- [x] Correct compact lighthouse clipping and ending overlap. — Portrait lighthouse at 58% (`--lighthouse-vx`): 0 clipped samples at all portrait sizes (was 19 at 393×852). Pinned ending replaced on phones and short landscape by a visual caption: 0 over lighthouse, 0 over boat, 0 outside frame (`docs/evidence/mobile-journey-checkpoint/screens/393x852-arrival.jpg`, `320x568-arrival.jpg`, `844x390-arrival.jpg`).
+- [x] Place ending information in normal flow where required; ensure arrival precedes it and every link is usable. — `.journey-ending-flow` follows the journey container (arrival first). At 393×852 all four links take keyboard focus, are 44px tall, keep their original hrefs; no duplicate IDs; the pinned full ending is `display: none` there, so there is one accessible ending per layout. Horizontal overflow from the panel's backdrop fixed with `overflow-x: clip`.
+- [x] Add safe-area spacing for text, audio controls, and navigation; if enabling viewport-fit cover, verify all relevant edges. — `env(safe-area-inset-*)` minimums on intro, copy band, ending caption and flow, route map, brand mark and (below 768px) the sound control. `viewport-fit=cover` deliberately **not** enabled: Safari already keeps content out of unsafe areas without it, and enabling it would move the fixed sound control under the status bar. The insets are therefore inert (0) for now. Not device-verified.
+- [x] Add short-landscape rules for text and controls rather than relying on width alone. — `(orientation: landscape) and (max-height: 500px)`: chapter copy in the right column from the top, intro and sound control at 4%, scroll hint at the right, brand mark hidden, ending caption below the sound control, ending in page flow. 844×390 and 667×375: 0 copy over boat, 0 copy outside frame, 0 intro over boat, no overflow. Compromise: chapter one copy now crosses the small moon (halo applied).
+- [x] Check chapter → examples → breathing room → next chapter, including the final ocean interval before arrival. — Story timing untouched; timing tests (context precedes examples, no overlapping examples, last stars clear before the lighthouse) pass. Open water has no text (`docs/evidence/mobile-journey-checkpoint/screens/393x852-open-water.jpg`).
 
 Gate: no missing narrative examples and no clipped essential content at normal text size in the target matrix. Commit composition changes.
 
@@ -238,12 +238,12 @@ Record screenshot/evidence paths in the final column; leave untested rows open.
 
 | Complete | Viewport | Required scenes | Evidence/issues |
 | --- | --- | --- | --- |
-| [ ] | 320×568 | Full chapter 2, every example, departure, ending | Pending |
-| [ ] | 375×667 | All chapter contexts and examples, arrival | Pending |
-| [ ] | 393×852 | Full journey | Pending |
-| [ ] | 430×932 | Full journey | Pending |
-| [ ] | 844×390 landscape | Chapter 1, longest copy, controls, ending | Pending |
-| [ ] | 1440×900 desktop | Baseline comparison | Pending |
+| [ ] | 320×568 | Full chapter 2, every example, departure, ending | Phase 2 emulation: `docs/evidence/mobile-journey-checkpoint/sweep-320x568-375x667.json`, `screens/320x568-*.jpg`; blocking failures 0; moon legibility flags ch1/ch2/ch3. Simulator/device pending. |
+| [ ] | 375×667 | All chapter contexts and examples, arrival | Phase 2 emulation sweep: 0 blocking; moon flags ch1/ch3. No screenshots yet. Simulator/device pending. |
+| [ ] | 393×852 | Full journey | Phase 2 emulation: sweep 0 blocking; `screens/393x852-*.jpg`. Simulator/device pending. |
+| [ ] | 430×932 | Full journey | Phase 2 emulation sweep: 0 blocking; moon flags ch1/ch3. No screenshots yet. Simulator/device pending. |
+| [ ] | 844×390 landscape | Chapter 1, longest copy, controls, ending | Phase 2 emulation: sweep 0 blocking (also 667×375); `screens/844x390-*.jpg`. Simulator/device pending. |
+| [ ] | 1440×900 desktop | Baseline comparison | Phase 2: 9/10 identical, 2 non-zero rows shown to be capture noise (`docs/evidence/mobile-journey-checkpoint/README.md`). Final re-check pending in Phase 4. |
 
 ### iOS Simulator and physical phone
 
@@ -354,6 +354,46 @@ Unchecked items / known limits (tracked for Phase 2):
   - 844×390 landscape: chapter one copy covers the boat and route map (pre-existing).
   - Safe areas not yet applied. No Simulator or physical-device checks in this phase.
 Next action: Phase 2 story fidelity and fit.
+```
+
+```text
+Phase: 2 — Mobile story fidelity and fit
+Commit: (this commit; see git log on codex/mobile-journey)
+Changes and rationale: portrait example slot below the moon (CSS, per-example base);
+  chapter copy band that always ends above the boat, with chapter two below the moon when
+  it fits; portrait lighthouse moved to 58%; phones and short landscape get a visual
+  ending caption over the arrival and the readable ending in page flow; short-landscape
+  text/control rules; env() safe-area minimums; night text halo on phone/landscape copy.
+  Desktop geometry and timing unchanged.
+Verification performed (environment + evidence paths): headless Chrome emulation at
+  320×568, 375×667, 393×852, 430×932, 844×390, 667×375 and 1440×900; in-app browser for
+  links/focus/IDs/overflow. docs/evidence/mobile-journey-checkpoint/ (README, sweeps, desktop comparison, screens).
+Unchecked items / known limits:
+  - Legibility compromises (flagged, not clipping): copy crosses the moon in chapter one
+    (all portrait sizes; landscape), chapter three (fading moon) and chapter two at
+    320×568; intro crosses the adult figure at 320×568 and 844×390.
+  - viewport-fit=cover not enabled; safe-area minimums untested on a device.
+  - Accessibility unchanged from Phase 1: chapter copy, questions and milestones are not
+    reachable by assistive technology at load (Stage aria-hidden; panels visibility:hidden
+    until scrolled). Phase 3 must fix this before JourneyStacked is removed.
+  - Reduced motion still gets the animated journey (Phase 3 decision recorded).
+  - No Simulator run of this branch; no physical iPhone (Safari or Chrome); no real text
+    enlargement; no performance profiling.
+Next action: stop for Codex review (lead instruction). Then Phase 3.
+```
+
+```text
+Reviewer handoff — Phase 2 checkpoint (2026-09-15)
+Worktree: /Users/gmr/Documents/iris-personal-site-mobile-journey
+Branch: codex/mobile-journey (local only; not pushed, not merged)
+Base: eb160b5 (brief) = e267916 (research commit) + brief
+Commits: Phase 0 00ad978 · Phase 1 aba7329 · Phase 2 (HEAD; see git log)
+Preview: pnpm exec next dev -p 4318 → http://127.0.0.1:4318/
+Checks: pnpm test (8/8), pnpm lint, pnpm typecheck, pnpm build all pass at HEAD.
+Evidence: docs/evidence/mobile-journey-checkpoint/README.md (desktop comparison,
+  sweeps, screenshots); research: docs/evidence/mobile-journey-research/MANIFEST.md.
+Reproduce: see the README's commands (scripts/journey-check.mjs).
+Not release-ready: see Phase 2 "Unchecked items / known limits".
 ```
 
 Final summary must distinguish implemented, verified in desktop/mobile emulation, verified in Simulator, verified on a physical phone, and not yet verified. The reviewer should be able to reproduce the important claims without reconstructing the chat history.

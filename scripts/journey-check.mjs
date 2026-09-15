@@ -147,6 +147,9 @@ const SWEEP = `async (positions) => {
   const examples = q('[data-journey="example"]');
   const copies = q('[data-journey="copy"]');
   const lighthouse = document.querySelector('[data-journey="lighthouse"]');
+  const moon = document.querySelector('[data-journey="moon"]');
+  const intro = document.querySelector('[data-journey="intro"]');
+  const endingTitle = document.querySelector('[data-journey="ending-title"]');
   const opacity = (el) => { let o = 1; for (let n = el; n && n !== document.documentElement; n = n.parentElement) { const c = getComputedStyle(n); if (c.display === "none" || c.visibility === "hidden") return 0; o *= Number(c.opacity); } return o; };
   const box = (el) => { const kids = el.children.length ? [...el.children] : [el]; const r = kids.map((k) => k.getBoundingClientRect()); return { left: Math.min(...r.map((x) => x.left)), right: Math.max(...r.map((x) => x.right)), top: Math.min(...r.map((x) => x.top)), bottom: Math.max(...r.map((x) => x.bottom)) }; };
   const overlaps = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
@@ -164,6 +167,16 @@ const SWEEP = `async (positions) => {
     const inside = (r, slack = 0.5) => r.left >= frame.left - slack && r.right <= frame.right + slack && r.top >= frame.top - slack && r.bottom <= frame.bottom + slack;
     const b = boat.getBoundingClientRect();
     if (!inside(b)) fails.push({ s, what: "boat outside frame", left: Math.round(b.left), right: Math.round(b.right) });
+    // Legibility: text over the bright moon. Reported separately from clipping and boat collisions.
+    const m = moon && opacity(moon) >= 0.5 ? moon.getBoundingClientRect() : null;
+    const visibleIntro = intro && opacity(intro) >= 0.5;
+    if (visibleIntro && overlaps(box(intro), b)) fails.push({ s, what: "intro over boat" });
+    if (endingTitle && opacity(endingTitle) >= 0.5) {
+      const r = endingTitle.getBoundingClientRect();
+      if (overlaps(r, b)) fails.push({ s, what: "ending title over boat" });
+      if (lighthouse && overlaps(r, lighthouse.getBoundingClientRect())) fails.push({ s, what: "ending title over lighthouse" });
+      if (!inside(r)) fails.push({ s, what: "ending title outside frame" });
+    }
     examples.forEach((e, i) => {
       const o = opacity(e);
       const key = i + ":" + e.dataset.text;
@@ -172,11 +185,13 @@ const SWEEP = `async (positions) => {
       const r = box(e);
       if (!inside(r)) fails.push({ s, what: "example clipped", text: e.dataset.text, left: Math.round(r.left), right: Math.round(r.right) });
       if (overlaps(r, b)) fails.push({ s, what: "example over boat", text: e.dataset.text });
+      if (m && overlaps(r, m)) fails.push({ s, what: "example over moon", text: e.dataset.text });
     });
     for (const c of copies) {
       if (opacity(c) < 0.5) continue;
       const r = c.getBoundingClientRect();
       if (overlaps(r, b)) fails.push({ s, what: "copy over boat", chapter: c.dataset.chapter, copyBottom: Math.round(r.bottom), boatTop: Math.round(b.top) });
+      if (m && overlaps(r, m)) fails.push({ s, what: "copy over moon", chapter: c.dataset.chapter });
       if (!inside(r)) fails.push({ s, what: "copy outside frame", chapter: c.dataset.chapter, top: Math.round(r.top), bottom: Math.round(r.bottom) });
     }
     if (lighthouse && opacity(lighthouse) >= 0.5) {

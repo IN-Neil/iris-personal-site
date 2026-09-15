@@ -197,6 +197,7 @@ export function Stage({ progress, examples = true, className, style }: StageProp
 
       {/* The moon: small and distant at departure, rising and swelling into chapter two */}
       <div
+        data-journey="moon"
         className="absolute -translate-x-1/2 -translate-y-1/2"
         style={{
           left: `${moonX}%`,
@@ -326,7 +327,7 @@ export function Stage({ progress, examples = true, className, style }: StageProp
         <div
           data-journey="lighthouse"
           className="absolute -translate-y-full"
-          style={{ left: `${worldX(1, 0.74, FAR)}%`, opacity: fadeWindow(s.progress, [0.93, 1], 0.04), top: `${HORIZON - 3}%`, width: "var(--lighthouse-w)" }}
+          style={{ left: `calc(${worldX(1, 0, FAR)}% + var(--lighthouse-vx) * ${round(100 / LAYER_SCREENS)}%)`, opacity: fadeWindow(s.progress, [0.93, 1], 0.04), top: `${HORIZON - 3}%`, width: "var(--lighthouse-w)" }}
         >
           <div
             className="beam absolute"
@@ -409,7 +410,9 @@ export function Stage({ progress, examples = true, className, style }: StageProp
                 top: `${marker.top}%`,
                 width: layerSize(32),
                 opacity: exampleVisibility(s.progress, marker.window),
-              }}
+                // Phones replace left/top/width with one readable slot (globals.css).
+                "--example-base": `${worldX(marker.at, 0, MID)}%`,
+              } as CSSProperties}
             >
               {marker.id !== "questions" && <Star className="mt-1.5 block shrink-0" style={{ width: 14 }} />}
               <span>{marker.text}</span>

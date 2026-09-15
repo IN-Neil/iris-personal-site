@@ -11,6 +11,7 @@ import { ending, footer, intro, links, person, questionFragments } from "@/conte
  */
 
 const pixelLabel = "font-pixel text-[0.72rem] uppercase tracking-[0.14em] text-mist/60 md:text-[0.78rem]";
+const endingHeading = "mt-4 font-pixel text-[1.5rem] font-medium leading-[1.3] text-mist md:text-[1.8rem]";
 
 /**
  * Kept deliberately spare: a name, the big pixel title, one sentence.
@@ -148,10 +149,7 @@ export function EndingPanel({ className, headingId = "ending-heading" }: { class
   return (
     <section aria-labelledby={headingId} className={`scrim ${className ?? ""}`}>
       <p className={pixelLabel}>{ending.number} · The lighthouse</p>
-      <h2
-        id={headingId}
-        className="mt-4 font-pixel text-[1.5rem] font-medium leading-[1.3] text-mist md:text-[1.8rem]"
-      >
+      <h2 id={headingId} className={endingHeading}>
         {ending.heading}
       </h2>
       <p className="mt-4 max-w-[27rem] text-[1.05rem] leading-[1.6] text-mist/90">{ending.body}</p>
@@ -177,6 +175,20 @@ export function EndingPanel({ className, headingId = "ending-heading" }: { class
       <p className={`mt-8 ${pixelLabel}`}>{footer.signature}</p>
       <p className="mt-2 text-[0.8rem] leading-relaxed text-mist/45">{footer.line}</p>
     </section>
+  );
+}
+
+/**
+ * The ending's label and heading as a caption over the arrival scene, for layouts
+ * where the full ending continues in page flow. Visual only: the readable ending
+ * (with the real heading and links) follows the scene.
+ */
+export function EndingTitle({ className }: { className?: string }) {
+  return (
+    <div aria-hidden="true" className={className}>
+      <p className={pixelLabel}>{ending.number} · The lighthouse</p>
+      <p className={endingHeading}>{ending.heading}</p>
+    </div>
   );
 }
 

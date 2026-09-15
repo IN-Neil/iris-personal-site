@@ -1,0 +1,2830 @@
+[
+ {
+  "size": "844x390",
+  "direction": "forward",
+  "examplesFound": 15,
+  "copiesFound": 4,
+  "checked": 581,
+  "travelReversals": 0,
+  "travelFirstLast": [
+   0,
+   -3.7879
+  ],
+  "neverFullyVisible": [],
+  "failCount": 109,
+  "fails": [
+   {
+    "s": 1.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 6.65,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.7,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.75,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.8,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.85,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.9,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.95,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.05,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.1,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.15,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.2,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.25,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.3,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.45,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.5,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.55,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.6,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.65,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.7,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.75,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.8,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.85,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.9,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.95,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8.05,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8.1,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8.8,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.85,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.95,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.05,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 11.3,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.35,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.4,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.45,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.5,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.55,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.6,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.65,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.7,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.75,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.8,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.85,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.9,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.95,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 12,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 13.05,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.1,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.15,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.2,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.25,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.3,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.35,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.4,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.45,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.5,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.55,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.6,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.65,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.7,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.75,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.8,
+    "what": "example over moon",
+    "text": "Irispedia"
+   }
+  ],
+  "summary": {
+   "copy over moon · questions": {
+    "count": 44,
+    "from": 1.3,
+    "to": 3.45
+   },
+   "example over moon · Where do we go after we die?": {
+    "count": 14,
+    "from": 6.65,
+    "to": 7.3
+   },
+   "example over moon · What does it mean to experience?": {
+    "count": 14,
+    "from": 7.45,
+    "to": 8.1
+   },
+   "copy over moon · building": {
+    "count": 6,
+    "from": 8.8,
+    "to": 9.05
+   },
+   "example over moon · Rolling Context for Open WebUI": {
+    "count": 15,
+    "from": 11.3,
+    "to": 12
+   },
+   "example over moon · Irispedia": {
+    "count": 16,
+    "from": 13.05,
+    "to": 13.8
+   }
+  }
+ },
+ {
+  "size": "844x390",
+  "direction": "backward",
+  "examplesFound": 15,
+  "copiesFound": 4,
+  "checked": 581,
+  "travelReversals": 0,
+  "travelFirstLast": [
+   -3.7879,
+   0
+  ],
+  "neverFullyVisible": [],
+  "failCount": 109,
+  "fails": [
+   {
+    "s": 13.8,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.75,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.7,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.65,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.6,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.55,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.5,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.45,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.4,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.35,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.3,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.25,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.2,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.15,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.1,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.05,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 12,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.95,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.9,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.85,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.8,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.75,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.7,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.65,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.6,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.55,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.5,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.45,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.4,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.35,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.3,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 9.05,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.95,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.85,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.8,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.1,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8.05,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.95,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.9,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.85,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.8,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.75,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.7,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.65,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.6,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.55,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.5,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.45,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.3,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.25,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.2,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.15,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.1,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.05,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.95,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.9,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.85,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.8,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.75,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.7,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.65,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 3.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   }
+  ],
+  "summary": {
+   "example over moon · Irispedia": {
+    "count": 16,
+    "from": 13.05,
+    "to": 13.8
+   },
+   "example over moon · Rolling Context for Open WebUI": {
+    "count": 15,
+    "from": 11.3,
+    "to": 12
+   },
+   "copy over moon · building": {
+    "count": 6,
+    "from": 8.8,
+    "to": 9.05
+   },
+   "example over moon · What does it mean to experience?": {
+    "count": 14,
+    "from": 7.45,
+    "to": 8.1
+   },
+   "example over moon · Where do we go after we die?": {
+    "count": 14,
+    "from": 6.65,
+    "to": 7.3
+   },
+   "copy over moon · questions": {
+    "count": 44,
+    "from": 1.3,
+    "to": 3.45
+   }
+  }
+ },
+ {
+  "size": "844x390",
+  "direction": "jumps",
+  "examplesFound": 15,
+  "copiesFound": 4,
+  "checked": 200,
+  "travelReversals": 0,
+  "travelFirstLast": [
+   -1.7657,
+   -3.6019
+  ],
+  "neverFullyVisible": [],
+  "failCount": 36,
+  "fails": [
+   {
+    "s": 12.01,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 7.33,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 13.4,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 1.64,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.97,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.03,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 11.72,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 8.84,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 7.07,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 13.69,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 1.77,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.88,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 6.88,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 11.44,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 9.05,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 11.5,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 6.83,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 1.91,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.12,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.34,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.74,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 13.63,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 7.12,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 8.78,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 11.78,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 2.06,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.94,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.61,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 13.34,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 2.21,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.77,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.48,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 13.05,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 7.63,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   }
+  ],
+  "summary": {
+   "example over moon · Rolling Context for Open WebUI": {
+    "count": 5,
+    "from": 11.44,
+    "to": 12.01
+   },
+   "example over moon · Where do we go after we die?": {
+    "count": 5,
+    "from": 6.83,
+    "to": 7.33
+   },
+   "example over moon · Irispedia": {
+    "count": 5,
+    "from": 13.05,
+    "to": 13.69
+   },
+   "copy over moon · questions": {
+    "count": 17,
+    "from": 1.48,
+    "to": 3.34
+   },
+   "copy over moon · building": {
+    "count": 3,
+    "from": 8.78,
+    "to": 9.05
+   },
+   "example over moon · What does it mean to experience?": {
+    "count": 1,
+    "from": 7.63,
+    "to": 7.63
+   }
+  }
+ },
+ {
+  "size": "667x375",
+  "direction": "forward",
+  "examplesFound": 15,
+  "copiesFound": 4,
+  "checked": 581,
+  "travelReversals": 0,
+  "travelFirstLast": [
+   0,
+   -3.7879
+  ],
+  "neverFullyVisible": [],
+  "failCount": 109,
+  "fails": [
+   {
+    "s": 1.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 6.65,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.7,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.75,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.8,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.85,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.9,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.95,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.05,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.1,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.15,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.2,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.25,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.3,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.45,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.5,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.55,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.6,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.65,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.7,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.75,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.8,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.85,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.9,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.95,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8.05,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8.1,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8.8,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.85,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.95,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9.05,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 11.3,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.35,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.4,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.45,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.5,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.55,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.6,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.65,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.7,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.75,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.8,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.85,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.9,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.95,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 12,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 13.05,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.1,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.15,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.2,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.25,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.3,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.35,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.4,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.45,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.5,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.55,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.6,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.65,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.7,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.75,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.8,
+    "what": "example over moon",
+    "text": "Irispedia"
+   }
+  ],
+  "summary": {
+   "copy over moon · questions": {
+    "count": 44,
+    "from": 1.3,
+    "to": 3.45
+   },
+   "example over moon · Where do we go after we die?": {
+    "count": 14,
+    "from": 6.65,
+    "to": 7.3
+   },
+   "example over moon · What does it mean to experience?": {
+    "count": 14,
+    "from": 7.45,
+    "to": 8.1
+   },
+   "copy over moon · building": {
+    "count": 6,
+    "from": 8.8,
+    "to": 9.05
+   },
+   "example over moon · Rolling Context for Open WebUI": {
+    "count": 15,
+    "from": 11.3,
+    "to": 12
+   },
+   "example over moon · Irispedia": {
+    "count": 16,
+    "from": 13.05,
+    "to": 13.8
+   }
+  }
+ },
+ {
+  "size": "667x375",
+  "direction": "backward",
+  "examplesFound": 15,
+  "copiesFound": 4,
+  "checked": 581,
+  "travelReversals": 0,
+  "travelFirstLast": [
+   -3.7879,
+   0
+  ],
+  "neverFullyVisible": [],
+  "failCount": 109,
+  "fails": [
+   {
+    "s": 13.8,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.75,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.7,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.65,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.6,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.55,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.5,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.45,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.4,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.35,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.3,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.25,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.2,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.15,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.1,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 13.05,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 12,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.95,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.9,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.85,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.8,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.75,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.7,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.65,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.6,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.55,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.5,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.45,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.4,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.35,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 11.3,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 9.05,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.95,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.9,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.85,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.8,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 8.1,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8.05,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 8,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.95,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.9,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.85,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.8,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.75,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.7,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.65,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.6,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.55,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.5,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.45,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   },
+   {
+    "s": 7.3,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.25,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.2,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.15,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.1,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7.05,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 7,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.95,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.9,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.85,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.8,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.75,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.7,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 6.65,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 3.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.25,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.1,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.05,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.95,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.9,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.85,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.8,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.75,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.7,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.65,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.6,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.55,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.5,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.45,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.4,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.35,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   }
+  ],
+  "summary": {
+   "example over moon · Irispedia": {
+    "count": 16,
+    "from": 13.05,
+    "to": 13.8
+   },
+   "example over moon · Rolling Context for Open WebUI": {
+    "count": 15,
+    "from": 11.3,
+    "to": 12
+   },
+   "copy over moon · building": {
+    "count": 6,
+    "from": 8.8,
+    "to": 9.05
+   },
+   "example over moon · What does it mean to experience?": {
+    "count": 14,
+    "from": 7.45,
+    "to": 8.1
+   },
+   "example over moon · Where do we go after we die?": {
+    "count": 14,
+    "from": 6.65,
+    "to": 7.3
+   },
+   "copy over moon · questions": {
+    "count": 44,
+    "from": 1.3,
+    "to": 3.45
+   }
+  }
+ },
+ {
+  "size": "667x375",
+  "direction": "jumps",
+  "examplesFound": 15,
+  "copiesFound": 4,
+  "checked": 200,
+  "travelReversals": 0,
+  "travelFirstLast": [
+   -1.7659,
+   -3.602
+  ],
+  "neverFullyVisible": [],
+  "failCount": 36,
+  "fails": [
+   {
+    "s": 12.01,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 7.33,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 13.4,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 1.64,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.97,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.03,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 11.72,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 8.84,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 7.07,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 13.69,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 1.77,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.3,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.15,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.88,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 6.88,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 11.44,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 9.05,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 11.5,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 6.83,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 1.91,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.12,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 3.34,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.74,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 13.63,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 7.12,
+    "what": "example over moon",
+    "text": "Where do we go after we die?"
+   },
+   {
+    "s": 8.78,
+    "what": "copy over moon",
+    "chapter": "building"
+   },
+   {
+    "s": 11.78,
+    "what": "example over moon",
+    "text": "Rolling Context for Open WebUI"
+   },
+   {
+    "s": 2.06,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.94,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.61,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 13.34,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 2.21,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 2.77,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 1.48,
+    "what": "copy over moon",
+    "chapter": "questions"
+   },
+   {
+    "s": 13.05,
+    "what": "example over moon",
+    "text": "Irispedia"
+   },
+   {
+    "s": 7.63,
+    "what": "example over moon",
+    "text": "What does it mean to experience?"
+   }
+  ],
+  "summary": {
+   "example over moon · Rolling Context for Open WebUI": {
+    "count": 5,
+    "from": 11.44,
+    "to": 12.01
+   },
+   "example over moon · Where do we go after we die?": {
+    "count": 5,
+    "from": 6.83,
+    "to": 7.33
+   },
+   "example over moon · Irispedia": {
+    "count": 5,
+    "from": 13.05,
+    "to": 13.69
+   },
+   "copy over moon · questions": {
+    "count": 17,
+    "from": 1.48,
+    "to": 3.34
+   },
+   "copy over moon · building": {
+    "count": 3,
+    "from": 8.78,
+    "to": 9.05
+   },
+   "example over moon · What does it mean to experience?": {
+    "count": 1,
+    "from": 7.63,
+    "to": 7.63
+   }
+  }
+ }
+]

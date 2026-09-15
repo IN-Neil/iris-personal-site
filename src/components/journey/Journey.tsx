@@ -14,7 +14,7 @@ import {
   segments,
   type SegmentKey,
 } from "@/lib/journey";
-import { ChapterLabel, ChapterPanel, EndingPanel, IntroPanel } from "./Panels";
+import { ChapterLabel, ChapterPanel, EndingPanel, EndingTitle, IntroPanel } from "./Panels";
 import { Stage } from "./Stage";
 
 /**
@@ -129,7 +129,7 @@ function RouteMap({ progress }: { progress: number }) {
   const currentIndex = stops.indexOf(current); // -1 while still on the intro
 
   return (
-    <div className="pointer-events-none absolute bottom-6 left-8 flex items-center gap-4 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70">
+    <div className="journey-route pointer-events-none absolute flex items-center gap-4 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70">
       <ol className="flex items-center" aria-label="Chapters">
         {stops.map((key, i) => {
           const reached = i <= currentIndex;
@@ -174,6 +174,7 @@ export function Journey() {
   const endingVisible = fadeWindow(progress, [0.94, 1], 0.035);
 
   return (
+    <>
     <div
       ref={containerRef}
       data-journey="container"
@@ -189,7 +190,7 @@ export function Journey() {
           <IntroPanel />
         </div>
         <div
-          className="pointer-events-none absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70"
+          className="journey-hint pointer-events-none absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70"
           style={{ opacity: introVisible }}
         >
           <span>{intro.scrollHint}</span>
@@ -200,7 +201,12 @@ export function Journey() {
         {chapters.map((chapter) => {
           const phases = chapterPhases(progress, segments[chapter.id]);
           return (
-            <div key={chapter.id} className="pointer-events-none absolute inset-0" style={panelStyle(phases.visible)}>
+            <div
+              key={chapter.id}
+              data-chapter={chapter.id}
+              className="journey-chapter pointer-events-none absolute inset-0"
+              style={panelStyle(phases.visible)}
+            >
               <div data-journey="copy" data-chapter={chapter.id} className="journey-copy absolute">
                 <ChapterLabel chapter={chapter} />
                 <ChapterPanel
@@ -219,10 +225,14 @@ export function Journey() {
         <div data-journey="ending" className="journey-ending absolute" style={panelStyle(endingVisible)}>
           <EndingPanel />
         </div>
+        {/* Phones and short landscape: a caption over the lighthouse; the full ending follows the scene */}
+        <div data-journey="ending-title" className="journey-ending-title absolute" style={panelStyle(endingVisible)}>
+          <EndingTitle />
+        </div>
 
         {/* Small brand mark once the title has scrolled away */}
         <p
-          className="pointer-events-none absolute right-8 top-6 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70"
+          className="journey-brand pointer-events-none absolute font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70"
           style={{ opacity: 1 - introVisible }}
         >
           {intro.title} · {intro.subtitle}
@@ -231,5 +241,9 @@ export function Journey() {
         <RouteMap progress={progress} />
       </div>
     </div>
+    <div className="journey-ending-flow">
+      <EndingPanel headingId="ending-flow-heading" />
+    </div>
+    </>
   );
 }

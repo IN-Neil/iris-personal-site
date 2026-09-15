@@ -1,0 +1,10 @@
+1440x900-arrival.png {"changed":377,"total":1296000,"box":[1238,436,1352,508]}
+1440x900-ch1-copy.png {"changed":0,"total":1296000,"box":null}
+1440x900-ch2-copy.png {"changed":0,"total":1296000,"box":null}
+1440x900-ch3-copy.png {"changed":0,"total":1296000,"box":null}
+1440x900-departure.png {"changed":710,"total":1296000,"box":[0,608,1430,858]}
+1440x900-open-water.png {"changed":0,"total":1296000,"box":null}
+1440x900-project-longest.png {"changed":0,"total":1296000,"box":null}
+1440x900-q-longest.png {"changed":0,"total":1296000,"box":null}
+1440x900-storm-ch4-copy.png {"changed":0,"total":1296000,"box":null}
+1440x900-storm-example.png {"changed":0,"total":1296000,"box":null}
