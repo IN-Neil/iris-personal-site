@@ -43,10 +43,17 @@ export function JourneyStacked() {
       // the camera pivot and chapter artwork stay at their original positions.
       const positions = frames.map((frame) => {
         const { top, height } = frame.getBoundingClientRect();
-        const travel = frame.dataset.mobileSailingFrame === "intro"
+        const isDeparture = frame.dataset.mobileSailingFrame === "intro";
+        const travel = isDeparture
           ? -top / (height * 0.85)
           : (viewport - top) / (viewport + height);
-        return -35 + Math.min(1, Math.max(0, travel)) * 145;
+        const easedTravel = Math.min(1, Math.max(0, travel));
+        // The first boat begins in the child's hands at the end of the dock.
+        // Later boats enter only partly offscreen, shortening the crossing and
+        // making it easier to follow during ordinary touch scrolling.
+        return isDeparture
+          ? 49 + easedTravel * 51
+          : -10 + easedTravel * 110;
       });
       frames.forEach((frame, index) => {
         frame.style.setProperty("--mobile-boat-x", `${positions[index].toFixed(3)}%`);
