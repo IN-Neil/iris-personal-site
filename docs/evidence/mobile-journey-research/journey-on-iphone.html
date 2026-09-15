@@ -1,0 +1,360 @@
+<title>Iris Journey on iPhone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Piazzolla:opsz,wght@8..30,400;8..30,600&family=Pixelify+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#EEEAE3; --raised:#E4DED4; --ink:#221D1A; --muted:#5C5550; --rule:#CFC6BA;
+  --accent:#476DA1; --accent-soft:rgba(71,109,161,.14);
+  --risk:#B84A31; --device:#9A5E36; --ok:#4F6B3F;
+  --sky:#1F2C42; --sea1:#3A5477; --sea2:#476DA1; --sea3:#3E7F9B; --paper:#EAE6DE;
+  --serif:"Piazzolla",Georgia,serif; --pixel:"Pixelify Sans",ui-monospace,monospace; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#18212F; --raised:#1F2C42; --ink:#EAE6DE; --muted:#A9A39C; --rule:#34435A;
+    --accent:#57A9C7; --accent-soft:rgba(87,169,199,.16);
+    --risk:#E07A5F; --device:#DC9A73; --ok:#9CB58A;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#18212F; --raised:#1F2C42; --ink:#EAE6DE; --muted:#A9A39C; --rule:#34435A;
+  --accent:#57A9C7; --accent-soft:rgba(87,169,199,.16);
+  --risk:#E07A5F; --device:#DC9A73; --ok:#9CB58A;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.6;padding-inline:20px;padding-block:0 96px}
+.wrap{max-width:980px;margin:0 auto}
+.col{max-width:680px}
+header.top{padding-block:56px 28px;border-bottom:1px solid var(--rule);margin-bottom:40px}
+.eyebrow,.label{font-family:var(--pixel);text-transform:uppercase;letter-spacing:.12em;font-size:.74rem;color:var(--muted)}
+h1{font-family:var(--pixel);font-weight:600;font-size:clamp(2rem,5vw,3.1rem);line-height:1.08;margin:10px 0 16px;text-wrap:balance}
+h2{font-family:var(--pixel);font-weight:600;font-size:1.55rem;line-height:1.2;margin:0 0 14px;text-wrap:balance}
+h3{font-family:var(--serif);font-weight:600;font-size:1.08rem;margin:26px 0 8px}
+p{margin:0 0 14px}
+.lede{font-size:1.18rem;color:var(--ink)}
+code,.mono{font-family:var(--mono);font-size:.84em}
+code{background:var(--accent-soft);padding:1px 5px;border-radius:3px}
+section{padding-block:44px;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+.decision{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:26px 0 8px}
+.decision div{background:var(--ground);padding:16px 18px}
+.decision b{display:block;font-family:var(--pixel);font-weight:400;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.decision span{font-size:.97rem;line-height:1.45}
+ul,ol{padding-left:1.2em;margin:0 0 14px}
+li{margin-bottom:6px}
+.tag{font-family:var(--pixel);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:1px 6px;border:1px solid currentColor;border-radius:2px;white-space:nowrap;vertical-align:2px}
+.t-conf{color:var(--ok)} .t-assume{color:var(--muted)} .t-device{color:var(--device)} .t-risk{color:var(--risk)}
+.table-wrap{overflow-x:auto;margin:14px 0 18px}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:560px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--pixel);font-weight:400;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.85rem;white-space:nowrap}
+.phones{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:18px;margin:22px 0 10px}
+.phones figure{margin:0}
+.phones svg{width:100%;height:auto;display:block}
+.phones figcaption{font-size:.86rem;line-height:1.4;color:var(--muted);margin-top:8px}
+.phones figcaption b{color:var(--ink);font-weight:600}
+figure.wide{margin:22px 0}
+figure.wide figcaption{font-size:.88rem;color:var(--muted);margin-top:8px}
+pre.mermaid{background:var(--raised);padding:18px;border-radius:4px;overflow-x:auto}
+/* the score: time runs down, four permanent tracks, failures in a faint margin */
+.score{display:grid;grid-template-columns:minmax(150px,1.3fr) repeat(3,minmax(110px,1fr)) minmax(120px,1fr);font-size:.86rem;min-width:720px}
+.score > div{padding:9px 10px;border-bottom:1px solid var(--rule)}
+.score .h{font-family:var(--pixel);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--ink)}
+.score .story{font-weight:600}
+.score .on{background:var(--accent-soft);border-left:2px solid var(--accent)}
+.score .off{color:var(--rule)}
+.score .fail{color:var(--risk);opacity:.72;font-size:.8rem;border-left:1px dashed var(--rule)}
+.checks{list-style:none;padding:0}
+.checks li{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--rule);margin:0}
+.checks li::before{content:"";width:13px;height:13px;border:1.5px solid var(--muted);margin-top:6px}
+.checks .where{font-family:var(--pixel);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--device);margin-left:6px}
+.rank{counter-reset:r;list-style:none;padding:0}
+.rank li{counter-increment:r;display:grid;grid-template-columns:34px 1fr;gap:8px;padding:10px 0;border-bottom:1px solid var(--rule);margin:0}
+.rank li::before{content:counter(r);font-family:var(--pixel);font-size:1.2rem;color:var(--accent)}
+.note{border-left:2px solid var(--device);padding:4px 0 4px 14px;color:var(--muted);font-size:.95rem}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <p class="note" style="border-left-color:var(--risk)"><b>Superseded in part (14 Sep).</b> A built prototype refuted three claims on this page. The crop does not preserve desktop proportions, the frame-time figures were not work time, and the landscape measurements used the wrong column. <code>Journey compact</code> is now recommended. See the "Journey Phone Prototype" page for the evidence.</p>
+  <div class="eyebrow">Decision document · iris-personal-site · research only, no files changed</div>
+  <h1>Iris Journey on iPhone</h1>
+  <p class="lede col">How can the paper-boat journey run on phones with the smallest reliable change? One scene for every screen. Phones see a narrower crop of the same world, not a re-drawn one.</p>
+  <div class="decision">
+    <div><b>Scene architecture</b><span>One <code>Journey</code> and one <code>Stage</code> for all widths. Retire <code>JourneyStacked</code>. No second animation system.</span></div>
+    <div><b>Mobile framing</b><span>Keep a desktop-like scene aspect (0.9 × height wide) and slide a phone-width window across it using one new keyframe track.</span></div>
+    <div><b>Scroll measurement</b><span>Base everything on the large viewport (<code>lvh</code>). Progress comes from <code>scrollY</code> and cached sizes. Ignore resizes where only the toolbar height changed.</span></div>
+    <div><b>Acceptance</b><span>Layout checks in the Simulator. Smoothness and memory on a physical iPhone. The pass is bounded to 16 checks.</span></div>
+  </div>
+</header>
+
+<!-- ============ 1 ============ -->
+<section>
+  <div class="col">
+    <div class="label">1 · Shared scene architecture</div>
+    <h2>One timeline, one scene, two framings</h2>
+    <p>The timeline in <code>src/lib/journey.ts</code> does not depend on screen size. Its keyframes, <code>scrollBeats</code>, <code>chapterPhases</code>, <code>exampleWindow</code> and <code>sceneState</code> are all functions of a single <code>progress</code> number, and the tests cover them. The desktop assumptions live in a few size values in <code>Journey.tsx</code> and <code>Stage.tsx</code>. So the change is a framing setting, not a new system.</p>
+  </div>
+  <pre class="mermaid">
+flowchart LR
+  S["Scroll position"] -->|"scrollY, cached sizes"| M["useScrollProgress"]
+  M -->|"0 → 1"| T["storyProgress<br/>(journey.ts, unchanged)"]
+  T --> ST["Stage<br/>same drawing, same layers"]
+  T --> P["Panels overlays<br/>copy, stars, ending"]
+  T -->|"NEW: cropStops"| C["--crop CSS variable"]
+  Q{"CSS media query<br/>max-aspect-ratio 9/10"} -->|"wide: ignore crop"| ST
+  Q -->|"portrait: stage 90lvh wide,<br/>translate by --crop"| ST
+  Q -->|"portrait: full-width column"| P
+  </pre>
+  <div class="col">
+    <p>Let CSS choose the framing. The script always writes the same numbers. That means the server HTML is identical for phones and desktops, there is no hydration mismatch, and no first-paint flash. It also removes the duplicate rendering that exists today.</p>
+    <h3>What changes, by file</h3>
+    <div class="table-wrap"><table>
+      <tr><th>File</th><th>Change</th><th>Why (evidence)</th></tr>
+      <tr><td class="mono">app/page.tsx</td><td>Render <code>&lt;Journey/&gt;</code> only.</td><td>Today both layouts render at every width. The HTML contains 7 Stage scenes (497&nbsp;KB). On a phone the hidden desktop Journey still mounts 377 nodes and a scroll/resize listener.</td></tr>
+      <tr><td class="mono">Journey.tsx:24–56</td><td>New measurement: see section 3.</td><td>Line 37 divides by <code>window.innerHeight</code>, which changes when Safari's toolbar collapses.</td></tr>
+      <tr><td class="mono">Journey.tsx:138–139</td><td><code>lvh</code> for the container and sticky scene. Write <code>--crop</code> on the scene.</td><td>Line 138 uses <code>vh</code> and line 139 uses <code>h-screen</code>. Measurement and sizing should both use the large viewport.</td></tr>
+      <tr><td class="mono">Journey.tsx:72, 144, 163, 179</td><td>Portrait overlay rules: full-width column, 24px + safe-area gutters (section 2).</td><td>Copy is <code>min(27rem,42vw)</code>, which is 165px at 393px wide. The ending at 38vw ran into the route map.</td></tr>
+      <tr><td class="mono">Stage.tsx:395–413</td><td>Portrait slot for sky examples: x ≈ 0.19, width 31%. The existing <code>exampleVisibility</code> timing stays.</td><td>With the desktop x positions (0.20–0.44), most stars fall outside a phone crop.</td></tr>
+      <tr><td class="mono">Stage.tsx:178–192</td><td>Put star opacity on the layer once, not on 90 spans.</td><td>This was the largest per-frame write measured (section 4).</td></tr>
+      <tr><td class="mono">journey.ts</td><td>Add <code>cropStops</code>, one <code>Stop[]</code> track, with a test that the boat stays inside the crop.</td><td>This is the only new choreography data.</td></tr>
+      <tr><td class="mono">JourneyStacked.tsx, <code>compact</code></td><td>Delete after the phone pass is accepted.</td><td><code>compact</code> exists only for the 4:3 stacked frames.</td></tr>
+    </table></div>
+
+    <h3>Why a crop and not a portrait re-draw</h3>
+    <p>Stage sizes some sprites by <em>width</em> and others by <em>height</em>. By width: boat 12%, dock 40%, clouds, cliffs. By height: figures <code>10.3cqh</code>, lighthouse <code>9.5cqh</code>. On a 393×852 screen the figures render about 300px tall standing on a 54px dock, and the boat is 47px wide. I checked this in the browser. A crop keeps the scene at a desktop-like shape, so every sprite keeps its desktop size relative to the others.</p>
+    <div class="table-wrap"><table>
+      <tr><th>Option</th><th>Keeps desktop relationships</th><th>Size of change</th><th>Cost</th></tr>
+      <tr><td><b>Crop window (recommended)</b></td><td>Yes, by construction</td><td>1 track, CSS rules, overlay rules</td><td>Wider layers (767px scene vs 393px screen), so more GPU memory. Some desktop compositions fall out of frame, such as the chapter one moon on the right.</td></tr>
+      <tr><td>Portrait re-draw</td><td>Only if every sprite is re-tuned</td><td>About 30 size values plus a phone variant of each stop table</td><td>Two compositions to keep in sync forever.</td></tr>
+      <tr><td>Keep the stacked layout</td><td>n/a</td><td>None</td><td>Not the journey. The boat's travel is lost.</td></tr>
+      <tr><td>CSS scroll-driven animations</td><td>Yes</td><td>Rewrite of the motion layer</td><td>A second animation system. Supported since Safari 26. Note it for later only.</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section>
+  <div class="col">
+    <div class="label">2 · Mobile framing rules</div>
+    <h2>Portrait composition at 393 × 852</h2>
+    <p>Each drawing below comes from a prototype. I injected the crop into the existing static build in the browser and did not edit source. Pixel values are measured from that prototype. The boat, the figures and the lighthouse all stayed in frame.</p>
+  </div>
+
+  <div class="phones">
+    <!-- Phone 1: intro -->
+    <figure>
+      <svg viewBox="0 0 393 852" role="img" aria-label="Intro: title and thesis in the top band, figures on the dock at left, boat entering at right">
+        <rect x="0" y="0" width="393" height="852" rx="34" fill="#1F2C42"/>
+        <rect x="0" y="494" width="393" height="80" fill="#3A5477"/><rect x="0" y="574" width="393" height="110" fill="#476DA1"/><rect x="0" y="684" width="393" height="168" fill="#3E7F9B"/>
+        <line x1="0" y1="494" x2="393" y2="494" stroke="#EAE6DE" stroke-dasharray="6 6" stroke-opacity=".5"/>
+        <rect x="24" y="92" width="345" height="205" fill="#57A9C7" fill-opacity=".22" stroke="#57A9C7"/>
+        <text x="38" y="130" fill="#EAE6DE" font-size="22" font-family="monospace">IRIS · intro</text>
+        <text x="38" y="160" fill="#EAE6DE" font-size="18" font-family="monospace">205px</text>
+        <rect x="45" y="375" width="80" height="290" fill="#221D1A"/><rect x="125" y="540" width="80" height="125" fill="#221D1A"/>
+        <rect x="0" y="655" width="185" height="30" fill="#3B4548"/>
+        <polygon points="330,712 393,712 393,740 345,740" fill="#EAE6DE"/>
+        <text x="200" y="486" fill="#EAE6DE" fill-opacity=".7" font-size="17" font-family="monospace">horizon 494</text>
+      </svg>
+      <figcaption><b>Departure.</b> Crop left edge at 6% of the scene. The figures and dock stay whole. The boat enters at the right edge as a hint of travel.</figcaption>
+    </figure>
+
+    <!-- Phone 2: ch1 copy -->
+    <figure>
+      <svg viewBox="0 0 393 852" role="img" aria-label="Chapter one copy fills the sky band above the horizon; boat centered on the waterline">
+        <rect x="0" y="0" width="393" height="852" rx="34" fill="#1F2C42"/>
+        <rect x="0" y="494" width="393" height="80" fill="#3A5477"/><rect x="0" y="574" width="393" height="110" fill="#476DA1"/><rect x="0" y="684" width="393" height="168" fill="#3E7F9B"/>
+        <line x1="0" y1="494" x2="393" y2="494" stroke="#EAE6DE" stroke-dasharray="6 6" stroke-opacity=".5"/>
+        <rect x="24" y="92" width="345" height="257" fill="#57A9C7" fill-opacity=".22" stroke="#57A9C7"/>
+        <text x="38" y="130" fill="#EAE6DE" font-size="22" font-family="monospace">label+question</text>
+        <text x="38" y="160" fill="#EAE6DE" font-size="18" font-family="monospace">+ full body 257px</text>
+        <line x1="200" y1="349" x2="200" y2="494" stroke="#DC9A73"/>
+        <text x="210" y="428" fill="#DC9A73" font-size="18" font-family="monospace">145px clear</text>
+        <polygon points="90,700 215,700 195,740 110,740" fill="#EAE6DE"/>
+        <text x="30" y="818" fill="#EAE6DE" fill-opacity=".6" font-size="17" font-family="monospace">□-□-□-□-□ route</text>
+      </svg>
+      <figcaption><b>Chapter copy.</b> Top at 92px, below the sound control. The longest copy is 312px (chapter 3) and ends at 404px, above the 494px horizon.</figcaption>
+    </figure>
+
+    <!-- Phone 3: ch2 copy under moon -->
+    <figure>
+      <svg viewBox="0 0 393 852" role="img" aria-label="Chapter two: moon top-left, copy starts at 31 percent below the moon and may cross the horizon, boat stays clear">
+        <rect x="0" y="0" width="393" height="852" rx="34" fill="#1F2C42"/>
+        <rect x="0" y="494" width="393" height="80" fill="#3A5477"/><rect x="0" y="574" width="393" height="110" fill="#476DA1"/><rect x="0" y="684" width="393" height="168" fill="#3E7F9B"/>
+        <circle cx="110" cy="130" r="98" fill="#C7B2A0"/>
+        <rect x="24" y="264" width="345" height="284" fill="#57A9C7" fill-opacity=".22" stroke="#57A9C7"/>
+        <text x="38" y="302" fill="#EAE6DE" font-size="22" font-family="monospace">top 31% · 284px</text>
+        <line x1="0" y1="494" x2="393" y2="494" stroke="#EAE6DE" stroke-dasharray="6 6" stroke-opacity=".5"/>
+        <line x1="200" y1="548" x2="200" y2="700" stroke="#DC9A73"/>
+        <text x="210" y="630" fill="#DC9A73" font-size="18" font-family="monospace">boat band clear</text>
+        <polygon points="90,700 215,700 195,740 110,740" fill="#EAE6DE"/>
+      </svg>
+      <figcaption><b>Moon side.</b> The moon is 19% of the scene width at 1.4× zoom, so it fills the top-left. In portrait, copy starts below the moon, which mirrors how desktop moves copy away from it.</figcaption>
+    </figure>
+
+    <!-- Phone 4: star -->
+    <figure>
+      <svg viewBox="0 0 393 852" role="img" aria-label="An example star appears alone in the sky band after the copy has faded">
+        <rect x="0" y="0" width="393" height="852" rx="34" fill="#1F2C42"/>
+        <rect x="0" y="494" width="393" height="80" fill="#3A5477"/><rect x="0" y="574" width="393" height="110" fill="#476DA1"/><rect x="0" y="684" width="393" height="168" fill="#3E7F9B"/>
+        <circle cx="110" cy="130" r="98" fill="#C7B2A0" fill-opacity=".85"/>
+        <text x="24" y="268" fill="#EAE6DE" font-size="30" font-family="monospace">✦ Amira</text>
+        <rect x="18" y="236" width="245" height="46" fill="none" stroke="#57A9C7" stroke-dasharray="5 5"/>
+        <text x="24" y="318" fill="#57A9C7" font-size="17" font-family="monospace">slot x 0.19 · w 31%</text>
+        <line x1="0" y1="494" x2="393" y2="494" stroke="#EAE6DE" stroke-dasharray="6 6" stroke-opacity=".5"/>
+        <polygon points="90,700 215,700 195,740 110,740" fill="#EAE6DE"/>
+      </svg>
+      <figcaption><b>Stars and questions.</b> They reuse the band that copy just left, because copy fades out by 35% of a chapter and examples begin at 42%. Drift is about 21px per example, so text holds still enough to read.</figcaption>
+    </figure>
+
+    <!-- Phone 5: ending -->
+    <figure>
+      <svg viewBox="0 0 393 852" role="img" aria-label="Arrival: lighthouse fully visible upper right, ending copy on a scrim over the sea, links continue below the scene">
+        <rect x="0" y="0" width="393" height="852" rx="34" fill="#1F2C42"/>
+        <rect x="0" y="494" width="393" height="80" fill="#3A5477"/><rect x="0" y="574" width="393" height="110" fill="#476DA1"/><rect x="0" y="684" width="393" height="168" fill="#3E7F9B"/>
+        <polygon points="150,494 230,410 393,440 393,494" fill="#221D1A"/>
+        <rect x="258" y="195" width="76" height="275" fill="#EAE6DE"/><rect x="258" y="270" width="76" height="40" fill="#D96144"/><rect x="258" y="350" width="76" height="40" fill="#D96144"/>
+        <rect x="24" y="470" width="345" height="215" fill="#1F2C42" fill-opacity=".72" stroke="#DC9A73" stroke-dasharray="5 5"/>
+        <text x="38" y="508" fill="#EAE6DE" font-size="20" font-family="monospace">heading → Onwards</text>
+        <text x="38" y="536" fill="#EAE6DE" font-size="18" font-family="monospace">286px (open)</text>
+        <polygon points="24,705 115,705 100,740 40,740" fill="#EAE6DE"/>
+        <text x="130" y="800" fill="#DC9A73" font-size="17" font-family="monospace">links ↓ after scene</text>
+      </svg>
+      <figcaption><b>Arrival.</b> The lighthouse stays fully visible. The ending copy and the boat's band overlap by about 20px, which needs a decision (below). Links and footer (195px more) move into normal page flow after the scene.</figcaption>
+    </figure>
+  </div>
+
+  <div class="col">
+    <h3>The rules</h3>
+    <ol>
+      <li><b>Framing switch.</b> Use portrait framing when <code>max-aspect-ratio: 9/10</code>. The scene is <code>max(100vw, 90lvh)</code> wide. It is translated by <code>cropStops</code> and clamped so the scene's edge never shows.</li>
+      <li><b>Boat first.</b> At every progress value the boat is completely inside the crop. That becomes a unit test on <code>cropStops</code> × <code>boatXStops</code>, including zoom around the boat pivot.</li>
+      <li><b>Copy band.</b> Copy starts at <code>max(92px, safe-top + 76px)</code>. It may cross the horizon but must end 16px above the boat's top edge (about 81.5% of height). It is never clipped, never scrolls inside, and never shrinks below the site's current type sizes.</li>
+      <li><b>One thing in the sky at a time.</b> Copy, then examples, following the existing <code>chapterPhases</code> and <code>exampleWindow</code> timing, unchanged.</li>
+      <li><b>Keep these desktop relationships:</b> figures standing on the dock, the boat on the waterline with its candle lit, one camera zoom (1 → 1.4 → 1), and the lighthouse on its cliffs with the beam sweeping. Text never covers the boat.</li>
+      <li><b>Chrome:</b> the route map and brand mark respect <code>env(safe-area-inset-*)</code>. The scene itself runs full-bleed under the bars.</li>
+      <li><b>Short landscape</b> (<code>max-height: 500px</code>): use wide framing. Place chapter one's copy on the right (as chapters 2–4 already are) so the boat at 28–40% stays clear. Hide the brand mark.</li>
+    </ol>
+
+    <h3>Copy fit across phone sizes (measured, lvh)</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Viewport</th><th>Tallest chapter copy</th><th>Copy bottom</th><th>Horizon</th><th>Boat top ≈</th><th>Verdict</th></tr>
+      <tr><td class="num">393 × 852</td><td class="num">312</td><td class="num">404</td><td class="num">494</td><td class="num">694</td><td><span class="tag t-conf">fits in sky</span></td></tr>
+      <tr><td class="num">375 × 667</td><td class="num">312</td><td class="num">404</td><td class="num">387</td><td class="num">544</td><td><span class="tag t-conf">crosses horizon, clear</span></td></tr>
+      <tr><td class="num">314 × 682 <span class="mono">(aA 125%)</span></td><td class="num">362</td><td class="num">454</td><td class="num">396</td><td class="num">556</td><td><span class="tag t-conf">clear</span></td></tr>
+      <tr><td class="num">320 × 568</td><td class="num">339</td><td class="num">431</td><td class="num">329</td><td class="num">463</td><td><span class="tag t-device">32px margin, check svh</span></td></tr>
+      <tr><td class="num">852 × 393 landscape</td><td class="num">278</td><td class="num">329</td><td class="num">228</td><td class="num">≈ 300</td><td><span class="tag t-risk">ch1 column covers boat</span> → rule 7</td></tr>
+    </table></div>
+    <p class="note">iOS "Larger Text" does not scale ordinary web text. Community sources say only <code>-apple-system-body</code> responds, and the site doesn't use it. Safari's aA page zoom does apply, because it shrinks the CSS viewport. The 314px row models 125% zoom. Both still need a device check.</p>
+
+    <h3>Open design questions for sign-off</h3>
+    <ul>
+      <li><b>Ending layout.</b> The ending copy (286px), lighthouse (~275px), boat and chrome add up to about 816 of 852px. Choose one: (a) a scrim over the sea with a 20px overlap into the boat's band, or (b) hold the boat under the lighthouse at left and start the copy at the horizon. I lean (b). It keeps the rule that text never covers the boat.</li>
+      <li><b>Chapter one's moon</b> sits off-crop on phones, which desktop doesn't do. Is that acceptable, or should <code>cropStops</code> pan toward it during the first question?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section>
+  <div class="col">
+    <div class="label">3 · Scroll measurement strategy</div>
+    <h2>Measure against a viewport that never moves</h2>
+    <p>Today, progress is <code>-rect.top / (rect.height − innerHeight)</code>, read with <code>getBoundingClientRect()</code> on every frame. On iOS, <code>innerHeight</code> grows and shrinks as the toolbar collapses, so the denominator changes mid-scroll and the boat jumps. Replace it with fixed large-viewport sizes that are measured once.</p>
+  </div>
+
+  <div class="table-wrap">
+  <div class="score" role="table" aria-label="One scroll on iPhone, over time, across four tracks">
+    <div class="h">What happens (time ↓)</div><div class="h">Visitor / Safari</div><div class="h">Measurement</div><div class="h">Scene</div><div class="h">Can go wrong</div>
+    <div class="story">Page loads</div><div class="off">·</div><div class="on">Measure top, height and a 100lvh probe. Cache them.</div><div class="on">Render progress 0</div><div class="fail">Fonts load late and shift the top. Re-measure on <code>document.fonts.ready</code>.</div>
+    <div class="story">Visitor flicks up</div><div class="on">Momentum scroll, scroll events</div><div class="on">One rAF reads <code>scrollY</code> only</div><div class="off">·</div><div class="fail">Low Power Mode caps rAF at 30fps</div>
+    <div class="story">Toolbar collapses</div><div class="on">Height-only resize</div><div class="on">Ignored, sizes unchanged</div><div class="off">·</div><div class="fail">Today: innerHeight changes, progress jumps</div>
+    <div class="story">Boat moves</div><div class="off">·</div><div class="on"><code>(scrollY − top) / (height − lvhPx)</code>, clamped</div><div class="on">Layers, crop, copy update</div><div class="fail">Rubber-band overscroll goes past 0 or 1. Clamp.</div>
+    <div class="story">Phone rotates</div><div class="on">Width changes</div><div class="on">Save progress, re-measure, restore with <code>behavior: "instant"</code></div><div class="on">Same frame, new framing</div><div class="fail"><code>html {scroll-behavior: smooth}</code> would animate the jump</div>
+    <div class="story">Back button returns</div><div class="on">bfcache restore</div><div class="on"><code>pageshow</code>: re-measure</div><div class="on">Same frame</div><div class="fail">Stale cached top</div>
+  </div>
+  </div>
+
+  <div class="col">
+    <ul>
+      <li><span class="tag t-conf">confirmed</span> CSS Values 4 defines <code>lvh</code>/<code>vh</code> with toolbars retracted, and neither changes during scroll. <code>dvh</code> can resize while scrolling. <a href="https://www.w3.org/TR/css-values-4/">W3C</a></li>
+      <li><span class="tag t-conf">confirmed</span> Safari 26.1 fixed a bottom gap under viewport-sized fixed containers. 26.2 fixed sticky elements disappearing during rubber-banding and added <code>scrollend</code>. <a href="https://webkit.org/blog/17541/webkit-features-for-safari-26-1/">26.1</a> · <a href="https://webkit.org/blog/17640/webkit-features-for-safari-26-2/">26.2</a></li>
+      <li><span class="tag t-conf">confirmed</span> iOS 26.0 reported mismatched <code>innerHeight</code> and <code>visualViewport.height</code> after toolbar changes. Reports say the 26.1 fix was partial. <a href="https://bugs.webkit.org/show_bug.cgi?id=297779">WebKit 297779</a></li>
+      <li><span class="tag t-conf">confirmed</span> Low Power Mode throttles rAF and CSS animations to 30fps. <a href="https://bugs.webkit.org/show_bug.cgi?id=168837">WebKit 168837</a></li>
+      <li><span class="tag t-conf">confirmed</span> <code>orientationchange</code> is deprecated. Use <code>screen.orientation</code> <code>change</code> or a width-changed resize. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/orientationchange_event">MDN</a></li>
+      <li><span class="tag t-assume">assumption</span> Next 16's <code>export const viewport</code> accepts <code>viewportFit: "cover"</code>. Check the generated <code>&lt;meta&gt;</code> tag.</li>
+      <li><span class="tag t-device">device test</span> Whether scroll events and rAF fire continuously during momentum, how resize events are ordered on rotation, and what each of <code>innerHeight</code>, <code>clientHeight</code> and <code>visualViewport</code> reports in Compact vs Bottom tab modes.</li>
+      <li><span class="tag t-assume">note</span> Sticky breaks under an ancestor with <code>overflow: hidden/auto</code>. The current wrappers are safe. <code>JourneyStacked</code>'s <code>overflow-x-clip</code> is fine but is being removed anyway.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section>
+  <div class="col">
+    <div class="label">4 · Rendering performance</div>
+    <h2>What we measured, and what only an iPhone can say</h2>
+    <p>Measured in Chrome with a 393×852 viewport on an Apple-silicon Mac. I scrolled 60 steps of 12px each, at four points on the timeline. These numbers count work. They do not predict iPhone smoothness.</p>
+    <div class="table-wrap"><table>
+      <tr><th>Point</th><th>Scene elements rewritten per frame</th><th>Style writes / frame</th><th>Frame ms (median · p95)</th></tr>
+      <tr><td>Chapter 1</td><td class="num">122 of 281</td><td class="num">111</td><td class="num">8.3 · 8.9</td></tr>
+      <tr><td>Chapter 2 stars</td><td class="num">120 of 281</td><td class="num">117</td><td class="num">8.3 · 9.4</td></tr>
+      <tr><td>Storm</td><td class="num">124 of 281</td><td class="num">123</td><td class="num">8.6 · 13.0</td></tr>
+      <tr><td>Arrival</td><td class="num">125 of 281</td><td class="num">128</td><td class="num">10.1 · 15.2</td></tr>
+    </table></div>
+    <p>The scene runs 106 CSS animations at once. React re-renders the whole Stage every frame, because progress is state in <code>Journey</code>.</p>
+
+    <h3>Ranked risks</h3>
+    <ol class="rank">
+      <li><div><span class="tag t-conf">measured</span> <b>Ninety star spans each get the same opacity write every frame</b> (<code>Stage.tsx:188</code>). Moving it to the parent layer cuts about 75% of per-frame DOM writes. It is cheap, visually identical, and should be done first.</div></li>
+      <li><div><span class="tag t-risk">hypothesis · highest stakes</span> <b>Memory from very wide layers.</b> Seven <code>will-change</code> layers at 660% of the scene width. The crop makes the scene 767px wide, so each layer is about 5,060 × 852 CSS px, or about 15,000 × 2,500 device px at 3×. WebKit tiling should back only the visible tiles, but that isn't documented. Failure looks like "A problem repeatedly occurred". Measure in the Layers tab.</div></li>
+      <li><div><span class="tag t-assume">hypothesis</span> <b>Full-screen <code>mix-blend-mode: overlay</code> grain</b> forces blending over every changing pixel. Try a baked image at plain opacity and compare.</div></li>
+      <li><div><span class="tag t-assume">hypothesis</span> <b>Four wave bands animate <code>background-position</code></b> on layers several screens wide. That repaints every frame regardless of scroll.</div></li>
+      <li><div><span class="tag t-assume">hypothesis</span> <b><code>filter</code> animations</b>: brightness twinkle on 95 spans, plus cloud brightness that changes with the storm.</div></li>
+      <li><div><span class="tag t-assume">hypothesis</span> <b>Large RGBA PNGs drawn through SVG <code>&lt;image&gt;</code></b> (dock 2172×724, candle boat 1774×887, adult, child: about 25&nbsp;MB decoded) and resampled under the 1.4× camera zoom.</div></li>
+      <li><div><span class="tag t-assume">hypothesis</span> <b>Typewriter slicing</b> re-lays out text on every frame while copy types. The window is short.</div></li>
+    </ol>
+
+    <h3>Profiling plan (bounded, physical iPhone)</h3>
+    <ol>
+      <li>Use an older supported phone (such as an iPhone 12 or SE 3) plus Safari Web Inspector over cable, with the Timelines tab (Rendering Frames, JavaScript, Memory) and the Layers tab.</li>
+      <li>Record one 29-screen scroll and one storm scrub. Note the share of frames over 16.7ms, peak memory, and layer count and size.</li>
+      <li>Repeat with one change at a time: star opacity on the layer, grain off, waves paused. Keep a change only if it measurably helps.</li>
+      <li>Do one pass in Low Power Mode and one with the 120Hz flag on. The acceptance bar is "usable at 30fps".</li>
+      <li>Only if React time dominates: write transforms directly rather than via state. That is a later step, not part of this change.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section>
+  <div class="col">
+    <div class="label">5 · Acceptance checks</div>
+    <h2>Done means all of these, observed</h2>
+    <p>These boxes are empty on purpose. Nothing has been implemented yet. Each check says where it has to be verified.</p>
+    <ul class="checks">
+      <li><span>Timeline tests still pass. A new test proves the boat is inside the crop at every 0.001 of progress.<span class="where">CI</span></span></li>
+      <li><span>Desktop (1440×900) screenshots at intro, each chapter, storm and arrival match the current build.<span class="where">browser</span></span></li>
+      <li><span>Only one scene is present in the server HTML. Heading IDs are unique.<span class="where">build</span></span></li>
+      <li><span>At 320×568, 375×667, 393×852 and 430×932, all chapter copy is fully readable, never clipped, and never covers the boat.<span class="where">simulator</span></span></li>
+      <li><span>Figures on the dock, the boat, and the lighthouse on its cliffs are fully visible at departure and arrival.<span class="where">simulator</span></span></li>
+      <li><span>Each example appears alone and fully on screen, after its chapter's copy.<span class="where">simulator</span></span></li>
+      <li><span>No horizontal overflow at any size. Controls clear the Dynamic Island in both orientations.<span class="where">simulator</span></span></li>
+      <li><span>Short landscape (852×393): copy readable, boat uncovered.<span class="where">simulator</span></span></li>
+      <li><span>Scrolling slowly past the toolbar collapse, in Compact and in Bottom tab mode, causes no jump in scene or progress.<span class="where">iPhone</span></span></li>
+      <li><span>A hard flick keeps the boat moving continuously. Rubber-banding at both ends doesn't glitch.<span class="where">iPhone</span></span></li>
+      <li><span>Rotating at 0%, 50% and 100% returns to the same frame.<span class="where">iPhone</span></span></li>
+      <li><span>Back, then forward (bfcache), restores the same frame.<span class="where">iPhone</span></span></li>
+      <li><span>Rendering Frames: 90% or more of frames under 16.7ms through the storm on the reference phone.<span class="where">iPhone</span></span></li>
+      <li><span>Layers memory stays under an agreed budget (proposed: 300&nbsp;MB). Five minutes of scrubbing causes no reload.<span class="where">iPhone</span></span></li>
+      <li><span>Low Power Mode: motion stays continuous at 30fps.<span class="where">iPhone</span></span></li>
+      <li><span>With aA page zoom at 125% and 150%, and Display Zoom: the copy rules still hold.<span class="where">iPhone</span></span></li>
+    </ul>
+    <p class="note">The Simulator settles layout, safe areas, orientation and toolbar measurements. It cannot show GPU memory limits, process kills, thermal throttling, ProMotion or real momentum physics. Those last six checks need the physical phone.</p>
+  </div>
+</section>
+</div>

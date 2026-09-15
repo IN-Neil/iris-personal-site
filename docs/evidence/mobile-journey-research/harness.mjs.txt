@@ -1,0 +1,266 @@
+// Headless Chrome over CDP. Usage: node harness.mjs <task> ; writes to ./evidence
+import { spawn } from "node:child_process";
+import { writeFileSync, mkdirSync } from "node:fs";
+
+const OUT = new URL("./evidence/", import.meta.url).pathname;
+mkdirSync(OUT, { recursive: true });
+const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const PORT = +(process.env.PORT || 9333);
+const BASE = "http://127.0.0.1:4401/"; // commit e267916, unmodified
+const PROTO = "http://127.0.0.1:4402/"; // prototype.patch applied
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+const chrome = spawn(CHROME, [
+  "--headless=new", `--remote-debugging-port=${PORT}`, "--no-first-run", "--hide-scrollbars", "--mute-audio",
+  "--autoplay-policy=user-gesture-required",
+  `--user-data-dir=${OUT}../chrome-profile-${PORT}`, "about:blank",
+], { stdio: "ignore" });
+process.on("exit", () => chrome.kill());
+
+let ws, nextId = 1;
+const pending = new Map();
+const listeners = [];
+async function connect() {
+  for (let i = 0; i < 50; i++) {
+    try {
+      const r = await fetch(`http://127.0.0.1:${PORT}/json/new?about:blank`, { method: "PUT" });
+      const t = await r.json();
+      ws = new WebSocket(t.webSocketDebuggerUrl);
+      await new Promise((res, rej) => { ws.onopen = res; ws.onerror = rej; });
+      ws.onmessage = (m) => {
+        const msg = JSON.parse(m.data);
+        if (msg.id && pending.has(msg.id)) {
+          const { res, rej } = pending.get(msg.id); pending.delete(msg.id);
+          msg.error ? rej(new Error(msg.error.message)) : res(msg.result);
+        } else if (msg.method) listeners.forEach((l) => l(msg));
+      };
+      return;
+    } catch { await sleep(200); }
+  }
+  throw new Error("no chrome");
+}
+const send = (method, params = {}) => new Promise((res, rej) => {
+  const id = nextId++; pending.set(id, { res, rej }); ws.send(JSON.stringify({ id, method, params }));
+});
+const once = (method) => new Promise((res) => { const l = (m) => { if (m.method === method) { listeners.splice(listeners.indexOf(l), 1); res(m.params); } }; listeners.push(l); });
+async function evaluate(expression) {
+  const r = await send("Runtime.evaluate", { expression, awaitPromise: true, returnByValue: true });
+  if (r.exceptionDetails) throw new Error(JSON.stringify(r.exceptionDetails).slice(0, 400));
+  return r.result.value;
+}
+async function viewport(width, height) {
+  await send("Emulation.setDeviceMetricsOverride", { width, height, deviceScaleFactor: 1, mobile: true });
+}
+async function goto(url) {
+  const loaded = once("Page.loadEventFired");
+  await send("Page.navigate", { url });
+  await loaded;
+  await evaluate("document.fonts.ready.then(()=>new Promise(r=>setTimeout(r,700)))");
+}
+const frames = (n = 2) => `await new Promise(r=>{let k=${n};const f=()=>--k?requestAnimationFrame(f):r();requestAnimationFrame(f)});`;
+async function shot(name) {
+  const r = await send("Page.captureScreenshot", { format: "jpeg", quality: 80 });
+  writeFileSync(OUT + name + ".jpg", Buffer.from(r.data, "base64"));
+}
+
+// Rects in CSS px of the layout viewport, with effective opacity/visibility.
+const MEASURE = `(()=>{
+  const vw=innerWidth, vh=innerHeight;
+  const R=e=>{if(!e)return null;const b=e.getBoundingClientRect();return {x:Math.round(b.left),y:Math.round(b.top),r:Math.round(b.right),b:Math.round(b.bottom),w:Math.round(b.width),h:Math.round(b.height)}};
+  const op=e=>{let o=1;for(let n=e;n&&n!==document.documentElement;n=n.parentElement){const c=getComputedStyle(n);if(c.display==='none'||c.visibility==='hidden')return 0;o*=parseFloat(c.opacity)}return +o.toFixed(3)};
+  const one=sel=>{const e=document.querySelector(sel);return e?{op:op(e),...R(e)}:null};
+  const chapters=[...document.querySelectorAll('[data-probe=chapter]')].map(e=>({id:e.dataset.id,op:op(e),...R(e)}));
+  const markers=[...document.querySelectorAll('[data-probe=marker]')].map(e=>{const kids=[...e.children];const rs=kids.map(k=>k.getBoundingClientRect());return {text:e.dataset.text,op:op(e),x:Math.round(Math.min(...rs.map(b=>b.left))),r:Math.round(Math.max(...rs.map(b=>b.right))),y:Math.round(Math.min(...rs.map(b=>b.top))),b:Math.round(Math.max(...rs.map(b=>b.bottom)))}});
+  return {vw,vh,frame:document.querySelector('[data-frame]')?.dataset.frame,debug:window.__journeyDebug?{...window.__journeyDebug}:null,
+    boat:one('[data-probe=boat]'),moon:one('[data-probe=moon]'),lighthouse:one('[data-probe=lighthouse]'),adult:one('[data-probe=adult]'),child:one('[data-probe=child]'),dock:one('[data-probe=dock]'),
+    intro:one('[data-probe=intro]'),ending:one('[data-probe=ending]'),chapters,markers};
+})()`;
+
+const inside = (b, vw, vh) => b && b.x >= 0 && b.r <= vw && b.y >= 0 && b.b <= vh;
+const overlap = (a, b) => a && b && a.x < b.r && b.x < a.r && a.y < b.b && b.y < a.b;
+
+// Scroll-screen positions (0..29) for the requested moments.
+// Chapter panel complete at t=0.2 of its segment; example i of n centred at 0.42+(i+.5)*0.54/n.
+const seg = { questions: [1, 8.5], building: [8.5, 15], community: [15, 20.5], part: [20.5, 26] };
+const at = (id, t) => +(seg[id][0] + t * (seg[id][1] - seg[id][0])).toFixed(3);
+const ex = (id, i, n) => at(id, 0.42 + (i + 0.5) * (0.54 / n));
+const moments = {
+  departure: 0,
+  "ch1-panel": at("questions", 0.2),
+  "ch2-panel-moon": at("building", 0.2),
+  "ch3-panel-longest": at("community", 0.2),
+  "q-longest": ex("questions", 4, 5), // "What does it mean to experience?"
+  "project-longest": ex("building", 0, 4), // "Rolling Context for Open WebUI"
+  arrival: 29,
+};
+
+async function screenshots() {
+  const results = [];
+  const plan = [
+    ...["crop", "compact", "wide"].flatMap((f) => [[393, 852], [320, 568]].map(([w, h]) => [f, w, h])),
+    ["wide", 852, 393],
+  ];
+  for (const [frame, w, h] of plan) {
+    await viewport(w, h);
+    for (const [name, s] of Object.entries(moments)) {
+      await goto(`${PROTO}?frame=${frame}&s=${s}`);
+      await evaluate(`(async()=>{${frames(3)}})()`);
+      const m = await evaluate(MEASURE);
+      const file = `${frame}-${w}x${h}-${name}`;
+      await shot(file);
+      results.push({ file, frame, w, h, moment: name, s, ...m });
+    }
+  }
+  writeFileSync(OUT + "screens.json", JSON.stringify(results, null, 1));
+}
+
+// Text fit: every chapter at its complete-panel moment, plus ending, at modelled zoom sizes.
+async function fit() {
+  const out = [];
+  const sizes = [[393, 852], [375, 667], [320, 568], [314, 682], [262, 568], [196, 426]]; // 314×682 = 393×852 at 125%, 262×568 = 393×852 at 150%, 196×426 = 200%
+  for (const frame of ["crop", "compact"]) for (const [w, h] of sizes) {
+    await viewport(w, h);
+    for (const [id, s] of [["questions", at("questions", 0.2)], ["building", at("building", 0.2)], ["community", at("community", 0.2)], ["part", at("part", 0.2)], ["ending", 29]]) {
+      await goto(`${PROTO}?frame=${frame}&s=${s}`);
+      await evaluate(`(async()=>{${frames(3)}})()`);
+      const m = await evaluate(MEASURE);
+      const panel = id === "ending" ? m.ending : m.chapters.find((c) => c.id === id);
+      const bodyFull = await evaluate(`(()=>{const p=[...document.querySelectorAll('[data-probe=${id === "ending" ? "ending" : "chapter"}]')]${id === "ending" ? "[0]" : `.find(e=>e.dataset.id==='${id}')`};const typed=p.querySelector('p.relative');if(!typed)return null;const vis=typed.querySelector('span.absolute');const sr=typed.querySelector('.sr-only');return vis?vis.textContent.replace(/\\s+$/,'').length>=sr.textContent.length:true})()`);
+      out.push({ frame, w, h, id, panelOpacity: panel.op, top: panel.y, height: panel.h, bottom: panel.b, horizon: Math.round(h * 0.58), boatTop: m.boat.y, clearanceToBoat: m.boat.y - panel.b, panelOverBoat: overlap(panel, m.boat), overflowsViewport: panel.b > h || panel.r > w, moonOverlap: m.moon && m.moon.op > 0.3 && overlap(panel, m.moon), lighthouseOverlap: id === "ending" && overlap(panel, m.lighthouse), bodyFullyTyped: bodyFull });
+    }
+  }
+  writeFileSync(OUT + "fit.json", JSON.stringify(out, null, 1));
+}
+
+// Camera sweep: forward, backward, and random jumps. Checks after each settled frame.
+async function sweep() {
+  const out = [];
+  for (const frame of ["crop", "compact"]) for (const [w, h] of [[393, 852], [320, 568]]) {
+    await viewport(w, h);
+    await goto(`${PROTO}?frame=${frame}&s=0`);
+    const positions = [];
+    for (let s = 0; s <= 29.0001; s += 0.05) positions.push(+s.toFixed(2));
+    const back = [...positions].reverse();
+    const rand = Array.from({ length: 200 }, (_, i) => +((Math.sin(i * 91.7) * 0.5 + 0.5) * 29).toFixed(2));
+    for (const [dir, list] of [["forward", positions], ["backward", back], ["jumps", rand]]) {
+      const res = await evaluate(`(async()=>{
+        const list=${JSON.stringify(list)}; const d=window.__journeyDebug; const fails=[]; let checked=0, markerFrames=0;
+        const inside=(b)=>b.left>=-0.5&&b.right<=innerWidth+0.5&&b.top>=-0.5&&b.bottom<=innerHeight+0.5;
+        const ov=(a,b)=>a.left<b.right&&b.left<a.right&&a.top<b.bottom&&b.top<a.bottom;
+        const op=e=>{let o=1;for(let n=e;n&&n!==document.documentElement;n=n.parentElement){const c=getComputedStyle(n);if(c.visibility==='hidden')return 0;o*=parseFloat(c.opacity)}return o};
+        const boatEl=document.querySelector('[data-probe=boat]');
+        const markers=[...document.querySelectorAll('[data-probe=marker]')];
+        const chapters=[...document.querySelectorAll('[data-probe=chapter]')];
+        for(const s of list){
+          scrollTo({top:d.top+(s/29)*(d.height-d.lvh),behavior:'instant'}); ${frames(2)}
+          checked++;
+          const boat=boatEl.getBoundingClientRect();
+          if(!inside(boat)) fails.push({s,what:'boat outside',x:Math.round(boat.left),r:Math.round(boat.right)});
+          for(const m of markers){const o=op(m); if(o<0.99) continue; markerFrames++; const rs=[...m.children].map(k=>k.getBoundingClientRect()); const b={left:Math.min(...rs.map(x=>x.left)),right:Math.max(...rs.map(x=>x.right)),top:Math.min(...rs.map(x=>x.top)),bottom:Math.max(...rs.map(x=>x.bottom))}; if(!inside(b)) fails.push({s,what:'example clipped',text:m.dataset.text,x:Math.round(b.left),r:Math.round(b.right)}); if(ov(b,boat)) fails.push({s,what:'example over boat',text:m.dataset.text});}
+          for(const c of chapters){if(op(c)<0.5) continue; const b=c.getBoundingClientRect(); if(ov(b,boat)) fails.push({s,what:'copy over boat',id:c.dataset.id,copyBottom:Math.round(b.bottom),boatTop:Math.round(boat.top)}); if(b.bottom>innerHeight) fails.push({s,what:'copy off bottom',id:c.dataset.id});}
+        }
+        return {checked,markerFrames,failCount:fails.length,fails:fails.slice(0,400)};
+      })()`);
+      out.push({ frame, w, h, dir, ...res });
+      console.log(frame, w, h, dir, res.checked, res.failCount);
+    }
+  }
+  writeFileSync(OUT + "sweep.json", JSON.stringify(out, null, 1));
+}
+
+// Per-frame work in the production build: DOM writes, trace time by category, frame intervals.
+async function perf() {
+  const out = [];
+  const points = { ch1: 3, stars: 12, storm: 22, arrival: 27.8 };
+  for (const [label, url, frame] of [["current desktop Journey @393 (base build, JourneyStacked hidden... see note)", PROTO, "wide"], ["crop", PROTO, "crop"], ["compact", PROTO, "compact"]]) {
+    for (const cpu of [1, 4]) {
+      await viewport(393, 852);
+      await send("Emulation.setCPUThrottlingRate", { rate: cpu });
+      for (const [pname, s] of Object.entries(points)) {
+        await goto(`${url}?frame=${frame}&s=${s}`);
+        await evaluate(`(async()=>{${frames(10)}})()`);
+        // Trace
+        const done = once("Tracing.tracingComplete");
+        await send("Tracing.start", { transferMode: "ReturnAsStream", traceConfig: { includedCategories: ["devtools.timeline", "disabled-by-default-devtools.timeline", "blink.user_timing"] } });
+        const inPage = await evaluate(`(async()=>{
+          document.documentElement.style.scrollBehavior='auto'; const startY=scrollY; const sticky=document.querySelector('.sticky'); const stage=sticky.firstElementChild;
+          let buf=[]; const mo=new MutationObserver(recs=>{buf.push(...recs)}); mo.observe(sticky,{attributes:true,subtree:true,childList:true,characterData:true});
+          const perFrameWrites=[], perFrameElements=[], stageEls=[], intervals=[]; let last=performance.now();
+          mo.takeRecords(); buf=[];
+          for(let i=0;i<60;i++){
+            scrollBy(0,12); ${frames(1)}
+            const t=performance.now(); intervals.push(t-last); last=t;
+            // React commits after the rAF that read scroll; collect in the next frame.
+            const recs=[...buf, ...mo.takeRecords()]; buf=[]; perFrameWrites.push(recs.length); const set=new Set(recs.map(r=>r.target)); perFrameElements.push(set.size); stageEls.push([...set].filter(e=>stage.contains(e)).length);
+          }
+          mo.disconnect();
+          const med=a=>{const b=[...a].sort((x,y)=>x-y);return +b[Math.floor(b.length/2)].toFixed(2)}; const p95=a=>{const b=[...a].sort((x,y)=>x-y);return +b[Math.floor(b.length*0.95)].toFixed(2)};
+          const stars=document.querySelectorAll('.star').length;
+          return {moved:Math.round(scrollY-startY), frames:60, stageNodes:stage.querySelectorAll('*').length, writesPerFrameMedian:med(perFrameWrites.slice(2)), elementsPerFrameMedian:med(perFrameElements.slice(2)), stageElementsPerFrameMedian:med(stageEls.slice(2)), intervalMedian:med(intervals), intervalP95:p95(intervals), animations:stage.getAnimations({subtree:true}).length};
+        })()`);
+        await send("Tracing.end");
+        const { stream } = await done;
+        let data = "";
+        for (;;) { const r = await send("IO.read", { handle: stream, size: 1 << 20 }); data += r.base64Encoded ? Buffer.from(r.data, "base64").toString() : r.data; if (r.eof) break; }
+        await send("IO.close", { handle: stream });
+        const parsed = JSON.parse(data);
+        const list = Array.isArray(parsed) ? parsed : parsed.traceEvents;
+        const main = list.find((e) => e.name === "TracingStartedInBrowser")?.args?.data?.frames?.[0]?.processId;
+        const sum = {};
+        const buckets = { scripting: ["FunctionCall", "EvaluateScript", "TimerFire", "FireAnimationFrame", "RunMicrotasks", "EventDispatch", "V8.Execute"], style: ["UpdateLayoutTree", "RecalculateStyles"], layout: ["Layout"], paint: ["Paint", "PaintImage", "Decode Image", "Rasterize"], composite: ["UpdateLayer", "UpdateLayerTree", "Layerize", "PrePaint", "CompositeLayers", "Commit"] };
+        for (const e of list) {
+          if (e.ph !== "B" && e.ph !== "X") continue;
+          if (main && e.pid !== main) continue;
+          for (const [k, names] of Object.entries(buckets)) if (names.includes(e.name) && e.dur) sum[k] = (sum[k] ?? 0) + e.dur / 1000;
+        }
+        const perFrame = Object.fromEntries(Object.entries(sum).map(([k, v]) => [k, +(v / 60).toFixed(2)]));
+        out.push({ frame, cpu, point: pname, ...inPage, traceMsPerFrame: perFrame });
+        console.log(frame, cpu, pname, JSON.stringify(inPage), JSON.stringify(perFrame));
+      }
+    }
+  }
+  await send("Emulation.setCPUThrottlingRate", { rate: 1 });
+  writeFileSync(OUT + "perf.json", JSON.stringify(out, null, 1));
+}
+
+// What a screen reader can reach at load, current build vs prototype.
+async function a11y() {
+  const out = {};
+  for (const [label, url, w, h] of [["base-393", BASE, 393, 852], ["base-1440", BASE, 1440, 900], ["proto-crop-393", PROTO + "?frame=crop", 393, 852]]) {
+    await viewport(w, h);
+    await goto(url);
+    await evaluate(`(async()=>{${frames(3)}})()`);
+    await send("Accessibility.enable");
+    const { nodes } = await send("Accessibility.getFullAXTree");
+    const keep = nodes.filter((n) => !n.ignored && ["heading", "link", "StaticText", "listitem"].includes(n.role?.value)).map((n) => `${n.role.value}: ${(n.name?.value ?? "").slice(0, 70)}`);
+    // de-duplicate consecutive StaticText that repeats its parent heading/link name
+    out[label] = keep.filter((t, i) => !(t.startsWith("StaticText") && keep[i - 1] && keep[i - 1].endsWith(t.slice(12))));
+  }
+  writeFileSync(OUT + "a11y.json", JSON.stringify(out, null, 1));
+}
+
+// Desktop reference: the current experience at 1440×900, same probes.
+async function desktopref() {
+  const results = [];
+  await viewport(1440, 900);
+  for (const [name, s] of Object.entries(moments)) {
+    await goto(`${PROTO}?frame=wide&s=${s}`);
+    await evaluate(`(async()=>{${frames(3)}})()`);
+    const m = await evaluate(MEASURE);
+    await shot(`desktop-1440x900-${name}`);
+    results.push({ moment: name, s, ...m });
+  }
+  writeFileSync(OUT + "desktopref.json", JSON.stringify(results, null, 1));
+}
+
+await connect();
+await send("Page.enable");
+const task = process.argv[2];
+if (task === "screens") await screenshots();
+if (task === "fit") await fit();
+if (task === "sweep") await sweep();
+if (task === "perf") await perf();
+if (task === "a11y") await a11y();
+if (task === "desktopref") await desktopref();
+console.log("done", task);
+process.exit(0);

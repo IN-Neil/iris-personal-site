@@ -1,0 +1,477 @@
+[
+ {
+  "frame": "wide",
+  "cpu": 1,
+  "point": "ch1",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 33.7,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.2,
+   "style": 0.95,
+   "composite": 0.54,
+   "paint": 0.68,
+   "layout": 0.1
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 1,
+  "point": "stars",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 33.9,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.09,
+   "style": 0.93,
+   "composite": 0.52,
+   "paint": 0.39,
+   "layout": 0.09
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 1,
+  "point": "storm",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 33.6,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.19,
+   "style": 1.1,
+   "composite": 0.55,
+   "paint": 0.41,
+   "layout": 0.02
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 1,
+  "point": "arrival",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.3,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 1.66,
+   "style": 0.88,
+   "composite": 0.55,
+   "paint": 0.62,
+   "layout": 0.06
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 4,
+  "point": "ch1",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.6,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "paint": 2.27,
+   "composite": 1.93,
+   "scripting": 5.75,
+   "style": 2.64,
+   "layout": 0.2
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 4,
+  "point": "stars",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.6,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 2.32,
+   "paint": 1.89,
+   "scripting": 6.09,
+   "style": 2.89,
+   "layout": 0.21
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 4,
+  "point": "storm",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.7,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "paint": 1.45,
+   "composite": 1.88,
+   "scripting": 5,
+   "style": 2.4
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 4,
+  "point": "arrival",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.6,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 1.99,
+   "paint": 2.08,
+   "scripting": 5.25,
+   "style": 2.23,
+   "layout": 0.16
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 1,
+  "point": "ch1",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.4,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.56,
+   "style": 1.26,
+   "composite": 0.57,
+   "paint": 0.95,
+   "layout": 0.1
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 1,
+  "point": "stars",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.4,
+  "intervalP95": 35.8,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 1.72,
+   "style": 0.87,
+   "composite": 0.53,
+   "paint": 0.46,
+   "layout": 0.05
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 1,
+  "point": "storm",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.1,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.02,
+   "style": 0.95,
+   "composite": 0.5,
+   "paint": 0.4
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 1,
+  "point": "arrival",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.4,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.26,
+   "style": 1.04,
+   "composite": 0.59,
+   "paint": 0.79,
+   "layout": 0.09
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 4,
+  "point": "ch1",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.2,
+  "intervalP95": 34.5,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 2.03,
+   "paint": 2.42,
+   "scripting": 5.33,
+   "style": 2.29,
+   "layout": 0.16
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 4,
+  "point": "stars",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.4,
+  "intervalP95": 34.4,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 1.93,
+   "paint": 1.64,
+   "scripting": 4.99,
+   "style": 2.24,
+   "layout": 0.21
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 4,
+  "point": "storm",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.4,
+  "intervalP95": 34.4,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 2.08,
+   "paint": 1.64,
+   "scripting": 5.12,
+   "style": 2.49
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 4,
+  "point": "arrival",
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.5,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 2.06,
+   "paint": 2.16,
+   "scripting": 5.39,
+   "style": 2.47,
+   "layout": 0.16
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 1,
+  "point": "ch1",
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.4,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.16,
+   "style": 0.97,
+   "composite": 0.58,
+   "paint": 0.5,
+   "layout": 0.09
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 1,
+  "point": "stars",
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.3,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 1.93,
+   "style": 0.87,
+   "composite": 0.49,
+   "paint": 0.31,
+   "layout": 0.08
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 1,
+  "point": "storm",
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.4,
+  "intervalP95": 34.2,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 1.86,
+   "style": 0.85,
+   "composite": 0.49,
+   "paint": 0.28
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 1,
+  "point": "arrival",
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.3,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 1.87,
+   "style": 0.82,
+   "composite": 0.5,
+   "paint": 0.49,
+   "layout": 0.08
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 4,
+  "point": "ch1",
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.4,
+  "intervalP95": 34.8,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 1.95,
+   "paint": 1.83,
+   "scripting": 5.17,
+   "style": 2.3,
+   "layout": 0.14
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 4,
+  "point": "stars",
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.4,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 2.25,
+   "paint": 1.37,
+   "scripting": 8.45,
+   "style": 3.35,
+   "layout": 0.32
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 4,
+  "point": "storm",
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.2,
+  "intervalP95": 34.5,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 1.89,
+   "paint": 1.21,
+   "scripting": 5.06,
+   "style": 2.54
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 4,
+  "point": "arrival",
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 0,
+  "elementsPerFrameMedian": 0,
+  "stageElementsPerFrameMedian": 0,
+  "intervalMedian": 33.3,
+  "intervalP95": 34.5,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "paint": 1.99,
+   "composite": 2.01,
+   "scripting": 4.95,
+   "style": 2.27,
+   "layout": 0.16
+  }
+ }
+]

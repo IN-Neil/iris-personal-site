@@ -1,0 +1,386 @@
+<title>Journey Phone Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Piazzolla:opsz,wght@8..30,400;8..30,600&family=Pixelify+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#EEEAE3; --raised:#E4DED4; --ink:#221D1A; --muted:#5C5550; --rule:#CFC6BA;
+  --accent:#476DA1; --accent-soft:rgba(71,109,161,.13);
+  --risk:#B84A31; --device:#9A5E36; --ok:#4F6B3F;
+  --serif:"Piazzolla",Georgia,serif; --pixel:"Pixelify Sans",ui-monospace,monospace; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#18212F; --raised:#1F2C42; --ink:#EAE6DE; --muted:#A9A39C; --rule:#34435A;
+    --accent:#57A9C7; --accent-soft:rgba(87,169,199,.15); --risk:#E07A5F; --device:#DC9A73; --ok:#9CB58A;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#18212F; --raised:#1F2C42; --ink:#EAE6DE; --muted:#A9A39C; --rule:#34435A;
+  --accent:#57A9C7; --accent-soft:rgba(87,169,199,.15); --risk:#E07A5F; --device:#DC9A73; --ok:#9CB58A;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--serif);font-size:16.5px;line-height:1.58;padding-inline:20px;padding-block:0 96px}
+.wrap{max-width:1040px;margin:0 auto}
+.col{max-width:700px}
+header.top{padding-block:52px 26px;border-bottom:1px solid var(--rule)}
+.eyebrow,.label{font-family:var(--pixel);text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;color:var(--muted)}
+h1{font-family:var(--pixel);font-weight:600;font-size:clamp(1.9rem,4.6vw,2.8rem);line-height:1.1;margin:8px 0 14px;text-wrap:balance}
+h2{font-family:var(--pixel);font-weight:600;font-size:1.4rem;line-height:1.2;margin:0 0 12px;text-wrap:balance}
+h3{font-weight:600;font-size:1.04rem;margin:22px 0 6px}
+p{margin:0 0 12px}
+code,.mono{font-family:var(--mono);font-size:.84em}
+code{background:var(--accent-soft);padding:1px 5px;border-radius:3px}
+section{padding-block:38px;border-top:1px solid var(--rule)}
+ul,ol{padding-left:1.2em;margin:0 0 12px} li{margin-bottom:5px}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:22px 0 4px}
+.verdict div{background:var(--ground);padding:14px 16px;font-size:.95rem;line-height:1.45}
+.verdict b{display:block;font-family:var(--pixel);font-weight:400;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+.tag{font-family:var(--pixel);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:1px 6px;border:1px solid currentColor;border-radius:2px;white-space:nowrap;vertical-align:2px}
+.t-ok{color:var(--ok)} .t-no{color:var(--risk)} .t-dev{color:var(--device)} .t-un{color:var(--muted)}
+.table-wrap{overflow-x:auto;margin:12px 0 16px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:600px}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--pixel);font-weight:400;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+td.n{font-family:var(--mono);font-size:.82rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bad{color:var(--risk)} .good{color:var(--ok)}
+.corr{border-left:3px solid var(--risk);padding:2px 0 2px 16px;margin:18px 0}
+.corr li{margin-bottom:8px}
+.shots{overflow-x:auto;margin:14px 0 22px}
+.shots table{min-width:760px;table-layout:fixed}
+.shots td{padding:6px;border-bottom:1px solid var(--rule)}
+.shots img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+.shots .cap{font-family:var(--mono);font-size:.72rem;line-height:1.35;color:var(--muted);margin-top:5px}
+.shots .cap .bad{font-weight:500}
+.shots th:first-child,.shots td:first-child{width:118px}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:12px 0}
+.pair figure{margin:0} .pair img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+.pair figcaption{font-size:.84rem;color:var(--muted);margin-top:6px}
+pre.code{font-family:var(--mono);font-size:.8rem;background:var(--raised);padding:14px 16px;border-radius:4px;overflow-x:auto;line-height:1.5}
+.files a{font-family:var(--mono);font-size:.85rem}
+.note{border-left:2px solid var(--device);padding:3px 0 3px 14px;color:var(--muted);font-size:.93rem}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Answer to the project lead · commit e267916 · repository not modified</div>
+  <h1>Journey Phone Prototype</h1>
+  <p class="col">The browser patch from the first report is now a real diff, built for production and measured in headless Chrome and in the iOS 26.2 Simulator. The measurements overturn the first report's framing recommendation. They also refute three of its claims (see the corrections at the end of this section).</p>
+  <div class="verdict">
+    <div><b>Camera</b>Choose <code>Journey compact</code>, not the crop. Compact is closer to desktop proportions, keeps departure whole, and needs no pan track. Crop failed its own sweep: the boat left the frame 22 times and every example was clipped.</div>
+    <div><b>Shared, whichever camera</b>These changes are needed with either camera: <code>lvh</code> measurement, portrait overlay rules, an example slot (compact currently hides the examples), links after the scene, and an accessible story transcript.</div>
+    <div><b>Reading limit</b>The pinned copy fits up to about the 125% model. At 150% and 200%, and for the ending on small phones, copy must leave the pinned frame and flow with the page.</div>
+    <div><b>Untested on a device</b>Smoothness, memory, rotation, bfcache, VoiceOver, and real Safari page zoom.</div>
+  </div>
+</header>
+
+<section>
+  <div class="col">
+    <div class="label">Corrections to the first report</div>
+    <div class="corr"><ul>
+      <li><b>"The crop keeps desktop relationships by construction" is false.</b> Adult height ÷ dock height is 1.58 at 1440×900, 2.80 in crop, 2.53 in compact and 5.50 in uncorrected wide at 393×852. Width-sized and height-sized sprites only agree at the desktop aspect ratio.</li>
+      <li><b>Landscape copy measurements were wrong.</b> They were taken with a full-width column override active at every width. Re-measured with the real desktop column, chapter one still covers the boat. That finding holds.</li>
+      <li><b>The "8–15 ms frame" figures were not work time.</b> They were intervals between animation frames on a 120 Hz display, in an Electron browser pane. I've withdrawn them and replaced them with the traces in item 7.</li>
+      <li><b>"120 elements per frame" was counted over 60 frames, not per frame.</b> Counted per frame, it's 112–121 elements. The size was right; the method was wrong.</li>
+      <li><b>"125% zoom" was a smaller viewport (314×682), not Safari page zoom.</b></li>
+      <li><b>Two of the first report's phone drawings came from an earlier 1.6-aspect run</b> that contaminated the 0.9 measurements.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- 1 -->
+<section>
+  <div class="col">
+    <div class="label">1 · Exact prototype changes</div>
+    <h2>What was built, and what was only recommended</h2>
+    <p><b>Commit tested:</b> <code>e267916</code>, with a clean working tree. I built an untouched <code>git archive</code> copy in a scratch directory. Its <code>index.html</code> (497,658 bytes, 13 scene markers) matched the repository's <code>out/</code>, so the first report's browser tests used this commit.</p>
+    <p><b>Prototype:</b> <a href="evidence/prototype.patch">prototype.patch</a> (438 lines, 5 files), applied to a second copy. <code>next build</code> (static export) and <code>tsc --noEmit</code> both passed. The patch also removes a few explanatory comments from <code>Journey.tsx</code>. That was a side effect of prototyping, not an intended change.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>Change</th><th>Where</th><th>Status</th></tr>
+    <tr><td>Render only <code>Journey</code> (no <code>JourneyStacked</code>)</td><td class="n">page.tsx</td><td><span class="tag t-ok">tested</span></td></tr>
+    <tr><td><code>?frame=wide|compact|crop</code> switch. If absent, <code>max-aspect-ratio: 9/10</code> picks crop. Chosen after mount.</td><td class="n">Journey.tsx</td><td><span class="tag t-ok">tested</span> as a test switch only. Not for production (see the first-paint note in item 6).</td></tr>
+    <tr><td>Container height <code>30 × 100lvh</code>, sticky scene height <code>100lvh</code>, a 100lvh probe, cached top/height/lvh, progress from <code>scrollY</code>, and re-measure only when width or lvh changes</td><td class="n">Journey.tsx</td><td><span class="tag t-ok">tested</span> in headless Chrome, plus toolbar collapse in the Simulator</td></tr>
+    <tr><td>Portrait overlays: 24px side columns, copy top <code>max(92px, safe-top + 76px)</code>, chapter two at <code>31%</code></td><td class="n">Journey.tsx</td><td><span class="tag t-ok">tested</span>. Chapter two collides at 320×568.</td></tr>
+    <tr><td>Crop: scene width <code>max(vw, 0.9·lvh)</code>, translated by <code>cropStops</code></td><td class="n">crop.ts, Journey.tsx</td><td><span class="tag t-ok">tested</span>. <span class="tag t-no">fails sweep</span></td></tr>
+    <tr><td>Crop example slot: x = 0.19, width 31%</td><td class="n">Stage.tsx</td><td><span class="tag t-ok">tested</span>. <span class="tag t-no">clips 5–8px</span></td></tr>
+    <tr><td><code>data-probe</code> measurement hooks, <code>?s=</code> start position, <code>?hud=1</code> readout</td><td class="n">Journey.tsx, Stage.tsx</td><td>Test harness only</td></tr>
+    <tr><td>Ending links after the scene, below-moon rule based on measured fit, transcript for screen readers, star opacity on the layer, retuned stops</td><td>—</td><td><span class="tag t-un">recommendation, not built</span></td></tr>
+  </table></div>
+  <div class="col">
+    <h3>Crop keyframes as tested</h3>
+    <p>Each value is the left edge of the phone window, as a percentage of scene width W = max(viewport width, 0.9 × lvh). The result is clamped to [0, W − viewport width].</p>
+<pre class="code">progress   0     0.12   0.19   0.84   0.95   1
+left %     6     6      14     14     40     41     (smoothstep between stops, via keyframes())</pre>
+  </div>
+</section>
+
+<!-- 2 -->
+<section>
+  <div class="col">
+    <div class="label">2 · Was compact tested?</div>
+    <h2>Not before. It is now, and it comes out ahead</h2>
+    <p>The first report's 47px boat and oversized figures came from <code>compact={false}</code>. That was the desktop <code>Journey</code> un-hidden at 393px, where the boat is 12% of the width. I didn't try <code>compact={true}</code> at all. Measured now, same moments:</p>
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>Framing · CSS viewport</th><th>Boat w×h</th><th>Adult w×h</th><th>Dock h</th><th>Adult ÷ dock</th><th>Boat w ÷ adult h</th><th>Departure in frame</th><th>Lighthouse at arrival</th></tr>
+    <tr><td><b>Desktop 1440×900</b> (reference)</td><td class="n">173×57</td><td class="n">93×314</td><td class="n">199</td><td class="n">1.58</td><td class="n">0.55</td><td>figures, dock, boat, moon, cliffs</td><td class="n">x 1066, h 287</td></tr>
+    <tr><td>Wide, uncorrected · 393×852</td><td class="n">47×16</td><td class="n">88×297</td><td class="n">54</td><td class="n bad">5.50</td><td class="n bad">0.16</td><td>all, boat tiny</td><td class="n">291–372</td></tr>
+    <tr><td><b>Compact</b> · 393×852</td><td class="n">90×30</td><td class="n">71×240</td><td class="n">95</td><td class="n">2.53</td><td class="n">0.38</td><td class="good">figures, dock, boat, moon, cliffs</td><td class="n bad">291–402 (9px clipped)</td></tr>
+    <tr><td>Crop · 393×852</td><td class="n">92×30</td><td class="n">88×297</td><td class="n">106</td><td class="n">2.80</td><td class="n">0.31</td><td class="bad">boat half out, moon out</td><td class="n good">253–334</td></tr>
+    <tr><td>Wide, uncorrected · 320×568</td><td class="n">38×13</td><td class="n">59×198</td><td class="n">44</td><td class="n bad">4.50</td><td class="n bad">0.19</td><td>all, boat tiny</td><td class="n">237–291</td></tr>
+    <tr><td><b>Compact</b> · 320×568</td><td class="n">74×24</td><td class="n">47×160</td><td class="n">77</td><td class="n">2.08</td><td class="n">0.46</td><td class="good">all</td><td class="n good">237–311</td></tr>
+    <tr><td>Crop · 320×568</td><td class="n">61×20</td><td class="n">58×198</td><td class="n">70</td><td class="n">2.83</td><td class="n">0.31</td><td>boat at edge (220–281)</td><td class="n good">187–241</td></tr>
+  </table></div>
+  <div class="col">
+    <p><b>Compact's gap:</b> <code>Stage.tsx:395</code> skips rendering every floating question and milestone when <code>compact</code> is true. The sweep counted zero example frames. Compact needs the same example-slot change the crop needed, and that combination hasn't been run.</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section>
+  <div class="col">
+    <div class="label">3 · Screenshots</div>
+    <h2>Four moments, three framings, two phone sizes</h2>
+    <p class="note">These are <b>CSS layout viewports</b> in headless Chrome with mobile emulation at DPR 1. They are not device screens, and <b>no browser controls are shown</b>: <code>innerHeight</code> = <code>lvh</code> = <code>svh</code>. In real Safari on an iPhone 17 (a 402×874 screen), the Simulator reported a 714px visible height with the toolbar showing and 754px with it collapsed. The "393×852" column therefore overstates the height available on a real phone by roughly 100–140px. Treat it as optimistic, and treat 320×568 as the stress case.</p>
+    <p>Moments, in screens scrolled out of 29: departure 0. Longest chapter (three) with panel fully typed: 16.1. Longest question, "What does it mean to experience?": 7.87. Longest project title, "Rolling Context for Open WebUI": 11.67. Arrival: 29.</p>
+  </div>
+
+  <h3>393 × 852 CSS px</h3>
+  <div class="shots"><table>
+    <tr><th>Moment</th><th>Wide, uncorrected</th><th>Compact</th><th>Crop</th></tr>
+    <tr><td>Departure</td>
+      <td><img loading="lazy" src="evidence/wide-393x852-departure.jpg" alt="Wide framing at 393 by 852, departure: tiny boat, oversized figures"><div class="cap">boat 47×16 · adult 88×297 · dock h 54</div></td>
+      <td><img loading="lazy" src="evidence/compact-393x852-departure.jpg" alt="Compact framing departure: figures, dock, boat, moon and cliffs in frame"><div class="cap">boat 90×30 · adult 71×240 · dock h 95</div></td>
+      <td><img loading="lazy" src="evidence/crop-393x852-departure.jpg" alt="Crop framing departure: figures whole, boat clipped at right edge"><div class="cap">boat x 330–422 <span class="bad">clipped</span> · dock h 106</div></td></tr>
+    <tr><td>Chapter three panel (longest)</td>
+      <td><img loading="lazy" src="evidence/wide-393x852-ch3-panel-longest.jpg" alt="Wide framing chapter three: narrow column of copy running down to the boat"><div class="cap">copy y 111–663 in a 165px column</div></td>
+      <td><img loading="lazy" src="evidence/compact-393x852-ch3-panel-longest.jpg" alt="Compact framing chapter three copy in the sky, boat clear"><div class="cap">copy 92–404 · boat top 706</div></td>
+      <td><img loading="lazy" src="evidence/crop-393x852-ch3-panel-longest.jpg" alt="Crop framing chapter three copy in the sky, boat clear"><div class="cap">copy 92–404 · boat top 699</div></td></tr>
+    <tr><td>Longest question</td>
+      <td><img loading="lazy" src="evidence/wide-393x852-q-longest.jpg" alt="Wide framing longest question visible"><div class="cap">x 79–255</div></td>
+      <td><img loading="lazy" src="evidence/compact-393x852-q-longest.jpg" alt="Compact framing: no question rendered"><div class="cap bad">not rendered in compact</div></td>
+      <td><img loading="lazy" src="evidence/crop-393x852-q-longest.jpg" alt="Crop framing: question clipped at left edge"><div class="cap">x −8–325 <span class="bad">clipped</span></div></td></tr>
+    <tr><td>Longest project</td>
+      <td><img loading="lazy" src="evidence/wide-393x852-project-longest.jpg" alt="Wide framing longest project title"><div class="cap">x 57–233</div></td>
+      <td><img loading="lazy" src="evidence/compact-393x852-project-longest.jpg" alt="Compact framing: no project title rendered"><div class="cap bad">not rendered in compact</div></td>
+      <td><img loading="lazy" src="evidence/crop-393x852-project-longest.jpg" alt="Crop framing: project title clipped at left"><div class="cap">x −8–325 <span class="bad">clipped</span></div></td></tr>
+    <tr><td>Arrival</td>
+      <td><img loading="lazy" src="evidence/wide-393x852-arrival.jpg" alt="Wide framing arrival: ending copy runs off screen"><div class="cap">ending 119–1088 <span class="bad">off-screen</span></div></td>
+      <td><img loading="lazy" src="evidence/compact-393x852-arrival.jpg" alt="Compact framing arrival: ending copy over large lighthouse"><div class="cap">ending 92–572 · lighthouse 291–402 <span class="bad">overlap, 9px clipped</span></div></td>
+      <td><img loading="lazy" src="evidence/crop-393x852-arrival.jpg" alt="Crop framing arrival: ending copy over lighthouse"><div class="cap">ending 92–572 · lighthouse 253–334 <span class="bad">overlap</span></div></td></tr>
+  </table></div>
+
+  <h3>320 × 568 CSS px</h3>
+  <div class="shots"><table>
+    <tr><th>Moment</th><th>Wide, uncorrected</th><th>Compact</th><th>Crop</th></tr>
+    <tr><td>Departure</td>
+      <td><img loading="lazy" src="evidence/wide-320x568-departure.jpg" alt="Wide framing departure at 320 by 568"><div class="cap">boat 38×13 · adult 59×198</div></td>
+      <td><img loading="lazy" src="evidence/compact-320x568-departure.jpg" alt="Compact framing departure at 320 by 568"><div class="cap">boat 74×24 · adult 47×160</div></td>
+      <td><img loading="lazy" src="evidence/crop-320x568-departure.jpg" alt="Crop framing departure at 320 by 568"><div class="cap">boat 61×20 · x 220–281</div></td></tr>
+    <tr><td>Chapter two panel (moon rule)</td>
+      <td><img loading="lazy" src="evidence/wide-320x568-ch2-panel-moon.jpg" alt="Wide framing chapter two copy off screen"><div class="cap">copy 74–707 <span class="bad">off-screen</span></div></td>
+      <td><img loading="lazy" src="evidence/compact-320x568-ch2-panel-moon.jpg" alt="Compact framing chapter two copy over the boat"><div class="cap">copy 176–487 · boat 465 <span class="bad">over boat</span></div></td>
+      <td><img loading="lazy" src="evidence/crop-320x568-ch2-panel-moon.jpg" alt="Crop framing chapter two copy over the boat"><div class="cap">copy 176–487 · boat 466 <span class="bad">over boat</span></div></td></tr>
+    <tr><td>Chapter three panel</td>
+      <td><img loading="lazy" src="evidence/wide-320x568-ch3-panel-longest.jpg" alt="Wide framing chapter three copy off screen"><div class="cap">copy 74–758 <span class="bad">off-screen</span></div></td>
+      <td><img loading="lazy" src="evidence/compact-320x568-ch3-panel-longest.jpg" alt="Compact framing chapter three copy, 34px above boat"><div class="cap">copy 92–431 · boat 465 (34px)</div></td>
+      <td><img loading="lazy" src="evidence/crop-320x568-ch3-panel-longest.jpg" alt="Crop framing chapter three copy, 35px above boat"><div class="cap">copy 92–431 · boat 466 (35px)</div></td></tr>
+    <tr><td>Longest question</td>
+      <td><img loading="lazy" src="evidence/wide-320x568-q-longest.jpg" alt="Wide framing longest question at 320"><div class="cap">x 64–212</div></td>
+      <td><img loading="lazy" src="evidence/compact-320x568-q-longest.jpg" alt="Compact framing no question at 320"><div class="cap bad">not rendered</div></td>
+      <td><img loading="lazy" src="evidence/crop-320x568-q-longest.jpg" alt="Crop framing question clipped at 320"><div class="cap">x −5–217 <span class="bad">clipped</span></div></td></tr>
+    <tr><td>Arrival</td>
+      <td><img loading="lazy" src="evidence/wide-320x568-arrival.jpg" alt="Wide framing arrival at 320"><div class="cap">ending 80–1140 <span class="bad">off-screen</span></div></td>
+      <td><img loading="lazy" src="evidence/compact-320x568-arrival.jpg" alt="Compact framing arrival at 320"><div class="cap">ending 92–643 <span class="bad">off-screen</span> · lighthouse 237–311</div></td>
+      <td><img loading="lazy" src="evidence/crop-320x568-arrival.jpg" alt="Crop framing arrival at 320"><div class="cap">ending 92–643 <span class="bad">off-screen</span> · lighthouse 187–241</div></td></tr>
+  </table></div>
+
+  <h3>Landscape collision, and the desktop reference</h3>
+  <div class="pair">
+    <figure><img loading="lazy" src="evidence/wide-852x393-ch1-panel.jpg" alt="Landscape 852 by 393: chapter one copy covers the boat and the route map"><figcaption><b>852×393, wide (what phones get in landscape today).</b> Chapter one copy spans y 79–392. The boat sits at x 229–353, y 301–342, so the copy covers it and the route map. At arrival, the ending spans 55–571 and runs off screen.</figcaption></figure>
+    <figure><img loading="lazy" src="evidence/desktop-1440x900-departure.jpg" alt="Desktop 1440 by 900 departure reference"><figcaption><b>1440×900 reference.</b> Boat 173×57, adult 93×314, dock height 199.</figcaption></figure>
+  </div>
+</section>
+
+<!-- 4 -->
+<section>
+  <div class="col">
+    <div class="label">4 · What the extra camera movement does</div>
+    <h2>Two pans. One is too narrow at each end</h2>
+    <ul>
+      <li><b>0–0.12, hold at 6%.</b> Departure: figures and dock visible, boat at the right edge. <span class="tag t-no">boat clipped at 393×852</span></li>
+      <li><b>0.12–0.19, pan to 14%.</b> Follows the boat drifting left, as the zoom goes from 1 to 1.4.</li>
+      <li><b>0.19–0.84, hold.</b> All four chapters: boat, moon (chapter two), and the example slot.</li>
+      <li><b>0.84–1, pan to 40–41%.</b> The zoom returns to 1 and the lighthouse (at 74% of the scene) enters. <span class="tag t-no">boat out of frame near 0.92 at 393×852</span></li>
+    </ul>
+    <h3>Sweep: 581 forward positions, the same 581 backward, and 200 random jumps</h3>
+    <p>Positions were 0.05 screens apart. After each move I waited two animation frames, then measured rendered rectangles, including every transform.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>Framing · size</th><th>Boat outside frame</th><th>Examples fully visible (frames)</th><th>Example clipped</th><th>Copy over boat</th></tr>
+    <tr><td>Crop · 393×852</td><td class="n bad">22 of 581 (s 0–1, ~27–28)</td><td class="n">199</td><td class="n bad">130 (all 15 examples)</td><td class="n good">0</td></tr>
+    <tr><td>Crop · 320×568</td><td class="n bad">1 (s 27.65)</td><td class="n">199</td><td class="n bad">130 (all 15)</td><td class="n bad">37 (chapter two)</td></tr>
+    <tr><td>Compact · 393×852</td><td class="n good">0</td><td class="n bad">0 (not rendered)</td><td class="n">—</td><td class="n good">0</td></tr>
+    <tr><td>Compact · 320×568</td><td class="n good">0</td><td class="n bad">0 (not rendered)</td><td class="n">—</td><td class="n bad">37 (chapter two)</td></tr>
+  </table></div>
+  <div class="col">
+    <ul>
+      <li><span class="tag t-ok">measured</span> <b>Direction and speed:</b> the backward and random-jump sweeps failed at exactly the same positions as the forward sweep. Framing is a pure function of progress, with no path-dependent state. A fast flick can skip frames but can't produce a different frame. On a real device, only the in-between frames during momentum remain untested.</li>
+      <li><span class="tag t-ok">measured</span> <b>Zoom:</b> the pan is applied outside the zoomed camera, which scales around the boat, so zoom never moved the boat out. The boat failures come from the stop values alone. Examples clip because x = 0.19 is scaled away from the boat pivot by 1.4×, landing 5–8px left of the window edge.</li>
+      <li><span class="tag t-un">untested candidate</span> Departure hold ≈ 10.5%, arrival ≤ 38%, slot x ≈ 0.215. These would need a clean sweep before anyone relies on them. The narrower the phone's aspect ratio, the smaller the valid range for each stop. That fragility is the main argument against the crop.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5 -->
+<section>
+  <div class="col">
+    <div class="label">5 · Text fit</div>
+    <h2>How it was measured, and where it breaks</h2>
+    <p><b>Method:</b> each chapter was measured at 20% through its segment, when its panel is fully typed. For each panel I recorded the rendered rectangle, the boat rectangle, and whether the typed text had reached the full body length (true for all 48 chapter measurements). The ending has no typewriter. Heights include the complete body either way, because <code>Typed</code> reserves the full invisible copy.</p>
+    <p><b>Zoom was modelled, not applied:</b> 125% = 314×682, 150% = 262×568 and 200% = 196×426. Each is 393×852 divided by the zoom factor, assuming Safari's aA zoom shrinks the CSS viewport. That assumption is untested. Compact and crop gave identical copy geometry (within 1–6px of boat position), because they share the overlay rules. The table shows compact.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>CSS viewport</th><th>Ch 1</th><th>Ch 2 (31% top)</th><th>Ch 3 (longest)</th><th>Ch 4</th><th>Ending (with links)</th></tr>
+    <tr><td class="n">393×852</td><td class="n good">257 · 359 clear</td><td class="n good">284 · 158 clear</td><td class="n good">312 · 302 clear</td><td class="n good">256 · 358</td><td class="n bad">480 · over lighthouse</td></tr>
+    <tr><td class="n">375×667</td><td class="n good">257 · 200</td><td class="n good">284 · 55</td><td class="n good">312 · 142</td><td class="n good">256 · 198</td><td class="n bad">507 · 47 over boat</td></tr>
+    <tr><td class="n">320×568</td><td class="n good">312 · 63</td><td class="n bad">311 · 22 over boat</td><td class="n good">339 · 34</td><td class="n good">283 · 90</td><td class="n bad">551 · off-screen</td></tr>
+    <tr><td class="n">314×682 (125%)</td><td class="n good">312 · 163</td><td class="n good">311 · 43</td><td class="n good">362 · 111</td><td class="n good">283 · 190</td><td class="n bad">572 · 94 over boat</td></tr>
+    <tr><td class="n">262×568 (150%)</td><td class="n good">367 · 13</td><td class="n bad">443 · off-screen</td><td class="n bad">499 · off-screen</td><td class="n bad">392 · 14 over boat</td><td class="n bad">709 · off-screen</td></tr>
+    <tr><td class="n">196×426 (200%)</td><td class="n bad">609 · off</td><td class="n bad">578 · off</td><td class="n bad">657 · off</td><td class="n bad">549 · off</td><td class="n bad">969 · off</td></tr>
+  </table></div>
+  <div class="col">
+    <p class="note">Each cell shows panel height in px, then clearance above the boat's top edge. These heights are in a toolbar-free viewport. In Safari with the toolbar showing, the bottom of the lvh scene is covered, so real clearance is smaller.</p>
+    <h3>Smallest readable fallback without a nested scroll</h3>
+    <p><b>Unpin the copy, not the scene.</b> If a panel's measured height exceeds its band (from the top inset to the boat's top minus 16px), render that panel as a normal block inside the tall container at its segment's scroll offset. It then scrolls past on the page, over a scrim, while the scene stays pinned behind it. That keeps one page scroll, no inner scroll area, complete copy, and the boat still moving. For the ending, always put the links and footer in normal flow after the scene on phones. This is essentially the lead's second alternative, used only where the pinned layout doesn't fit. <span class="tag t-un">not built</span></p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section>
+  <div class="col">
+    <div class="label">6 · Viewport strategy</div>
+    <h2>The large viewport, cached; re-measure when width or lvh changes</h2>
+<pre class="code">container height  = 30 × 100lvh          sticky scene = 100lvh
+measure()         top = rect.top + scrollY, height = rect.height,
+                  lvhPx = probe(100lvh).height, width = clientWidth
+progress          = clamp((scrollY − top) / (height − lvhPx))      // no innerHeight
+on resize         if width unchanged AND |probe lvh − lvhPx| &lt; 1 → ignore
+                  else measure(), scrollTo(top + kept × (height − lvhPx), "instant")
+also              fonts.ready → measure; pageshow → measure</pre>
+    <h3>Simulator evidence: iPhone 17, iOS 26.2 Safari, default tab bar <span class="tag t-dev">simulator, not device</span></h3>
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>State</th><th>innerHeight</th><th>clientHeight</th><th>visualViewport</th><th>svh</th><th>lvh</th><th>dvh</th><th>Resizes ignored / re-measured</th></tr>
+    <tr><td>Load, toolbar showing</td><td class="n">714</td><td class="n">714</td><td class="n">714</td><td class="n">714</td><td class="n">754</td><td class="n">714</td><td class="n">0 / 0</td></tr>
+    <tr><td>After swipe, toolbar collapsed</td><td class="n">754</td><td class="n">714</td><td class="n">754</td><td class="n">714</td><td class="n">754</td><td class="n">754</td><td class="n">3 / 0</td></tr>
+  </table></div>
+  <div class="col">
+    <p>The page scrolled to <code>scrollY</code> 690 at progress 0.0316. Only <code>innerHeight</code>, <code>visualViewport</code> and <code>dvh</code> changed, by 40px. The old formula divided by <code>innerHeight</code>, so it would have changed progress mid-scroll. The new one didn't re-measure. Screenshots of the readout are in this conversation, not attached.</p>
+    <h3>Why skip these resizes, and which ones still count</h3>
+    <ul>
+      <li><b>Skip:</b> toolbar collapse or expand. Nothing the formula uses changes, so re-measuring would only add layout reads and a chance of a jump. The rule is "width and lvh unchanged", not "only the height changed". The first report's wording was wrong.</li>
+      <li><b>Handled because lvh or width changes:</b> resizing a desktop window's height, iPad Split View and Stage Manager, rotation, and page zoom (width in CSS px).</li>
+      <li><b>Not covered by this rule:</b> content height changing without a resize (late fonts are handled; anything else isn't). Use a <code>ResizeObserver</code> on the container instead of relying on <code>fonts.ready</code>. <span class="tag t-un">recommendation</span></li>
+      <li><b>New issue found:</b> with the toolbar showing, the bottom 40px of the 100lvh scene sits under the toolbar, and the route map (<code>bottom-6</code>) sits in that strip. Pinned controls should anchor to the small viewport, for example <code>bottom: calc(100lvh − 100svh + 1.5rem)</code>. <span class="tag t-un">untested</span></li>
+      <li><b>First paint:</b> the prototype chooses its framing after mount, so phones briefly render the wide framing first. Production needs the framing decided before first paint: CSS media queries and container units for sizes, instead of a JS prop. <span class="tag t-un">untested</span></li>
+      <li><span class="tag t-dev">untested</span> Expanding the toolbar again, Bottom vs Compact tab layout, rotation (these Simulator tools can't rotate), the Back button (bfcache), and a physical phone.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7 -->
+<section>
+  <div class="col">
+    <div class="label">7 · Performance evidence</div>
+    <h2>A production build, measured in headless Chrome</h2>
+    <p><b>Method:</b> production static export; headless Chrome driven over the DevTools protocol; 393×852 mobile emulation. At each of four points (chapter 1, chapter 2 examples, storm, arrival), the page scrolled 60 steps of 12px, one per animation frame, with instant scrolling. Per frame, a MutationObserver counted style writes and distinct elements touched. A Chrome timeline trace was summed by category on the renderer process and divided by 60. I ran each point at unthrottled CPU (Apple silicon) and at 4× CPU throttle.</p>
+    <p class="note">Two earlier runs were discarded because of harness bugs: smooth scrolling cancelled the scroll steps, and an empty observer callback swallowed the records. Headless Chrome paints and composites differently from a real GPU, and 4× throttling is not an A-series phone. Use these numbers to compare the three framings with each other, not to predict iPhone smoothness.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>Framing</th><th>CPU</th><th>Writes / frame</th><th>Elements / frame (of 281)</th><th>Scripting ms</th><th>Style ms</th><th>Layout ms</th><th>Paint ms</th><th>Composite ms</th><th>Frame interval median · p95</th></tr>
+    <tr><td>Wide</td><td>1×</td><td class="n">120–131</td><td class="n">114–120</td><td class="n">2.2–3.7</td><td class="n">1.0–1.7</td><td class="n">≤0.15</td><td class="n">0.4–1.0</td><td class="n">0.5–0.9</td><td class="n">16.7 · ≤18.1</td></tr>
+    <tr><td>Compact</td><td>1×</td><td class="n">119–130</td><td class="n">113–119</td><td class="n">2.6–3.1</td><td class="n">1.1–1.4</td><td class="n">≤0.13</td><td class="n">0.4–0.7</td><td class="n">0.7–0.8</td><td class="n">16.7 · ≤17.6</td></tr>
+    <tr><td>Crop</td><td>1×</td><td class="n">120–132</td><td class="n">114–121</td><td class="n">2.2–2.4</td><td class="n">0.9–1.0</td><td class="n">≤0.10</td><td class="n">0.5–0.9</td><td class="n">0.5–0.6</td><td class="n">16.7 · ≤17.7</td></tr>
+    <tr><td>Wide</td><td>4×</td><td class="n">120–131</td><td class="n">114–120</td><td class="n">12.5–20.0</td><td class="n">5.3–9.0</td><td class="n">≤0.7</td><td class="n">2.1–3.9</td><td class="n">3.0–5.0</td><td class="n bad">20.3–29.3 · ≤47</td></tr>
+    <tr><td>Compact</td><td>4×</td><td class="n">119–130</td><td class="n">113–119</td><td class="n">13.5–16.1</td><td class="n">5.7–7.1</td><td class="n">≤0.6</td><td class="n">2.1–3.9</td><td class="n">3.5–4.1</td><td class="n bad">21.5–25.2 · ≤31</td></tr>
+    <tr><td>Crop</td><td>4×</td><td class="n">120–132</td><td class="n">114–121</td><td class="n">11.8–16.4</td><td class="n">4.9–6.9</td><td class="n">≤0.6</td><td class="n">2.4–5.7</td><td class="n">3.0–4.2</td><td class="n bad">18.3–26.2 · ≤33</td></tr>
+  </table></div>
+  <div class="col">
+    <ul>
+      <li><span class="tag t-ok">measured</span> The framing choice doesn't change the per-frame work: every framing rewrites about 115 scene elements per frame. The cost comes from re-rendering <code>Stage</code> from React state on every scroll frame. At 4× throttle all three miss 60fps, and scripting plus style recalculation account for most of the frame.</li>
+      <li><span class="tag t-un">inferred, not isolated</span> The 90 star spans probably make up most of those ~115 elements, since each star gets <code>opacity: s.starOpacity</code> (<code>Stage.tsx:188</code>). Only a before/after count on a patched build would confirm it.</li>
+      <li><span class="tag t-dev">physical iPhone only</span> Frame timing, memory of the wide parallax layers (crop scene 767px wide → layers ≈ 5,060 CSS px; compact at 393 → ≈ 2,590), grain blending, filter animations, Low Power Mode at 30fps, ProMotion, and thermal throttling.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8 -->
+<section>
+  <div class="col">
+    <div class="label">8 · Accessible story content</div>
+    <h2>Removing JourneyStacked, as the prototype does, loses the story for screen readers</h2>
+    <p><b>Measured</b> from Chrome's accessibility tree at page load:</p>
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>Build · width</th><th>Headings reachable</th><th>Milestones and questions</th><th>Links</th></tr>
+    <tr><td>Current · 393 (stacked layout shown)</td><td>IRIS, 4 chapter questions, ending</td><td class="good">10 milestone list items, questions as text</td><td class="good">Resume, LinkedIn, GitHub, Six Ways (×2)</td></tr>
+    <tr><td>Current · 1440 (desktop Journey)</td><td class="bad">IRIS only</td><td class="bad">none</td><td class="bad">none</td></tr>
+    <tr><td>Prototype · 393</td><td class="bad">IRIS only</td><td class="bad">none</td><td class="bad">none</td></tr>
+  </table></div>
+  <div class="col">
+    <p>Two things hide the content. <code>Stage</code> is <code>aria-hidden</code>, which covers every floating example. <code>panelStyle</code> also sets <code>visibility: hidden</code> on each chapter and the ending until their scroll moment, and that removes them from the accessibility tree. <b>Desktop has this problem today</b>; phones don't, only because of <code>JourneyStacked</code>.</p>
+    <h3>Proposal <span class="tag t-un">not built</span></h3>
+    <ol>
+      <li><b>One transcript in story order.</b> Place a visually hidden <code>&lt;article&gt;</code> before the sticky scene, built from the existing <code>Panels</code>: intro, then for each chapter its heading and body followed by its questions (<code>QuestionPanel</code>) or milestones (<code>ChapterPanel showItems</code>), then the ending. DOM order is the reading order: context before examples, exactly as <code>JourneyStacked</code> has it now.</li>
+      <li><b>Hide the visual duplicates from assistive tech.</b> Mark the sticky overlay group <code>aria-hidden</code>, keep <code>Stage</code> hidden, and give headings a single ID set.</li>
+      <li><b>Links:</b> milestone titles in the transcript are plain text. The one project link also appears in the ending navigation. That navigation is the only focusable set, and it reveals itself on <code>:focus-visible</code> so a sighted keyboard user never tabs into something invisible.</li>
+      <li><b>Verify</b> with the VoiceOver rotor (iOS and macOS) listing headings and links in order, and desktop Tab order.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- final -->
+<section>
+  <div class="col">
+    <div class="label">Recommendation</div>
+    <h2>The smallest implementation I'd build now</h2>
+    <p><b>Compact camera, full-screen</b>, plus the changes the evidence says either camera needs. No crop track, no <code>crop.ts</code>.</p>
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>File</th><th>Change</th></tr>
+    <tr><td class="n">app/page.tsx</td><td>Render <code>Journey</code> only.</td></tr>
+    <tr><td class="n">app/layout.tsx</td><td><code>export const viewport = { viewportFit: "cover" }</code>. The type exists in Next's bundled types (<code>extra-types.d.ts:52</code>).</td></tr>
+    <tr><td class="n">journey/Journey.tsx</td><td>The tested lvh measurement, with a ResizeObserver added. Portrait overlay rules, including a chapter-two top that falls back to 92px when the copy won't fit below the moon. Controls anchored to svh. The unpinned-copy fallback. Framing chosen by CSS media query before first paint.</td></tr>
+    <tr><td class="n">journey/Stage.tsx</td><td>Render examples in compact with a phone slot. Put star opacity on the layer. Compact lighthouse sized so it isn't clipped at 393 (currently 9px over).</td></tr>
+    <tr><td class="n">journey/Panels.tsx</td><td>Split the ending links from the pinned panel. Add the transcript composition.</td></tr>
+    <tr><td class="n">journey/JourneyStacked.tsx</td><td>Delete once the transcript passes VoiceOver.</td></tr>
+    <tr><td class="n">tests/</td><td>Keep the sweep harness as a script and run it as the gate: boat in frame, examples not clipped, copy not over the boat, at 393×852 and 320×568, forward, backward and jumps.</td></tr>
+  </table></div>
+  <div class="col">
+    <h3>Evidence that would send me back to the crop</h3>
+    <ul>
+      <li>Compact with examples enabled fails the sweep, and no single slot clears its larger moon and clouds at both 393 and 320 widths.</li>
+      <li>Design review judges compact's 2.1–2.5 figure-to-dock ratio further from desktop than crop's 2.8. On numbers compact is closer, but this is a visual call.</li>
+      <li>The compact lighthouse can't be kept whole at arrival without its own pan. At that point the crop's pan track is no longer extra complexity.</li>
+      <li>A physical iPhone shows compact and crop with the same memory and frame cost, and designers prefer the crop's framing. Frame cost did match in headless Chrome; memory hasn't been measured.</li>
+    </ul>
+    <h3>Evidence that would send me to the shorter scene with normal-flow text</h3>
+    <ul>
+      <li>At 125% real Safari zoom, or on a 375-wide phone with the toolbar showing, chapter copy doesn't fit, so the unpinned fallback becomes the common path rather than the exception.</li>
+      <li>A physical older iPhone stays under 60fps through the storm even after the star change. In that case, reducing how much of the scene is pinned is the cheaper lever.</li>
+    </ul>
+
+    <h3>Files</h3>
+    <ul class="files">
+      <li><a href="evidence/prototype.patch">prototype.patch</a>: the diff against e267916</li>
+      <li><a href="harness.mjs.txt">harness.mjs</a>: headless Chrome harness (screens, fit, sweep, perf, a11y, desktopref)</li>
+      <li><a href="evidence/screens.json">screens.json</a> · <a href="evidence/fit.json">fit.json</a> · <a href="evidence/sweep.json">sweep.json</a> · <a href="evidence/perf.json">perf.json</a> · <a href="evidence/a11y.json">a11y.json</a> · <a href="evidence/desktopref.json">desktopref.json</a></li>
+    </ul>
+    <p class="note">To reproduce: <code>git archive e267916</code> into two directories, run <code>pnpm install --offline</code> in each, apply the patch to one, run <code>next build</code> in both, serve each <code>out/</code> on 4401 (base) and 4402 (prototype), then <code>PORT=9401 node harness.mjs sweep</code>.</p>
+  </div>
+</section>
+</div>

@@ -1,0 +1,18 @@
+import type { Stop } from "@/lib/journey";
+
+/**
+ * PROTOTYPE. Phones only: left edge of the visible window, as % of the
+ * wider scene (scene width = max(viewport width, 0.9 × large viewport height)).
+ * These are the values tested in the earlier browser patch, unchanged.
+ */
+export const cropStops: Stop[] = [
+  [0, 6],
+  [0.12, 6],
+  [0.19, 14],
+  [0.84, 14],
+  [0.95, 40],
+  [1, 41],
+];
+
+/** Scene width in the crop framing (desktop-like aspect). */
+export const CROP_ASPECT = 0.9;

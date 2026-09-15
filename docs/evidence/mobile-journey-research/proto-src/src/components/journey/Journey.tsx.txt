@@ -1,0 +1,341 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { chapters, ending, intro, type Chapter } from "@/content/site";
+import {
+  activeSegment,
+  chapterPhases,
+  clamp,
+  fadeWindow,
+  keyframes,
+  SCROLL_SCREENS,
+  storyProgress,
+  segmentOrder,
+  segments,
+  type SegmentKey,
+} from "@/lib/journey";
+import { CROP_ASPECT, cropStops } from "@/lib/crop";
+import { ChapterLabel, ChapterPanel, EndingPanel, IntroPanel } from "./Panels";
+import { Stage } from "./Stage";
+
+/**
+ * PROTOTYPE. One scroll container with a sticky, large-viewport-sized stage.
+ * Scroll progress = (scrollY − containerTop) / (containerHeight − lvhPx),
+ * with all three sizes cached and re-measured only when the width or the
+ * 100lvh probe changes (not when the toolbar changes innerHeight).
+ */
+
+type Frame = "wide" | "compact" | "crop";
+
+type Debug = {
+  ignoredResizes: number;
+  remeasures: number;
+  top: number;
+  height: number;
+  lvh: number;
+  width: number;
+  scrollProgress: number;
+};
+
+declare global {
+  interface Window {
+    __journeyDebug?: Debug;
+  }
+}
+
+function useScrollProgress(
+  ref: React.RefObject<HTMLElement | null>,
+  probeRef: React.RefObject<HTMLElement | null>,
+) {
+  const [progress, setProgress] = useState(0);
+  const [size, setSize] = useState({ width: 0, lvh: 0 });
+
+  useEffect(() => {
+    const element = ref.current;
+    const probe = probeRef.current;
+    if (!element || !probe) return;
+
+    const debug: Debug = { ignoredResizes: 0, remeasures: 0, top: 0, height: 0, lvh: 0, width: 0, scrollProgress: 0 };
+    window.__journeyDebug = debug;
+
+    const measure = () => {
+      const rect = element.getBoundingClientRect();
+      debug.top = rect.top + window.scrollY;
+      debug.height = rect.height;
+      debug.lvh = probe.getBoundingClientRect().height;
+      debug.width = document.documentElement.clientWidth;
+      setSize({ width: debug.width, lvh: debug.lvh });
+    };
+    const read = () => {
+      const scrollable = debug.height - debug.lvh;
+      return scrollable > 0 ? clamp((window.scrollY - debug.top) / scrollable) : 0;
+    };
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      debug.scrollProgress = read();
+      setProgress(debug.scrollProgress);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    const restore = (scrollProgress: number) => {
+      window.scrollTo({ top: debug.top + scrollProgress * (debug.height - debug.lvh), behavior: "instant" });
+      schedule();
+    };
+    const onResize = () => {
+      const width = document.documentElement.clientWidth;
+      const lvh = probe.getBoundingClientRect().height;
+      // Toolbar collapse/expand changes innerHeight only; the 100lvh probe and width stay put.
+      if (width === debug.width && Math.abs(lvh - debug.lvh) < 1) {
+        debug.ignoredResizes++;
+        return;
+      }
+      const keep = debug.scrollProgress;
+      debug.remeasures++;
+      measure();
+      restore(keep);
+    };
+
+    measure();
+    const initial = new URLSearchParams(window.location.search).get("s");
+    if (initial !== null) restore(clamp(Number(initial) / (SCROLL_SCREENS - 1)));
+    else update();
+
+    document.fonts?.ready.then(() => {
+      const keep = read();
+      measure();
+      if (initial !== null) restore(clamp(Number(initial) / (SCROLL_SCREENS - 1)));
+      else restore(keep);
+    });
+    const onPageShow = () => {
+      measure();
+      schedule();
+    };
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", onResize);
+    window.addEventListener("pageshow", onPageShow);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("pageshow", onPageShow);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [ref, probeRef]);
+
+  return { progress, size };
+}
+
+function useFrame(): Frame {
+  const [frame, setFrame] = useState<Frame>("wide");
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("frame");
+    if (requested === "wide" || requested === "compact" || requested === "crop") setFrame(requested);
+    else setFrame(window.matchMedia("(max-aspect-ratio: 9/10)").matches ? "crop" : "wide");
+  }, []);
+  return frame;
+}
+
+/** Debug readout for the iOS Simulator (?hud=1). */
+function Hud() {
+  const ref = useRef<HTMLPreElement>(null);
+  useEffect(() => {
+    const probes = ["svh", "lvh", "dvh"].map((unit) => {
+      const el = document.createElement("div");
+      el.style.cssText = `position:fixed;top:0;left:0;width:0;visibility:hidden;height:100${unit}`;
+      document.body.appendChild(el);
+      return [unit, el] as const;
+    });
+    const id = window.setInterval(() => {
+      const d = window.__journeyDebug;
+      if (!ref.current || !d) return;
+      const units = probes.map(([u, el]) => `${u}:${Math.round(el.getBoundingClientRect().height)}`).join(" ");
+      ref.current.textContent =
+        `inner ${window.innerWidth}×${window.innerHeight} client ${document.documentElement.clientHeight}\n` +
+        `vv ${Math.round(window.visualViewport?.height ?? 0)} ${units}\n` +
+        `scrollY ${Math.round(window.scrollY)} p ${d.scrollProgress.toFixed(4)}\n` +
+        `ignored ${d.ignoredResizes} remeasured ${d.remeasures}`;
+    }, 200);
+    return () => window.clearInterval(id);
+  }, []);
+  return (
+    <pre
+      ref={ref}
+      className="pointer-events-none fixed left-2 top-[40%] z-50 bg-black/80 p-2 font-mono text-[11px] leading-tight text-lime-300"
+    />
+  );
+}
+
+/** Fades a panel in and out and nudges it upward as it settles. */
+function panelStyle(visibility: number): React.CSSProperties {
+  return {
+    opacity: visibility,
+    transform: `translate3d(0, ${Math.round((1 - visibility) * 24)}px, 0)`,
+    visibility: visibility <= 0.001 ? "hidden" : "visible",
+  };
+}
+
+const textPlacement: Record<Chapter["id"], { left: string; top: string }> = {
+  questions: { left: "9%", top: "20%" },
+  building: { left: "50%", top: "13%" },
+  community: { left: "50%", top: "13%" },
+  part: { left: "50%", top: "13%" },
+};
+
+/** PROTOTYPE portrait overlay: full-width column; chapter two starts below the moon. */
+const portraitTop: Record<Chapter["id"], string> = {
+  questions: "max(92px, calc(env(safe-area-inset-top) + 76px))",
+  building: "31%",
+  community: "max(92px, calc(env(safe-area-inset-top) + 76px))",
+  part: "max(92px, calc(env(safe-area-inset-top) + 76px))",
+};
+const portraitColumn: React.CSSProperties = { left: 24, right: 24, width: "auto" };
+
+const routeLabels: Record<SegmentKey, string> = {
+  intro: "Departure",
+  questions: chapters[0].label,
+  building: chapters[1].label,
+  community: chapters[2].label,
+  part: chapters[3].label,
+  ending: ending.label,
+};
+
+function RouteMap({ progress }: { progress: number }) {
+  const current = activeSegment(progress);
+  const stops: SegmentKey[] = segmentOrder.filter((key) => key !== "intro");
+  const currentIndex = stops.indexOf(current);
+
+  return (
+    <div className="pointer-events-none absolute bottom-6 left-8 flex items-center gap-4 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70">
+      <ol className="flex items-center" aria-label="Chapters">
+        {stops.map((key, i) => {
+          const reached = i <= currentIndex;
+          return (
+            <li key={key} className="flex items-center">
+              {i > 0 && (
+                <span
+                  aria-hidden="true"
+                  className="block h-px w-6 border-t border-dashed transition-colors"
+                  style={{ borderColor: "var(--color-ivory)", opacity: reached ? 0.9 : 0.3 }}
+                />
+              )}
+              <span
+                aria-current={key === current ? "step" : undefined}
+                className="block h-2.5 w-2.5 border transition-colors"
+                style={{
+                  borderColor: "var(--color-ivory)",
+                  backgroundColor:
+                    key === current ? "var(--color-poppy)" : reached ? "var(--color-ivory)" : "transparent",
+                }}
+              />
+              <span className="sr-only">{routeLabels[key]}</span>
+            </li>
+          );
+        })}
+      </ol>
+      <span aria-live="polite">
+        {current === "intro"
+          ? routeLabels.intro
+          : `${currentIndex + 1} / ${stops.length} · ${routeLabels[current]}`}
+      </span>
+    </div>
+  );
+}
+
+export function Journey() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const probeRef = useRef<HTMLDivElement>(null);
+  const frame = useFrame();
+  const [hud, setHud] = useState(false);
+  useEffect(() => setHud(new URLSearchParams(window.location.search).has("hud")), []);
+  const { progress: scrollProgress, size } = useScrollProgress(containerRef, probeRef);
+  const progress = storyProgress(scrollProgress);
+  const introVisible = fadeWindow(progress, segments.intro, 0.05);
+  const endingVisible = fadeWindow(progress, [0.94, 1], 0.035);
+
+  const portrait = frame !== "wide";
+  const crop = frame === "crop";
+  const sceneWidth = crop ? Math.max(size.width, Math.round(size.lvh * CROP_ASPECT)) : size.width;
+  const cropLeft = crop
+    ? clamp((keyframes(progress, cropStops) / 100) * sceneWidth, 0, Math.max(0, sceneWidth - size.width))
+    : 0;
+
+  return (
+    <div
+      ref={containerRef}
+      data-frame={frame}
+      className="relative"
+      style={{ height: `${SCROLL_SCREENS * 100}lvh` }}
+    >
+      <div ref={probeRef} aria-hidden="true" className="pointer-events-none invisible fixed left-0 top-0 w-0" style={{ height: "100lvh" }} />
+      {hud && <Hud />}
+      <div className="sticky top-0 w-full overflow-hidden" style={{ height: "100lvh" }}>
+        <Stage
+          progress={progress}
+          compact={frame === "compact"}
+          crop={crop}
+          className="absolute inset-0"
+          style={crop && sceneWidth ? { width: sceneWidth, transform: `translate3d(${-cropLeft}px, 0, 0)` } : undefined}
+        />
+
+        <div
+          data-probe="intro"
+          className="absolute left-[11%] top-[max(6rem,10%)] w-[min(30rem,44vw)] transition-none"
+          style={{ ...panelStyle(introVisible), ...(portrait ? { ...portraitColumn, top: 92 } : {}) }}
+        >
+          <IntroPanel />
+        </div>
+        <div
+          className="pointer-events-none absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70"
+          style={{ opacity: introVisible }}
+        >
+          <span>{intro.scrollHint}</span>
+          <span aria-hidden="true" className="scroll-hint block h-5 w-px bg-ivory/70" />
+        </div>
+
+        {chapters.map((chapter) => {
+          const phases = chapterPhases(progress, segments[chapter.id]);
+          const place = textPlacement[chapter.id];
+          return (
+            <div key={chapter.id} className="pointer-events-none absolute inset-0" style={panelStyle(phases.visible)}>
+              <div
+                data-probe="chapter"
+                data-id={chapter.id}
+                className="absolute w-[min(27rem,42vw)]"
+                style={portrait ? { ...portraitColumn, top: portraitTop[chapter.id] } : { left: place.left, top: place.top }}
+              >
+                <ChapterLabel chapter={chapter} />
+                <ChapterPanel
+                  chapter={chapter}
+                  heading={phases.heading}
+                  typed={phases.typed}
+                  centered
+                  className="mt-6"
+                />
+              </div>
+            </div>
+          );
+        })}
+
+        <div
+          data-probe="ending"
+          className="absolute left-[8%] top-[14%] w-[min(30rem,38vw)]"
+          style={{ ...panelStyle(endingVisible), ...(portrait ? { ...portraitColumn, top: 92 } : {}) }}
+        >
+          <EndingPanel />
+        </div>
+
+        <p
+          className="pointer-events-none absolute right-8 top-6 font-pixel text-[0.75rem] uppercase tracking-[0.12em] text-mist/70"
+          style={{ opacity: 1 - introVisible }}
+        >
+          {intro.title} · {intro.subtitle}
+        </p>
+
+        <RouteMap progress={progress} />
+      </div>
+    </div>
+  );
+}

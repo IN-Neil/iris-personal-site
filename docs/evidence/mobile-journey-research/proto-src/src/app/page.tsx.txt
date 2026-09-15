@@ -1,0 +1,13 @@
+import { Soundtrack } from "@/components/journey/Soundtrack";
+import { Journey } from "@/components/journey/Journey";
+
+// PROTOTYPE: one layout at every width. Framing is chosen inside Journey
+// (?frame=wide|compact|crop, default by aspect ratio).
+export default function Home() {
+  return (
+    <main>
+      <Soundtrack />
+      <Journey />
+    </main>
+  );
+}

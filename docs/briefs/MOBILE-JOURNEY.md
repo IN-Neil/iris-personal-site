@@ -134,6 +134,18 @@ Provide a discoverable reading presentation using the same content components. I
 
 When text cannot fit the animated frame, make all content reachable without shrinking it to fit or introducing a trap where repeated swipes cannot advance the page. Prefer the reading presentation for constrained/enlarged-text cases; test how users reach it rather than assuming automatic zoom detection is reliable. Reduced-motion users should get a non-parallax reading experience, not merely disabled decorative twinkles while the camera still travels. Keep artwork and sound controls available where appropriate.
 
+### Clarifications agreed before implementation (lead review, 2026-09-14)
+
+- **Scope tonight:** Phases 0–2 only, then stop for Codex review. This is an intermediate development checkpoint, not a deployable release. Keep `JourneyStacked` available. Do not merge or push.
+- **Reading control (Phase 3, not tonight):** label it “Read as text”, placed below the introductory copy rather than beside the sound controls. The reading presentation offers “View animated journey” to return.
+- **Reduced motion (Phase 3, not tonight):** default reduced-motion users to the reading presentation on desktop and mobile. Record this as an intentional accessibility change; ordinary desktop behaviour stays visually unchanged.
+- **First paint:** converting `compact` inline geometry to CSS variables touches desktop scene code, so the Phase 1 desktop baseline comparison is a hard gate, not a formality.
+- **Exposed strip:** with an `svh` stage, the strip revealed when browser controls collapse is painted with the foreground ocean colour.
+- **Test hooks:** stable, descriptive `data-journey` attributes are acceptable in production markup for geometry checks.
+- **Sizes:** every size in this brief is a CSS viewport (visible area, no browser controls), not a device screen. On an iPhone 17 Simulator, Safari 26.2 exposed 714 CSS px of height with the toolbar shown on an 874 pt screen.
+- **Browsers:** Simulator evidence is Safari only. Chrome on a physical iPhone (the user's browser) has different toolbar behaviour and remains outstanding until tested on the device.
+- **`scrollTo()`:** no programmatic repositioning on ordinary resizes; only a scoped orientation transition may restore position.
+
 ## 5. Checklist rules and evidence log
 
 Only mark `[x]` after doing and verifying an item. Record commit, command result, screenshot path, or measurement beside completed validation items. Use `BLOCKED — reason` for unavailable checks and leave them unchecked. Simulator results, viewport emulation, and physical-device results are different evidence classes.
@@ -144,16 +156,16 @@ At each phase end, add a short note: what changed, why, validation, remaining is
 
 Why: protect the deployed desktop and make the research reproducible after temporary files disappear.
 
-- [ ] Read applicable `AGENTS.md`; read relevant Next.js guides under `node_modules/next/dist/docs/` before coding.
-- [ ] Record current branch, HEAD, worktree status, and remote. Preserve unrelated user changes.
-- [ ] Identify the actual reviewed starting commit. Include this brief in the implementation worktree.
-- [ ] Create an isolated worktree on a new `codex/` branch, such as `codex/mobile-journey`; verify the name/path is unused first. Do not move or reset the user's checkout.
-- [ ] Use a separate preview port, for example 4318 if free. Keep the existing 4317 preview intact. Record the preview command and URL.
-- [ ] Preserve the selected reports, screenshots, JSON, harness, and relevant prototype source in a durable evidence directory. Record provenance and checksums; exclude browser profiles, dependencies, and build caches.
-- [ ] Fix report links in the preserved copy and verify that referenced images/data resolve.
-- [ ] Run existing tests, lint, typecheck, and production build in the worktree. Record failures before changing code.
-- [ ] Capture desktop baseline at 1440×900 for departure, chapter text, examples, storm, and arrival. Record progress positions and render conditions.
-- [ ] Record current mobile content inventory and existing known failures.
+- [x] Read applicable `AGENTS.md`; read relevant Next.js guides under `node_modules/next/dist/docs/` before coding. — `AGENTS.md` (Next 16 differs; use bundled docs); read `01-app/03-api-reference/04-functions/generate-viewport.md`.
+- [x] Record current branch, HEAD, worktree status, and remote. Preserve unrelated user changes. — `cursor/personal-site-03d5` at `eb160b5`, clean, remote `cursor-origin` (origin.cursor.com/gmr-in/iris-personal-site). User checkout untouched.
+- [x] Identify the actual reviewed starting commit. Include this brief in the implementation worktree. — Research used `e267916`; this branch starts at `eb160b5` (= `e267916` + this brief only).
+- [x] Create an isolated worktree on a new `codex/` branch, such as `codex/mobile-journey`; verify the name/path is unused first. Do not move or reset the user's checkout. — `/Users/gmr/Documents/iris-personal-site-mobile-journey` on `codex/mobile-journey` (path and branch checked unused); `pnpm install --offline`.
+- [x] Use a separate preview port, for example 4318 if free. Keep the existing 4317 preview intact. Record the preview command and URL. — `pnpm exec next dev -p 4318` → http://127.0.0.1:4318/ (HTTP 200). 4317 was not running; left alone.
+- [x] Preserve the selected reports, screenshots, JSON, harness, and relevant prototype source in a durable evidence directory. Record provenance and checksums; exclude browser profiles, dependencies, and build caches. — `docs/evidence/mobile-journey-research/` (2.2 MB): `MANIFEST.md`, `SHA256SUMS`. Harness and prototype sources stored as `.txt` so they are not linted or run.
+- [x] Fix report links in the preserved copy and verify that referenced images/data resolve. — `prototype-evidence.html`: 40 local references, 0 missing (script check).
+- [x] Run existing tests, lint, typecheck, and production build in the worktree. Record failures before changing code. — `pnpm test` pass (6 tests), `pnpm lint` pass, `pnpm build` pass. **`pnpm typecheck` fails on a fresh checkout** (`layout.tsx: Cannot find name 'LayoutProps'`) and passes after `pnpm build` generates `.next/types`. Pre-existing ordering dependency, not changed here.
+- [x] Capture desktop baseline at 1440×900 for departure, chapter text, examples, storm, and arrival. Record progress positions and render conditions. — `node scripts/journey-check.mjs capture <baseline build> <dir> 1440x900`: 10 positions (screens of travel: departure 0, ch1 copy 2.5, longest question 7.87, ch2 copy 9.8, longest project 11.67, ch3 copy 16.1, storm + ch4 copy 22, storm example 24.5, open water 26.8, arrival 29). Headless Chrome, CSS viewport, DPR 1, CSS animations frozen at first frame, production static export of `eb160b5`. Repeat capture: 9 of 10 identical; departure differs by 1,157 px (0.09%, y 608–858), the noise floor for later comparison. PNGs kept outside git (session scratchpad `desktop-baseline/`), reproducible with the command.
+- [x] Record current mobile content inventory and existing known failures. — See the Phase 0 note in section 7.
 
 Gate: reproducible baseline and isolated worktree ready. Commit the brief/evidence manifest; avoid committing huge raw traces without a reason.
 
@@ -289,6 +301,33 @@ Changes and rationale:
 Verification performed (environment + evidence paths):
 Unchecked items / known limits:
 Next action:
+```
+
+```text
+Phase: 0 — Preserve evidence and isolate the experiment
+Commit: (this commit; see git log on codex/mobile-journey)
+Changes and rationale: isolated worktree and branch; research evidence preserved with
+  checksums; lead clarifications recorded in section 4; dependency-free check script
+  (scripts/journey-check.mjs: capture / compare / sweep) so later gates are reproducible.
+Verification performed (environment + evidence paths): see Phase 0 checkboxes. Baseline
+  test/lint/build pass; typecheck needs a prior build. Desktop baseline: 10 frozen
+  1440×900 captures, repeatable (departure noise 0.09%).
+Current mobile content inventory (eb160b5, viewport < 768px, JourneyStacked):
+  intro (greeting, IRIS, thesis); chapters 1–4 each with "Chapter N · heading", question,
+  full body; chapter 1: five questions as a spaced list; chapters 2–4: milestone titles with
+  notes (4 / 3 / 3), "Six Ways to See One File" linked; ending: label, heading, body,
+  "Onwards.", Resume / LinkedIn / GitHub / Six Ways links, signature, credits line.
+  Seven Stage scenes are server-rendered at every width (one hidden).
+Existing known failures:
+  - Desktop Journey: chapter, question and ending content is visibility:hidden until its
+    scroll moment, so assistive technology reaches only "IRIS" at load
+    (evidence/a11y.json, base-1440). Phones currently rely on JourneyStacked for this.
+  - Phones in landscape ≥ 768 CSS px already get the desktop Journey; chapter one copy
+    covers the boat at 852×393 (evidence/wide-852x393-ch1-panel.jpg).
+  - Progress divides by window.innerHeight, which changes with iOS toolbars.
+  - pnpm typecheck fails before the first build (LayoutProps types are generated).
+Unchecked items / known limits: none in Phase 0.
+Next action: Phase 1 shared responsive foundation.
 ```
 
 Final summary must distinguish implemented, verified in desktop/mobile emulation, verified in Simulator, verified on a physical phone, and not yet verified. The reviewer should be able to reproduce the important claims without reconstructing the chat history.

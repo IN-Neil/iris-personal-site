@@ -1,0 +1,5869 @@
+[
+ {
+  "frame": "crop",
+  "w": 393,
+  "h": 852,
+  "dir": "forward",
+  "checked": 581,
+  "markerFrames": 199,
+  "failCount": 152,
+  "fails": [
+   {
+    "s": 0,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.05,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.1,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.15,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.2,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.25,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.3,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.35,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.4,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.45,
+    "what": "boat outside",
+    "x": 329,
+    "r": 421
+   },
+   {
+    "s": 0.5,
+    "what": "boat outside",
+    "x": 326,
+    "r": 418
+   },
+   {
+    "s": 0.55,
+    "what": "boat outside",
+    "x": 321,
+    "r": 413
+   },
+   {
+    "s": 0.6,
+    "what": "boat outside",
+    "x": 313,
+    "r": 405
+   },
+   {
+    "s": 0.65,
+    "what": "boat outside",
+    "x": 304,
+    "r": 396
+   },
+   {
+    "s": 4.45,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -2,
+    "r": 288
+   },
+   {
+    "s": 4.5,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -4,
+    "r": 285
+   },
+   {
+    "s": 4.55,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -7,
+    "r": 282
+   },
+   {
+    "s": 4.6,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -10,
+    "r": 279
+   },
+   {
+    "s": 4.65,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -13,
+    "r": 276
+   },
+   {
+    "s": 4.7,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -16,
+    "r": 273
+   },
+   {
+    "s": 4.75,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -19,
+    "r": 270
+   },
+   {
+    "s": 4.8,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -22,
+    "r": 267
+   },
+   {
+    "s": 4.85,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -25,
+    "r": 264
+   },
+   {
+    "s": 5.25,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -1,
+    "r": 187
+   },
+   {
+    "s": 5.3,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -4,
+    "r": 184
+   },
+   {
+    "s": 5.35,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -7,
+    "r": 181
+   },
+   {
+    "s": 5.4,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -10,
+    "r": 178
+   },
+   {
+    "s": 5.45,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -13,
+    "r": 175
+   },
+   {
+    "s": 5.5,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -15,
+    "r": 172
+   },
+   {
+    "s": 5.55,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -18,
+    "r": 169
+   },
+   {
+    "s": 5.6,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -21,
+    "r": 167
+   },
+   {
+    "s": 5.65,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -24,
+    "r": 164
+   },
+   {
+    "s": 6.1,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -3,
+    "r": 244
+   },
+   {
+    "s": 6.15,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -6,
+    "r": 241
+   },
+   {
+    "s": 6.2,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -9,
+    "r": 238
+   },
+   {
+    "s": 6.25,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -12,
+    "r": 235
+   },
+   {
+    "s": 6.3,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -15,
+    "r": 233
+   },
+   {
+    "s": 6.35,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -18,
+    "r": 230
+   },
+   {
+    "s": 6.4,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -21,
+    "r": 227
+   },
+   {
+    "s": 6.45,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -24,
+    "r": 224
+   },
+   {
+    "s": 6.9,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -3,
+    "r": 330
+   },
+   {
+    "s": 6.95,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -6,
+    "r": 327
+   },
+   {
+    "s": 7,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -9,
+    "r": 324
+   },
+   {
+    "s": 7.05,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -11,
+    "r": 321
+   },
+   {
+    "s": 7.1,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -14,
+    "r": 319
+   },
+   {
+    "s": 7.15,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -17,
+    "r": 316
+   },
+   {
+    "s": 7.2,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -20,
+    "r": 313
+   },
+   {
+    "s": 7.25,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -23,
+    "r": 310
+   },
+   {
+    "s": 7.7,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -2,
+    "r": 331
+   },
+   {
+    "s": 7.75,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -5,
+    "r": 328
+   },
+   {
+    "s": 7.8,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -8,
+    "r": 325
+   },
+   {
+    "s": 7.85,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -11,
+    "r": 322
+   },
+   {
+    "s": 7.9,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -14,
+    "r": 319
+   },
+   {
+    "s": 7.95,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -17,
+    "r": 316
+   },
+   {
+    "s": 8,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -20,
+    "r": 313
+   },
+   {
+    "s": 8.05,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -22,
+    "r": 310
+   },
+   {
+    "s": 11.6,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -3,
+    "r": 330
+   },
+   {
+    "s": 11.65,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -6,
+    "r": 326
+   },
+   {
+    "s": 11.7,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -10,
+    "r": 323
+   },
+   {
+    "s": 11.75,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -13,
+    "r": 320
+   },
+   {
+    "s": 11.8,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -17,
+    "r": 316
+   },
+   {
+    "s": 11.85,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -20,
+    "r": 313
+   },
+   {
+    "s": 11.9,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -23,
+    "r": 310
+   },
+   {
+    "s": 11.95,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -26,
+    "r": 306
+   },
+   {
+    "s": 12.45,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -1,
+    "r": 104
+   },
+   {
+    "s": 12.5,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -5,
+    "r": 101
+   },
+   {
+    "s": 12.55,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -8,
+    "r": 98
+   },
+   {
+    "s": 12.6,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -11,
+    "r": 94
+   },
+   {
+    "s": 12.65,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -15,
+    "r": 91
+   },
+   {
+    "s": 12.7,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -18,
+    "r": 88
+   },
+   {
+    "s": 12.75,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -21,
+    "r": 84
+   },
+   {
+    "s": 12.8,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -25,
+    "r": 81
+   },
+   {
+    "s": 12.85,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -28,
+    "r": 78
+   },
+   {
+    "s": 13.35,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -3,
+    "r": 142
+   },
+   {
+    "s": 13.4,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -6,
+    "r": 139
+   },
+   {
+    "s": 13.45,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -9,
+    "r": 136
+   },
+   {
+    "s": 13.5,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -13,
+    "r": 132
+   },
+   {
+    "s": 13.55,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -16,
+    "r": 129
+   },
+   {
+    "s": 13.6,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -19,
+    "r": 125
+   },
+   {
+    "s": 13.65,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -23,
+    "r": 122
+   },
+   {
+    "s": 13.7,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -26,
+    "r": 119
+   },
+   {
+    "s": 14.2,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -1,
+    "r": 311
+   },
+   {
+    "s": 14.25,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -4,
+    "r": 308
+   },
+   {
+    "s": 14.3,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -8,
+    "r": 305
+   },
+   {
+    "s": 14.35,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -11,
+    "r": 301
+   },
+   {
+    "s": 14.4,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -14,
+    "r": 298
+   },
+   {
+    "s": 14.45,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -18,
+    "r": 295
+   },
+   {
+    "s": 14.5,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -21,
+    "r": 291
+   },
+   {
+    "s": 14.55,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -24,
+    "r": 288
+   },
+   {
+    "s": 14.6,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -28,
+    "r": 285
+   },
+   {
+    "s": 17.75,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -3,
+    "r": 330
+   },
+   {
+    "s": 17.8,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -7,
+    "r": 326
+   },
+   {
+    "s": 17.85,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -11,
+    "r": 322
+   },
+   {
+    "s": 17.9,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -15,
+    "r": 318
+   },
+   {
+    "s": 17.95,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -19,
+    "r": 314
+   },
+   {
+    "s": 18,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -23,
+    "r": 310
+   },
+   {
+    "s": 18.05,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -27,
+    "r": 306
+   },
+   {
+    "s": 18.1,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -31,
+    "r": 302
+   },
+   {
+    "s": 18.15,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -35,
+    "r": 298
+   },
+   {
+    "s": 18.75,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -4,
+    "r": 292
+   },
+   {
+    "s": 18.8,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -8,
+    "r": 288
+   },
+   {
+    "s": 18.85,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -12,
+    "r": 284
+   },
+   {
+    "s": 18.9,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -16,
+    "r": 280
+   },
+   {
+    "s": 18.95,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -20,
+    "r": 276
+   },
+   {
+    "s": 19,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -24,
+    "r": 272
+   },
+   {
+    "s": 19.05,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -28,
+    "r": 268
+   },
+   {
+    "s": 19.1,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -32,
+    "r": 264
+   },
+   {
+    "s": 19.15,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -36,
+    "r": 260
+   },
+   {
+    "s": 19.7,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -1,
+    "r": 74
+   },
+   {
+    "s": 19.75,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -5,
+    "r": 70
+   },
+   {
+    "s": 19.8,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -9,
+    "r": 66
+   },
+   {
+    "s": 19.85,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -13,
+    "r": 62
+   },
+   {
+    "s": 19.9,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -17,
+    "r": 58
+   },
+   {
+    "s": 19.95,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -21,
+    "r": 55
+   },
+   {
+    "s": 20,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -25,
+    "r": 51
+   },
+   {
+    "s": 20.05,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -29,
+    "r": 47
+   },
+   {
+    "s": 20.1,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -33,
+    "r": 43
+   },
+   {
+    "s": 23.25,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -3,
+    "r": 180
+   },
+   {
+    "s": 23.3,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -7,
+    "r": 176
+   },
+   {
+    "s": 23.35,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -11,
+    "r": 172
+   },
+   {
+    "s": 23.4,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -15,
+    "r": 168
+   },
+   {
+    "s": 23.45,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -19,
+    "r": 164
+   },
+   {
+    "s": 23.5,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -23,
+    "r": 160
+   },
+   {
+    "s": 23.55,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -27,
+    "r": 156
+   },
+   {
+    "s": 23.6,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -31,
+    "r": 153
+   },
+   {
+    "s": 23.65,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -35,
+    "r": 149
+   },
+   {
+    "s": 24.25,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -4,
+    "r": 329
+   },
+   {
+    "s": 24.3,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -8,
+    "r": 325
+   },
+   {
+    "s": 24.35,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -12,
+    "r": 321
+   },
+   {
+    "s": 24.4,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -16,
+    "r": 317
+   },
+   {
+    "s": 24.45,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -20,
+    "r": 313
+   },
+   {
+    "s": 24.5,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -24,
+    "r": 309
+   },
+   {
+    "s": 24.55,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -28,
+    "r": 305
+   },
+   {
+    "s": 24.6,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -32,
+    "r": 301
+   },
+   {
+    "s": 24.65,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -36,
+    "r": 297
+   },
+   {
+    "s": 25.2,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -1,
+    "r": 309
+   },
+   {
+    "s": 25.25,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -5,
+    "r": 305
+   },
+   {
+    "s": 25.3,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -9,
+    "r": 301
+   },
+   {
+    "s": 25.35,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -13,
+    "r": 297
+   },
+   {
+    "s": 25.4,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -17,
+    "r": 293
+   },
+   {
+    "s": 25.45,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -21,
+    "r": 289
+   },
+   {
+    "s": 25.5,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -25,
+    "r": 285
+   },
+   {
+    "s": 25.55,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -29,
+    "r": 281
+   },
+   {
+    "s": 25.6,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -33,
+    "r": 277
+   },
+   {
+    "s": 27.65,
+    "what": "boat outside",
+    "x": -1,
+    "r": 91
+   },
+   {
+    "s": 27.7,
+    "what": "boat outside",
+    "x": -2,
+    "r": 90
+   },
+   {
+    "s": 27.75,
+    "what": "boat outside",
+    "x": -3,
+    "r": 89
+   },
+   {
+    "s": 27.8,
+    "what": "boat outside",
+    "x": -4,
+    "r": 88
+   },
+   {
+    "s": 27.85,
+    "what": "boat outside",
+    "x": -4,
+    "r": 88
+   },
+   {
+    "s": 27.9,
+    "what": "boat outside",
+    "x": -3,
+    "r": 89
+   },
+   {
+    "s": 27.95,
+    "what": "boat outside",
+    "x": -2,
+    "r": 90
+   },
+   {
+    "s": 28,
+    "what": "boat outside",
+    "x": -1,
+    "r": 91
+   }
+  ]
+ },
+ {
+  "frame": "crop",
+  "w": 393,
+  "h": 852,
+  "dir": "backward",
+  "checked": 581,
+  "markerFrames": 199,
+  "failCount": 152,
+  "fails": [
+   {
+    "s": 28,
+    "what": "boat outside",
+    "x": -1,
+    "r": 91
+   },
+   {
+    "s": 27.95,
+    "what": "boat outside",
+    "x": -2,
+    "r": 90
+   },
+   {
+    "s": 27.9,
+    "what": "boat outside",
+    "x": -3,
+    "r": 89
+   },
+   {
+    "s": 27.85,
+    "what": "boat outside",
+    "x": -4,
+    "r": 88
+   },
+   {
+    "s": 27.8,
+    "what": "boat outside",
+    "x": -4,
+    "r": 88
+   },
+   {
+    "s": 27.75,
+    "what": "boat outside",
+    "x": -3,
+    "r": 89
+   },
+   {
+    "s": 27.7,
+    "what": "boat outside",
+    "x": -2,
+    "r": 90
+   },
+   {
+    "s": 27.65,
+    "what": "boat outside",
+    "x": -1,
+    "r": 91
+   },
+   {
+    "s": 25.6,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -33,
+    "r": 277
+   },
+   {
+    "s": 25.55,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -29,
+    "r": 281
+   },
+   {
+    "s": 25.5,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -25,
+    "r": 285
+   },
+   {
+    "s": 25.45,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -21,
+    "r": 289
+   },
+   {
+    "s": 25.4,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -17,
+    "r": 293
+   },
+   {
+    "s": 25.35,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -13,
+    "r": 297
+   },
+   {
+    "s": 25.3,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -9,
+    "r": 301
+   },
+   {
+    "s": 25.25,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -5,
+    "r": 305
+   },
+   {
+    "s": 25.2,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -1,
+    "r": 309
+   },
+   {
+    "s": 24.65,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -36,
+    "r": 297
+   },
+   {
+    "s": 24.6,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -32,
+    "r": 301
+   },
+   {
+    "s": 24.55,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -28,
+    "r": 305
+   },
+   {
+    "s": 24.5,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -24,
+    "r": 309
+   },
+   {
+    "s": 24.45,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -20,
+    "r": 313
+   },
+   {
+    "s": 24.4,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -16,
+    "r": 317
+   },
+   {
+    "s": 24.35,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -12,
+    "r": 321
+   },
+   {
+    "s": 24.3,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -8,
+    "r": 325
+   },
+   {
+    "s": 24.25,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -4,
+    "r": 329
+   },
+   {
+    "s": 23.65,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -35,
+    "r": 149
+   },
+   {
+    "s": 23.6,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -31,
+    "r": 153
+   },
+   {
+    "s": 23.55,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -27,
+    "r": 156
+   },
+   {
+    "s": 23.5,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -23,
+    "r": 160
+   },
+   {
+    "s": 23.45,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -19,
+    "r": 164
+   },
+   {
+    "s": 23.4,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -15,
+    "r": 168
+   },
+   {
+    "s": 23.35,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -11,
+    "r": 172
+   },
+   {
+    "s": 23.3,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -7,
+    "r": 176
+   },
+   {
+    "s": 23.25,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -3,
+    "r": 180
+   },
+   {
+    "s": 20.1,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -33,
+    "r": 43
+   },
+   {
+    "s": 20.05,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -29,
+    "r": 47
+   },
+   {
+    "s": 20,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -25,
+    "r": 51
+   },
+   {
+    "s": 19.95,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -21,
+    "r": 55
+   },
+   {
+    "s": 19.9,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -17,
+    "r": 58
+   },
+   {
+    "s": 19.85,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -13,
+    "r": 62
+   },
+   {
+    "s": 19.8,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -9,
+    "r": 66
+   },
+   {
+    "s": 19.75,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -5,
+    "r": 70
+   },
+   {
+    "s": 19.7,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -1,
+    "r": 74
+   },
+   {
+    "s": 19.15,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -36,
+    "r": 260
+   },
+   {
+    "s": 19.1,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -32,
+    "r": 264
+   },
+   {
+    "s": 19.05,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -28,
+    "r": 268
+   },
+   {
+    "s": 19,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -24,
+    "r": 272
+   },
+   {
+    "s": 18.95,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -20,
+    "r": 276
+   },
+   {
+    "s": 18.9,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -16,
+    "r": 280
+   },
+   {
+    "s": 18.85,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -12,
+    "r": 284
+   },
+   {
+    "s": 18.8,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -8,
+    "r": 288
+   },
+   {
+    "s": 18.75,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -4,
+    "r": 292
+   },
+   {
+    "s": 18.15,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -35,
+    "r": 298
+   },
+   {
+    "s": 18.1,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -31,
+    "r": 302
+   },
+   {
+    "s": 18.05,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -27,
+    "r": 306
+   },
+   {
+    "s": 18,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -23,
+    "r": 310
+   },
+   {
+    "s": 17.95,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -19,
+    "r": 314
+   },
+   {
+    "s": 17.9,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -15,
+    "r": 318
+   },
+   {
+    "s": 17.85,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -11,
+    "r": 322
+   },
+   {
+    "s": 17.8,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -7,
+    "r": 326
+   },
+   {
+    "s": 17.75,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -3,
+    "r": 330
+   },
+   {
+    "s": 14.6,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -28,
+    "r": 285
+   },
+   {
+    "s": 14.55,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -24,
+    "r": 288
+   },
+   {
+    "s": 14.5,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -21,
+    "r": 291
+   },
+   {
+    "s": 14.45,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -18,
+    "r": 295
+   },
+   {
+    "s": 14.4,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -14,
+    "r": 298
+   },
+   {
+    "s": 14.35,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -11,
+    "r": 301
+   },
+   {
+    "s": 14.3,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -8,
+    "r": 305
+   },
+   {
+    "s": 14.25,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -4,
+    "r": 308
+   },
+   {
+    "s": 14.2,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -1,
+    "r": 311
+   },
+   {
+    "s": 13.7,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -26,
+    "r": 119
+   },
+   {
+    "s": 13.65,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -23,
+    "r": 122
+   },
+   {
+    "s": 13.6,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -19,
+    "r": 125
+   },
+   {
+    "s": 13.55,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -16,
+    "r": 129
+   },
+   {
+    "s": 13.5,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -13,
+    "r": 132
+   },
+   {
+    "s": 13.45,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -9,
+    "r": 136
+   },
+   {
+    "s": 13.4,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -6,
+    "r": 139
+   },
+   {
+    "s": 13.35,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -3,
+    "r": 142
+   },
+   {
+    "s": 12.85,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -28,
+    "r": 78
+   },
+   {
+    "s": 12.8,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -25,
+    "r": 81
+   },
+   {
+    "s": 12.75,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -21,
+    "r": 84
+   },
+   {
+    "s": 12.7,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -18,
+    "r": 88
+   },
+   {
+    "s": 12.65,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -15,
+    "r": 91
+   },
+   {
+    "s": 12.6,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -11,
+    "r": 94
+   },
+   {
+    "s": 12.55,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -8,
+    "r": 98
+   },
+   {
+    "s": 12.5,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -5,
+    "r": 101
+   },
+   {
+    "s": 12.45,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -1,
+    "r": 104
+   },
+   {
+    "s": 11.95,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -26,
+    "r": 306
+   },
+   {
+    "s": 11.9,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -23,
+    "r": 310
+   },
+   {
+    "s": 11.85,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -20,
+    "r": 313
+   },
+   {
+    "s": 11.8,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -17,
+    "r": 316
+   },
+   {
+    "s": 11.75,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -13,
+    "r": 320
+   },
+   {
+    "s": 11.7,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -10,
+    "r": 323
+   },
+   {
+    "s": 11.65,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -6,
+    "r": 326
+   },
+   {
+    "s": 11.6,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -3,
+    "r": 330
+   },
+   {
+    "s": 8.05,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -22,
+    "r": 310
+   },
+   {
+    "s": 8,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -20,
+    "r": 313
+   },
+   {
+    "s": 7.95,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -17,
+    "r": 316
+   },
+   {
+    "s": 7.9,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -14,
+    "r": 319
+   },
+   {
+    "s": 7.85,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -11,
+    "r": 322
+   },
+   {
+    "s": 7.8,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -8,
+    "r": 325
+   },
+   {
+    "s": 7.75,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -5,
+    "r": 328
+   },
+   {
+    "s": 7.7,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -2,
+    "r": 331
+   },
+   {
+    "s": 7.25,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -23,
+    "r": 310
+   },
+   {
+    "s": 7.2,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -20,
+    "r": 313
+   },
+   {
+    "s": 7.15,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -17,
+    "r": 316
+   },
+   {
+    "s": 7.1,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -14,
+    "r": 319
+   },
+   {
+    "s": 7.05,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -11,
+    "r": 321
+   },
+   {
+    "s": 7,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -9,
+    "r": 324
+   },
+   {
+    "s": 6.95,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -6,
+    "r": 327
+   },
+   {
+    "s": 6.9,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -3,
+    "r": 330
+   },
+   {
+    "s": 6.45,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -24,
+    "r": 224
+   },
+   {
+    "s": 6.4,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -21,
+    "r": 227
+   },
+   {
+    "s": 6.35,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -18,
+    "r": 230
+   },
+   {
+    "s": 6.3,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -15,
+    "r": 233
+   },
+   {
+    "s": 6.25,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -12,
+    "r": 235
+   },
+   {
+    "s": 6.2,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -9,
+    "r": 238
+   },
+   {
+    "s": 6.15,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -6,
+    "r": 241
+   },
+   {
+    "s": 6.1,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -3,
+    "r": 244
+   },
+   {
+    "s": 5.65,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -24,
+    "r": 164
+   },
+   {
+    "s": 5.6,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -21,
+    "r": 167
+   },
+   {
+    "s": 5.55,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -18,
+    "r": 169
+   },
+   {
+    "s": 5.5,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -15,
+    "r": 172
+   },
+   {
+    "s": 5.45,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -13,
+    "r": 175
+   },
+   {
+    "s": 5.4,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -10,
+    "r": 178
+   },
+   {
+    "s": 5.35,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -7,
+    "r": 181
+   },
+   {
+    "s": 5.3,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -4,
+    "r": 184
+   },
+   {
+    "s": 5.25,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -1,
+    "r": 187
+   },
+   {
+    "s": 4.85,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -25,
+    "r": 264
+   },
+   {
+    "s": 4.8,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -22,
+    "r": 267
+   },
+   {
+    "s": 4.75,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -19,
+    "r": 270
+   },
+   {
+    "s": 4.7,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -16,
+    "r": 273
+   },
+   {
+    "s": 4.65,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -13,
+    "r": 276
+   },
+   {
+    "s": 4.6,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -10,
+    "r": 279
+   },
+   {
+    "s": 4.55,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -7,
+    "r": 282
+   },
+   {
+    "s": 4.5,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -4,
+    "r": 285
+   },
+   {
+    "s": 4.45,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -2,
+    "r": 288
+   },
+   {
+    "s": 0.65,
+    "what": "boat outside",
+    "x": 304,
+    "r": 396
+   },
+   {
+    "s": 0.6,
+    "what": "boat outside",
+    "x": 313,
+    "r": 405
+   },
+   {
+    "s": 0.55,
+    "what": "boat outside",
+    "x": 321,
+    "r": 413
+   },
+   {
+    "s": 0.5,
+    "what": "boat outside",
+    "x": 326,
+    "r": 418
+   },
+   {
+    "s": 0.45,
+    "what": "boat outside",
+    "x": 329,
+    "r": 421
+   },
+   {
+    "s": 0.4,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.35,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.3,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.25,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.2,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.15,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.1,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.05,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   }
+  ]
+ },
+ {
+  "frame": "crop",
+  "w": 393,
+  "h": 852,
+  "dir": "jumps",
+  "checked": 200,
+  "markerFrames": 52,
+  "failCount": 61,
+  "fails": [
+   {
+    "s": 14.5,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -21,
+    "r": 291
+   },
+   {
+    "s": 6.39,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -20,
+    "r": 227
+   },
+   {
+    "s": 27.95,
+    "what": "boat outside",
+    "x": -2,
+    "r": 90
+   },
+   {
+    "s": 0.32,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 24.56,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -29,
+    "r": 304
+   },
+   {
+    "s": 0.01,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 25.32,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -10,
+    "r": 299
+   },
+   {
+    "s": 0.13,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 13.4,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -6,
+    "r": 139
+   },
+   {
+    "s": 23.5,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -23,
+    "r": 160
+   },
+   {
+    "s": 5.27,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -2,
+    "r": 186
+   },
+   {
+    "s": 19.13,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -34,
+    "r": 262
+   },
+   {
+    "s": 4.66,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -14,
+    "r": 276
+   },
+   {
+    "s": 14.21,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -2,
+    "r": 311
+   },
+   {
+    "s": 27.84,
+    "what": "boat outside",
+    "x": -4,
+    "r": 88
+   },
+   {
+    "s": 0.26,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 11.72,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -11,
+    "r": 322
+   },
+   {
+    "s": 0,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.17,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 7.07,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -13,
+    "r": 320
+   },
+   {
+    "s": 13.69,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -26,
+    "r": 119
+   },
+   {
+    "s": 23.27,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -5,
+    "r": 179
+   },
+   {
+    "s": 18.85,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -12,
+    "r": 284
+   },
+   {
+    "s": 6.88,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -2,
+    "r": 331
+   },
+   {
+    "s": 27.72,
+    "what": "boat outside",
+    "x": -3,
+    "r": 89
+   },
+   {
+    "s": 0.21,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0.22,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 27.74,
+    "what": "boat outside",
+    "x": -3,
+    "r": 89
+   },
+   {
+    "s": 4.83,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -24,
+    "r": 266
+   },
+   {
+    "s": 18.91,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -17,
+    "r": 279
+   },
+   {
+    "s": 23.32,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -9,
+    "r": 175
+   },
+   {
+    "s": 13.63,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -21,
+    "r": 123
+   },
+   {
+    "s": 7.12,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -15,
+    "r": 317
+   },
+   {
+    "s": 0.16,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 0,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 11.78,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -15,
+    "r": 318
+   },
+   {
+    "s": 0.27,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 27.86,
+    "what": "boat outside",
+    "x": -4,
+    "r": 88
+   },
+   {
+    "s": 14.27,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -6,
+    "r": 307
+   },
+   {
+    "s": 4.61,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -11,
+    "r": 278
+   },
+   {
+    "s": 5.31,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -4,
+    "r": 183
+   },
+   {
+    "s": 0.66,
+    "what": "boat outside",
+    "x": 302,
+    "r": 394
+   },
+   {
+    "s": 23.55,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -27,
+    "r": 156
+   },
+   {
+    "s": 13.34,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -2,
+    "r": 143
+   },
+   {
+    "s": 0.12,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 25.36,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -14,
+    "r": 296
+   },
+   {
+    "s": 0.01,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 24.51,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -25,
+    "r": 308
+   },
+   {
+    "s": 0.33,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 27.97,
+    "what": "boat outside",
+    "x": -2,
+    "r": 90
+   },
+   {
+    "s": 6.34,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -17,
+    "r": 230
+   },
+   {
+    "s": 14.56,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -25,
+    "r": 287
+   },
+   {
+    "s": 18.01,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -24,
+    "r": 309
+   },
+   {
+    "s": 5.54,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -18,
+    "r": 170
+   },
+   {
+    "s": 0.58,
+    "what": "boat outside",
+    "x": 316,
+    "r": 408
+   },
+   {
+    "s": 0.09,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 25.55,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -29,
+    "r": 281
+   },
+   {
+    "s": 0.03,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   },
+   {
+    "s": 24.3,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -8,
+    "r": 325
+   },
+   {
+    "s": 0.4,
+    "what": "boat outside",
+    "x": 330,
+    "r": 422
+   }
+  ]
+ },
+ {
+  "frame": "crop",
+  "w": 320,
+  "h": 568,
+  "dir": "forward",
+  "checked": 581,
+  "markerFrames": 199,
+  "failCount": 168,
+  "fails": [
+   {
+    "s": 4.45,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -1,
+    "r": 221
+   },
+   {
+    "s": 4.5,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -3,
+    "r": 219
+   },
+   {
+    "s": 4.55,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -5,
+    "r": 217
+   },
+   {
+    "s": 4.6,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -7,
+    "r": 215
+   },
+   {
+    "s": 4.65,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -9,
+    "r": 213
+   },
+   {
+    "s": 4.7,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 4.75,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -13,
+    "r": 209
+   },
+   {
+    "s": 4.8,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -15,
+    "r": 207
+   },
+   {
+    "s": 4.85,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -17,
+    "r": 205
+   },
+   {
+    "s": 5.25,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -1,
+    "r": 187
+   },
+   {
+    "s": 5.3,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -3,
+    "r": 185
+   },
+   {
+    "s": 5.35,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -5,
+    "r": 183
+   },
+   {
+    "s": 5.4,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -6,
+    "r": 181
+   },
+   {
+    "s": 5.45,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -8,
+    "r": 179
+   },
+   {
+    "s": 5.5,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -10,
+    "r": 178
+   },
+   {
+    "s": 5.55,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -12,
+    "r": 176
+   },
+   {
+    "s": 5.6,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -14,
+    "r": 174
+   },
+   {
+    "s": 5.65,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -16,
+    "r": 172
+   },
+   {
+    "s": 6.1,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -2,
+    "r": 220
+   },
+   {
+    "s": 6.15,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -4,
+    "r": 218
+   },
+   {
+    "s": 6.2,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -6,
+    "r": 216
+   },
+   {
+    "s": 6.25,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -8,
+    "r": 214
+   },
+   {
+    "s": 6.3,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -10,
+    "r": 212
+   },
+   {
+    "s": 6.35,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -12,
+    "r": 210
+   },
+   {
+    "s": 6.4,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -14,
+    "r": 208
+   },
+   {
+    "s": 6.45,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -16,
+    "r": 206
+   },
+   {
+    "s": 6.9,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -2,
+    "r": 220
+   },
+   {
+    "s": 6.95,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -4,
+    "r": 218
+   },
+   {
+    "s": 7,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -6,
+    "r": 216
+   },
+   {
+    "s": 7.05,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -8,
+    "r": 214
+   },
+   {
+    "s": 7.1,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -10,
+    "r": 212
+   },
+   {
+    "s": 7.15,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -11,
+    "r": 210
+   },
+   {
+    "s": 7.2,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -13,
+    "r": 208
+   },
+   {
+    "s": 7.25,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -15,
+    "r": 206
+   },
+   {
+    "s": 7.7,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -1,
+    "r": 220
+   },
+   {
+    "s": 7.75,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -3,
+    "r": 218
+   },
+   {
+    "s": 7.8,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -5,
+    "r": 216
+   },
+   {
+    "s": 7.85,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -7,
+    "r": 215
+   },
+   {
+    "s": 7.9,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -9,
+    "r": 213
+   },
+   {
+    "s": 7.95,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 8,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -13,
+    "r": 209
+   },
+   {
+    "s": 8.05,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -15,
+    "r": 207
+   },
+   {
+    "s": 8.8,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 494,
+    "boatTop": 466
+   },
+   {
+    "s": 8.85,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 489,
+    "boatTop": 466
+   },
+   {
+    "s": 8.9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 8.95,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.05,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.1,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.15,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.2,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.25,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.3,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.35,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.4,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.45,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.5,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.55,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.6,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.65,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.7,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.75,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.8,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.85,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.95,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.05,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.1,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.15,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.2,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.25,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.3,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.35,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.4,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.45,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.5,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.55,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 488,
+    "boatTop": 466
+   },
+   {
+    "s": 10.6,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 493,
+    "boatTop": 466
+   },
+   {
+    "s": 11.6,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -2,
+    "r": 220
+   },
+   {
+    "s": 11.65,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -4,
+    "r": 217
+   },
+   {
+    "s": 11.7,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -7,
+    "r": 215
+   },
+   {
+    "s": 11.75,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -9,
+    "r": 213
+   },
+   {
+    "s": 11.8,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 11.85,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -13,
+    "r": 209
+   },
+   {
+    "s": 11.9,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -15,
+    "r": 206
+   },
+   {
+    "s": 11.95,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -18,
+    "r": 204
+   },
+   {
+    "s": 12.45,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -1,
+    "r": 105
+   },
+   {
+    "s": 12.5,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -3,
+    "r": 103
+   },
+   {
+    "s": 12.55,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -5,
+    "r": 100
+   },
+   {
+    "s": 12.6,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -8,
+    "r": 98
+   },
+   {
+    "s": 12.65,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -10,
+    "r": 96
+   },
+   {
+    "s": 12.7,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -12,
+    "r": 94
+   },
+   {
+    "s": 12.75,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -14,
+    "r": 91
+   },
+   {
+    "s": 12.8,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -16,
+    "r": 89
+   },
+   {
+    "s": 12.85,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -19,
+    "r": 87
+   },
+   {
+    "s": 13.35,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -2,
+    "r": 143
+   },
+   {
+    "s": 13.4,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -4,
+    "r": 141
+   },
+   {
+    "s": 13.45,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -6,
+    "r": 139
+   },
+   {
+    "s": 13.5,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -9,
+    "r": 136
+   },
+   {
+    "s": 13.55,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -11,
+    "r": 134
+   },
+   {
+    "s": 13.6,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -13,
+    "r": 132
+   },
+   {
+    "s": 13.65,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -15,
+    "r": 130
+   },
+   {
+    "s": 13.7,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -17,
+    "r": 127
+   },
+   {
+    "s": 14.2,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -1,
+    "r": 221
+   },
+   {
+    "s": 14.25,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -3,
+    "r": 219
+   },
+   {
+    "s": 14.3,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -5,
+    "r": 217
+   },
+   {
+    "s": 14.35,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -7,
+    "r": 214
+   },
+   {
+    "s": 14.4,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -10,
+    "r": 212
+   },
+   {
+    "s": 14.45,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -12,
+    "r": 210
+   },
+   {
+    "s": 14.5,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -14,
+    "r": 208
+   },
+   {
+    "s": 14.55,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -16,
+    "r": 206
+   },
+   {
+    "s": 14.6,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -18,
+    "r": 203
+   },
+   {
+    "s": 17.75,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -2,
+    "r": 239
+   },
+   {
+    "s": 17.8,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -5,
+    "r": 237
+   },
+   {
+    "s": 17.85,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -8,
+    "r": 234
+   },
+   {
+    "s": 17.9,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -10,
+    "r": 231
+   },
+   {
+    "s": 17.95,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -13,
+    "r": 229
+   },
+   {
+    "s": 18,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -15,
+    "r": 226
+   },
+   {
+    "s": 18.05,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -18,
+    "r": 224
+   },
+   {
+    "s": 18.1,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -21,
+    "r": 221
+   },
+   {
+    "s": 18.15,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -23,
+    "r": 218
+   },
+   {
+    "s": 18.75,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -3,
+    "r": 219
+   },
+   {
+    "s": 18.8,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -5,
+    "r": 216
+   },
+   {
+    "s": 18.85,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -8,
+    "r": 214
+   },
+   {
+    "s": 18.9,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 18.95,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -13,
+    "r": 208
+   },
+   {
+    "s": 19,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -16,
+    "r": 206
+   },
+   {
+    "s": 19.05,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -19,
+    "r": 203
+   },
+   {
+    "s": 19.1,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -21,
+    "r": 201
+   },
+   {
+    "s": 19.15,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -24,
+    "r": 198
+   },
+   {
+    "s": 19.7,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -1,
+    "r": 75
+   },
+   {
+    "s": 19.75,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -3,
+    "r": 72
+   },
+   {
+    "s": 19.8,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -6,
+    "r": 69
+   },
+   {
+    "s": 19.85,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -9,
+    "r": 67
+   },
+   {
+    "s": 19.9,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -11,
+    "r": 64
+   },
+   {
+    "s": 19.95,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -14,
+    "r": 61
+   },
+   {
+    "s": 20,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -16,
+    "r": 59
+   },
+   {
+    "s": 20.05,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -19,
+    "r": 56
+   },
+   {
+    "s": 20.1,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -22,
+    "r": 54
+   },
+   {
+    "s": 23.25,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -2,
+    "r": 181
+   },
+   {
+    "s": 23.3,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -5,
+    "r": 179
+   },
+   {
+    "s": 23.35,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -7,
+    "r": 176
+   },
+   {
+    "s": 23.4,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -10,
+    "r": 173
+   },
+   {
+    "s": 23.45,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -13,
+    "r": 171
+   },
+   {
+    "s": 23.5,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -15,
+    "r": 168
+   },
+   {
+    "s": 23.55,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -18,
+    "r": 166
+   },
+   {
+    "s": 23.6,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -21,
+    "r": 163
+   },
+   {
+    "s": 23.65,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -23,
+    "r": 160
+   },
+   {
+    "s": 24.25,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -3,
+    "r": 219
+   },
+   {
+    "s": 24.3,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -5,
+    "r": 216
+   },
+   {
+    "s": 24.35,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -8,
+    "r": 214
+   },
+   {
+    "s": 24.4,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 24.45,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -13,
+    "r": 208
+   },
+   {
+    "s": 24.5,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -16,
+    "r": 206
+   },
+   {
+    "s": 24.55,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -19,
+    "r": 203
+   },
+   {
+    "s": 24.6,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -21,
+    "r": 201
+   },
+   {
+    "s": 24.65,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -24,
+    "r": 198
+   },
+   {
+    "s": 25.2,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -1,
+    "r": 221
+   },
+   {
+    "s": 25.25,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -3,
+    "r": 218
+   },
+   {
+    "s": 25.3,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -6,
+    "r": 216
+   },
+   {
+    "s": 25.35,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -9,
+    "r": 213
+   },
+   {
+    "s": 25.4,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 25.45,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -14,
+    "r": 208
+   },
+   {
+    "s": 25.5,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -16,
+    "r": 205
+   },
+   {
+    "s": 25.55,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -19,
+    "r": 203
+   },
+   {
+    "s": 25.6,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -22,
+    "r": 200
+   },
+   {
+    "s": 27.65,
+    "what": "boat outside",
+    "x": -1,
+    "r": 61
+   }
+  ]
+ },
+ {
+  "frame": "crop",
+  "w": 320,
+  "h": 568,
+  "dir": "backward",
+  "checked": 581,
+  "markerFrames": 199,
+  "failCount": 168,
+  "fails": [
+   {
+    "s": 27.65,
+    "what": "boat outside",
+    "x": -1,
+    "r": 61
+   },
+   {
+    "s": 25.6,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -22,
+    "r": 200
+   },
+   {
+    "s": 25.55,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -19,
+    "r": 203
+   },
+   {
+    "s": 25.5,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -16,
+    "r": 205
+   },
+   {
+    "s": 25.45,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -14,
+    "r": 208
+   },
+   {
+    "s": 25.4,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 25.35,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -9,
+    "r": 213
+   },
+   {
+    "s": 25.3,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -6,
+    "r": 216
+   },
+   {
+    "s": 25.25,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -3,
+    "r": 218
+   },
+   {
+    "s": 25.2,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -1,
+    "r": 221
+   },
+   {
+    "s": 24.65,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -24,
+    "r": 198
+   },
+   {
+    "s": 24.6,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -21,
+    "r": 201
+   },
+   {
+    "s": 24.55,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -19,
+    "r": 203
+   },
+   {
+    "s": 24.5,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -16,
+    "r": 206
+   },
+   {
+    "s": 24.45,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -13,
+    "r": 208
+   },
+   {
+    "s": 24.4,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 24.35,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -8,
+    "r": 214
+   },
+   {
+    "s": 24.3,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -5,
+    "r": 216
+   },
+   {
+    "s": 24.25,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -3,
+    "r": 219
+   },
+   {
+    "s": 23.65,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -23,
+    "r": 160
+   },
+   {
+    "s": 23.6,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -21,
+    "r": 163
+   },
+   {
+    "s": 23.55,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -18,
+    "r": 166
+   },
+   {
+    "s": 23.5,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -15,
+    "r": 168
+   },
+   {
+    "s": 23.45,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -13,
+    "r": 171
+   },
+   {
+    "s": 23.4,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -10,
+    "r": 173
+   },
+   {
+    "s": 23.35,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -7,
+    "r": 176
+   },
+   {
+    "s": 23.3,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -5,
+    "r": 179
+   },
+   {
+    "s": 23.25,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -2,
+    "r": 181
+   },
+   {
+    "s": 20.1,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -22,
+    "r": 54
+   },
+   {
+    "s": 20.05,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -19,
+    "r": 56
+   },
+   {
+    "s": 20,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -16,
+    "r": 59
+   },
+   {
+    "s": 19.95,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -14,
+    "r": 61
+   },
+   {
+    "s": 19.9,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -11,
+    "r": 64
+   },
+   {
+    "s": 19.85,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -9,
+    "r": 67
+   },
+   {
+    "s": 19.8,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -6,
+    "r": 69
+   },
+   {
+    "s": 19.75,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -3,
+    "r": 72
+   },
+   {
+    "s": 19.7,
+    "what": "example clipped",
+    "text": "HCI",
+    "x": -1,
+    "r": 75
+   },
+   {
+    "s": 19.15,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -24,
+    "r": 198
+   },
+   {
+    "s": 19.1,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -21,
+    "r": 201
+   },
+   {
+    "s": 19.05,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -19,
+    "r": 203
+   },
+   {
+    "s": 19,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -16,
+    "r": 206
+   },
+   {
+    "s": 18.95,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -13,
+    "r": 208
+   },
+   {
+    "s": 18.9,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 18.85,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -8,
+    "r": 214
+   },
+   {
+    "s": 18.8,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -5,
+    "r": 216
+   },
+   {
+    "s": 18.75,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -3,
+    "r": 219
+   },
+   {
+    "s": 18.15,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -23,
+    "r": 218
+   },
+   {
+    "s": 18.1,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -21,
+    "r": 221
+   },
+   {
+    "s": 18.05,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -18,
+    "r": 224
+   },
+   {
+    "s": 18,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -15,
+    "r": 226
+   },
+   {
+    "s": 17.95,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -13,
+    "r": 229
+   },
+   {
+    "s": 17.9,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -10,
+    "r": 231
+   },
+   {
+    "s": 17.85,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -8,
+    "r": 234
+   },
+   {
+    "s": 17.8,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -5,
+    "r": 237
+   },
+   {
+    "s": 17.75,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -2,
+    "r": 239
+   },
+   {
+    "s": 14.6,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -18,
+    "r": 203
+   },
+   {
+    "s": 14.55,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -16,
+    "r": 206
+   },
+   {
+    "s": 14.5,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -14,
+    "r": 208
+   },
+   {
+    "s": 14.45,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -12,
+    "r": 210
+   },
+   {
+    "s": 14.4,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -10,
+    "r": 212
+   },
+   {
+    "s": 14.35,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -7,
+    "r": 214
+   },
+   {
+    "s": 14.3,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -5,
+    "r": 217
+   },
+   {
+    "s": 14.25,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -3,
+    "r": 219
+   },
+   {
+    "s": 14.2,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -1,
+    "r": 221
+   },
+   {
+    "s": 13.7,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -17,
+    "r": 127
+   },
+   {
+    "s": 13.65,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -15,
+    "r": 130
+   },
+   {
+    "s": 13.6,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -13,
+    "r": 132
+   },
+   {
+    "s": 13.55,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -11,
+    "r": 134
+   },
+   {
+    "s": 13.5,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -9,
+    "r": 136
+   },
+   {
+    "s": 13.45,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -6,
+    "r": 139
+   },
+   {
+    "s": 13.4,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -4,
+    "r": 141
+   },
+   {
+    "s": 13.35,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -2,
+    "r": 143
+   },
+   {
+    "s": 12.85,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -19,
+    "r": 87
+   },
+   {
+    "s": 12.8,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -16,
+    "r": 89
+   },
+   {
+    "s": 12.75,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -14,
+    "r": 91
+   },
+   {
+    "s": 12.7,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -12,
+    "r": 94
+   },
+   {
+    "s": 12.65,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -10,
+    "r": 96
+   },
+   {
+    "s": 12.6,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -8,
+    "r": 98
+   },
+   {
+    "s": 12.55,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -5,
+    "r": 100
+   },
+   {
+    "s": 12.5,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -3,
+    "r": 103
+   },
+   {
+    "s": 12.45,
+    "what": "example clipped",
+    "text": "Amira",
+    "x": -1,
+    "r": 105
+   },
+   {
+    "s": 11.95,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -18,
+    "r": 204
+   },
+   {
+    "s": 11.9,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -15,
+    "r": 206
+   },
+   {
+    "s": 11.85,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -13,
+    "r": 209
+   },
+   {
+    "s": 11.8,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 11.75,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -9,
+    "r": 213
+   },
+   {
+    "s": 11.7,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -7,
+    "r": 215
+   },
+   {
+    "s": 11.65,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -4,
+    "r": 217
+   },
+   {
+    "s": 11.6,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -2,
+    "r": 220
+   },
+   {
+    "s": 10.6,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 493,
+    "boatTop": 466
+   },
+   {
+    "s": 10.55,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 488,
+    "boatTop": 466
+   },
+   {
+    "s": 10.5,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.45,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.4,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.35,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.3,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.25,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.2,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.15,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.1,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10.05,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 10,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.95,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.85,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.8,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.75,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.7,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.65,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.6,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.55,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.5,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.45,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.4,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.35,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.3,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.25,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.2,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.15,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.1,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.05,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 8.95,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 8.9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 8.85,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 489,
+    "boatTop": 466
+   },
+   {
+    "s": 8.8,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 494,
+    "boatTop": 466
+   },
+   {
+    "s": 8.05,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -15,
+    "r": 207
+   },
+   {
+    "s": 8,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -13,
+    "r": 209
+   },
+   {
+    "s": 7.95,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 7.9,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -9,
+    "r": 213
+   },
+   {
+    "s": 7.85,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -7,
+    "r": 215
+   },
+   {
+    "s": 7.8,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -5,
+    "r": 216
+   },
+   {
+    "s": 7.75,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -3,
+    "r": 218
+   },
+   {
+    "s": 7.7,
+    "what": "example clipped",
+    "text": "What does it mean to experience?",
+    "x": -1,
+    "r": 220
+   },
+   {
+    "s": 7.25,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -15,
+    "r": 206
+   },
+   {
+    "s": 7.2,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -13,
+    "r": 208
+   },
+   {
+    "s": 7.15,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -11,
+    "r": 210
+   },
+   {
+    "s": 7.1,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -10,
+    "r": 212
+   },
+   {
+    "s": 7.05,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -8,
+    "r": 214
+   },
+   {
+    "s": 7,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -6,
+    "r": 216
+   },
+   {
+    "s": 6.95,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -4,
+    "r": 218
+   },
+   {
+    "s": 6.9,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -2,
+    "r": 220
+   },
+   {
+    "s": 6.45,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -16,
+    "r": 206
+   },
+   {
+    "s": 6.4,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -14,
+    "r": 208
+   },
+   {
+    "s": 6.35,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -12,
+    "r": 210
+   },
+   {
+    "s": 6.3,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -10,
+    "r": 212
+   },
+   {
+    "s": 6.25,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -8,
+    "r": 214
+   },
+   {
+    "s": 6.2,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -6,
+    "r": 216
+   },
+   {
+    "s": 6.15,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -4,
+    "r": 218
+   },
+   {
+    "s": 6.1,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -2,
+    "r": 220
+   },
+   {
+    "s": 5.65,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -16,
+    "r": 172
+   },
+   {
+    "s": 5.6,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -14,
+    "r": 174
+   },
+   {
+    "s": 5.55,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -12,
+    "r": 176
+   },
+   {
+    "s": 5.5,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -10,
+    "r": 178
+   },
+   {
+    "s": 5.45,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -8,
+    "r": 179
+   },
+   {
+    "s": 5.4,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -6,
+    "r": 181
+   },
+   {
+    "s": 5.35,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -5,
+    "r": 183
+   },
+   {
+    "s": 5.3,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -3,
+    "r": 185
+   },
+   {
+    "s": 5.25,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -1,
+    "r": 187
+   },
+   {
+    "s": 4.85,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -17,
+    "r": 205
+   },
+   {
+    "s": 4.8,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -15,
+    "r": 207
+   },
+   {
+    "s": 4.75,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -13,
+    "r": 209
+   },
+   {
+    "s": 4.7,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 4.65,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -9,
+    "r": 213
+   },
+   {
+    "s": 4.6,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -7,
+    "r": 215
+   },
+   {
+    "s": 4.55,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -5,
+    "r": 217
+   },
+   {
+    "s": 4.5,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -3,
+    "r": 219
+   },
+   {
+    "s": 4.45,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -1,
+    "r": 221
+   }
+  ]
+ },
+ {
+  "frame": "crop",
+  "w": 320,
+  "h": 568,
+  "dir": "jumps",
+  "checked": 200,
+  "markerFrames": 52,
+  "failCount": 45,
+  "fails": [
+   {
+    "s": 14.5,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -14,
+    "r": 208
+   },
+   {
+    "s": 6.39,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -13,
+    "r": 208
+   },
+   {
+    "s": 24.56,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -19,
+    "r": 203
+   },
+   {
+    "s": 9.6,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 25.32,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -7,
+    "r": 215
+   },
+   {
+    "s": 13.4,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -4,
+    "r": 141
+   },
+   {
+    "s": 23.5,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -15,
+    "r": 168
+   },
+   {
+    "s": 5.27,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -1,
+    "r": 186
+   },
+   {
+    "s": 19.13,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -23,
+    "r": 199
+   },
+   {
+    "s": 4.66,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -9,
+    "r": 213
+   },
+   {
+    "s": 14.21,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -1,
+    "r": 221
+   },
+   {
+    "s": 11.72,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -7,
+    "r": 214
+   },
+   {
+    "s": 8.84,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 489,
+    "boatTop": 466
+   },
+   {
+    "s": 9.32,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 7.07,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -8,
+    "r": 213
+   },
+   {
+    "s": 13.69,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -17,
+    "r": 128
+   },
+   {
+    "s": 23.27,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -3,
+    "r": 180
+   },
+   {
+    "s": 18.85,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -8,
+    "r": 214
+   },
+   {
+    "s": 6.88,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -1,
+    "r": 221
+   },
+   {
+    "s": 9.11,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 9.05,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 4.83,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -16,
+    "r": 206
+   },
+   {
+    "s": 18.91,
+    "what": "example clipped",
+    "text": "Social Psychology Club",
+    "x": -11,
+    "r": 211
+   },
+   {
+    "s": 23.32,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -6,
+    "r": 178
+   },
+   {
+    "s": 13.63,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -14,
+    "r": 131
+   },
+   {
+    "s": 7.12,
+    "what": "example clipped",
+    "text": "Where do we go after we die?",
+    "x": -10,
+    "r": 211
+   },
+   {
+    "s": 9.38,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 8.78,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 496,
+    "boatTop": 466
+   },
+   {
+    "s": 11.78,
+    "what": "example clipped",
+    "text": "Rolling Context for Open WebUI",
+    "x": -10,
+    "r": 212
+   },
+   {
+    "s": 14.27,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -4,
+    "r": 218
+   },
+   {
+    "s": 4.61,
+    "what": "example clipped",
+    "text": "What is it like to be you?",
+    "x": -7,
+    "r": 215
+   },
+   {
+    "s": 5.31,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -3,
+    "r": 185
+   },
+   {
+    "s": 23.55,
+    "what": "example clipped",
+    "text": "AI workshop",
+    "x": -18,
+    "r": 166
+   },
+   {
+    "s": 13.34,
+    "what": "example clipped",
+    "text": "Irispedia",
+    "x": -1,
+    "r": 144
+   },
+   {
+    "s": 25.36,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -9,
+    "r": 213
+   },
+   {
+    "s": 9.65,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 24.51,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -16,
+    "r": 205
+   },
+   {
+    "s": 6.34,
+    "what": "example clipped",
+    "text": "How do I handle this?",
+    "x": -11,
+    "r": 210
+   },
+   {
+    "s": 14.56,
+    "what": "example clipped",
+    "text": "Six Ways to See One File",
+    "x": -17,
+    "r": 205
+   },
+   {
+    "s": 18.01,
+    "what": "example clipped",
+    "text": "Cyberpsychology coursework",
+    "x": -16,
+    "r": 226
+   },
+   {
+    "s": 5.54,
+    "what": "example clipped",
+    "text": "Do aliens exist?",
+    "x": -12,
+    "r": 176
+   },
+   {
+    "s": 25.55,
+    "what": "example clipped",
+    "text": "Independent research",
+    "x": -19,
+    "r": 203
+   },
+   {
+    "s": 10.59,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 492,
+    "boatTop": 466
+   },
+   {
+    "s": 9.93,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 466
+   },
+   {
+    "s": 24.3,
+    "what": "example clipped",
+    "text": "Two participants built games",
+    "x": -5,
+    "r": 216
+   }
+  ]
+ },
+ {
+  "frame": "compact",
+  "w": 393,
+  "h": 852,
+  "dir": "forward",
+  "checked": 581,
+  "markerFrames": 0,
+  "failCount": 0,
+  "fails": []
+ },
+ {
+  "frame": "compact",
+  "w": 393,
+  "h": 852,
+  "dir": "backward",
+  "checked": 581,
+  "markerFrames": 0,
+  "failCount": 0,
+  "fails": []
+ },
+ {
+  "frame": "compact",
+  "w": 393,
+  "h": 852,
+  "dir": "jumps",
+  "checked": 200,
+  "markerFrames": 0,
+  "failCount": 0,
+  "fails": []
+ },
+ {
+  "frame": "compact",
+  "w": 320,
+  "h": 568,
+  "dir": "forward",
+  "checked": 581,
+  "markerFrames": 0,
+  "failCount": 37,
+  "fails": [
+   {
+    "s": 8.8,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 494,
+    "boatTop": 465
+   },
+   {
+    "s": 8.85,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 489,
+    "boatTop": 465
+   },
+   {
+    "s": 8.9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 8.95,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.05,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.1,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.15,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.2,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.25,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.3,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.35,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.4,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.45,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.5,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.55,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.6,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.65,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.7,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.75,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.8,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.85,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.95,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.05,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.1,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.15,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.2,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.25,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.3,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.35,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.4,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.45,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.5,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.55,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 488,
+    "boatTop": 465
+   },
+   {
+    "s": 10.6,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 493,
+    "boatTop": 465
+   }
+  ]
+ },
+ {
+  "frame": "compact",
+  "w": 320,
+  "h": 568,
+  "dir": "backward",
+  "checked": 581,
+  "markerFrames": 0,
+  "failCount": 37,
+  "fails": [
+   {
+    "s": 10.6,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 493,
+    "boatTop": 465
+   },
+   {
+    "s": 10.55,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 488,
+    "boatTop": 465
+   },
+   {
+    "s": 10.5,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.45,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.4,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.35,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.3,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.25,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.2,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.15,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.1,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.05,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.95,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.85,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.8,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.75,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.7,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.65,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.6,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.55,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.5,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.45,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.4,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.35,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.3,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.25,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.2,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.15,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.1,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.05,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 8.95,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 8.9,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 8.85,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 489,
+    "boatTop": 465
+   },
+   {
+    "s": 8.8,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 494,
+    "boatTop": 465
+   }
+  ]
+ },
+ {
+  "frame": "compact",
+  "w": 320,
+  "h": 568,
+  "dir": "jumps",
+  "checked": 200,
+  "markerFrames": 0,
+  "failCount": 10,
+  "fails": [
+   {
+    "s": 9.6,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 8.84,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 489,
+    "boatTop": 465
+   },
+   {
+    "s": 9.32,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.11,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.05,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 9.38,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 8.78,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 496,
+    "boatTop": 465
+   },
+   {
+    "s": 9.65,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   },
+   {
+    "s": 10.59,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 492,
+    "boatTop": 465
+   },
+   {
+    "s": 9.93,
+    "what": "copy over boat",
+    "id": "building",
+    "copyBottom": 487,
+    "boatTop": 465
+   }
+  ]
+ }
+]

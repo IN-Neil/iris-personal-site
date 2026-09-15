@@ -1,0 +1,501 @@
+[
+ {
+  "frame": "wide",
+  "cpu": 1,
+  "point": "ch1",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 123,
+  "elementsPerFrameMedian": 118,
+  "stageElementsPerFrameMedian": 118,
+  "intervalMedian": 16.7,
+  "intervalP95": 18.1,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 3.41,
+   "style": 1.48,
+   "composite": 0.81,
+   "paint": 0.89,
+   "layout": 0.14
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 1,
+  "point": "stars",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 120,
+  "elementsPerFrameMedian": 114,
+  "stageElementsPerFrameMedian": 114,
+  "intervalMedian": 16.7,
+  "intervalP95": 17.6,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.18,
+   "style": 0.95,
+   "composite": 0.51,
+   "paint": 0.39,
+   "layout": 0.09
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 1,
+  "point": "storm",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 125,
+  "elementsPerFrameMedian": 114,
+  "stageElementsPerFrameMedian": 113,
+  "intervalMedian": 16.7,
+  "intervalP95": 17.5,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.43,
+   "style": 1.22,
+   "composite": 0.56,
+   "paint": 0.39,
+   "layout": 0.02
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 1,
+  "point": "arrival",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 131,
+  "elementsPerFrameMedian": 120,
+  "stageElementsPerFrameMedian": 119,
+  "intervalMedian": 16.7,
+  "intervalP95": 17.5,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 3.67,
+   "style": 1.71,
+   "composite": 0.89,
+   "paint": 0.98,
+   "layout": 0.15
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 4,
+  "point": "ch1",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 123,
+  "elementsPerFrameMedian": 118,
+  "stageElementsPerFrameMedian": 118,
+  "intervalMedian": 20.3,
+  "intervalP95": 23.2,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 3.04,
+   "paint": 3.6,
+   "scripting": 12.54,
+   "style": 5.27,
+   "layout": 0.57
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 4,
+  "point": "stars",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 120,
+  "elementsPerFrameMedian": 114,
+  "stageElementsPerFrameMedian": 114,
+  "intervalMedian": 29.3,
+  "intervalP95": 47,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 19.95,
+   "style": 8.99,
+   "composite": 5.02,
+   "paint": 3.32,
+   "layout": 0.67
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 4,
+  "point": "storm",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 125,
+  "elementsPerFrameMedian": 114,
+  "stageElementsPerFrameMedian": 113,
+  "intervalMedian": 24,
+  "intervalP95": 28.7,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 3.84,
+   "paint": 2.14,
+   "scripting": 15.17,
+   "style": 7.09
+  }
+ },
+ {
+  "frame": "wide",
+  "cpu": 4,
+  "point": "arrival",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 131,
+  "elementsPerFrameMedian": 120,
+  "stageElementsPerFrameMedian": 119,
+  "intervalMedian": 21.6,
+  "intervalP95": 25.6,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 3.38,
+   "paint": 3.85,
+   "scripting": 13.32,
+   "style": 5.5,
+   "layout": 0.44
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 1,
+  "point": "ch1",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 124,
+  "elementsPerFrameMedian": 119,
+  "stageElementsPerFrameMedian": 119,
+  "intervalMedian": 16.7,
+  "intervalP95": 17.5,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.18,
+   "style": 0.89,
+   "composite": 0.52,
+   "paint": 0.85,
+   "layout": 0.1
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 1,
+  "point": "stars",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 120,
+  "elementsPerFrameMedian": 114,
+  "stageElementsPerFrameMedian": 114,
+  "intervalMedian": 16.7,
+  "intervalP95": 17.4,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.18,
+   "style": 0.88,
+   "composite": 0.53,
+   "paint": 0.47,
+   "layout": 0.09
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 1,
+  "point": "storm",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 125,
+  "elementsPerFrameMedian": 114,
+  "stageElementsPerFrameMedian": 113,
+  "intervalMedian": 16.6,
+  "intervalP95": 17.7,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.27,
+   "style": 0.98,
+   "composite": 0.55,
+   "paint": 0.45
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 1,
+  "point": "arrival",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 132,
+  "elementsPerFrameMedian": 121,
+  "stageElementsPerFrameMedian": 120,
+  "intervalMedian": 16.7,
+  "intervalP95": 17.6,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.35,
+   "style": 0.97,
+   "composite": 0.61,
+   "paint": 0.82,
+   "layout": 0.09
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 4,
+  "point": "ch1",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 124,
+  "elementsPerFrameMedian": 119,
+  "stageElementsPerFrameMedian": 119,
+  "intervalMedian": 19.1,
+  "intervalP95": 22.7,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 2.97,
+   "paint": 4.8,
+   "scripting": 11.98,
+   "style": 4.9,
+   "layout": 0.55
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 4,
+  "point": "stars",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 120,
+  "elementsPerFrameMedian": 114,
+  "stageElementsPerFrameMedian": 114,
+  "intervalMedian": 19.3,
+  "intervalP95": 21.6,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 2.97,
+   "paint": 2.62,
+   "scripting": 12.12,
+   "style": 5.33,
+   "layout": 0.43
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 4,
+  "point": "storm",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 125,
+  "elementsPerFrameMedian": 114,
+  "stageElementsPerFrameMedian": 113,
+  "intervalMedian": 18.3,
+  "intervalP95": 23.2,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 3.02,
+   "paint": 2.43,
+   "scripting": 11.82,
+   "style": 4.97
+  }
+ },
+ {
+  "frame": "crop",
+  "cpu": 4,
+  "point": "arrival",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 281,
+  "writesPerFrameMedian": 132,
+  "elementsPerFrameMedian": 121,
+  "stageElementsPerFrameMedian": 120,
+  "intervalMedian": 26.2,
+  "intervalP95": 32.6,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 4.22,
+   "paint": 5.67,
+   "scripting": 16.36,
+   "style": 6.93,
+   "layout": 0.6
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 1,
+  "point": "ch1",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 122,
+  "elementsPerFrameMedian": 117,
+  "stageElementsPerFrameMedian": 117,
+  "intervalMedian": 16.7,
+  "intervalP95": 17.6,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.74,
+   "style": 1.15,
+   "composite": 0.69,
+   "paint": 0.64,
+   "layout": 0.13
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 1,
+  "point": "stars",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 119,
+  "elementsPerFrameMedian": 113,
+  "stageElementsPerFrameMedian": 113,
+  "intervalMedian": 16.7,
+  "intervalP95": 17.4,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.71,
+   "style": 1.13,
+   "composite": 0.68,
+   "paint": 0.43,
+   "layout": 0.11
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 1,
+  "point": "storm",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 124,
+  "elementsPerFrameMedian": 113,
+  "stageElementsPerFrameMedian": 112,
+  "intervalMedian": 16.7,
+  "intervalP95": 17.4,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 3.13,
+   "style": 1.44,
+   "composite": 0.82,
+   "paint": 0.44
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 1,
+  "point": "arrival",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 130,
+  "elementsPerFrameMedian": 119,
+  "stageElementsPerFrameMedian": 118,
+  "intervalMedian": 16.6,
+  "intervalP95": 17.4,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "scripting": 2.61,
+   "style": 1.12,
+   "composite": 0.69,
+   "paint": 0.67,
+   "layout": 0.1
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 4,
+  "point": "ch1",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 122,
+  "elementsPerFrameMedian": 117,
+  "stageElementsPerFrameMedian": 117,
+  "intervalMedian": 25.2,
+  "intervalP95": 31.4,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 4.14,
+   "paint": 3.68,
+   "scripting": 16.1,
+   "style": 6.81,
+   "layout": 0.58
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 4,
+  "point": "stars",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 119,
+  "elementsPerFrameMedian": 113,
+  "stageElementsPerFrameMedian": 113,
+  "intervalMedian": 21.5,
+  "intervalP95": 25.3,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "paint": 2.27,
+   "composite": 3.53,
+   "scripting": 13.5,
+   "style": 5.7,
+   "layout": 0.51
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 4,
+  "point": "storm",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 124,
+  "elementsPerFrameMedian": 113,
+  "stageElementsPerFrameMedian": 112,
+  "intervalMedian": 24.3,
+  "intervalP95": 29.2,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 3.93,
+   "paint": 2.09,
+   "scripting": 15.63,
+   "style": 7.06
+  }
+ },
+ {
+  "frame": "compact",
+  "cpu": 4,
+  "point": "arrival",
+  "moved": 720,
+  "frames": 60,
+  "stageNodes": 200,
+  "writesPerFrameMedian": 130,
+  "elementsPerFrameMedian": 119,
+  "stageElementsPerFrameMedian": 118,
+  "intervalMedian": 24.6,
+  "intervalP95": 28.7,
+  "animations": 106,
+  "traceMsPerFrame": {
+   "composite": 3.98,
+   "paint": 3.92,
+   "scripting": 14.97,
+   "style": 6.68,
+   "layout": 0.53
+  }
+ }
+]
