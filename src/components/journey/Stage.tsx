@@ -416,7 +416,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
       <div
         className="absolute -translate-y-full"
         style={{
-          left: `${boatX}%`,
+          left: compact ? `var(--mobile-boat-x, ${boatX}%)` : `${boatX}%`,
           top: `${WATERLINE + 4}%`,
           width: `${boatWidth}%`,
           aspectRatio: "832 / 274",
