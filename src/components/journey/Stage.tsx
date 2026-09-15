@@ -328,12 +328,12 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           <div
             className="beam absolute"
             style={{
-              left: "50%",
+              right: "50%",
               top: "16%",
               width: compact ? "70cqw" : "44cqw",
               height: "6cqh",
               opacity: round(s.beam * 0.6),
-              background: `linear-gradient(to right, ${palette.ivory}cc, ${palette.ivory}00)`,
+              background: `linear-gradient(to left, ${palette.ivory}cc, ${palette.ivory}00)`,
             }}
           />
           <Pixel name="lighthouse" />
