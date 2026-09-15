@@ -50,11 +50,24 @@ export const segmentOrder: SegmentKey[] = [
  */
 export const skyfall: Segment = [0.4728, 0.4836];
 
-/** Each meteor's window, as fractions of the skyfall interlude. */
+/**
+ * The meteor shower: starts once the moon has gone (35% into the skyfall pause) and keeps
+ * falling behind chapter three's label and question, ending exactly as its body starts
+ * typing (`chapterPhases` typed begins at 6% of the chapter).
+ */
+export const meteorRain: Segment = [
+  skyfall[0] + (skyfall[1] - skyfall[0]) * 0.35,
+  segments.community[0] + 0.06 * (segments.community[1] - segments.community[0]),
+];
+
+/** Each meteor's window, as fractions of `meteorRain`: staggered, about two in the sky at once. */
 export const meteorWindows: readonly Segment[] = [
-  [0.4, 0.7],
-  [0.55, 0.85],
-  [0.68, 0.96],
+  [0, 0.28],
+  [0.14, 0.42],
+  [0.28, 0.56],
+  [0.42, 0.7],
+  [0.56, 0.84],
+  [0.72, 1],
 ];
 
 /** How many viewport-widths the camera travels across. */

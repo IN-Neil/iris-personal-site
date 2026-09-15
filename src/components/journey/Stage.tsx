@@ -11,10 +11,10 @@ import {
   mixColor,
   palette,
   round,
+  meteorRain,
   meteorWindows,
   sceneState,
   segments,
-  skyfall,
   within,
   worldX,
 } from "@/lib/journey";
@@ -138,6 +138,9 @@ const meteors = [
   { sprite: "fallingStar2", left: 55, top: 22, width: 34, travel: 1.3 },
   { sprite: "fallingStar1", left: 62, top: 20, width: 22, travel: 1.4 },
   { sprite: "fallingStar3", left: 50, top: 16, width: 14, travel: 1.6 },
+  { sprite: "fallingStar1", left: 70, top: 26, width: 18, travel: 1.5 },
+  { sprite: "fallingStar3", left: 42, top: 24, width: 12, travel: 1.6 },
+  { sprite: "fallingStar2", left: 64, top: 18, width: 28, travel: 1.3 },
 ] as const;
 
 // Each chapter gives context first, then its examples drift through the sky.
@@ -264,16 +267,16 @@ export function Stage({ progress, examples = true, className, style }: StageProp
         ))}
       </Layer>
 
-      {/* Skyfall interlude: with the moon gone behind the clouds, meteors fall in front of them down toward the left. */}
+      {/* Skyfall: with the moon gone, meteors rain down-left in front of the clouds, behind chapter three's arrival. */}
       {meteors.map((meteor, i) => {
-        const local = within(s.progress, skyfall);
+        const local = within(s.progress, meteorRain);
         const [start, end] = meteorWindows[i];
         const visible = fadeWindow(local, [start, end], (end - start) * 0.2);
         if (visible <= 0) return null;
         const t = within(local, [start, end]);
         return (
           <div
-            key={meteor.sprite}
+            key={i}
             data-journey="meteor"
             className="pointer-events-none absolute"
             style={{

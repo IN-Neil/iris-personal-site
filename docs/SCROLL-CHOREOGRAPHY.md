@@ -18,8 +18,8 @@ visitor can stop, speed up, or reverse at any point; there is no scroll lock.
 | 4.15–8.2 | Five questions, appearing individually |
 | 8.5–10.775 | Chapter Two context |
 | 11.23–14.74 | Rolling Context, Amira, Irispedia, Six Ways to See One File |
-| 14.74–17.11 | **Skyfall interlude** (no text): the moon fades behind the clouds (14.74–15.57), then three meteors fall down toward the left, staggered (15.69–17.01) |
-| 17–18.925 | Chapter Three context (copy begins fading in at 17.11, after the last meteor) |
+| 14.74–17.11 | **Skyfall interlude** (no text): the moon fades behind the clouds (14.74–15.57), then a meteor shower begins falling down toward the left (from 15.57) |
+| 17–18.925 | Chapter Three context: label and question arrive while meteors keep falling behind them; the shower ends at 17.33 as the body starts typing |
 | 19.31–22.28 | Cyberpsychology coursework, Social Psychology Club, HCI |
 | 22.5–24.425 | Chapter Four context |
 | 24.81–27.78 | AI workshop, participants' games, independent research |
@@ -50,9 +50,7 @@ Within the interlude (fractions of its 0.4728–0.4836 progress window):
 | Fraction | Travel | Beat |
 | --- | --- | --- |
 | 0–0.35 | 14.74–15.57 | Moon opacity 1 → 0, as if swallowed by the clouds; its sea reflection fades with it. The moon stays hidden until the arrival, where it returns faintly as before. |
-| 0.40–0.70 | 15.69–16.40 | Meteor 1 falls down and to the left |
-| 0.55–0.85 | 16.04–16.75 | Meteor 2 |
-| 0.68–0.96 | 16.35–17.01 | Meteor 3; the sky is clear before chapter three's copy arrives |
+| 0.35 → chapter three body | 15.57–17.33 | Meteor shower: six meteors in staggered, overlapping windows (about two in the sky at once), running past the pause behind chapter three's label and question. The last fades out exactly as the serif body begins typing (6% into chapter three, progress 0.4908), so the shower hands over to the chapter instead of stopping in empty sky. |
 
 Meteors use the supplied pixel sprites (`public/sprites/falling-star-1..3.png`),
 mirrored so each bright head leads down-left. They are driven by scroll progress,

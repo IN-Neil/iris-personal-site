@@ -31,7 +31,8 @@ Last updated: 2026-09-15, after the skyfall interlude (moon fade and meteors).
 | `c748366` | Safari toolbar fix: ending clearance adds `(100lvh - 100svh)` |
 | `a320310` | "Six Ways to See One File" link hidden on phones (`phones: false`) |
 | `4d94bc6` | Design checkpoint: this handoff document and brief status update |
-| (next) | Skyfall interlude: moon fades behind clouds, three meteors fall down-left between chapters two and three |
+| `3f785db` | Skyfall interlude: moon fades behind clouds, meteors fall down-left between chapters two and three |
+| (next) | Meteor shower runs into chapter three: six staggered meteors behind its label and question, ending as the body types |
 
 ## 2. How the phone journey works now
 
@@ -107,10 +108,11 @@ CDP_PORT=9702 node scripts/journey-check.mjs compare <baseline-dir> <new-dir>
 - Not verified on a physical iPhone; Chrome on iPhone untested.
 - Accessibility unchanged: chapter copy and examples are not reachable by screen readers at load (Phase 3). Reduced motion still animates (Phase 3).
 - Phases 3–6 of the brief not started. Codex review of the Phase 2 checkpoint was requested; later commits are additional user-directed design work.
-- **Skyfall interlude (implemented, desktop and phones):** between the last chapter-two milestone and chapter three's copy. Timing spec first, in `docs/SCROLL-CHOREOGRAPHY.md`: the pause gets 2.37 screens (14.74–17.11), the journey is now 32 screens (31 of travel), and every later beat moved 2 screens later. No story progress values changed. Code: `skyfall` and `meteorWindows` in `journey.ts`, moon opacity reaches 0 at 35% of the pause, meteors in `Stage.tsx` (mirrored sprites `falling-star-1..3.png`, measured `frame`s in `sprites.tsx`, drawn after the clouds, `--meteor-scale` 1.8 on phones). The user dropped the art in the *original checkout's* `public/sprites/` (still untracked there, filenames `falling-stars.png`, `falling-starts-2.png`, `falling-stars-3.png`); copies were renamed into the worktree, checksums identical.
+- **Skyfall interlude (implemented, desktop and phones):** between the last chapter-two milestone and chapter three's copy. Timing spec first, in `docs/SCROLL-CHOREOGRAPHY.md`: the pause gets 2.37 screens (14.74–17.11), the journey is now 32 screens (31 of travel), and every later beat moved 2 screens later. No story progress values changed. Code: `skyfall`, `meteorRain` and `meteorWindows` in `journey.ts`; moon opacity reaches 0 at 35% of the pause. User feedback: three quick meteors felt random and stopped in empty sky, so `meteorRain` now runs from the moon disappearing (15.57 screens) through chapter three's label and question, ending exactly when its body starts typing (progress 0.4908, 17.33 screens). Six overlapping windows keep about two meteors in the sky, with no gaps (tested). Meteors are in `Stage.tsx` (mirrored sprites `falling-star-1..3.png`, measured `frame`s in `sprites.tsx`, drawn after the clouds, `--meteor-scale` 1.8 on phones). The user dropped the art in the *original checkout's* `public/sprites/` (still untracked there, filenames `falling-stars.png`, `falling-starts-2.png`, `falling-stars-3.png`); copies were renamed into the worktree, checksums identical.
 
 ### Lessons from the skyfall work
 - Asset drops may land in the user's main checkout, not the worktree. Search both.
 - Anything placed inside the zoomed camera near the top of the sky renders higher than its `top` suggests (1.2× phones, 1.4× desktop around the boat). Measure the rendered box before tuning timing.
 - Paint order matters: sprites before the cloud `Layer` in the DOM are hidden behind clouds.
+- Tie decorative beats to story events, not arbitrary fractions: the shower ends on `chapterPhases` typing start, so it hands over to the chapter instead of stopping in empty sky.
 - Changing `SCROLL_SCREENS` breaks tests and tools that hard-code screen positions (`TRAVEL` in the check script, the open-water test). Update them with the timing spec.

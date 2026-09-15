@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { sceneState, storyProgress, exampleWindow, exampleVisibility, chapterPhases, segments, SCROLL_SCREENS, skyfall, meteorWindows } from '../src/lib/journey.ts';
+import { sceneState, storyProgress, exampleWindow, exampleVisibility, chapterPhases, segments, SCROLL_SCREENS, skyfall, meteorRain, meteorWindows } from '../src/lib/journey.ts';
 
 test('every scroll interval advances the scenery, including former frozen interval', () => {
   assert.equal(storyProgress(0), 0);
@@ -59,7 +59,7 @@ test('the candle boat is visible from departure through every chapter', () => {
   assert.ok(sceneState(0.89).zoom < 1.4);
  });
 
-test('skyfall interlude: no text on screen, moon gone before the meteors, meteors inside the pause', () => {
+test('skyfall interlude: no text in the pause, moon gone before the meteors, rain ends as chapter three types', () => {
   const [start, end] = skyfall;
   const close = (a, b) => Math.abs(a - b) < 1e-9;
   // Bounded by the last chapter-two example and the start of chapter three's copy.
@@ -76,9 +76,18 @@ test('skyfall interlude: no text on screen, moon gone before the meteors, meteor
       }
     }
   }
-  const firstMeteor = Math.min(...meteorWindows.map(([a]) => a));
-  assert.equal(sceneState(start + (end - start) * firstMeteor).moonOpacity, 0);
-  for (const [a, b] of meteorWindows) assert.ok(a > 0 && b < 1 && a < b);
+  // The shower starts with the moon gone, runs past the pause behind chapter three's
+  // label and question, and stops exactly as the body begins typing.
+  const [rainStart, rainEnd] = meteorRain;
+  assert.equal(sceneState(rainStart).moonOpacity, 0);
+  assert.ok(rainStart > start && rainEnd > end);
+  assert.equal(chapterPhases(rainEnd, segments.community).typed, 0);
+  assert.ok(chapterPhases(rainEnd + 0.002, segments.community).typed > 0);
+  assert.ok(chapterPhases(rainEnd, segments.community).heading === 1);
+  for (const [a, b] of meteorWindows) assert.ok(a >= 0 && b <= 1 && a < b);
+  assert.equal(Math.max(...meteorWindows.map(([, b]) => b)), 1);
+  // No gap in the shower: every moment has a meteor window open.
+  for (let i = 0; i <= 100; i++) assert.ok(meteorWindows.some(([a, b]) => i / 100 >= a && i / 100 <= b));
   // The pause has its own scroll distance (viewport heights).
   const travel = SCROLL_SCREENS - 1;
   assert.ok(close(storyProgress(14.74 / travel), start));
