@@ -14,7 +14,7 @@ import { join } from "node:path";
 
 const CHROME = process.env.CHROME ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const PORT = Number(process.env.CDP_PORT ?? 9520);
-const TRAVEL = 29;
+const TRAVEL = 31; // viewport heights of journey travel (SCROLL_SCREENS - 1 in journey.ts)
 
 export const moments = {
   departure: 0,
@@ -22,11 +22,13 @@ export const moments = {
   "q-longest": 7.87,
   "ch2-copy": 9.8,
   "project-longest": 11.67,
-  "ch3-copy": 16.1,
-  "storm-ch4-copy": 22,
-  "storm-example": 24.5,
-  "open-water": 26.8,
-  arrival: 29,
+  "skyfall-moon": 15.1,
+  "skyfall-meteors": 16.2,
+  "ch3-copy": 18.1,
+  "storm-ch4-copy": 24,
+  "storm-example": 26.5,
+  "open-water": 28.8,
+  arrival: 31,
 };
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

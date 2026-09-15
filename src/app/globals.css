@@ -98,6 +98,7 @@ body {
   --child-w: 10.7cqh;
   --lighthouse-vx: 0.74;
   --arrival-cliffs-vx: 0.48;
+  --meteor-scale: 1;
 }
 
 /* Where the words sit. The scene decides: chapter one's moon is low on the
@@ -162,6 +163,8 @@ body {
     /* the lighthouse stands on the cliffs' high ground, clear of the text column */
     --lighthouse-vx: 0.6;
     --arrival-cliffs-vx: 0.36;
+    /* meteors read at the same visual size as the other compact sprites */
+    --meteor-scale: 1.8;
   }
 
   /* One controls row: the sound icon on the text column's left edge (its 44px target

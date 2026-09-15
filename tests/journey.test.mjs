@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { sceneState, storyProgress, exampleWindow, exampleVisibility, chapterPhases, segments, SCROLL_SCREENS } from '../src/lib/journey.ts';
+import { sceneState, storyProgress, exampleWindow, exampleVisibility, chapterPhases, segments, SCROLL_SCREENS, skyfall, meteorWindows } from '../src/lib/journey.ts';
 
 test('every scroll interval advances the scenery, including former frozen interval', () => {
   assert.equal(storyProgress(0), 0);
@@ -36,9 +36,10 @@ for (const [id, count] of [['questions', 5], ['building', 4], ['community', 3], 
 test('last stars clear before a substantial approach to the lighthouse', () => {
   const last = exampleWindow(segments.part, 2, 3);
   assert.ok(last[1] < 0.84);
-  const at27 = storyProgress(27 / (SCROLL_SCREENS - 1));
-  assert.ok(at27 > 0.84 && at27 < 0.92);
-  assert.equal(exampleVisibility(at27, last), 0);
+  // Open water before the lighthouse (timing spec: 27.78–29.5, after the skyfall interlude added 2 screens).
+  const openWater = storyProgress(29 / (SCROLL_SCREENS - 1));
+  assert.ok(openWater > 0.84 && openWater < 0.92);
+  assert.equal(exampleVisibility(openWater, last), 0);
 });
 
 test('the candle boat is visible from departure through every chapter', () => {
@@ -57,3 +58,29 @@ test('the candle boat is visible from departure through every chapter', () => {
   assert.ok(sceneState(0.16).zoom > 1);
   assert.ok(sceneState(0.89).zoom < 1.4);
  });
+
+test('skyfall interlude: no text on screen, moon gone before the meteors, meteors inside the pause', () => {
+  const [start, end] = skyfall;
+  const close = (a, b) => Math.abs(a - b) < 1e-9;
+  // Bounded by the last chapter-two example and the start of chapter three's copy.
+  assert.ok(close(start, exampleWindow(segments.building, 3, 4)[1]));
+  assert.ok(close(end, segments.community[0] + 0.02 * (segments.community[1] - segments.community[0])));
+  for (let i = 1; i < 200; i++) {
+    const p = start + ((end - start) * i) / 200;
+    for (const id of ['building', 'community']) {
+      assert.equal(chapterPhases(p, segments[id]).visible, 0, `${id} copy visible at ${p}`);
+    }
+    for (const [id, count] of [['building', 4], ['community', 3]]) {
+      for (let k = 0; k < count; k++) {
+        assert.equal(exampleVisibility(p, exampleWindow(segments[id], k, count)), 0, `${id} example ${k} visible at ${p}`);
+      }
+    }
+  }
+  const firstMeteor = Math.min(...meteorWindows.map(([a]) => a));
+  assert.equal(sceneState(start + (end - start) * firstMeteor).moonOpacity, 0);
+  for (const [a, b] of meteorWindows) assert.ok(a > 0 && b < 1 && a < b);
+  // The pause has its own scroll distance (viewport heights).
+  const travel = SCROLL_SCREENS - 1;
+  assert.ok(close(storyProgress(14.74 / travel), start));
+  assert.ok(close(storyProgress(17.11 / travel), end));
+});

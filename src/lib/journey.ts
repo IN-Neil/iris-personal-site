@@ -42,6 +42,21 @@ export const segmentOrder: SegmentKey[] = [
   "ending",
 ];
 
+/**
+ * Skyfall interlude between chapters two and three: from the last chapter-two
+ * example fading out (end of `exampleWindow(building, 3, 4)`) to chapter three's
+ * copy starting to fade in. No text is on screen. The moon fades behind the clouds,
+ * then meteors fall down-left. See docs/SCROLL-CHOREOGRAPHY.md.
+ */
+export const skyfall: Segment = [0.4728, 0.4836];
+
+/** Each meteor's window, as fractions of the skyfall interlude. */
+export const meteorWindows: readonly Segment[] = [
+  [0.4, 0.7],
+  [0.55, 0.85],
+  [0.68, 0.96],
+];
+
 /** How many viewport-widths the camera travels across. */
 export const WORLD_SCREENS = 6;
 
@@ -53,10 +68,12 @@ export const LAYER_SCREENS = WORLD_SCREENS + 0.6;
 
 /** Scroll distances in viewport heights. Every interval advances the world. */
 export const scrollBeats = [
-  [0, 0], [1, 0.12], [8.5, 0.3], [15, 0.48],
-  [20.5, 0.66], [26, 0.84], [29, 1],
+  [0, 0], [1, 0.12], [8.5, 0.3],
+  // The skyfall interlude gets 2.37 viewport heights of its own; chapter pacing is unchanged.
+  [14.74, 0.4728], [17.11, 0.4836],
+  [22.5, 0.66], [28, 0.84], [31, 1],
 ] as const;
-export const SCROLL_SCREENS = 30;
+export const SCROLL_SCREENS = 32;
 
 /** Piecewise linear travel: slower chapters, never a frozen scroll interval. */
 export function storyProgress(scrollProgress: number): number {
@@ -262,9 +279,9 @@ const energyStops: Stop[] = [
 
 const moonOpacityStops: Stop[] = [
   [0, 1],
-  [0.46, 1],
-  [0.56, 0.2], // slips behind the chapter-three clouds
-  [0.66, 0],
+  [skyfall[0], 1],
+  // swallowed by the clouds over the first 35% of the skyfall interlude, before any meteor
+  [skyfall[0] + (skyfall[1] - skyfall[0]) * 0.35, 0],
   [0.86, 0],
   [1, 0.4],
 ];

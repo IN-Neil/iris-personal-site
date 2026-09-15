@@ -11,8 +11,11 @@ import {
   mixColor,
   palette,
   round,
+  meteorWindows,
   sceneState,
   segments,
+  skyfall,
+  within,
   worldX,
 } from "@/lib/journey";
 import { Bird, Bolt, Pixel, Star, waveDataUri } from "./sprites";
@@ -124,6 +127,18 @@ const clouds = [
 ];
 
 const distantLights = [0.5, 0.58, 0.66, 0.82, 0.9];
+
+// Skyfall meteors, one per `meteorWindows` entry. The sprites are mirrored so the bright
+// head leads down-left. `left`/`top` place the box (% of the stage); each moves `travel`
+// times its own width left and its own height down, so the path follows the trail's angle
+// on any screen shape. Widths scale up on phones (--meteor-scale). Tops sit lower than they
+// look like they should: the camera zoom (1.2× phones, 1.4× desktop) scales the sky up
+// around the boat, so a top of 4% renders above the screen.
+const meteors = [
+  { sprite: "fallingStar2", left: 55, top: 22, width: 34, travel: 1.3 },
+  { sprite: "fallingStar1", left: 62, top: 20, width: 22, travel: 1.4 },
+  { sprite: "fallingStar3", left: 50, top: 16, width: 14, travel: 1.6 },
+] as const;
 
 // Each chapter gives context first, then its examples drift through the sky.
 const markers = chapters.flatMap((chapter) => {
@@ -248,6 +263,31 @@ export function Stage({ progress, examples = true, className, style }: StageProp
           </div>
         ))}
       </Layer>
+
+      {/* Skyfall interlude: with the moon gone behind the clouds, meteors fall in front of them down toward the left. */}
+      {meteors.map((meteor, i) => {
+        const local = within(s.progress, skyfall);
+        const [start, end] = meteorWindows[i];
+        const visible = fadeWindow(local, [start, end], (end - start) * 0.2);
+        if (visible <= 0) return null;
+        const t = within(local, [start, end]);
+        return (
+          <div
+            key={meteor.sprite}
+            data-journey="meteor"
+            className="pointer-events-none absolute"
+            style={{
+              left: `${meteor.left}%`,
+              top: `${meteor.top}%`,
+              width: `calc(${meteor.width}% * var(--meteor-scale))`,
+              opacity: visible,
+              transform: `translate(${round(-meteor.travel * t * 100)}%, ${round(meteor.travel * t * 100)}%) scaleX(-1)`,
+            }}
+          >
+            <Pixel name={meteor.sprite} />
+          </div>
+        );
+      })}
 
       {/* Far layer: far sea, birds, distant lights, the arrival shore and lighthouse */}
       <Layer progress={s.progress} factor={FAR}>
