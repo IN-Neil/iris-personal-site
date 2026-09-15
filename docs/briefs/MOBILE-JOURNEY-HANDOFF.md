@@ -3,7 +3,7 @@
 Living document. Read this first after a context reset, then `MOBILE-JOURNEY.md` (the brief).
 Update it at every checkpoint: what changed, what was learned, what is next.
 
-Last updated: 2026-09-15, after the skyfall interlude (moon fade and meteors).
+Last updated: 2026-09-15, after deploying the mobile journey to production (`a0b702c`).
 
 ## 1. Where things are
 
@@ -116,6 +116,10 @@ CDP_PORT=9702 node scripts/journey-check.mjs compare <baseline-dir> <new-dir>
 - **IRIS alignment (phones):** the adult's head centre (50.34% across the dock frame) sits under the centre of the "I" of IRIS: `--dock-left: calc(max(24px, safe-left + 16px) + 14.3px - 39.27%)`. Measured 0px off at 440, 393 and 320 wide. Desktop unchanged.
 - Known after merge: on phones the leftward beam crosses the ending paragraph (semi-transparent, readable).
 - After merge, 320×568 regressed: production's milestone notes (Rolling Context, Six Ways) and the longer Chapter 3 body overlapped the boat. Phones under 600px tall now use a 16px body and 15px milestone notes with an 8px gap (re-swept before deploy).
+
+- **Deployed (2026-09-15):** `codex/mobile-journey` at `a0b702c` was pushed as a fast-forward to `origin cursor/personal-site-03d5` (production moved `5ef1e8c` → `a0b702c`); Cloudflare Pages builds it automatically for https://iris-builds.pages.dev. Pre-deploy gates: build, typecheck, lint, 10/10 tests; sweeps at 320×568, 375×667, 393×852 and 440×956 with no text or milestone over the boat and no clipping, apart from the item below; Simulator Safari on iPhone 17 Pro Max.
+- Known at deploy: at 320×568 one fade-in/out frame of Chapter 3 copy (about 50% opacity, still sliding) touches the boat's top edge; text crosses the moon in chapters 1–2 (legibility flag); on phones the lighthouse beam crosses the ending paragraph; not verified on a physical iPhone or in Chrome on iPhone; Phase 3 accessibility (reading mode, reduced motion, screen-reader transcript) still open.
+- The user's main checkout (`/Users/gmr/Documents/iris-personal-site`) is now behind production and holds untracked copies of `dock-complete.png` and the falling-star sprites; remove or move those before `git pull`, or the pull refuses to overwrite them. Deploy future work from the worktree or after pulling there.
 
 ### Lessons from the skyfall work
 - Asset drops may land in the user's main checkout, not the worktree. Search both.
