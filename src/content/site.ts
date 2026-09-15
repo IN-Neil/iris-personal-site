@@ -79,6 +79,7 @@ export const chapters: Chapter[] = [
       {
         title: "Rolling Context for Open WebUI",
         note: "I wanted conversations to keep their continuity, so I modified Open WebUI and used it for months.",
+        href: "https://github.com/IN-Neil/open-webui",
       },
       {
         title: "Amira",

@@ -398,7 +398,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           {markers.map((marker, i) => (
             <div
               key={`${marker.id}-${i}`}
-              className="absolute flex items-start gap-3 text-mist"
+              className="absolute text-mist"
               style={{
                 left: `${worldX(marker.at, marker.vx, MID)}%`,
                 top: `${marker.top}%`,
@@ -406,17 +406,26 @@ export function Stage({ progress, compact = false, className, style }: StageProp
                 opacity: exampleVisibility(s.progress, marker.window),
               }}
             >
-              {marker.id !== "questions" && <Star className="mt-1.5 block shrink-0" style={{ width: 14 }} />}
-              <span className="min-w-0">
+              {marker.id === "questions" ? (
                 <span className="block font-pixel text-[clamp(1.1rem,1.7vw,1.65rem)] leading-snug">
                   {marker.text}
                 </span>
-                {marker.note && (
-                  <span className="mt-4 block max-w-[32rem] font-serif text-[clamp(1rem,1.45vw,1.4rem)] leading-relaxed text-mist/90">
-                    <span aria-hidden="true">·&nbsp;&nbsp;</span>{marker.note}
+              ) : (
+                <span className="grid min-w-0 grid-cols-[14px_minmax(0,1fr)] gap-x-3">
+                  <Star className="mt-1.5 block" style={{ width: 14 }} />
+                  <span className="font-pixel text-[clamp(1.1rem,1.7vw,1.65rem)] leading-snug">
+                    {marker.text}
                   </span>
-                )}
-              </span>
+                  {marker.note && (
+                    <>
+                      <span aria-hidden="true" className="mt-4 text-center font-serif text-[18px] leading-relaxed">·</span>
+                      <span className="mt-4 block max-w-[32rem] font-serif text-[18px] leading-relaxed text-mist/90">
+                        {marker.note}
+                      </span>
+                    </>
+                  )}
+                </span>
+              )}
             </div>
           ))}
         </Layer>
