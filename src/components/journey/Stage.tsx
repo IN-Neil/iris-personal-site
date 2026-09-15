@@ -128,13 +128,14 @@ const distantLights = [0.5, 0.58, 0.66, 0.82, 0.9];
 // Each chapter gives context first, then its examples drift through the sky.
 const markers = chapters.flatMap((chapter) => {
   const items = chapter.id === "questions"
-    ? questionFragments.map((title) => ({ title }))
+    ? questionFragments.map((title) => ({ title, note: undefined }))
     : chapter.items ?? [];
   return items.map((item, i) => {
     const window = exampleWindow(segments[chapter.id], i, items.length);
     return {
       id: chapter.id,
       text: item.title,
+      note: item.note,
       window,
       at: (window[0] + window[1]) / 2,
       vx: [0.2, 0.43, 0.3, 0.44, 0.24][i % 5],
@@ -397,16 +398,25 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           {markers.map((marker, i) => (
             <div
               key={`${marker.id}-${i}`}
-              className="absolute flex items-start gap-3 font-pixel text-[clamp(1.1rem,1.7vw,1.65rem)] leading-snug text-mist"
+              className="absolute flex items-start gap-3 text-mist"
               style={{
                 left: `${worldX(marker.at, marker.vx, MID)}%`,
                 top: `${marker.top}%`,
-                width: layerSize(32),
+                width: layerSize(marker.note ? 44 : 32),
                 opacity: exampleVisibility(s.progress, marker.window),
               }}
             >
               {marker.id !== "questions" && <Star className="mt-1.5 block shrink-0" style={{ width: 14 }} />}
-              <span>{marker.text}</span>
+              <span className="min-w-0">
+                <span className="block font-pixel text-[clamp(1.1rem,1.7vw,1.65rem)] leading-snug">
+                  {marker.text}
+                </span>
+                {marker.note && (
+                  <span className="mt-4 block max-w-[32rem] font-serif text-[clamp(1rem,1.45vw,1.4rem)] leading-relaxed text-mist/90">
+                    <span aria-hidden="true">·&nbsp;&nbsp;</span>{marker.note}
+                  </span>
+                )}
+              </span>
             </div>
           ))}
         </Layer>
