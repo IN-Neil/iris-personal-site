@@ -13,7 +13,7 @@ test('every scroll interval advances the scenery, including former frozen interv
   }
 });
 
-for (const [id, count] of [['questions', 5], ['building', 4], ['community', 3], ['part', 3]]) {
+for (const [id, count] of [['questions', 5], ['building', 4], ['community', 2], ['part', 3]]) {
   test(`${id}: complete context precedes every example, with no overlapping examples`, () => {
     const segment = segments[id];
     const [start, end] = segment;
@@ -70,7 +70,7 @@ test('skyfall interlude: no text in the pause, moon gone before the meteors, rai
     for (const id of ['building', 'community']) {
       assert.equal(chapterPhases(p, segments[id]).visible, 0, `${id} copy visible at ${p}`);
     }
-    for (const [id, count] of [['building', 4], ['community', 3]]) {
+    for (const [id, count] of [['building', 4], ['community', 2]]) {
       for (let k = 0; k < count; k++) {
         assert.equal(exampleVisibility(p, exampleWindow(segments[id], k, count)), 0, `${id} example ${k} visible at ${p}`);
       }

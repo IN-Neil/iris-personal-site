@@ -147,13 +147,14 @@ const meteors = [
 // Each chapter gives context first, then its examples drift through the sky.
 const markers = chapters.flatMap((chapter) => {
   const items = chapter.id === "questions"
-    ? questionFragments.map((title) => ({ title }))
+    ? questionFragments.map((title) => ({ title, note: undefined }))
     : chapter.items ?? [];
   return items.map((item, i) => {
     const window = exampleWindow(segments[chapter.id], i, items.length);
     return {
       id: chapter.id,
       text: item.title,
+      note: item.note,
       window,
       at: (window[0] + window[1]) / 2,
       vx: [0.2, 0.43, 0.3, 0.44, 0.24][i % 5],
@@ -374,12 +375,12 @@ export function Stage({ progress, examples = true, className, style }: StageProp
           <div
             className="beam absolute"
             style={{
-              left: "50%",
+              right: "50%",
               top: "16%",
               width: "var(--beam-w)",
               height: "6cqh",
               opacity: round(s.beam * 0.6),
-              background: `linear-gradient(to right, ${palette.ivory}cc, ${palette.ivory}00)`,
+              background: `linear-gradient(to left, ${palette.ivory}cc, ${palette.ivory}00)`,
             }}
           />
           <Pixel name="lighthouse" />
@@ -446,18 +447,36 @@ export function Stage({ progress, examples = true, className, style }: StageProp
               key={`${marker.id}-${i}`}
               data-journey="example"
               data-text={marker.text}
-              className="absolute flex items-start gap-3 font-pixel text-[clamp(1.1rem,1.7vw,1.65rem)] leading-snug text-mist"
+              className="absolute text-mist"
               style={{
                 left: `${worldX(marker.at, marker.vx, MID)}%`,
                 top: `${marker.top}%`,
-                width: layerSize(32),
+                width: layerSize(marker.note ? 44 : 32),
                 opacity: exampleVisibility(s.progress, marker.window),
                 // Phones replace left/top/width with one readable slot (globals.css).
                 "--example-base": `${worldX(marker.at, 0, MID)}%`,
               } as CSSProperties}
             >
-              {marker.id !== "questions" && <Star className="mt-1.5 block shrink-0" style={{ width: 14 }} />}
-              <span>{marker.text}</span>
+              {marker.id === "questions" ? (
+                <span className="block font-pixel text-[clamp(1.1rem,1.7vw,1.65rem)] leading-snug">
+                  {marker.text}
+                </span>
+              ) : (
+                <span className="grid min-w-0 grid-cols-[14px_minmax(0,1fr)] gap-x-3">
+                  <Star className="mt-1.5 block" style={{ width: 14 }} />
+                  <span className="font-pixel text-[clamp(1.1rem,1.7vw,1.65rem)] leading-snug">
+                    {marker.text}
+                  </span>
+                  {marker.note && (
+                    <>
+                      <span aria-hidden="true" className="mt-4 text-center font-serif text-[18px] leading-relaxed">·</span>
+                      <span className="mt-4 block max-w-[32rem] font-serif text-[18px] leading-relaxed text-mist/90">
+                        {marker.note}
+                      </span>
+                    </>
+                  )}
+                </span>
+              )}
             </div>
           ))}
         </Layer>

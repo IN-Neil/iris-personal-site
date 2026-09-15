@@ -61,16 +61,16 @@ export const chapters: Chapter[] = [
     id: "questions",
     number: "01",
     label: "Questions",
-    question: "Is it okay to ask so much? really?",
+    question: "Is it okay to ask so much, really?",
     heading: "A place for questions",
     body:
-      "My first experience with AI felt like a space where curiosity could breathe. I asked questions about grief, meaning, experience, and everyday life. For the first time, questions felt welcome. Really.",
+      "My first experience with AI felt like a space where curiosity could breathe. I asked questions about grief, meaning, experience, and everyday life. For the first time, questions felt welcome.",
   },
   {
     id: "building",
     number: "02",
     label: "Building",
-    question: "can you help me make this?",
+    question: "Can you help me make this?",
     heading: "Turning vision into reality",
     body:
       "Curiosity became building. With AI as a collaborator, I started learning how to turn ideas into tools: modifying Open WebUI, building a voice-first personal app, creating Irispedia, and using visual artifacts to understand code more deeply.",
@@ -79,6 +79,7 @@ export const chapters: Chapter[] = [
       {
         title: "Rolling Context for Open WebUI",
         note: "I wanted conversations to keep their continuity, so I modified Open WebUI and used it for months.",
+        href: "https://github.com/IN-Neil/open-webui",
       },
       {
         title: "Amira",
@@ -99,23 +100,19 @@ export const chapters: Chapter[] = [
     id: "community",
     number: "03",
     label: "Community",
-    question: "What does a community of humans & AI look like?",
+    question: "What does a community of humans and AI look like?",
     heading: "Wondering about community",
     body:
-      "As I built more, I became more curious about the people around the technology. I sought out cyberpsychology coursework and joined the Social Psychology Club because I wanted to understand the human side of these systems too.",
+      "As I built more, I became more curious about the people around the technology. I discussed a possible path into cyberpsychology with a program director and joined the Social Psychology Club because I wanted to understand the human side of these systems too.",
     itemsTitle: "Along the way",
     items: [
       {
-        title: "Cyberpsychology coursework",
-        note: "Albizu University",
+        title: "Cyberpsychology aim",
+        note: "A possible path I discussed with a program director at Albizu University.",
       },
       {
         title: "Social Psychology Club",
         note: "Vice President",
-      },
-      {
-        title: "HCI",
-        note: "The human side of technology.",
       },
     ],
   },
@@ -150,7 +147,7 @@ export const ending = {
   label: "Lighthouse",
   heading: "Still a long way to go",
   body:
-    "I'm drawn to futures where humans and AI can learn, communicate, and build together. Not against each other. I want to keep asking and imagining knowing that in the middle of the uncertainty, I follow the light of hope within.",
+    "I'm drawn to futures where humans and AI can learn, communicate, and build together, not against each other. I want to keep asking and imagining, knowing that in the middle of uncertainty, I can follow the light of hope within.",
 };
 
 export type SiteLink = {
