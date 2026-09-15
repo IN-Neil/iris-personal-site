@@ -155,7 +155,6 @@ export function EndingPanel({ className, headingId = "ending-heading" }: { class
         {ending.heading}
       </h2>
       <p className="mt-4 max-w-[27rem] text-[1.05rem] leading-[1.6] text-mist/90">{ending.body}</p>
-      <p className="mt-5 font-pixel text-[0.95rem] text-surf">{ending.note}</p>
       <nav aria-label="Links" className="mt-7 flex flex-wrap gap-2">
         {links.map((link) => (
           <a

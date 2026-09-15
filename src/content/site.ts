@@ -102,20 +102,16 @@ export const chapters: Chapter[] = [
     question: "What does a community of humans and AI look like?",
     heading: "Wondering about community",
     body:
-      "As I built more, I became more curious about the people around the technology. I sought out cyberpsychology coursework and joined the Social Psychology Club because I wanted to understand the human side of these systems too.",
+      "As I built more, I became more curious about the people around the technology. I discussed a possible path into cyberpsychology with a program director and joined the Social Psychology Club because I wanted to understand the human side of these systems too.",
     itemsTitle: "Along the way",
     items: [
       {
-        title: "Cyberpsychology coursework",
-        note: "Albizu University",
+        title: "Cyberpsychology aim",
+        note: "A possible path I discussed with a program director at Albizu University.",
       },
       {
         title: "Social Psychology Club",
         note: "Vice President",
-      },
-      {
-        title: "HCI",
-        note: "The human side of technology.",
       },
     ],
   },
@@ -151,7 +147,6 @@ export const ending = {
   heading: "Still a long way to go",
   body:
     "I'm drawn to futures where humans and AI can learn, communicate, and build together, not against each other. I want to keep asking and imagining, knowing that in the middle of uncertainty, I can follow the light of hope within.",
-  note: "Onwards.",
 };
 
 /** Public destinations; the supplied résumé is served unchanged. */
