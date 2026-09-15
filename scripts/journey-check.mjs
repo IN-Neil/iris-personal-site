@@ -79,11 +79,15 @@ async function openChrome() {
 
 async function load(cdp, url, width, height) {
   await cdp.send("Emulation.setDeviceMetricsOverride", { width, height, deviceScaleFactor: 1, mobile: width < 768 });
+  // NO_JS=1 renders the server HTML and CSS only: what the first paint shows before hydration.
+  await cdp.send("Emulation.setScriptExecutionDisabled", { value: Boolean(process.env.NO_JS) });
   const loaded = cdp.next("Page.loadEventFired");
   await cdp.send("Page.navigate", { url });
   await loaded;
   await cdp.send("Animation.setPlaybackRate", { playbackRate: 0 });
-  await cdp.evaluate("document.fonts.ready.then(() => new Promise((r) => setTimeout(r, 600)))");
+  // Without scripts, page-context waits never settle; a plain delay covers fonts and images.
+  if (process.env.NO_JS) await sleep(1500);
+  else await cdp.evaluate("document.fonts.ready.then(() => new Promise((r) => setTimeout(r, 600)))");
 }
 
 // Works on the original build (no hooks) and on hooked builds.
@@ -103,7 +107,8 @@ async function capture(url, outDir, size, only) {
   const chosen = only.length ? Object.fromEntries(only.map((item) => { const [name, value] = item.split("="); return [name, Number(value ?? moments[name])]; })) : moments;
   for (const [name, screens] of Object.entries(chosen)) {
     await load(cdp, url, width, height);
-    await cdp.evaluate(`(${SCROLL_TO})(${screens})`);
+    if (process.env.NO_JS && screens !== 0) throw new Error("NO_JS captures only position 0 (no scrolling without scripts)");
+    if (!process.env.NO_JS) await cdp.evaluate(`(${SCROLL_TO})(${screens})`);
     const { data } = await cdp.send("Page.captureScreenshot", { format: "png" });
     writeFileSync(join(outDir, `${width}x${height}-${name}.png`), Buffer.from(data, "base64"));
     console.log("captured", name, screens);
@@ -147,9 +152,14 @@ const SWEEP = `async (positions) => {
   const overlaps = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
   const scrollTo = ${SCROLL_TO};
   const fails = [];
+  // The star layer's translate is a pure function of story progress: use it to prove travel is continuous.
+  const layer = document.querySelector('[data-journey="scene"] .will-change-transform');
+  const shift = () => Number((layer.style.transform.match(/translate3d\\((-?[\\d.]+)%/) ?? [0, 0])[1]);
+  const shifts = [];
   const peak = Object.fromEntries(examples.map((e, i) => [i + ":" + e.dataset.text, 0]));
   for (const s of positions) {
     await scrollTo(s);
+    shifts.push(shift());
     const frame = stage.getBoundingClientRect();
     const inside = (r, slack = 0.5) => r.left >= frame.left - slack && r.right <= frame.right + slack && r.top >= frame.top - slack && r.bottom <= frame.bottom + slack;
     const b = boat.getBoundingClientRect();
@@ -175,8 +185,12 @@ const SWEEP = `async (positions) => {
     }
     if (document.documentElement.scrollWidth > document.documentElement.clientWidth) fails.push({ s, what: "horizontal page overflow" });
   }
+  let reversals = 0;
+  const ordered = positions.every((p, i) => i === 0 || p !== positions[i - 1]) && positions.length > 1 && positions[1] !== positions[0];
+  const direction = Math.sign(positions[positions.length - 1] - positions[0]);
+  if (ordered) for (let i = 1; i < shifts.length; i++) if (Math.sign(positions[i] - positions[i - 1]) === direction && (shifts[i] - shifts[i - 1]) * direction > 1e-9) reversals++;
   const neverFull = Object.entries(peak).filter(([, o]) => o < 0.99).map(([k]) => k);
-  return { examplesFound: examples.length, copiesFound: copies.length, checked: positions.length, neverFullyVisible: neverFull, failCount: fails.length, fails };
+  return { examplesFound: examples.length, copiesFound: copies.length, checked: positions.length, travelReversals: reversals, travelFirstLast: [shifts[0], shifts[shifts.length - 1]], neverFullyVisible: neverFull, failCount: fails.length, fails };
 }`;
 
 async function sweep(url, outFile, sizes) {
@@ -194,7 +208,7 @@ async function sweep(url, outFile, sizes) {
       for (const f of result.fails) { const key = [f.what, f.text ?? f.chapter ?? ""].join(" · "); (grouped[key] ??= []).push(f.s); }
       const summary = Object.fromEntries(Object.entries(grouped).map(([k, v]) => [k, { count: v.length, from: Math.min(...v), to: Math.max(...v) }]));
       report.push({ size, direction, ...result, summary });
-      console.log(size, direction, "examples", result.examplesFound, "copies", result.copiesFound, "checked", result.checked, "fails", result.failCount, JSON.stringify(summary), result.neverFullyVisible.length ? "NEVER FULL: " + result.neverFullyVisible.join(", ") : "");
+      console.log(size, direction, "travel reversals", result.travelReversals, JSON.stringify(result.travelFirstLast), "examples", result.examplesFound, "copies", result.copiesFound, "checked", result.checked, "fails", result.failCount, JSON.stringify(summary), result.neverFullyVisible.length ? "NEVER FULL: " + result.neverFullyVisible.join(", ") : "");
     }
   }
   writeFileSync(outFile, JSON.stringify(report, null, 1));

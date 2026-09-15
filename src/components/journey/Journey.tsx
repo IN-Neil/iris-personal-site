@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { chapters, ending, intro, type Chapter } from "@/content/site";
+import { chapters, ending, intro } from "@/content/site";
 import {
   activeSegment,
   chapterPhases,
+  clamp,
   fadeWindow,
   SCROLL_SCREENS,
   storyProgress,
   segmentOrder,
+  sceneState,
   segments,
   type SegmentKey,
 } from "@/lib/journey";
@@ -16,41 +18,89 @@ import { ChapterLabel, ChapterPanel, EndingPanel, IntroPanel } from "./Panels";
 import { Stage } from "./Stage";
 
 /**
- * Desktop layout: one tall scroll container with a sticky, viewport-sized
- * stage inside it. Vertical scroll position becomes `progress` (0→1), which
- * drives the horizontal camera, zoom, time of day, and which panel is shown.
+ * One tall scroll container with a sticky stage inside it, at every screen size.
+ * Vertical scroll position becomes `progress` (0→1), which drives the horizontal
+ * camera, zoom, time of day, and which panel is shown. Phone framing comes from
+ * CSS (globals.css), so the first paint is already correct.
  */
 
-function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
+/**
+ * Progress is measured against the container and its sticky stage, both sized in
+ * `svh`, never the window's inner height: browser toolbars that grow and shrink do
+ * not change either box, so they cannot move the story.
+ */
+function useScrollProgress(
+  containerRef: React.RefObject<HTMLElement | null>,
+  stageRef: React.RefObject<HTMLElement | null>,
+) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
+    const container = containerRef.current;
+    const stage = stageRef.current;
+    if (!container || !stage) return;
 
+    const portrait = window.matchMedia("(orientation: portrait)");
+    let wasPortrait = portrait.matches;
+    let top = 0;
+    let containerHeight = 0;
+    let stageHeight = 0;
+    let latest = 0;
+    let dirty = false;
     let frame = 0;
+
+    const measure = () => {
+      top = container.getBoundingClientRect().top + window.scrollY;
+      containerHeight = container.offsetHeight;
+      stageHeight = stage.offsetHeight;
+    };
+    const remeasure = () => {
+      const before = latest;
+      measure();
+      if (portrait.matches !== wasPortrait) {
+        wasPortrait = portrait.matches;
+        // Rotation changes the journey's length; keep the reader at the same moment.
+        if (before > 0 && before < 1) {
+          window.scrollTo({ top: top + before * (containerHeight - stageHeight), behavior: "instant" });
+        }
+      }
+    };
     const update = () => {
       frame = 0;
-      // Hidden on small screens; nothing to measure.
-      if (element.offsetParent === null) return;
-      const rect = element.getBoundingClientRect();
-      const scrollable = rect.height - window.innerHeight;
-      if (scrollable <= 0) return;
-      setProgress(Math.min(1, Math.max(0, -rect.top / scrollable)));
+      if (dirty || container.offsetHeight !== containerHeight || stage.offsetHeight !== stageHeight) {
+        dirty = false;
+        remeasure();
+      }
+      const travel = containerHeight - stageHeight;
+      latest = travel > 0 ? clamp((window.scrollY - top) / travel) : 0;
+      setProgress(latest);
     };
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
+    const invalidate = () => {
+      dirty = true;
+      schedule();
+    };
 
+    // Content above the journey, fonts, rotation and window size change layout;
+    // toolbar collapse does not resize any of these, so it never re-measures.
+    const observer = new ResizeObserver(invalidate);
+    observer.observe(container);
+    observer.observe(stage);
+    observer.observe(document.body);
+
+    measure();
     update();
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
+    window.addEventListener("pageshow", invalidate);
     return () => {
+      observer.disconnect();
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
+      window.removeEventListener("pageshow", invalidate);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [ref]);
+  }, [containerRef, stageRef]);
 
   return progress;
 }
@@ -63,18 +113,6 @@ function panelStyle(visibility: number): React.CSSProperties {
     visibility: visibility <= 0.001 ? "hidden" : "visible",
   };
 }
-
-/**
- * Where each chapter's words sit. The scene decides: chapter one's moon is
- * low on the right, so the text takes the upper left; from chapter two the
- * moon and clouds fill the left, so the text moves right.
- */
-const textPlacement: Record<Chapter["id"], { left: string; top: string }> = {
-  questions: { left: "9%", top: "20%" },
-  building: { left: "50%", top: "13%" },
-  community: { left: "50%", top: "13%" },
-  part: { left: "50%", top: "13%" },
-};
 
 const routeLabels: Record<SegmentKey, string> = {
   intro: "Departure",
@@ -129,21 +167,25 @@ function RouteMap({ progress }: { progress: number }) {
 
 export function Journey() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollProgress = useScrollProgress(containerRef);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const scrollProgress = useScrollProgress(containerRef, stageRef);
   const progress = storyProgress(scrollProgress);
   const introVisible = fadeWindow(progress, segments.intro, 0.05);
   const endingVisible = fadeWindow(progress, [0.94, 1], 0.035);
 
   return (
-    <div ref={containerRef} className="relative" style={{ height: `${SCROLL_SCREENS * 100}vh` }}>
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+    <div
+      ref={containerRef}
+      data-journey="container"
+      className="relative"
+      // When browser controls collapse, the strip below the svh stage shows the foreground sea.
+      style={{ height: `${SCROLL_SCREENS * 100}svh`, backgroundColor: sceneState(progress).sea.fore }}
+    >
+      <div ref={stageRef} data-journey="stage" className="sticky top-0 h-svh w-full overflow-hidden">
         <Stage progress={progress} className="absolute inset-0" />
 
         {/* Title, directly on the sky */}
-        <div
-          className="absolute left-[11%] top-[max(6rem,10%)] w-[min(30rem,44vw)] transition-none"
-          style={panelStyle(introVisible)}
-        >
+        <div data-journey="intro" className="journey-intro absolute transition-none" style={panelStyle(introVisible)}>
           <IntroPanel />
         </div>
         <div
@@ -154,13 +196,12 @@ export function Journey() {
           <span aria-hidden="true" className="scroll-hint block h-5 w-px bg-ivory/70" />
         </div>
 
-        {/* Chapters: the words arrive last, placed wherever the scene has room; the body types itself */}
+        {/* Chapters: the words arrive last, placed wherever the scene has room (globals.css); the body types itself */}
         {chapters.map((chapter) => {
           const phases = chapterPhases(progress, segments[chapter.id]);
-          const place = textPlacement[chapter.id];
           return (
             <div key={chapter.id} className="pointer-events-none absolute inset-0" style={panelStyle(phases.visible)}>
-              <div className="absolute w-[min(27rem,42vw)]" style={{ left: place.left, top: place.top }}>
+              <div data-journey="copy" data-chapter={chapter.id} className="journey-copy absolute">
                 <ChapterLabel chapter={chapter} />
                 <ChapterPanel
                   chapter={chapter}
@@ -175,10 +216,7 @@ export function Journey() {
         })}
 
         {/* Ending */}
-        <div
-          className="absolute left-[8%] top-[14%] w-[min(30rem,38vw)]"
-          style={panelStyle(endingVisible)}
-        >
+        <div data-journey="ending" className="journey-ending absolute" style={panelStyle(endingVisible)}>
           <EndingPanel />
         </div>
 

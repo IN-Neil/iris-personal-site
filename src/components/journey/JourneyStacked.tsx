@@ -4,8 +4,11 @@ import { ChapterPanel, EndingPanel, IntroPanel, QuestionPanel } from "./Panels";
 import { Stage } from "./Stage";
 
 /**
- * Mobile layout: the same story, stacked vertically. Each chapter gets a
+ * Former mobile layout: the same story, stacked vertically. Each chapter gets a
  * frozen frame of the world at that chapter's moment in the journey.
+ *
+ * No longer mounted (see page.tsx). Kept for reference and content parity until
+ * the reading presentation replaces it (mobile journey brief, Phase 3).
  */
 
 function Frame({ progress, tall = false }: { progress: number; tall?: boolean }) {
@@ -13,7 +16,7 @@ function Frame({ progress, tall = false }: { progress: number; tall?: boolean })
     <div
       className={`relative w-full overflow-hidden border-y border-ivory/10 ${tall ? "h-[max(46rem,100svh)]" : "aspect-[4/3]"}`}
     >
-      <Stage progress={progress} compact className="absolute inset-0" />
+      <Stage progress={progress} examples={false} className="absolute inset-0" />
     </div>
   );
 }

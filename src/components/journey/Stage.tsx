@@ -155,25 +155,28 @@ const boatXStops = [
 
 export type StageProps = {
   progress: number;
-  /** Larger sprites for small, stacked scenes on mobile. */
-  compact?: boolean;
+  /**
+   * Draw the floating questions and milestones. Sprite sizes for phones come
+   * from CSS variables on `.journey-stage` (see globals.css), not from props.
+   */
+  examples?: boolean;
   className?: string;
   style?: CSSProperties;
 };
 
-export function Stage({ progress, compact = false, className, style }: StageProps) {
+export function Stage({ progress, examples = true, className, style }: StageProps) {
   const s = sceneState(progress);
   const boatX = keyframes(s.progress, boatXStops);
-  const boatWidth = compact ? 23 : 12;
   const [moonX, moonY, moonWidth] = s.moon;
 
   return (
     <div
-      className={`relative h-full w-full overflow-hidden ${className ?? ""}`}
+      data-journey="scene"
+      className={`journey-stage relative h-full w-full overflow-hidden ${className ?? ""}`}
       style={{ backgroundColor: s.sky, containerType: "size", ...style }}
       aria-hidden="true"
     >
-      <div data-scene-camera className="absolute inset-0" style={{ transform: `scale(${compact ? 1 + (s.zoom - 1) * 0.5 : s.zoom})`, transformOrigin: `${boatX + boatWidth / 2}% ${WATERLINE + 4}%` }}>
+      <div data-scene-camera className="absolute inset-0" style={{ transform: `scale(calc(1 + (${s.zoom} - 1) * var(--zoom-strength)))`, transformOrigin: `calc(${boatX}% + var(--boat-w) / 2) ${WATERLINE + 4}%` }}>
       {/* Stars */}
       <Layer progress={s.progress} factor={0.05}>
         {stars.map((star, i) => (
@@ -198,7 +201,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
         style={{
           left: `${moonX}%`,
           top: `${moonY}%`,
-          width: `${compact ? moonWidth * 1.5 : moonWidth}%`,
+          width: `calc(${moonWidth}% * var(--moon-scale))`,
           opacity: s.moonOpacity,
         }}
       >
@@ -234,7 +237,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
             style={{
               left: `${worldX(cloud.at, cloud.vx, SKY)}%`,
               top: `${cloud.top}%`,
-              width: layerSize(compact ? cloud.w * 1.6 : cloud.w),
+              width: `calc(${layerSize(cloud.w)} * var(--cloud-scale))`,
               opacity: round(fadeWindow(s.progress, [cloud.at - 0.12, 2], 0.1) * s.cloudCover),
               // Storm clouds darken; the tint is a slate wash over the drawn bank.
               filter: `brightness(${round(1 - s.storm * 0.45)})`,
@@ -264,7 +267,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
             style={{
               left: `${worldX(bird.at, bird.vx, FAR)}%`,
               top: `${bird.top}%`,
-              width: layerSize(compact ? 3 : 1.3),
+              width: "var(--bird-w)",
               opacity: keyframes(s.progress, [[0, 0.45], [0.08, 0.45], [0.11, 0], [0.16, 0], [0.2, 0.45]]),
             }}
           />
@@ -306,7 +309,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
           style={{
             left: `${worldX(0, 0.55, FAR)}%`,
             top: `${HORIZON + 1}%`,
-            width: layerSize(compact ? 70 : 52),
+            width: "var(--depart-cliffs-w)",
             opacity: fadeWindow(s.progress, [0, 0.33], 0.025),
           }}
         >
@@ -316,20 +319,21 @@ export function Stage({ progress, compact = false, className, style }: StageProp
         {/* Arrival: cliffs, the lighthouse and the keeper's cabin, all grounded on the horizon */}
         <div
           className="absolute -translate-y-full"
-          style={{ left: `${worldX(1, 0.48, FAR)}%`, opacity: fadeWindow(s.progress, [0.92, 1], 0.04), top: `${HORIZON + 3}%`, width: layerSize(compact ? 110 : 75) }}
+          style={{ left: `${worldX(1, 0.48, FAR)}%`, opacity: fadeWindow(s.progress, [0.92, 1], 0.04), top: `${HORIZON + 3}%`, width: "var(--arrival-cliffs-w)" }}
         >
           <Pixel name="shoreCliffs" />
         </div>
         <div
+          data-journey="lighthouse"
           className="absolute -translate-y-full"
-          style={{ left: `${worldX(1, 0.74, FAR)}%`, opacity: fadeWindow(s.progress, [0.93, 1], 0.04), top: `${HORIZON - 3}%`, width: compact ? "13cqh" : "9.5cqh" }}
+          style={{ left: `${worldX(1, 0.74, FAR)}%`, opacity: fadeWindow(s.progress, [0.93, 1], 0.04), top: `${HORIZON - 3}%`, width: "var(--lighthouse-w)" }}
         >
           <div
             className="beam absolute"
             style={{
               left: "50%",
               top: "16%",
-              width: compact ? "70cqw" : "44cqw",
+              width: "var(--beam-w)",
               height: "6cqh",
               opacity: round(s.beam * 0.6),
               background: `linear-gradient(to right, ${palette.ivory}cc, ${palette.ivory}00)`,
@@ -339,7 +343,7 @@ export function Stage({ progress, compact = false, className, style }: StageProp
         </div>
         <div
           className="absolute -translate-y-full"
-          style={{ left: `${worldX(1, 0.86, FAR)}%`, opacity: fadeWindow(s.progress, [0.93, 1], 0.04), top: `${HORIZON - 1.5}%`, width: layerSize(compact ? 12 : 8) }}
+          style={{ left: `${worldX(1, 0.86, FAR)}%`, opacity: fadeWindow(s.progress, [0.93, 1], 0.04), top: `${HORIZON - 1.5}%`, width: "var(--cabin-w)" }}
         >
           <Pixel name="cabin" />
         </div>
@@ -378,13 +382,13 @@ export function Stage({ progress, compact = false, className, style }: StageProp
             width: layerSize(100),
           }}
         >
-          <div className="absolute" style={{ left: compact ? "-26%" : "-10%", top: "76%", width: compact ? "70%" : "40%" }}>
+          <div className="absolute" style={{ left: "var(--dock-left)", top: "76%", width: "var(--dock-w)" }}>
             <Pixel name="dockWide" priority />
           </div>
-          <div className="absolute -translate-y-full" style={{ left: "11%", top: "79%", width: compact ? "8.3cqh" : "10.3cqh" }}>
+          <div className="absolute -translate-y-full" style={{ left: "11%", top: "79%", width: "var(--adult-w)" }}>
             <Pixel name="adult" priority />
           </div>
-          <div className="absolute -translate-y-full" style={{ left: compact ? "29%" : "22%", top: "79%", width: compact ? "8cqh" : "10.7cqh" }}>
+          <div className="absolute -translate-y-full" style={{ left: "var(--child-left)", top: "79%", width: "var(--child-w)" }}>
             <Pixel name="child" priority />
           </div>
         </div>
@@ -392,11 +396,13 @@ export function Stage({ progress, compact = false, className, style }: StageProp
       </Layer>
 
       {/* Sky text follows the chapter copy; never a list or an early spoiler. */}
-      {!compact && (
+      {examples && (
         <Layer progress={s.progress} factor={MID}>
           {markers.map((marker, i) => (
             <div
               key={`${marker.id}-${i}`}
+              data-journey="example"
+              data-text={marker.text}
               className="absolute flex items-start gap-3 font-pixel text-[clamp(1.1rem,1.7vw,1.65rem)] leading-snug text-mist"
               style={{
                 left: `${worldX(marker.at, marker.vx, MID)}%`,
@@ -414,11 +420,12 @@ export function Stage({ progress, compact = false, className, style }: StageProp
 
       {/* The paper boat is already afloat beyond the dock. */}
       <div
+        data-journey="boat"
         className="absolute -translate-y-full"
         style={{
           left: `${boatX}%`,
           top: `${WATERLINE + 4}%`,
-          width: `${boatWidth}%`,
+          width: "var(--boat-w)",
           aspectRatio: "832 / 274",
           containerType: "size",
         }}

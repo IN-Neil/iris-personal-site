@@ -163,7 +163,7 @@ Why: protect the deployed desktop and make the research reproducible after tempo
 - [x] Use a separate preview port, for example 4318 if free. Keep the existing 4317 preview intact. Record the preview command and URL. — `pnpm exec next dev -p 4318` → http://127.0.0.1:4318/ (HTTP 200). 4317 was not running; left alone.
 - [x] Preserve the selected reports, screenshots, JSON, harness, and relevant prototype source in a durable evidence directory. Record provenance and checksums; exclude browser profiles, dependencies, and build caches. — `docs/evidence/mobile-journey-research/` (2.2 MB): `MANIFEST.md`, `SHA256SUMS`. Harness and prototype sources stored as `.txt` so they are not linted or run.
 - [x] Fix report links in the preserved copy and verify that referenced images/data resolve. — `prototype-evidence.html`: 40 local references, 0 missing (script check).
-- [x] Run existing tests, lint, typecheck, and production build in the worktree. Record failures before changing code. — `pnpm test` pass (6 tests), `pnpm lint` pass, `pnpm build` pass. **`pnpm typecheck` fails on a fresh checkout** (`layout.tsx: Cannot find name 'LayoutProps'`) and passes after `pnpm build` generates `.next/types`. Pre-existing ordering dependency, not changed here.
+- [x] Run existing tests, lint, typecheck, and production build in the worktree. Record failures before changing code. — `pnpm test` pass (8 tests), `pnpm lint` pass, `pnpm build` pass. **`pnpm typecheck` fails on a fresh checkout** (`layout.tsx: Cannot find name 'LayoutProps'`) and passes after `pnpm build` generates `.next/types`. Pre-existing ordering dependency, not changed here.
 - [x] Capture desktop baseline at 1440×900 for departure, chapter text, examples, storm, and arrival. Record progress positions and render conditions. — `node scripts/journey-check.mjs capture <baseline build> <dir> 1440x900`: 10 positions (screens of travel: departure 0, ch1 copy 2.5, longest question 7.87, ch2 copy 9.8, longest project 11.67, ch3 copy 16.1, storm + ch4 copy 22, storm example 24.5, open water 26.8, arrival 29). Headless Chrome, CSS viewport, DPR 1, CSS animations frozen at first frame, production static export of `eb160b5`. Repeat capture: 9 of 10 identical; departure differs by 1,157 px (0.09%, y 608–858), the noise floor for later comparison. PNGs kept outside git (session scratchpad `desktop-baseline/`), reproducible with the command.
 - [x] Record current mobile content inventory and existing known failures. — See the Phase 0 note in section 7.
 
@@ -173,15 +173,15 @@ Gate: reproducible baseline and isolated worktree ready. Commit the brief/eviden
 
 Why: reuse the working story system and remove the six-snapshot mobile strategy without hiding content regressions.
 
-- [ ] Replace the mounted stacked/mobile split with one responsive Journey/Stage architecture.
-- [ ] Keep `JourneyStacked.tsx` available temporarily for reference; do not delete it yet.
-- [ ] Introduce only the responsive values needed for compact scene geometry and portrait/short-height text layout.
-- [ ] Ensure phone framing is correct at first paint; check hydration and console errors.
-- [ ] Implement consistent container/stage scroll measurement with stable viewport sizing.
-- [ ] Handle relevant size changes and event cleanup without unconditional scroll repositioning.
-- [ ] Preserve soundtrack as one player across layouts; resizing must not restart or duplicate music.
-- [ ] Verify desktop visual baseline and existing timing tests still pass.
-- [ ] Verify continuous progress while scrolling forward/backward on a phone-size viewport; no deliberately frozen travel intervals.
+- [x] Replace the mounted stacked/mobile split with one responsive Journey/Stage architecture. — `page.tsx` mounts `Journey` only. Server HTML: 1 scene (was 7), `index.html` 56,940 bytes (was 497,658).
+- [x] Keep `JourneyStacked.tsx` available temporarily for reference; do not delete it yet. — Unmounted, still compiles; passes `examples={false}` in place of the removed `compact` prop.
+- [x] Introduce only the responsive values needed for compact scene geometry and portrait/short-height text layout. — 15 `.journey-stage` CSS variables (the existing compact values) plus overlay placement classes, in `globals.css`. Phone rule: `(max-width: 767px) and (orientation: portrait)`. Short-landscape text rules are Phase 2.
+- [x] Ensure phone framing is correct at first paint; check hydration and console errors. — Scripts-disabled render vs hydrated render at departure: 79 px differ at 393×852, 94 px at 320×568 (≤ 0.05%, animation phase), via `NO_JS=1 node scripts/journey-check.mjs capture`. Built CSS contains the phone media rule. Console at 375×812: no messages (in-app browser).
+- [x] Implement consistent container/stage scroll measurement with stable viewport sizing. — Container `30 × 100svh`, sticky stage `h-svh`; progress = (scrollY − container top) / (container height − stage height). No `innerHeight`, `dvh` or `visualViewport` denominator.
+- [x] Handle relevant size changes and event cleanup without unconditional scroll repositioning. — ResizeObserver on container, stage and body marks geometry dirty; re-measure happens in the next animation frame. `scrollTo` only when portrait/landscape orientation actually flips mid-journey. Observer and listeners removed on unmount. Rotation check (in-app browser, viewport emulation): 393×852 → 852×393 at 12 screens kept the star layer at exactly `translate3d(-1.5035%)`; scrollY 10,224 → 4,716.
+- [x] Preserve soundtrack as one player across layouts; resizing must not restart or duplicate music. — One `<audio>` element; the same element instance before and after resizing 393 → 1280 → 393 → 852 px (in-app browser). Soundtrack component unchanged.
+- [x] Verify desktop visual baseline and existing timing tests still pass. — 1440×900 frozen captures vs Phase 0 baseline: 9 of 10 identical; departure 289 px (below the 1,157 px noise floor). `pnpm test` 8/8, `pnpm lint`, `pnpm typecheck`, `pnpm build` pass.
+- [x] Verify continuous progress while scrolling forward/backward on a phone-size viewport; no deliberately frozen travel intervals. — `sweep` at 393×852 and 320×568: 581 forward, 581 backward and 200 jump positions each; 0 travel reversals (star layer 0 → −3.7879%). Headless Chrome viewport emulation, not a device.
 
 Gate: one moving compact scene and preserved desktop, even if the remaining mobile text issues are tracked for Phase 2. Commit this foundation separately.
 
@@ -328,6 +328,32 @@ Existing known failures:
   - pnpm typecheck fails before the first build (LayoutProps types are generated).
 Unchecked items / known limits: none in Phase 0.
 Next action: Phase 1 shared responsive foundation.
+```
+
+```text
+Phase: 1 — Shared responsive journey foundation
+Commit: (this commit; see git log on codex/mobile-journey)
+Changes and rationale: one mounted Journey and Stage. Compact sprite sizes moved from a
+  JS prop to CSS variables so phones paint the compact framing before hydration; desktop
+  values reproduce the original inline sizes. `compact` split into CSS framing plus an
+  `examples` flag. Progress measured against the svh container and sticky stage; the
+  strip revealed below the stage when browser controls collapse is painted with the
+  foreground sea colour. Overlay placement moved into CSS classes with a basic portrait
+  column. Stable `data-journey` hooks added for checks.
+Verification performed (environment + evidence paths): headless Chrome viewport emulation
+  (scripts/journey-check.mjs; captures in the session scratchpad phase1-*/, sweep JSON
+  phase1-sweep.json) and the in-app browser (console, audio identity, rotation). See the
+  Phase 1 checkboxes for numbers.
+Unchecked items / known limits (tracked for Phase 2):
+  - Examples render with the desktop slot: 1 clipped sample at 320×568 ("Two participants
+    built games", 23.9 screens).
+  - Lighthouse clipped at arrival: 19 samples (393×852, 28.1–29), 8 (320×568).
+  - Ending panel (with links) overlaps the lighthouse on phones.
+  - Chapter two heading sits over the compact moon at 320×568 (legibility; the sweep does
+    not yet check moon overlap).
+  - 844×390 landscape: chapter one copy covers the boat and route map (pre-existing).
+  - Safe areas not yet applied. No Simulator or physical-device checks in this phase.
+Next action: Phase 2 story fidelity and fit.
 ```
 
 Final summary must distinguish implemented, verified in desktop/mobile emulation, verified in Simulator, verified on a physical phone, and not yet verified. The reviewer should be able to reproduce the important claims without reconstructing the chat history.

@@ -73,6 +73,83 @@ body {
   background-size: 160px 160px;
 }
 
+/* ---- Journey framing ----------------------------------------------------- */
+
+/*
+ * Scene geometry. Desktop values reproduce the original inline sizes exactly;
+ * portrait phones use the compact framing, decided here so the first paint is
+ * already correct. Layer widths are % of a 6.6-screen layer (layerSize()).
+ */
+.journey-stage {
+  --zoom-strength: 1;
+  --boat-w: 12%;
+  --moon-scale: 1;
+  --cloud-scale: 1;
+  --bird-w: 0.197%;
+  --depart-cliffs-w: 7.8788%;
+  --arrival-cliffs-w: 11.3636%;
+  --lighthouse-w: 9.5cqh;
+  --beam-w: 44cqw;
+  --cabin-w: 1.2121%;
+  --dock-left: -10%;
+  --dock-w: 40%;
+  --adult-w: 10.3cqh;
+  --child-left: 22%;
+  --child-w: 10.7cqh;
+}
+
+/* Where the words sit. The scene decides: chapter one's moon is low on the
+   right, so its text takes the upper left; from chapter two the moon and
+   clouds fill the left, so the text moves right. */
+.journey-intro {
+  left: 11%;
+  top: max(6rem, 10%);
+  width: min(30rem, 44vw);
+}
+.journey-copy[data-chapter] {
+  left: 50%;
+  top: 13%;
+  width: min(27rem, 42vw);
+}
+.journey-copy[data-chapter="questions"] {
+  left: 9%;
+  top: 20%;
+}
+.journey-ending {
+  left: 8%;
+  top: 14%;
+  width: min(30rem, 38vw);
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+  .journey-stage {
+    --zoom-strength: 0.5;
+    --boat-w: 23%;
+    --moon-scale: 1.5;
+    --cloud-scale: 1.6;
+    --bird-w: 0.4545%;
+    --depart-cliffs-w: 10.6061%;
+    --arrival-cliffs-w: 16.6667%;
+    --lighthouse-w: 13cqh;
+    --beam-w: 70cqw;
+    --cabin-w: 1.8182%;
+    --dock-left: -26%;
+    --dock-w: 70%;
+    --adult-w: 8.3cqh;
+    --child-left: 29%;
+    --child-w: 8cqh;
+  }
+
+  .journey-intro,
+  .journey-copy[data-chapter],
+  .journey-ending {
+    left: 1.5rem;
+    right: 1.5rem;
+    top: 92px;
+    width: auto;
+  }
+}
+
 /* ---- Motion ------------------------------------------------------------ */
 
 @keyframes drift {
