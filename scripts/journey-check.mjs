@@ -210,7 +210,8 @@ const SWEEP = `async (positions) => {
       const b = boat.getBoundingClientRect();
       const snd = sound ? sound.getBoundingClientRect() : null;
       const heading = endingScene.querySelector(".journey-ending-heading").getBoundingClientRect();
-      const links = [...endingScene.querySelectorAll("a")].map((a) => a.getBoundingClientRect());
+      // Only rendered links count: a display:none link has a zero box that would read as "on screen".
+      const links = [...endingScene.querySelectorAll("a")].filter((a) => a.offsetParent !== null).map((a) => a.getBoundingClientRect());
       return {
         panelTop: Math.round(p.top), panelBottom: Math.round(p.bottom), boatTop: Math.round(b.top), viewport: innerHeight,
         clearOfBoat: p.bottom <= b.top, headingUnderSoundControl: snd ? overlaps(heading, snd) : false,

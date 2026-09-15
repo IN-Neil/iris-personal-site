@@ -335,6 +335,11 @@ body {
   .journey-ending-body {
     max-width: var(--ending-column);
   }
+  /* Links marked phones: false in site.ts stay on desktop only (display: none also
+     removes them from assistive technology here). */
+  .journey-link--desktop-only {
+    display: none;
+  }
 
   /* The same soft dark glow as behind the desktop ending (.scrim), behind each chapter's words. */
   .journey-copy[data-chapter]::before {

@@ -424,8 +424,11 @@ Known limits:
   - Real Safari (iOS 26.2 Simulator, iPhone 17 Pro Max, toolbar collapsed): the page ends against
     the taller large viewport, which headless checks cannot show (no toolbar, lvh = svh). The
     ending's bottom space now adds (100lvh - 100svh), so at the page end the credits clear the
-    boat (verified). At that end position the top link row overlaps the cliffs' base and the
-    ending label sits just under the controls row.
+    boat (verified). Resolved with the user's choice to leave "Six Ways to See One File" out of
+    the phone ending (site.ts `phones: false`; desktop keeps it): the ending now fits without extra
+    scroll at 440×956 and 393×852 (headless) and in Simulator Safari on iPhone 17 Pro Max, with the
+    three links below the cliffs and the footer clear of the boat
+    (evidence/.../screens/sim-safari-17promax-ending.jpg).
   - Not re-verified on a physical iPhone; Chrome on iPhone untested; accessibility unchanged
     (Phase 3).
 ```

@@ -153,12 +153,20 @@ export const ending = {
     "I'm drawn to futures where humans and AI can learn, communicate, and build together. Not against each other. I want to keep asking and imagining knowing that in the middle of the uncertainty, I follow the light of hope within.",
 };
 
+export type SiteLink = {
+  label: string;
+  href: string;
+  external: boolean;
+  /** Set to false to leave this link out of the phone layout. */
+  phones?: boolean;
+};
+
 /** Public destinations; the supplied résumé is served unchanged. */
-export const links = [
+export const links: SiteLink[] = [
   { label: "Resume", href: "/iris-student-resume.pdf", external: false },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/irisneil/", external: true },
   { label: "GitHub", href: "https://github.com/IN-Neil", external: true },
-  { label: "Six Ways to See One File", href: "https://claude.ai/code/artifact/ab3d5b14-97c7-4337-9413-e7a7f9d156be", external: true },
+  { label: "Six Ways to See One File", href: "https://claude.ai/code/artifact/ab3d5b14-97c7-4337-9413-e7a7f9d156be", external: true, phones: false },
 ];
 
 export const footer = {

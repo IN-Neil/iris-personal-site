@@ -160,7 +160,7 @@ export function EndingPanel({ className, headingId = "ending-heading" }: { class
             href={link.href}
             target={link.external ? "_blank" : undefined}
             rel={link.external ? "noreferrer" : undefined}
-            className="inline-flex min-h-11 items-center gap-2 border border-mist/50 px-3 py-1.5 font-pixel text-[0.8rem] text-mist transition-colors hover:border-mist hover:bg-mist hover:text-night focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-poppy"
+            className={`${link.phones === false ? "journey-link--desktop-only " : ""}inline-flex min-h-11 items-center gap-2 border border-mist/50 px-3 py-1.5 font-pixel text-[0.8rem] text-mist transition-colors hover:border-mist hover:bg-mist hover:text-night focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-poppy`}
           >
             {link.label}
             {link.external && (
