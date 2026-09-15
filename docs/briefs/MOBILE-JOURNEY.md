@@ -1,6 +1,8 @@
 # Mobile journey: implementation and review brief
 
-Status: Phases 0–2 implemented on `codex/mobile-journey` as a development checkpoint for Codex review. Not release-ready: Phases 3–6 (reading presentation, accessibility, Simulator and device verification, performance) have not started.
+Status: Phases 0–2 implemented on `codex/mobile-journey`, followed by the user's Figma design revision (new copy, phone typography and spacing, ending inside the lighthouse scene, Safari toolbar fix, "Six Ways" link off phones) — see the design revision note in section 7. Design checkpoint, not release-ready: Phases 3–6 (reading presentation, accessibility, device verification, performance) have not started.
+
+Working notes and lessons for whoever continues (including after a context reset): [`MOBILE-JOURNEY-HANDOFF.md`](MOBILE-JOURNEY-HANDOFF.md).
 
 Owner: Opus (implementation). Reviewer: Codex in the original website task.
 
