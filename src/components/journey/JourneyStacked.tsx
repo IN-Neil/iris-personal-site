@@ -47,7 +47,10 @@ export function JourneyStacked() {
         const travel = isDeparture
           ? -top / (height * 0.85)
           : (viewport - top) / (viewport + height);
-        const easedTravel = Math.min(1, Math.max(0, travel));
+        const normalizedTravel = Math.min(1, Math.max(0, travel));
+        const easedTravel = isDeparture
+          ? normalizedTravel
+          : normalizedTravel ** 3;
         // The first boat begins in the child's hands at the end of the dock.
         // Later boats enter only partly offscreen, shortening the crossing and
         // making it easier to follow during ordinary touch scrolling.
