@@ -157,7 +157,9 @@ body {
     /* From the user's phone mockup: the dock is cut at the left edge and ends just past
        the middle, near the boat. */
     --dock-w: 78%;
-    --dock-left: -24%;
+    /* The adult's head (50.34% across the sprite frame) centres under the "I" of IRIS:
+       intro column edge + half the 4rem I (14.3px) − 78% × 50.34%. */
+    --dock-left: calc(max(24px, calc(env(safe-area-inset-left) + 16px)) + 14.3px - 39.27%);
     /* the lighthouse stands on the cliffs' high ground, clear of the text column */
     --lighthouse-vx: 0.6;
     --arrival-cliffs-vx: 0.36;

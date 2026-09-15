@@ -112,6 +112,10 @@ CDP_PORT=9702 node scripts/journey-check.mjs compare <baseline-dir> <new-dir>
 
 - **Dock community sprite (desktop and phones):** `dock-complete.png` (user art: the adult, the child and a young android sitting together, representing humans and AI as a community) replaces the separate dock, adult and child sprites. One `Pixel` (`dockComplete`, measured frame `[57, 117, 1029, 949]`); planks aligned to the old 79% line with `translateY(-74.6%)`. Desktop keeps the adult's former size and position (`--dock-w: 50.5cqh`, `--dock-left: calc(11% - 18.8cqh)`); phones follow the user's mockup (`--dock-w: 78%`, `--dock-left: -24%`, dock cut at the left edge). The art was again dropped in the user's main checkout and copied (checksum identical). Known: at 320×568 the intro paragraph's last line sits just above the adult's head.
 
+- **Production merge (2026-09-15):** production (`origin/cursor/personal-site-03d5`, GitHub, auto-deployed by Cloudflare Pages) had 8 commits after `eb160b5`: new copy, milestone notes shown with each desktop marker, the Chapter 3 rewrite (HCI milestone removed, so 14 examples now), the Rolling Context link, and the beam pointing left toward the boat. Merged with production copy winning; the stacked-layout boat animation (`docs/MOBILE-BOAT-PATCH.md`) is superseded. Production is the deploy branch: push to `origin cursor/personal-site-03d5` (see `DEPLOYMENT.md`).
+- **IRIS alignment (phones):** the adult's head centre (50.34% across the dock frame) sits under the centre of the "I" of IRIS: `--dock-left: calc(max(24px, safe-left + 16px) + 14.3px - 39.27%)`. Measured 0px off at 440, 393 and 320 wide. Desktop unchanged.
+- Known after merge: on phones the leftward beam crosses the ending paragraph (semi-transparent, readable).
+
 ### Lessons from the skyfall work
 - Asset drops may land in the user's main checkout, not the worktree. Search both.
 - Anything placed inside the zoomed camera near the top of the sky renders higher than its `top` suggests (1.2× phones, 1.4× desktop around the boat). Measure the rendered box before tuning timing.
