@@ -115,6 +115,7 @@ CDP_PORT=9702 node scripts/journey-check.mjs compare <baseline-dir> <new-dir>
 - **Production merge (2026-09-15):** production (`origin/cursor/personal-site-03d5`, GitHub, auto-deployed by Cloudflare Pages) had 8 commits after `eb160b5`: new copy, milestone notes shown with each desktop marker, the Chapter 3 rewrite (HCI milestone removed, so 14 examples now), the Rolling Context link, and the beam pointing left toward the boat. Merged with production copy winning; the stacked-layout boat animation (`docs/MOBILE-BOAT-PATCH.md`) is superseded. Production is the deploy branch: push to `origin cursor/personal-site-03d5` (see `DEPLOYMENT.md`).
 - **IRIS alignment (phones):** the adult's head centre (50.34% across the dock frame) sits under the centre of the "I" of IRIS: `--dock-left: calc(max(24px, safe-left + 16px) + 14.3px - 39.27%)`. Measured 0px off at 440, 393 and 320 wide. Desktop unchanged.
 - Known after merge: on phones the leftward beam crosses the ending paragraph (semi-transparent, readable).
+- After merge, 320×568 regressed: production's milestone notes (Rolling Context, Six Ways) and the longer Chapter 3 body overlapped the boat. Phones under 600px tall now use a 16px body and 15px milestone notes with an 8px gap (re-swept before deploy).
 
 ### Lessons from the skyfall work
 - Asset drops may land in the user's main checkout, not the worktree. Search both.
