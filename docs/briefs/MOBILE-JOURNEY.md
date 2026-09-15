@@ -421,6 +421,11 @@ Known limits:
   - Smallest phones: at page end the scrolled ending passes under the fixed sound control,
     and the GitHub button overlaps the lighthouse base at 320×568.
   - The ending heading wraps "go" onto its own line at 393–440px.
+  - Real Safari (iOS 26.2 Simulator, iPhone 17 Pro Max, toolbar collapsed): the page ends against
+    the taller large viewport, which headless checks cannot show (no toolbar, lvh = svh). The
+    ending's bottom space now adds (100lvh - 100svh), so at the page end the credits clear the
+    boat (verified). At that end position the top link row overlaps the cliffs' base and the
+    ending label sits just under the controls row.
   - Not re-verified on a physical iPhone; Chrome on iPhone untested; accessibility unchanged
     (Phase 3).
 ```
