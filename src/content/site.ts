@@ -39,11 +39,11 @@ export const person = {
 };
 
 export const intro = {
-  kicker: `${person.name} · ${person.role}`,
+  kicker: person.name,
   title: "IRIS",
   subtitle: "IMAGINE → BUILD",
   thesis:
-    "I imagine possible futures of human–AI collaboration, and I study, build, and teach in ways that move toward them.",
+    "I'm an aspiring human-centered robotics and AI interaction designer interested in HRI, HCI, industrial design, psychology, and the future of embodied AI.",
   scrollHint: "Scroll to set sail",
 };
 

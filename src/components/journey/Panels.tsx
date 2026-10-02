@@ -21,7 +21,7 @@ const endingHeading = "journey-ending-heading mt-4 font-pixel text-[1.5rem] font
 export function IntroPanel({ className, full = false }: { className?: string; full?: boolean }) {
   return (
     <header className={className}>
-      <p className="font-serif text-[1.15rem] text-mist/85">Hello, I’m</p>
+      <p className="font-serif text-[1.15rem] text-mist/85">{intro.kicker}</p>
       <h1 className="mt-3 font-pixel font-bold leading-none text-mist">
         <span className="block text-[clamp(4rem,11vw,8.5rem)] tracking-[0.02em]">{intro.title}</span>
         {full && (
